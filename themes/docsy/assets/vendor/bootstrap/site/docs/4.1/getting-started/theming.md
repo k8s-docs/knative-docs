@@ -4,7 +4,7 @@ title: Theming Bootstrap
 description: Customize Bootstrap 4 with our new built-in Sass variables for global style preferences for easy theming and component changes.
 group: getting-started
 toc: true
-redirect_from: "/docs/4.1/getting-started/options/"
+redirect_from: '/docs/4.1/getting-started/options/'
 ---
 
 ## Introduction
@@ -24,11 +24,11 @@ Whenever possible, avoid modifying Bootstrap's core files. For Sass, that means 
 {% highlight plaintext %}
 your-project/
 ├── scss
-│   └── custom.scss
+│ └── custom.scss
 └── node_modules/
-    └── bootstrap
-        ├── js
-        └── scss
+└── bootstrap
+├── js
+└── scss
 {% endhighlight %}
 
 If you've downloaded our source files and aren't using a package manager, you'll want to manually setup something similar to that structure, keeping Bootstrap's source files separate from your own.
@@ -36,10 +36,10 @@ If you've downloaded our source files and aren't using a package manager, you'll
 {% highlight plaintext %}
 your-project/
 ├── scss
-│   └── custom.scss
+│ └── custom.scss
 └── bootstrap/
-    ├── js
-    └── scss
+├── js
+└── scss
 {% endhighlight %}
 
 ### Importing
@@ -104,9 +104,9 @@ Some of our Sass maps are merged into empty ones by default. This is done to all
 To modify an existing color in our `$theme-colors` map, add the following to your custom Sass file:
 
 {% highlight scss %}
-$theme-colors: (
-  "primary": #0074d9,
-  "danger": #ff4136
+\$theme-colors: (
+"primary": #0074d9,
+"danger": #ff4136
 );
 {% endhighlight %}
 
@@ -115,8 +115,8 @@ $theme-colors: (
 To add a new color to `$theme-colors`, add the new key and value:
 
 {% highlight scss %}
-$theme-colors: (
-  "custom-color": #900
+\$theme-colors: (
+"custom-color": #900
 );
 {% endhighlight %}
 
@@ -151,15 +151,15 @@ Bootstrap utilizes several Sass functions, but only a subset are applicable to g
 
 {% highlight scss %}
 @function color($key: "blue") {
-  @return map-get($colors, $key);
+  @return map-get($colors, \$key);
 }
 
 @function theme-color($key: "primary") {
-  @return map-get($theme-colors, $key);
+  @return map-get($theme-colors, \$key);
 }
 
 @function gray($key: "100") {
-  @return map-get($grays, $key);
+  @return map-get($grays, \$key);
 }
 {% endhighlight %}
 
@@ -167,8 +167,8 @@ These allow you to pick one color from a Sass map much like how you'd use a colo
 
 {% highlight scss %}
 .custom-element {
-  color: gray("100");
-  background-color: theme-color("dark");
+color: gray("100");
+background-color: theme-color("dark");
 }
 {% endhighlight %}
 
@@ -176,11 +176,11 @@ We also have another function for getting a particular _level_ of color from the
 
 {% highlight scss %}
 @function theme-color-level($color-name: "primary", $level: 0) {
-  $color: theme-color($color-name);
-  $color-base: if($level > 0, #000, #fff);
-  $level: abs($level);
+$color: theme-color($color-name);
+$color-base: if($level > 0, #000, #fff);
+$level: abs($level);
 
-  @return mix($color-base, $color, $level * $theme-color-interval);
+@return mix($color-base, $color, $level * $theme-color-interval);
 }
 {% endhighlight %}
 
@@ -188,7 +188,7 @@ In practice, you'd call the function and pass in two parameters: the name of the
 
 {% highlight scss %}
 .custom-element {
-  color: theme-color-level(primary, -10);
+color: theme-color-level(primary, -10);
 }
 {% endhighlight %}
 
@@ -203,8 +203,8 @@ For example, to generate color swatches from our `$theme-colors` map:
 {% highlight scss %}
 @each $color, $value in $theme-colors {
   .swatch-#{$color} {
-    color: color-yiq($value);
-  }
+color: color-yiq(\$value);
+}
 }
 {% endhighlight %}
 
@@ -212,7 +212,7 @@ It can also be used for one-off contrast needs:
 
 {% highlight scss %}
 .custom-element {
-  color: color-yiq(#000); // returns `color: #fff`
+color: color-yiq(#000); // returns `color: #fff`
 }
 {% endhighlight %}
 
@@ -220,7 +220,7 @@ You can also specify a base color with our color map functions:
 
 {% highlight scss %}
 .custom-element {
-  color: color-yiq(theme-color("dark")); // returns `color: #fff`
+color: color-yiq(theme-color("dark")); // returns `color: #fff`
 }
 {% endhighlight %}
 
@@ -230,17 +230,17 @@ Customize Bootstrap 4 with our built-in custom variables file and easily toggle 
 
 You can find and customize these variables for key global options in Bootstrap's `scss/_variables.scss` file.
 
-| Variable                    | Values                             | Description                                                                            |
-| --------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------- |
+| Variable                    | Values                             | Description                                                                                                                                                 |
+| --------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `$spacer`                   | `1rem` (default), or any value > 0 | Specifies the default spacer value to programmatically generate our [spacer utilities]({{ site.baseurl }}/docs/{{ site.docs_version }}/utilities/spacing/). |
-| `$enable-rounded`           | `true` (default) or `false`        | Enables predefined `border-radius` styles on various components. |
-| `$enable-shadows`           | `true` or `false` (default)        | Enables predefined `box-shadow` styles on various components. |
-| `$enable-gradients`         | `true` or `false` (default)        | Enables predefined gradients via `background-image` styles on various components. |
-| `$enable-transitions`       | `true` (default) or `false`        | Enables predefined `transition`s on various components. |
-| `$enable-hover-media-query` | `true` or `false` (default)        | **Deprecated** |
-| `$enable-grid-classes`      | `true` (default) or `false`        | Enables the generation of CSS classes for the grid system (e.g., `.container`, `.row`, `.col-md-1`, etc.). |
-| `$enable-caret`             | `true` (default) or `false`        | Enables pseudo element caret on `.dropdown-toggle`. |
-| `$enable-print-styles`      | `true` (default) or `false`        | Enables styles for optimizing printing. |
+| `$enable-rounded`           | `true` (default) or `false`        | Enables predefined `border-radius` styles on various components.                                                                                            |
+| `$enable-shadows`           | `true` or `false` (default)        | Enables predefined `box-shadow` styles on various components.                                                                                               |
+| `$enable-gradients`         | `true` or `false` (default)        | Enables predefined gradients via `background-image` styles on various components.                                                                           |
+| `$enable-transitions`       | `true` (default) or `false`        | Enables predefined `transition`s on various components.                                                                                                     |
+| `$enable-hover-media-query` | `true` or `false` (default)        | **Deprecated**                                                                                                                                              |
+| `$enable-grid-classes`      | `true` (default) or `false`        | Enables the generation of CSS classes for the grid system (e.g., `.container`, `.row`, `.col-md-1`, etc.).                                                  |
+| `$enable-caret`             | `true` (default) or `false`        | Enables pseudo element caret on `.dropdown-toggle`.                                                                                                         |
+| `$enable-print-styles`      | `true` (default) or `false`        | Enables styles for optimizing printing.                                                                                                                     |
 
 ## Color
 
@@ -264,7 +264,7 @@ Here's how you can use these in your Sass:
 
 {% highlight scss %}
 // With variable
-.alpha { color: $purple; }
+.alpha { color: \$purple; }
 
 // From the Sass map with our `color()` function
 .beta { color: color("purple"); }
@@ -306,17 +306,17 @@ Within `scss/_variables.scss`, you'll find Bootstrap's color variables and Sass 
 {% highlight scss %}
 $colors: (
   "blue": $blue,
-  "indigo": $indigo,
+"indigo": $indigo,
   "purple": $purple,
-  "pink": $pink,
+"pink": $pink,
   "red": $red,
-  "orange": $orange,
+"orange": $orange,
   "yellow": $yellow,
-  "green": $green,
+"green": $green,
   "teal": $teal,
-  "cyan": $cyan,
+"cyan": $cyan,
   "white": $white,
-  "gray": $gray-600,
+"gray": $gray-600,
   "gray-dark": $gray-800
 ) !default;
 {% endhighlight %}
@@ -337,13 +337,13 @@ Here are two examples of how we loop over the `$theme-colors` map to generate mo
 // Generate alert modifier classes
 @each $color, $value in $theme-colors {
   .alert-#{$color} {
-    @include alert-variant(theme-color-level($color, -10), theme-color-level($color, -9), theme-color-level($color, 6));
-  }
+@include alert-variant(theme-color-level($color, -10), theme-color-level($color, -9), theme-color-level(\$color, 6));
+}
 }
 
 // Generate `.bg-*` color utilities
 @each $color, $value in $theme-colors {
-  @include bg-variant('.bg-#{$color}', $value);
+  @include bg-variant('.bg-#{$color}', \$value);
 }
 {% endhighlight %}
 
@@ -353,13 +353,14 @@ These Sass loops aren't limited to color maps, either. You can also generate res
 
 {% highlight scss %}
 @each $breakpoint in map-keys($grid-breakpoints) {
-  @include media-breakpoint-up($breakpoint) {
+@include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
     .text#{$infix}-left   { text-align: left !important; }
     .text#{$infix}-right  { text-align: right !important; }
     .text#{$infix}-center { text-align: center !important; }
-  }
+
+}
 }
 {% endhighlight %}
 
@@ -375,47 +376,47 @@ Here are the variables we include (note that the `:root` is required). They're l
 
 {% highlight css %}
 :root {
-  --blue: #007bff;
-  --indigo: #6610f2;
-  --purple: #6f42c1;
-  --pink: #e83e8c;
-  --red: #dc3545;
-  --orange: #fd7e14;
-  --yellow: #ffc107;
-  --green: #28a745;
-  --teal: #20c997;
-  --cyan: #17a2b8;
-  --white: #fff;
-  --gray: #6c757d;
-  --gray-dark: #343a40;
-  --primary: #007bff;
-  --secondary: #6c757d;
-  --success: #28a745;
-  --info: #17a2b8;
-  --warning: #ffc107;
-  --danger: #dc3545;
-  --light: #f8f9fa;
-  --dark: #343a40;
-  --breakpoint-xs: 0;
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+--blue: #007bff;
+--indigo: #6610f2;
+--purple: #6f42c1;
+--pink: #e83e8c;
+--red: #dc3545;
+--orange: #fd7e14;
+--yellow: #ffc107;
+--green: #28a745;
+--teal: #20c997;
+--cyan: #17a2b8;
+--white: #fff;
+--gray: #6c757d;
+--gray-dark: #343a40;
+--primary: #007bff;
+--secondary: #6c757d;
+--success: #28a745;
+--info: #17a2b8;
+--warning: #ffc107;
+--danger: #dc3545;
+--light: #f8f9fa;
+--dark: #343a40;
+--breakpoint-xs: 0;
+--breakpoint-sm: 576px;
+--breakpoint-md: 768px;
+--breakpoint-lg: 992px;
+--breakpoint-xl: 1200px;
+--font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+--font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 {% endhighlight %}
 
-### Examples
+### 例子
 
 CSS variables offer similar flexibility to Sass's variables, but without the need for compilation before being served to the browser. For example, here we're resetting our page's font and link styles with CSS variables.
 
 {% highlight css %}
 body {
-  font: 1rem/1.5 var(--font-family-sans-serif);
+font: 1rem/1.5 var(--font-family-sans-serif);
 }
 a {
-  color: var(--blue);
+color: var(--blue);
 }
 {% endhighlight %}
 
@@ -427,7 +428,7 @@ Here's an example of **what's not supported:**
 
 {% highlight css %}
 @media (min-width: var(--breakpoint-sm)) {
-  ...
+...
 }
 {% endhighlight %}
 
@@ -435,8 +436,8 @@ And here's an example of **what is supported:**
 
 {% highlight css %}
 @media (min-width: 768px) {
-  .custom-element {
-    color: var(--primary);
-  }
+.custom-element {
+color: var(--primary);
+}
 }
 {% endhighlight %}

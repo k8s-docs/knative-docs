@@ -49,7 +49,7 @@ If you prefer to view the Knative docs from within the [knative/docs
 view details about their cookies and tracking at
 [GitHub Privacy Statement](https://help.github.com/en/github/site-policy/github-privacy-statement#what-information-github-collects).
 
-## Options for opting out
+## 选项 for opting out
 
 Use the following options to prevent your data from being shared with websites.
 

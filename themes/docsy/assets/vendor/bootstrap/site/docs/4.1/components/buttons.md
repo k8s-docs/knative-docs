@@ -3,11 +3,11 @@ layout: docs
 title: Buttons
 description: Use Bootstrap's custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.
 group: components
-redirect_from: "/docs/4.1/components/"
+redirect_from: '/docs/4.1/components/'
 toc: true
 ---
 
-## Examples
+## 例子
 
 Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control.
 
@@ -92,9 +92,9 @@ Make buttons look inactive by adding the `disabled` boolean attribute to any `<b
 
 Disabled buttons using the `<a>` element behave a bit different:
 
-- `<a>`s don't support the `disabled` attribute, so you must add the `.disabled` class to make it visually appear disabled.
-- Some future-friendly styles are included to disable all `pointer-events` on anchor buttons. In browsers which support that property, you won't see the disabled cursor at all.
-- Disabled buttons should include the `aria-disabled="true"` attribute to indicate the state of the element to assistive technologies.
+-   `<a>`s don't support the `disabled` attribute, so you must add the `.disabled` class to make it visually appear disabled.
+-   Some future-friendly styles are included to disable all `pointer-events` on anchor buttons. In browsers which support that property, you won't see the disabled cursor at all.
+-   Disabled buttons should include the `aria-disabled="true"` attribute to indicate the state of the element to assistive technologies.
 
 {% capture example %}
 <a href="#" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Primary link</a>
@@ -103,6 +103,7 @@ Disabled buttons using the `<a>` element behave a bit different:
 {% include example.html content=example %}
 
 {% capture callout %}
+
 ##### Link functionality caveat
 
 The `.disabled` class uses `pointer-events: none` to try to disable the link functionality of `<a>`s, but that CSS property is not yet standardized. In addition, even in browsers that do support `pointer-events: none`, keyboard navigation remains unaffected, meaning that sighted keyboard users and users of assistive technologies will still be able to activate these links. So to be safe, add a `tabindex="-1"` attribute on these links (to prevent them from receiving keyboard focus) and use custom JavaScript to disable their functionality.
@@ -119,7 +120,7 @@ Add `data-toggle="button"` to toggle a button's `active` state. If you're pre-to
 
 {% capture example %}
 <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
-  Single toggle
+Single toggle
 </button>
 {% endcapture %}
 {% include example.html content=example %}
@@ -133,6 +134,7 @@ The checked state for these buttons is **only updated via `click` event** on the
 Note that pre-checked buttons require you to manually add the `.active` class to the input's `<label>`.
 
 {% capture example %}
+
 <div class="btn-group-toggle" data-toggle="buttons">
   <label class="btn btn-secondary active">
     <input type="checkbox" checked autocomplete="off"> Checked
@@ -142,6 +144,7 @@ Note that pre-checked buttons require you to manually add the `.active` class to
 {% include example.html content=example %}
 
 {% capture example %}
+
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
   <label class="btn btn-secondary active">
     <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
@@ -158,7 +161,7 @@ Note that pre-checked buttons require you to manually add the `.active` class to
 
 ### Methods
 
-| Method | Description |
-| --- | --- |
-| `$().button('toggle')` | Toggles push state. Gives the button the appearance that it has been activated. |
-| `$().button('dispose')` | Destroys an element's button. |
+| Method                  | Description                                                                     |
+| ----------------------- | ------------------------------------------------------------------------------- |
+| `$().button('toggle')`  | Toggles push state. Gives the button the appearance that it has been activated. |
+| `$().button('dispose')` | Destroys an element's button.                                                   |

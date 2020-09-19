@@ -10,15 +10,15 @@ toc: true
 
 Things to know when using the tooltip plugin:
 
-- Tooltips rely on the 3rd party library [Popper.js](https://popper.js.org/) for positioning. You must include [popper.min.js]({{ site.cdn.popper }}) before bootstrap.js or use `bootstrap.bundle.min.js` / `bootstrap.bundle.js` which contains Popper.js in order for tooltips to work!
-- If you're building our JavaScript from source, it [requires `util.js`]({{ site.baseurl }}/docs/{{ site.docs_version }}/getting-started/javascript/#util).
-- Tooltips are opt-in for performance reasons, so **you must initialize them yourself**.
-- Tooltips with zero-length titles are never displayed.
-- Specify `container: 'body'` to avoid rendering problems in more complex components (like our input groups, button groups, etc).
-- Triggering tooltips on hidden elements will not work.
-- Tooltips for `.disabled` or `disabled` elements must be triggered on a wrapper element.
-- When triggered from hyperlinks that span multiple lines, tooltips will be centered. Use `white-space: nowrap;` on your `<a>`s to avoid this behavior.
-- Tooltips must be hidden before their corresponding elements have been removed from the DOM.
+-   Tooltips rely on the 3rd party library [Popper.js](https://popper.js.org/) for positioning. You must include [popper.min.js]({{ site.cdn.popper }}) before bootstrap.js or use `bootstrap.bundle.min.js` / `bootstrap.bundle.js` which contains Popper.js in order for tooltips to work!
+-   If you're building our JavaScript from source, it [requires `util.js`]({{ site.baseurl }}/docs/{{ site.docs_version }}/getting-started/javascript/#util).
+-   Tooltips are opt-in for performance reasons, so **you must initialize them yourself**.
+-   Tooltips with zero-length titles are never displayed.
+-   Specify `container: 'body'` to avoid rendering problems in more complex components (like our input groups, button groups, etc).
+-   Triggering tooltips on hidden elements will not work.
+-   Tooltips for `.disabled` or `disabled` elements must be triggered on a wrapper element.
+-   When triggered from hyperlinks that span multiple lines, tooltips will be centered. Use `white-space: nowrap;` on your `<a>`s to avoid this behavior.
+-   Tooltips must be hidden before their corresponding elements have been removed from the DOM.
 
 Got all that? Great, let's see how they work with some examples.
 
@@ -32,7 +32,7 @@ $(function () {
 })
 {% endhighlight %}
 
-## Examples
+## 例子
 
 Hover over the links below to see tooltips:
 
@@ -55,16 +55,16 @@ Hover over the buttons below to see the four tooltips directions: top, right, bo
 
 {% highlight html %}
 <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-  Tooltip on top
+Tooltip on top
 </button>
 <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
-  Tooltip on right
+Tooltip on right
 </button>
 <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
-  Tooltip on bottom
+Tooltip on bottom
 </button>
 <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Tooltip on left">
-  Tooltip on left
+Tooltip on left
 </button>
 {% endhighlight %}
 
@@ -72,7 +72,7 @@ And with custom HTML added:
 
 {% highlight html %}
 <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="<em>Tooltip</em> <u>with</u> <b>HTML</b>">
-  Tooltip with HTML
+Tooltip with HTML
 </button>
 {% endhighlight %}
 
@@ -83,16 +83,17 @@ The tooltip plugin generates content and markup on demand, and by default places
 Trigger the tooltip via JavaScript:
 
 {% highlight js %}
-$('#example').tooltip(options)
+\$('#example').tooltip(options)
 {% endhighlight %}
 
 {% capture callout %}
+
 ##### Overflow `auto` and `scroll`
 
 Tooltip position attempts to automatically change when a parent container has `overflow: auto` or `overflow: scroll` like our `.table-responsive`, but still keeps the original placement's positioning. To resolve, set the `boundary` option to anything other than default value, `'scrollParent'`, such as `'window'`:
 
 {% highlight js %}
-$('#example').tooltip({ boundary: 'window' })
+\$('#example').tooltip({ boundary: 'window' })
 {% endhighlight %}
 {% endcapture %}
 {% include callout.html content=callout type="warning" %}
@@ -102,6 +103,7 @@ $('#example').tooltip({ boundary: 'window' })
 The required markup for a tooltip is only a `data` attribute and `title` on the HTML element you wish to have a tooltip. The generated markup of a tooltip is rather simple, though it does require a position (by default, set to `top` by the plugin).
 
 {% capture callout %}
+
 ##### Making tooltips work for keyboard and assistive technology users
 
 You should only add tooltips to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). Although arbitrary HTML elements (such as `<span>`s) can be made focusable by adding the `tabindex="0"` attribute, this will add potentially annoying and confusing tab stops on non-interactive elements for keyboard users. In addition, most assistive technologies currently do not announce the tooltip in this situation.
@@ -111,7 +113,9 @@ Additionally, do not rely solely on `hover` as the trigger for your tooltip, as 
 {% include callout.html content=callout type="warning" %}
 
 {% highlight html %}
+
 <!-- HTML to write -->
+
 <a href="#" data-toggle="tooltip" title="Some tooltip text!">Hover over me</a>
 
 <!-- Generated markup by the plugin -->
@@ -136,7 +140,7 @@ Elements with the `disabled` attribute aren't interactive, meaning users cannot 
 {% include example.html content=example %}
 </div>
 
-### Options
+### 选项
 
 Options can be passed via data attributes or JavaScript. For data attributes, append the option name to `data-`, as in `data-animation=""`.
 
@@ -252,6 +256,7 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 </table>
 
 {% capture callout %}
+
 #### Data attributes for individual tooltips
 
 Options for individual tooltips can alternatively be specified through the use of data attributes, as explained above.
@@ -270,49 +275,49 @@ Attaches a tooltip handler to an element collection.
 
 Reveals an element's tooltip. **Returns to the caller before the tooltip has actually been shown** (i.e. before the `shown.bs.tooltip` event occurs). This is considered a "manual" triggering of the tooltip. Tooltips with zero-length titles are never displayed.
 
-{% highlight js %}$('#element').tooltip('show'){% endhighlight %}
+{% highlight js %}\$('#element').tooltip('show'){% endhighlight %}
 
 #### `.tooltip('hide')`
 
 Hides an element's tooltip. **Returns to the caller before the tooltip has actually been hidden** (i.e. before the `hidden.bs.tooltip` event occurs). This is considered a "manual" triggering of the tooltip.
 
-{% highlight js %}$('#element').tooltip('hide'){% endhighlight %}
+{% highlight js %}\$('#element').tooltip('hide'){% endhighlight %}
 
 #### `.tooltip('toggle')`
 
 Toggles an element's tooltip. **Returns to the caller before the tooltip has actually been shown or hidden** (i.e. before the `shown.bs.tooltip` or `hidden.bs.tooltip` event occurs). This is considered a "manual" triggering of the tooltip.
 
-{% highlight js %}$('#element').tooltip('toggle'){% endhighlight %}
+{% highlight js %}\$('#element').tooltip('toggle'){% endhighlight %}
 
 #### `.tooltip('dispose')`
 
 Hides and destroys an element's tooltip. Tooltips that use delegation (which are created using [the `selector` option](#options)) cannot be individually destroyed on descendant trigger elements.
 
-{% highlight js %}$('#element').tooltip('dispose'){% endhighlight %}
+{% highlight js %}\$('#element').tooltip('dispose'){% endhighlight %}
 
 #### `.tooltip('enable')`
 
 Gives an element's tooltip the ability to be shown. **Tooltips are enabled by default.**
 
-{% highlight js %}$('#element').tooltip('enable'){% endhighlight %}
+{% highlight js %}\$('#element').tooltip('enable'){% endhighlight %}
 
 #### `.tooltip('disable')`
 
 Removes the ability for an element's tooltip to be shown. The tooltip will only be able to be shown if it is re-enabled.
 
-{% highlight js %}$('#element').tooltip('disable'){% endhighlight %}
+{% highlight js %}\$('#element').tooltip('disable'){% endhighlight %}
 
 #### `.tooltip('toggleEnabled')`
 
 Toggles the ability for an element's tooltip to be shown or hidden.
 
-{% highlight js %}$('#element').tooltip('toggleEnabled'){% endhighlight %}
+{% highlight js %}\$('#element').tooltip('toggleEnabled'){% endhighlight %}
 
 #### `.tooltip('update')`
 
 Updates the position of an element's tooltip.
 
-{% highlight js %}$('#element').tooltip('update'){% endhighlight %}
+{% highlight js %}\$('#element').tooltip('update'){% endhighlight %}
 
 ### Events
 
@@ -348,7 +353,7 @@ Updates the position of an element's tooltip.
 </table>
 
 {% highlight js %}
-$('#myTooltip').on('hidden.bs.tooltip', function () {
-  // do something…
+\$('#myTooltip').on('hidden.bs.tooltip', function () {
+// do something…
 })
 {% endhighlight %}

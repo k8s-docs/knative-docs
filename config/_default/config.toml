@@ -6,8 +6,12 @@
 
 title = "Knative"
 configDir = "config"
-canonifyURLs = "true"
-relativeURLs = "true"
+# 允许把相对URL为绝对.
+canonifyURLs = true
+# 启用此使所有相对URL相对于内容根. 请注意，这并不影响绝对URL.
+relativeURLs = true
+# 会给值到.Lastmod等。
+enableGitInfo = true
 
 # Ignore files when rendering/building site (to hide from Nav tree and sitemap)
 # Add files here that you "include" in other files using the 'readfile' shortcode
@@ -37,8 +41,7 @@ defaultContentLanguageInSubdir = false
 # Useful when translating.
 enableMissingTranslationPlaceholders = true
 
-# Will give values to .Lastmod etc.
-enableGitInfo = true
+
 
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
@@ -52,19 +55,3 @@ resampleFilter = "CatmullRom"
 quality = 75
 anchor = "smart"
 
-[menu]
-
-  [[menu.main]]
-    name = "Documentation"
-    url = "/docs/"
-    weight = 10
-
-  [[menu.main]]
-    name = "Blog"
-    url = "/blog/"
-    weight = 30
-
-  [[menu.main]]
-    name = "Community"
-    url = "/community/"
-    weight = 40

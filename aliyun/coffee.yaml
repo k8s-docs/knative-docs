@@ -1,0 +1,17 @@
+# cat coffee.yaml
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: coffee
+spec:
+  template:
+    metadata:
+      annotations:
+        knative.aliyun.com/reserve-instance-eci-use-specs: "ecs.t5-c1m2.large"
+        autoscaling.knative.dev/target: "10"
+    spec:
+      containers:
+        - image: registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go:160e4dc8
+          env:
+            - name: TARGET
+              value: "coffee"
