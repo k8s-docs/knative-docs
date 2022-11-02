@@ -1,50 +1,47 @@
-# Knative Serving
+# Knative 服务
 
 --8<-- "about-serving.md"
 
-## Common use cases
+## 常见用例
 
-Examples of supported Knative Serving use cases:
+支持的Knative服务用例示例:
 
-- Rapid deployment of serverless containers.
-- Autoscaling, including scaling pods down to zero.
-- Support for multiple networking layers, such as Contour, Kourier, and Istio, for integration into existing environments.
+- 快速部署无服务器容器。
+- 自动缩放，包括将豆荚缩放到零。
+- 支持多个网络层，如Contour、Kourier和Istio，以便集成到现有环境中。
 
-Knative Serving supports both HTTP and [HTTPS](using-a-tls-cert.md) networking protocols.
+Knative服务同时支持HTTP和[HTTPS](using-a-tls-cert.md)网络协议。
 
-## Installation
+## 安装
 
-You can install Knative Serving via the methods listed on the [installation page](../install/README.md).
+您可以通过[安装页面](../install/README.md)中列出的方法安装Knative服务.
 
-## Getting Started
+## 开始
 
-To get started with Serving, check out one of the [hello world](../samples/serving.md)
-sample projects. These projects use the `Service` resource, which manages all of
-the details for you.
+要开始使用服务，请查看[hello world](../samples/serving.md)示例项目之一。
+这些项目使用`Service`资源，它为你管理所有的细节。
 
-With the `Service` resource, a deployed service will automatically have a
-matching route and configuration created. Each time the `Service` is updated, a
-new revision is created.
+使用`Service`资源，部署的服务将自动创建匹配的路由和配置。
+每次`Service`更新时，都会创建一个新的修订。
 
-## More samples and demos
+## 更多示例和演示
 
-- [Knative Serving code samples](../samples/serving.md)
+- [Knative服务代码示例](../samples/serving.md)
 
-## Debugging Knative Serving issues
+## 调试Knative服务问题
 
-- [Debugging application issues](troubleshooting/debugging-application-issues.md)
+- [调试应用程序问题](troubleshooting/debugging-application-issues.md)
 
-## Configuration and Networking
+## 配置和网络
 
-- [Configuring cluster local routes](services/private-services.md)
-- [Using a custom domain](using-a-custom-domain.md)
-- [Traffic management](traffic-management.md)
+- [配置集群本地路由](services/private-services.md)
+- [使用自定义域](using-a-custom-domain.md)
+- [交通管理](traffic-management.md)
 
-## Observability
+## 可观察性
 
-- [Serving Metrics API](observability/metrics/serving-metrics.md)
+- [服务标准API](observability/metrics/serving-metrics.md)
 
-## Known Issues
+## 已知的问题
 
-See the [Knative Serving Issues](https://github.com/knative/serving/issues) page
-for a full list of known issues.
+有关已知问题的完整列表，请参见[Knative服务问题](https://github.com/knative/serving/issues)页面。

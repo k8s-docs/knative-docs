@@ -1,25 +1,25 @@
-# Metrics
+# 指标
 
-The metric configuration defines which metric type is watched by the Autoscaler.
+指标配置定义由Autoscaler监视的度量类型。
 
-## Setting metrics per revision
+## 设置每个修订的指标
 
-For [per-revision](autoscaler-types.md#global-versus-per-revision-settings) configuration, this is determined using the `autoscaling.knative.dev/metric` annotation.
-The possible metric types that can be configured per revision depend on the type of Autoscaler implementation you are using:
+对于[每修订](autoscaler-types.md#global-versus-per-revision-settings)配置，这是使用`autoscaling.knative.dev/metric`注释确定的。
+可以在每个版本中配置的可能的度量类型取决于您正在使用的Autoscaler实现的类型:
 
-* The default KPA Autoscaler supports the `concurrency` and `rps` metrics.
-* The HPA Autoscaler supports the `cpu` metric.
+* 默认的KPA Autoscaler支持`concurrency`和`rps`指标。
+* HPA Autoscaler 支持 `cpu` 指标。
 
 <!-- TODO: Add details about different metrics types, how concurrency and rps differ. Explain cpu. -->
 
-For more information about KPA and HPA, see the documentation on [Supported Autoscaler types](autoscaler-types.md).
+有关KPA和HPA的更多信息，请参阅关于[支持的自动缩放器类型](autoscaler-types.md)的文档。
 
-* **Per-revision annotation key:** `autoscaling.knative.dev/metric`
-* **Possible values:** `"concurrency"`, `"rps"`, `"cpu"`, `"memory"` or any custom metric name, depending on your Autoscaler type. The `"cpu"`, `"memory"`, and `"custom"` metrics are only supported on revisions that use the HPA class.
-* **Default:** `"concurrency"`
+* **每修订注释键:** `autoscaling.knative.dev/metric`
+* **可能值:** `"concurrency"`, `"rps"`, `"cpu"`, `"memory"` 或任何自定义指标名称，这取决于您的Autoscaler类型. `"cpu"`, `"memory"` 和 `"custom"`指标仅在使用HPA类的版本中支持。
+* **默认:** `"concurrency"`
 
 
-=== "Per-revision concurrency configuration"
+=== "每修订并发配置"
 
     ```yaml
     apiVersion: serving.knative.dev/v1
@@ -34,7 +34,7 @@ For more information about KPA and HPA, see the documentation on [Supported Auto
             autoscaling.knative.dev/metric: "concurrency"
     ```
 
-=== "Per-revision rps configuration"
+=== "每修订rps配置"
 
     ```yaml
     apiVersion: serving.knative.dev/v1
@@ -49,7 +49,7 @@ For more information about KPA and HPA, see the documentation on [Supported Auto
             autoscaling.knative.dev/metric: "rps"
     ```
 
-=== "Per-revision cpu configuration"
+=== "每修订cpu配置"
 
     ```yaml
     apiVersion: serving.knative.dev/v1
@@ -65,7 +65,7 @@ For more information about KPA and HPA, see the documentation on [Supported Auto
             autoscaling.knative.dev/metric: "cpu"
     ```
 
-=== "Per-revision memory configuration"
+=== "每修订内存配置"
 
     ```yaml
     apiVersion: serving.knative.dev/v1
@@ -81,10 +81,10 @@ For more information about KPA and HPA, see the documentation on [Supported Auto
             autoscaling.knative.dev/metric: "memory"
     ```
 
-=== "Per-revision custom metric configuration"
+=== "每修订自定义指标配置"
 
-    You can create an HPA to scale the revision by a metric that you specify.
-    The HPA will be configured to use the **average value** of your metric over all the Pods of the revision.
+    您可以创建一个HPA，以根据您指定的指标来扩展修订。
+    HPA将被配置为在修订的所有Pods中使用度量的**平均值**。
 
     ```yaml
     apiVersion: serving.knative.dev/v1
@@ -104,7 +104,7 @@ For more information about KPA and HPA, see the documentation on [Supported Auto
 
 
 
-## Next steps
+## 下一个步骤
 
-* Configure [concurrency targets](concurrency.md) for applications
-* Configure [requests per second targets](rps-target.md) for replicas of an application
+* 为应用程序配置[并发目标](concurrency.md)
+* 为应用程序的副本配置[每秒请求目标](rps-target.md)

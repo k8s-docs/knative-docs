@@ -1,7 +1,7 @@
-# About Revisions
+# 关于修订
 
 --8<-- "about-revisions.md"
 
-## Additional resources
+## 额外资源
 
-- [Revisions concept documentation](../../concepts/serving-resources/revisions.md){target=_blank}
+- [修订概念文档](../../concepts/serving-resources/revisions.md){target=\_blank}

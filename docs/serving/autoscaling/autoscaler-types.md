@@ -1,35 +1,36 @@
-# Supported Autoscaler types
+# 自动缩放器支持类型
 
-Knative Serving supports the implementation of Knative Pod Autoscaler (KPA) and Kubernetes' Horizontal Pod Autoscaler (HPA). This topic lists the features and limitations of each of these Autoscalers, as well as how to configure them.
+Knative服务支持Knative Pod Autoscaler (KPA)和Kubernetes的 Horizontal Pod Autoscaler (HPA)的实现。
+本主题列出每种自动缩放器的特性和限制，以及如何配置它们。
 
-!!! important
-    If you want to use Kubernetes Horizontal Pod Autoscaler (HPA), you must install it after you install Knative Serving.
-For how to install HPA, see [Install optional Serving extensions](../../install/yaml-install/serving/install-serving-with-yaml.md#install-optional-serving-extensions).
+!!! 重要的
+    如果您想使用Kubernetes水平Pod自动缩放器(HPA)，您必须在安装Knative服务之后安装它。
+关于如何安装HPA，请参见[安装可选服务扩展](../../install/yaml-install/serving/install-serving-with-yaml.md#install-optional-serving-extensions).
 
 ## Knative Pod Autoscaler (KPA)
 
-* Part of the Knative Serving core and enabled by default once Knative Serving is installed.
-* Supports scale to zero functionality.
-* Does not support CPU-based autoscaling.
+* Knative服务核心的一部分，安装Knative服务后默认启用。
+* 支持伸缩到零的功能。
+* 不支持基于cpu的自动伸缩。
 
 ## Horizontal Pod Autoscaler (HPA)
 
-* Not part of the Knative Serving core, and you must install Knative Serving first.
-* Does not support scale to zero functionality.
-* Supports CPU-based autoscaling.
+* 不是Knative Serving核心的一部分，你必须先安装Knative Serving。
+* 不支持伸缩到零的功能。
+* 支持CPU-based自动定量。
 
-## Configuring the Autoscaler implementation
+## 配置自动缩放器实现
 
-The type of Autoscaler implementation (KPA or HPA) can be configured by using the `class` annotation.
+自动缩放器实现的类型(KPA或HPA)可以通过使用`class`注释来配置。
 
-* **Global settings key:** `pod-autoscaler-class`
-* **Per-revision annotation key:** `autoscaling.knative.dev/class`
-* **Possible values:** `"kpa.autoscaling.knative.dev"` or `"hpa.autoscaling.knative.dev"`
-* **Default:** `"kpa.autoscaling.knative.dev"`
+* **全局设置键:** `pod-autoscaler-class`
+* **每个修订注释键:** `autoscaling.knative.dev/class`
+* **可能的值:** `"kpa.autoscaling.knative.dev"` 或 `"hpa.autoscaling.knative.dev"`
+* **默认:** `"kpa.autoscaling.knative.dev"`
 
-**Example:**
+**举例:**
 
-=== "Per Revision"
+=== "每修订"
     ```yaml
     apiVersion: serving.knative.dev/v1
     kind: Service
@@ -46,7 +47,7 @@ The type of Autoscaler implementation (KPA or HPA) can be configured by using th
             - image: gcr.io/knative-samples/helloworld-go
     ```
 
-=== "Global (ConfigMap)"
+=== "全局 (ConfigMap)"
     ```yaml
     apiVersion: v1
     kind: ConfigMap
@@ -57,7 +58,7 @@ The type of Autoscaler implementation (KPA or HPA) can be configured by using th
      pod-autoscaler-class: "kpa.autoscaling.knative.dev"
     ```
 
-=== "Global (Operator)"
+=== "全局 (Operator)"
     ```yaml
     apiVersion: operator.knative.dev/v1alpha1
     kind: KnativeServing
@@ -69,18 +70,19 @@ The type of Autoscaler implementation (KPA or HPA) can be configured by using th
           pod-autoscaler-class: "kpa.autoscaling.knative.dev"
     ```
 
-### Global versus per-revision settings
+### 全局和每个修订设置
 
-Configuring for autoscaling in Knative can be set using either global or per-revision settings.
+Knative中的自动伸缩配置可以使用全局设置或每修订设置进行设置。
 
-1. If no per-revision autoscaling settings are specified, the global settings will be used.
-1. If per-revision settings are specified, these will override the global settings when both types of settings exist.
+1. 如果没有指定每修订的自动缩放设置，则将使用全局设置。
+1. 如果指定了每修订的设置，当这两种类型的设置都存在时，这些设置将覆盖全局设置。
 
-#### Global settings
+#### 全局设置
 
-Global settings for autoscaling are configured using the `config-autoscaler` ConfigMap. If you installed Knative Serving using the Operator, you can set global configuration settings in the `spec.config.autoscaler` ConfigMap, located in the `KnativeServing` custom resource (CR).
+使用 `config-autoscaler` ConfigMap配置自动缩放的全局设置。
+如果您使用运营商安装了Knative服务，您可以在 `spec.config.autoscaler` ConfigMap 中设置全局配置设置，位于`KnativeServing`自定义资源(CR)中。
 
-##### Example of the default autoscaling ConfigMap
+##### 默认自动伸缩 ConfigMap 示例
 
 ```yaml
 apiVersion: v1
@@ -103,9 +105,9 @@ data:
  requests-per-second-target-default: "200"
 ```
 
-#### Per-revision settings
+#### 每修订设置
 
-Per-revision settings for autoscaling are configured by adding _annotations_ to a revision.
+自动伸缩的每修订设置是通过向版本添加 _annotations_ 来配置的。
 
 **Example:**
 
@@ -123,4 +125,5 @@ spec:
 ```
 
 !!! important
-    If you are creating revisions by using a service or configuration, you must set the annotations in the _revision template_ so that any modifications will be applied to each revision as they are created. Setting annotations in the top level metadata of a single revision will not propagate the changes to other revisions and will not apply changes to the autoscaling configuration for your application.
+    如果您正在使用服务或配置创建修订，则必须在 _revision template_ 中设置注释，以便在创建每个修订时将任何修改应用于它们。
+    在单个修订的顶层元数据中设置注释不会将更改传播到其他修订，也不会将更改应用到应用程序的自动伸缩配置中。

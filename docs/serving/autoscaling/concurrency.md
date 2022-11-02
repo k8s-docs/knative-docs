@@ -1,36 +1,39 @@
-# Configuring concurrency
+# 配置并发
 
-Concurrency determines the number of simultaneous requests that can be processed by each replica of an application at any given time.
+并发性决定了应用程序的每个副本在任何给定时间内可以处理的并发请求的数量。
 <!-- this is where including files would be useful. We could create a concurrency global config module and insert it here, in the docs for metrics, and in the docs for targets. Showing the correct information each time instead of having it in one place with the per revision config jumbled in with it makes it easier to understand IMHO, and would mean users don't need to visit different pages or hunt for the same information for similar user stories @abrennan89.-->
-For per-revision concurrency, you must configure both `autoscaling.knative.dev/metric`and `autoscaling.knative.dev/target` for a [soft limit](#soft-limit), or `containerConcurrency` for a [hard limit](#hard-limit).
+对于每个版本并发，您必须同时配置`autoscaling.knative.dev/metric`和`autoscaling.knative.dev/target`作为[软限制](#soft-limit)，或`containerConcurrency`作为[硬限制](#hard-limit)。
 
-For global concurrency, you can set the `container-concurrency-target-default` value.
+对于全局并发性，您可以设置`container-concurrency-target-default`值。
 
-## Soft versus hard concurrency limits
+## 软与硬并发限制
 
-It is possible to set either a _soft_ or _hard_ concurrency limit.
+可以设置 _软_/_硬_ 并发限制。
 
 !!! note
-    If both a soft and a hard limit are specified, the smaller of the two values will be used. This prevents the Autoscaler from having a target value that is not permitted by the hard limit value.
+    如果同时指定了软限制和硬限制，则将使用两个值中较小的值。
+    这可以防止Autoscaler拥有硬限制值不允许的目标值。
 
-The soft limit is a targeted limit rather than a strictly enforced bound. In some situations, particularly if there is a sudden _burst_ of requests, this value can be exceeded.
+软限额是一个有针对性的限额，而不是一个严格执行的限额。
+在某些情况下，特别是在请求突然爆发的情况下，可以超过这个值。
 
-The hard limit is an enforced upper bound.
-If concurrency reaches the hard limit, surplus requests will be buffered and must wait until enough capacity is free to execute the requests.
+硬性限制是强制的上限。
+如果并发性达到硬限制，多余的请求将被缓冲，必须等待，直到有足够的空闲容量来执行请求。
 
 !!! warning
-    Using a hard limit configuration is only recommended if there is a clear use case for it with your application. Having a low hard limit specified may have a negative impact on the throughput and latency of an application, and may cause additional cold starts.
+    只有在应用程序中有明确的用例时，才建议使用硬限制配置。
+    指定较低的硬限制可能会对应用程序的吞吐量和延迟产生负面影响，并可能导致额外的冷启动。
 
-### Soft limit
+### 软限制
 
-* **Global key:** `container-concurrency-target-default`
-* **Per-revision annotation key:** `autoscaling.knative.dev/target`
-* **Possible values:** An integer.
-* **Default:** `"100"`
+* **全局键:** `container-concurrency-target-default`
+* **每修订注释键:** `autoscaling.knative.dev/target`
+* **可用值:** An integer.
+* **默认值:** `"100"`
 
-**Example:**
+**举例:**
 
-=== "Per Revision"
+=== "每修订"
     ```yaml
     apiVersion: serving.knative.dev/v1
     kind: Service
@@ -44,7 +47,7 @@ If concurrency reaches the hard limit, surplus requests will be buffered and mus
             autoscaling.knative.dev/target: "200"
     ```
 
-=== "Global (ConfigMap)"
+=== "全局 (ConfigMap)"
     ```yaml
     apiVersion: v1
     kind: ConfigMap
@@ -55,7 +58,7 @@ If concurrency reaches the hard limit, surplus requests will be buffered and mus
      container-concurrency-target-default: "200"
     ```
 
-=== "Global (Operator)"
+=== "全局 (Operator)"
     ```yaml
     apiVersion: operator.knative.dev/v1alpha1
     kind: KnativeServing
@@ -70,23 +73,25 @@ If concurrency reaches the hard limit, surplus requests will be buffered and mus
 
 
 
-### Hard limit
+### 硬限制
 
-The hard limit is specified [per Revision](autoscaler-types.md#global-versus-per-revision-settings) using the `containerConcurrency` field on the Revision spec. This setting is not an annotation.
-
-There is no global setting for the hard limit in the autoscaling ConfigMap, because `containerConcurrency` has implications outside of autoscaling, such as on buffering and queuing of requests. However, a default value can be set for the Revision's `containerConcurrency` field in `config-defaults.yaml`.
-
-The default value is `0`, meaning that there is no limit on the number of requests that are allowed to flow into the revision.
-A value greater than `0` specifies the exact number of requests that are allowed to flow to the replica at any one time.
-
-* **Global key:** `container-concurrency` (in `config-defaults.yaml`)
-* **Per-revision spec key:** `containerConcurrency`
-* **Possible values:** integer
-* **Default:** `0`, meaning no limit
+硬限制是在每个修订中使用修订规范上的`containerConcurrency`字段指定的。
+此设置不是注释。
+在自动伸缩`ConfigMap`中没有硬限制的全局设置，因为`containerConcurrency`在自动伸缩之外也有影响，比如对请求的缓冲和排队。
+但是，可以在 `config-defaults.yaml` 中为修订版的 `containerConcurrency` 字段设置默认值。
 
 
-**Example:**
-=== "Per Revision"
+默认值是 `0` ，这意味着不限制允许流入修订版的请求的数量。
+大于 `0` 的值指定在任何时候允许流向副本的确切请求数。
+
+* **全局键:** `container-concurrency` (in `config-defaults.yaml`)
+* **每修订规范键:** `containerConcurrency`
+* **可用值:** integer
+* **默认值:** `0`, 意思是没有限制
+
+
+**举例:**
+=== "每修订"
     ```yaml
     apiVersion: serving.knative.dev/v1
     kind: Service
@@ -99,7 +104,7 @@ A value greater than `0` specifies the exact number of requests that are allowed
           containerConcurrency: 50
     ```
 
-=== "Global (Defaults ConfigMap)"
+=== "全局 (默认 ConfigMap)"
     ```yaml
     apiVersion: v1
     kind: ConfigMap
@@ -110,7 +115,7 @@ A value greater than `0` specifies the exact number of requests that are allowed
      container-concurrency: "50"
     ```
 
-=== "Global (Operator)"
+=== "全局 (Operator)"
     ```yaml
     apiVersion: operator.knative.dev/v1alpha1
     kind: KnativeServing
@@ -125,24 +130,24 @@ A value greater than `0` specifies the exact number of requests that are allowed
 
 
 
-## Target utilization
+## 目标利用率
 
-In addition to the literal settings explained previously, concurrency values can be further adjusted by using a _target utilization value_.
+除了前面解释的文字设置之外，还可以通过使用 _目标利用率值_ 进一步调整并发值。
 
-This value specifies what percentage of the previously specified target should actually be targeted by the Autoscaler.
-This is also known as specifying the _hotness_ at which a replica runs, which causes the Autoscaler to scale up before the defined hard limit is reached.
+该值指定Autoscaler实际针对前面指定的目标的百分比。
+这也被称为指定副本运行时的 _hotness_，这将导致Autoscaler在达到定义的硬限制之前扩大。
 
-For example, if `containerConcurrency` is set to 10, and the target utilization value is set to 70 (percent), the Autoscaler will create a new replica when the average number of concurrent requests across all existing replicas reaches 7.
-Requests numbered 7 to 10 will still be sent to the existing replicas, but this allows for additional replicas to be started in anticipation of being needed when the `containerConcurrency` limit is reached.
+例如，如果`containerConcurrency`设置为10，目标利用率设置为70%(百分之七十)，当所有现有副本的平均并发请求数达到7时，Autoscaler将创建一个新的副本。
+编号为7到10的请求仍然会被发送到现有的副本，但这允许在达到`containerConcurrency`限制时启动额外的副本。
 
-* **Global key:** `container-concurrency-target-percentage`
-* **Per-revision annotation key:** `autoscaling.knative.dev/target-utilization-percentage`
-* **Possible values:** float
-* **Default:** `70`
+* **全局键:** `container-concurrency-target-percentage`
+* **每修订注释键:** `autoscaling.knative.dev/target-utilization-percentage`
+* **可用值:** float
+* **默认值:** `70`
 
-**Example:**
+**举例:**
 
-=== "Per Revision"
+=== "每修订"
     ```yaml
     apiVersion: serving.knative.dev/v1
     kind: Service
@@ -159,7 +164,7 @@ Requests numbered 7 to 10 will still be sent to the existing replicas, but this 
             - image: gcr.io/knative-samples/helloworld-go
     ```
 
-=== "Global (ConfigMap)"
+=== "全局 (ConfigMap)"
     ```yaml
     apiVersion: v1
     kind: ConfigMap
@@ -170,7 +175,7 @@ Requests numbered 7 to 10 will still be sent to the existing replicas, but this 
      container-concurrency-target-percentage: "80"
     ```
 
-=== "Global (Operator)"
+=== "全局 (Operator)"
     ```yaml
     apiVersion: operator.knative.dev/v1alpha1
     kind: KnativeServing

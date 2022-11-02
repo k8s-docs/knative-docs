@@ -1,19 +1,20 @@
-# Targets
+# 目标
 
-Configuring a target provide the Autoscaler with a value that it tries to maintain for the configured metric for a revision.
-See the [metrics](autoscaling-metrics.md) documentation for more information about configurable metric types.
+配置目标为Autoscaler提供一个值，它试图为修订的配置指标维护该值。
+有关可配置度量类型的更多信息，请参阅[指标](autoscaling-metrics.md)文档。
 
-The `target` annotation, used to configure per-revision targets,  is _metric agnostic_. This means the target is simply an integer value, which can be applied for any metric type.
+用于配置每个版本目标的`target`注释是 _metric agnostic_ 。
+这意味着目标只是一个整数值，可以应用于任何度量类型。
 
-## Configuring targets
+## 配置目标
 
-* **Global settings key:** `container-concurrency-target-default`. For more information, see the documentation on [metrics](autoscaling-metrics.md).
-* **Per-revision annotation key:** `autoscaling.knative.dev/target`
-* **Possible values:** An integer (metric agnostic).
-* **Default:** `"100"` for `container-concurrency-target-default`. There is no default value set for the `target` annotation.
+* **全局设置键:** `container-concurrency-target-default`. 有关更多信息，请参阅关于[指标](autoscaling-metrics.md)的文档。.
+* **每修订注释键:** `autoscaling.knative.dev/target`
+* **可能值:** An integer (metric agnostic).
+* **默认值:** `"100"` for `container-concurrency-target-default`. 没有为`target`注释设置默认值。
 
 
-=== "Target annotation - Per-revision"
+=== "目标注释-每修订"
     ```yaml
     apiVersion: serving.knative.dev/v1
     kind: Service
@@ -27,7 +28,7 @@ The `target` annotation, used to configure per-revision targets,  is _metric agn
             autoscaling.knative.dev/target: "50"
     ```
 
-=== "Concurrency target - Global (ConfigMap)"
+=== "并发目标-全局(ConfigMap)"
     ```yaml
     apiVersion: v1
     kind: ConfigMap
@@ -38,7 +39,7 @@ The `target` annotation, used to configure per-revision targets,  is _metric agn
      container-concurrency-target-default: "200"
     ```
 
-=== "Concurrency target - Container Global (Operator)"
+=== "并发目标-全局容器(Operator)"
     ```yaml
     apiVersion: operator.knative.dev/v1alpha1
     kind: KnativeServing

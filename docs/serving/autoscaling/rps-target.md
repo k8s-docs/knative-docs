@@ -1,15 +1,16 @@
-# Configuring the requests per second (RPS) target
+# 配置每秒请求数(RPS)目标
 
-This setting specifies a target for requests-per-second per replica of an application. Your revision must also be configured to use the `rps` [metric annotation](autoscaling-metrics.md).
+此设置为应用程序的每个副本指定每秒请求数的目标。
+您的修订还必须配置为使用 `rps` [指标注释](autoscaling-metrics.md)。
 
-* **Global key:** `requests-per-second-target-default`
-* **Per-revision annotation key:** `autoscaling.knative.dev/target`
-* **Possible values:** An integer.
-* **Default:** `"200"`
+* **全局值:** `requests-per-second-target-default`
+* **每修订注释值:** `autoscaling.knative.dev/target`
+* **可用值:** An integer.
+* **默认值:** `"200"`
 
-**Example:**
+**举例:**
 
-=== "Per Revision"
+=== "每修订"
     ```yaml
     apiVersion: serving.knative.dev/v1
     kind: Service
@@ -27,7 +28,7 @@ This setting specifies a target for requests-per-second per replica of an applic
             - image: gcr.io/knative-samples/helloworld-go
     ```
 
-=== "Global (ConfigMap)"
+=== "全局 (ConfigMap)"
     ```yaml
     apiVersion: v1
     kind: ConfigMap
@@ -38,7 +39,7 @@ This setting specifies a target for requests-per-second per replica of an applic
      requests-per-second-target-default: "150"
     ```
 
-=== "Global (Operator)"
+=== "全局 (Operator)"
     ```yaml
     apiVersion: operator.knative.dev/v1alpha1
     kind: KnativeServing

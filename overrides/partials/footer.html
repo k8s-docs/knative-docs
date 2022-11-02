@@ -2,74 +2,45 @@
 
 <!-- Footer -->
 <footer class="md-footer">
-
   <!-- Link to previous and/or next page -->
-  {% if page.meta and page.meta.hide_prev and page.meta.hide_next %}
-  {% elif page.previous_page or page.next_page %}
-    <nav
-      class="md-footer__inner md-grid"
-      aria-label="{{ lang.t('footer.title') }}"
-    >
+  {% if page.meta and page.meta.hide_prev and page.meta.hide_next %} {% elif page.previous_page or page.next_page %}
+  <nav class="md-footer__inner md-grid" aria-label="{{ lang.t('footer.title') }}">
+    <!-- Link to previous page -->
+    {% if page.meta and page.meta.hide_prev %} {% elif page.previous_page %}
+    <a href="{{ page.previous_page.url | url }}" class="md-footer__link md-footer__link--prev" rel="prev">
+      <div class="md-footer__button md-icon">{% include ".icons/material/arrow-left.svg" %}</div>
+      <div class="md-footer__title">
+        <div class="md-ellipsis">
+          <span class="md-footer__direction"> {{ lang.t("footer.previous") }} </span>
+          {{ page.previous_page.title }}
+        </div>
+      </div>
+    </a>
+    {% endif %}
 
-      <!-- Link to previous page -->
-      {% if page.meta and page.meta.hide_prev %}
-      {% elif page.previous_page %}
-        <a
-          href="{{ page.previous_page.url | url }}"
-          class="md-footer__link md-footer__link--prev"
-          rel="prev"
-        >
-          <div class="md-footer__button md-icon">
-            {% include ".icons/material/arrow-left.svg" %}
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                {{ lang.t("footer.previous") }}
-              </span>
-              {{ page.previous_page.title }}
-            </div>
-          </div>
-        </a>
-      {% endif %}
-
-      <!-- Link to next page -->
-      {% if page.meta and page.meta.hide_next %}
-      {% elif page.next_page %}
-        <a
-          href="{{ page.next_page.url | url }}"
-          class="md-footer__link md-footer__link--next"
-          rel="next"
-        >
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                {{ lang.t("footer.next") }}
-              </span>
-              {{ page.next_page.title }}
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            {% include ".icons/material/arrow-right.svg" %}
-          </div>
-        </a>
-      {% endif %}
-    </nav>
+    <!-- Link to next page -->
+    {% if page.meta and page.meta.hide_next %} {% elif page.next_page %}
+    <a href="{{ page.next_page.url | url }}" class="md-footer__link md-footer__link--next" rel="next">
+      <div class="md-footer__title">
+        <div class="md-ellipsis">
+          <span class="md-footer__direction"> {{ lang.t("footer.next") }} </span>
+          {{ page.next_page.title }}
+        </div>
+      </div>
+      <div class="md-footer__button md-icon">{% include ".icons/material/arrow-right.svg" %}</div>
+    </a>
+    {% endif %}
+  </nav>
   {% endif %}
 
   <!-- Further information -->
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-
       <!-- Copyright and theme information -->
       <div class="md-footer-copyright">
         {% if config.copyright %}
-          <div class="md-footer-copyright__highlight">
-            {{ config.copyright }}
-          </div>
-        {% endif %}
-        {{ extracopyright }}
-        Documentation Distributed under CC BY 4.0
+        <div class="md-footer-copyright__highlight">{{ config.copyright }}</div>
+        {% endif %} {{ extracopyright }} CC 4.0下发布的文档
       </div>
 
       <div class="footer-links md-footer-copyright">
@@ -91,14 +62,28 @@
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-body">
-        <p>We use cookies. <a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage" target="_blank">Google Analytics</a> is used to improve your experience and help us understand site traffic and page usage.</p>
+        <p>
+          We use cookies.
+          <a
+            href="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
+            target="_blank"
+            >Google Analytics</a
+          >
+          is used to improve your experience and help us understand site traffic and page usage.
+        </p>
         <div class="consent-buttons">
           <button type="button" class="md-button" onclick="learnaboutcookies()">Learn more</button>
           <button type="button" class="md-button md-button--primary" onclick="acceptcookie()">Accept</button>
           <div class="opt-out">
-            <hr>
-            <p><a href="/development/about-analytics-cookies/">Learn about analytics cookies and how you can take steps to opt-out from sharing your usage data.</a></p>
-            <button type="button" class="md-button" onclick="optout()">I understand how to opt-out, hide this notice.</button>
+            <hr />
+            <p>
+              <a href="/development/about-analytics-cookies/"
+                >Learn about analytics cookies and how you can take steps to opt-out from sharing your usage data.</a
+              >
+            </p>
+            <button type="button" class="md-button" onclick="optout()">
+              I understand how to opt-out, hide this notice.
+            </button>
           </div>
         </div>
       </div>
@@ -107,8 +92,9 @@
 </div>
 <div class="cookienotice md-typeset">
   <div class="text">
-    <p>We use analytics and cookies to understand site traffic. Information about your use of
-      our site is shared with Google for that purpose. <a href="/development/about-analytics-cookies/">Learn more.</a>
+    <p>
+      We use analytics and cookies to understand site traffic. Information about your use of our site is shared with
+      Google for that purpose. <a href="/development/about-analytics-cookies/">Learn more.</a>
     </p>
   </div>
   <div class="buttons">

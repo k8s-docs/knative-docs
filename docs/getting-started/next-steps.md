@@ -1,42 +1,43 @@
-# Next Steps
+# 下一个步骤
 
-This topic provides a list of resources to help you continue your Knative journey.
+本主题提供了一个资源列表，以帮助您继续您的 Knative 之旅。
 
-[![Knative Slack Link](images/slack-button.svg)](https://slack.knative.dev/){target=_blank}
+[![Knative Slack Link](images/slack-button.svg)](https://slack.knative.dev/){target=\_blank}
 
-## :test_tube: Knative samples
+## :test_tube: Knative 样品
 
-Try out some of the following Knative samples:
+试试下面的 Knative 示例:
 
-- [Converting a Kubernetes Service to a Knative Service](../serving/convert-deployment-to-knative-service.md)
-- [Knative Serving code samples](../samples/serving.md)
-- [Knative Eventing and Event source code samples](../samples/eventing.md)
+- [将 Kubernetes 服务转换为 Knative 服务](../serving/convert-deployment-to-knative-service.md)
+- [Knative 服务代码示例](../samples/serving.md)
+- [Knative 事件和事件的源代码示例](../samples/eventing.md)
 
-## :page_with_curl: Explore the Knative docs
+## :page_with_curl: 探索 Knative 文档
 
-See the following guides for documentation specific to your use case:
+请参阅以下针对您的用例的文档指南:
 
 - [Serving Guide](../serving/README.md)
 - [Eventing Guide](../eventing/README.md)
 
-## :book: Knative books
+## :book: Knative 书籍
 
-Books to help you understand Knative concepts and get additional examples:
+帮助你理解 Knative 概念并获得额外示例的书籍:
 
-- [Knative in Action](https://www.manning.com/books/knative-in-action)
-
-    ??? question "Want a free digital copy of Knative in Action?"
-        VMWare has generously donated access to a free copy of the Knative in Action eBook, [get your copy here!](https://tanzu.vmware.com/content/ebooks/knative-in-action){target=_blank}
+- [Knative 实例](https://www.manning.com/books/knative-in-action)
+  
+    ??? question "想要Knative实例的免费数字拷贝?"
+        VMWare慷慨地捐赠了Knative实例电子书的免费访问权限，[在这里获取您的副本!](https://tanzu.vmware.com/content/ebooks/knative-in-action){target=\_blank}
 
 - [Knative Cookbook](https://www.oreilly.com/library/view/knative-cookbook/9781492061182/)
 
-## :globe_with_meridians: Other Knative links
+## :globe_with_meridians: 其它 Knative 链接
 
-Other links to help you get started with Knative:
+其他链接可以帮助您开始使用 Knative:
 
-- [Knative YouTube Channel](https://www.youtube.com/channel/UCq7cipu-A1UHOkZ9fls1N8A)
+- [Knative YouTube 频道](https://www.youtube.com/channel/UCq7cipu-A1UHOkZ9fls1N8A)
 - [Knative.tips](https://knative.tips/)
 
-## :question: Are we missing something?
+## :question: 我们遗漏了什么吗?
 
-We'd love to help you along the next step of your Knative journey. If we're missing something on this page that you feel should be here, please [give us feedback](https://forms.gle/Ab44BUBowmnnJsdW9)!
+我们很乐意在您的 Knative 旅程的下一步帮助您。
+如果我们在本页上遗漏了您认为应该在这里的内容，请[给我们反馈](https://forms.gle/Ab44BUBowmnnJsdW9)!

@@ -2,8 +2,12 @@
 - /docs/concepts/servng-resources/revisions.md
 - /docs/serving/revisions/README.md
 -->
-Revisions are Knative Serving resources that contain point-in-time snapshots of the application code and configuration for each change made to a Knative Service.
 
-You cannot create Revisions or update a Revision spec directly; Revisions are always created in response to updates to a Configuration spec. However, you can force the deletion of Revisions, to handle leaked resources as well as for removal of known bad Revisions to avoid future errors when managing a Knative Service.
+修订是 Knative 服务资源，其中包含应用程序代码的时间点快照，以及对 Knative 服务所做的每次更改的配置。
 
-Revisions are generally immutable, except where they may reference mutable core Kubernetes resources such as ConfigMaps and Secrets. Revisions can also be mutated by changes in Revision defaults. Changes to defaults that mutate Revisions are generally syntactic and not semantic.
+您不能直接创建修订或更新修订规范;修订总是根据配置规范的更新而创建的。
+但是，您可以强制删除修订，以处理泄漏的资源，以及删除已知的坏修订，以避免在管理 Knative Service 时出现未来的错误。
+
+修订通常是不可变的，除非它们可能引用可变的核心 Kubernetes 资源，如 ConfigMaps 和 Secrets。
+修改版本也可以通过修改版本默认值的更改而发生突变。
+对默认值的更改会使修订版本发生变化，这通常是语法上的，而不是语义上的。
