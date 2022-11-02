@@ -9,7 +9,6 @@ extra_css:
 repo_url: https://github.com/knative/docs
 edit_uri: edit/main/blog/docs
 
-
 theme:
   name: material
   docs_dir: blog/
@@ -36,7 +35,7 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.details
   - pymdownx.snippets:
-      base_path: docs/snippets
+      base_path: source/snippets
   - pymdownx.keys
   - pymdownx.caret
   - pymdownx.mark

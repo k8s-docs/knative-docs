@@ -1,7 +1,7 @@
 # Content Reuse
 
 Knative strives to reduce duplicative effort by reusing commonly used information,
-see the [`docs/snippets`](https://github.com/knative/docs/tree/main/docs/snippets) directory for some examples.
+see the [`source/snippets`](https://github.com/knative/docs/tree/main/docs/snippets) directory for some examples.
 
 Snippets do not require a specific extension, and as long as a valid file name is
 specified, an attempt is made to process it.

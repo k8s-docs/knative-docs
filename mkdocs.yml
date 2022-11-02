@@ -2,7 +2,9 @@ INHERIT: config/nav.yml
 
 site_name: Knative
 site_url: https://knative.dev/docs
-site_description: Knative Documentation
+site_description: Knative 文档
+docs_dir: source
+site_dir: docs
 extra_css:
   - stylesheets/extra.css
 
@@ -33,7 +35,7 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.details
   - pymdownx.snippets:
-      base_path: docs/snippets
+      base_path: source/snippets
   - pymdownx.keys
   - pymdownx.caret
   - pymdownx.mark
@@ -52,7 +54,7 @@ plugins:
     separator: '[\/\s\-\.]+'
   macros:
     module_name: hack/macros
-    include_dir: docs/snippets
+    include_dir: source/snippets
   exclude:
     glob:
       # Exclude files that contain hugo specific shortcodes
