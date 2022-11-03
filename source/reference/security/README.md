@@ -1,37 +1,36 @@
-# Knative Security and Disclosure Information
+# Knative安全和披露信息
 
-This page describes Knative security and disclosure information.
+此页面描述Knative安全性和披露信息。
 
-## Knative threat model
+## Knative 威胁模型
 
-* [Threat model](https://github.com/knative/community/blob/main/working-groups/security/threat-model.md)
+* [威胁模型](https://github.com/knative/community/blob/main/working-groups/security/threat-model.md)
 
-## Report a vulnerability
+## 报告一个漏洞
 
-We're extremely grateful for security researchers and users that report vulnerabilities to the Knative Open Source Community. All reports are thoroughly investigated by a set of community volunteers.
+我们非常感谢向Knative开源社区报告漏洞的安全研究人员和用户。所有的报告都经过一组社区志愿者的彻底调查。
+要制作报告，请将安全细节和所有Knative错误报告的预期细节通过电子邮件发送到私有的security@knative.team列表。
 
-To make a report, please email the private security@knative.team list with the security detauls and the details expected for all Knative bug reports.
+### 何时应该报告漏洞?
 
-### When Should I Report a Vulnerability?
+* 你认为你发现了Knative的一个潜在安全漏洞
+* 您不确定漏洞如何影响Knative
+* 你认为你在Knative所依赖的另一个项目中发现了漏洞
+    * 对于有自己漏洞报告和披露流程的项目，请直接在那里报告
 
-* You think you discovered a potential security vulnerability in Knative
-* You are unsure how a vulnerability affects Knative
-* You think you discovered a vulnerability in another project that Knative depends on
-    * For projects with their own vulnerability reporting and disclosure process, please report it directly there
+### 什么时候不应该报告漏洞?
 
-### When Should I NOT Report a Vulnerability?
+* 您需要帮助调优Knative组件以提高安全性
+* 您需要帮助应用与安全性相关的更新
+* 你的问题与安全无关
 
-* You need help tuning Knative components for security
-* You need help applying security related updates
-* Your issue is not security related
+## 漏洞响应
 
-## Vulnerability response
+* [及早披露安全漏洞](https://github.com/knative/community/blob/main/working-groups/security/disclosure.md)
+* [漏洞披露响应策略](https://github.com/knative/community/blob/main/working-groups/security/responding.md)
 
-* [Early disclosure of security vulnerabilities](https://github.com/knative/community/blob/main/working-groups/security/disclosure.md)
-* [Vulnerability disclosure response policy](https://github.com/knative/community/blob/main/working-groups/security/responding.md)
+## 安全工作小组
 
-## Security working group
-
-* [General information](https://github.com/knative/community/blob/main/working-groups/WORKING-GROUPS.md#security)
-* [Security Working Group Charter](https://github.com/knative/community/blob/main/working-groups/security/CHARTER.md)
+* [一般信息](https://github.com/knative/community/blob/main/working-groups/WORKING-GROUPS.md#security)
+* [保安工作小组章程](https://github.com/knative/community/blob/main/working-groups/security/CHARTER.md)
 

@@ -2,8 +2,14 @@
 - /docs/eventing/README.md
 - /docs/concepts/README.md
 -->
-Knative Eventing is a collection of APIs that enable you to use an [event-driven architecture](https://en.wikipedia.org/wiki/Event-driven_architecture){target=_blank} with your applications. You can use these APIs to create components that route events from event producers to event consumers, known as sinks, that receive events. Sinks can also be configured to respond to HTTP requests by sending a response event.
 
-Knative Eventing uses standard HTTP POST requests to send and receive events between event producers and sinks. These events conform to the [CloudEvents specifications](https://cloudevents.io/){target=_blank}, which enables creating, parsing, sending, and receiving events in any programming language.
+Knative事件是一个api集合，它使您能够在应用程序中使用[事件驱动的体系结构](https://en.wikipedia.org/wiki/Event-driven_architecture){target=_blank}。
+可以使用这些api创建将事件从事件生产者路由到事件消费者(称为接收事件的接收器)的组件。
+还可以将接收器配置为通过发送响应事件来响应HTTP请求。
 
-Knative Eventing components are loosely coupled, and can be developed and deployed independently of each other. Any producer can generate events before there are active event consumers that are listening for those events. Any event consumer can express interest in a class of events before there are producers that are creating those events.
+Knative事件使用标准的HTTP POST请求在事件生产者和接收器之间发送和接收事件。
+这些事件符合[CloudEvents规范](https://cloudevents.io/){target=_blank}，该规范支持在任何编程语言中创建、解析、发送和接收事件。
+
+Knative事件组件是松散耦合的，可以彼此独立地开发和部署。
+任何生产者都可以在有活动事件消费者监听这些事件之前生成事件。
+在生产者创建这些事件之前，任何事件消费者都可以表达对一类事件的兴趣。

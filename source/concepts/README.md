@@ -1,10 +1,10 @@
 # 概念
 
-The documentation in this section explains commonly referenced Knative concepts and abstractions, and helps to provide you with a better understanding of how Knative works.
+本节中的文档解释了常用的Knative概念和抽象，并帮助您更好地理解Knative是如何工作的。
 
 ## 什么是 Knative?
 
-Knative is a platform-agnostic solution for running [serverless](https://en.wikipedia.org/wiki/Serverless_computing){target=\_blank} deployments.
+Knative是一个平台无关的解决方案，用于运行[无服务器](https://en.wikipedia.org/wiki/Serverless_computing){target=\_blank}部署。
 
 ## Knative 服务
 

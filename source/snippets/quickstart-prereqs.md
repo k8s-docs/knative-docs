@@ -3,21 +3,19 @@
 - /docs/install/quickstart-install.md
 - /docs/getting-started/quickstart-install.md
 -->
-## Before you begin
+## 在你开始之前
 
 !!! warning
-    Knative `quickstart` environments are for experimentation use only.
-    For a production ready installation, see the [YAML-based installation](/docs/install/yaml-install/)
-    or the [Knative Operator installation](/docs/install/operator/knative-with-operators/).
+    Knative`快速启动`环境仅用于实验使用。
+    关于可用于生产的安装，请参阅[基于yaml的安装](/docs/install/yaml-install/)
+    或[Knative Operator安装](/docs/install/operator/knative-with-operators/).
 
-Before you can get started with a Knative `quickstart` deployment you must install:
+在开始使用Knative`快速入门`部署之前，您必须安装Knative:
 
-- [kind](https://kind.sigs.k8s.io/docs/user/quick-start){target=_blank} (Kubernetes in Docker)
-or [minikube](https://minikube.sigs.k8s.io/docs/start/){target=_blank} to enable
-you to run a local Kubernetes cluster with Docker container nodes.
+- [kind](https://kind.sigs.k8s.io/docs/user/quick-start){target=_blank} (Kubernetes in Docker) 或 [minikube](https://minikube.sigs.k8s.io/docs/start/){target=_blank} 使您能够使用Docker容器节点运行本地Kubernetes集群。
 
-- The [Kubernetes CLI (`kubectl`)](https://kubernetes.io/docs/tasks/tools/install-kubectl){target=_blank} to run commands against Kubernetes clusters. You can use `kubectl` to deploy applications, inspect and manage cluster resources, and view logs.
+- [Kubernetes CLI (`kubectl`)](https://kubernetes.io/docs/tasks/tools/install-kubectl){target=_blank} 在Kubernetes集群上运行命令。 可以使用`kubectl`部署应用程序、检查和管理集群资源以及查看日志。
 
-- The Knative CLI (`kn`). For instructions, see the next section.
+- Knative CLI (`kn`). 有关说明，请参阅下一节。
 
-- You need to have a minimum of 3&nbsp;CPUs and 3&nbsp;GB of RAM available for the cluster to be created.
+- 要创建的集群至少需要3个cpu和3个GB的RAM。

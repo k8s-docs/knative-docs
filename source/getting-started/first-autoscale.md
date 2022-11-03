@@ -1,13 +1,14 @@
-# Autoscaling
+# 自动定量
 
-Knative Serving provides automatic scaling, also known as **autoscaling**. This means that a Knative Service by default scales down to zero running pods when it is not in use.
+Knative服务提供自动缩放，也称为**自动缩放**。
+这意味着，Knative服务在不使用时，默认情况下会减少到零个运行的pod。
 
-## List your Knative Service
+## 列出您的Knative服务
 
-Use the Knative (`kn`) CLI to view the URL where your Knative Service is hosted:
+使用Knative (`kn`)命令行查看Knative服务所在的URL:
 
 === "kn"
-    View a list of Knative Services by running the command:
+    运行命令查看Knative服务列表:
     ```bash
     kn service list
     ```
@@ -17,7 +18,7 @@ Use the Knative (`kn`) CLI to view the URL where your Knative Service is hosted:
         hello   http://hello.default.${LOADBALANCER_IP}.sslip.io   hello-00001   13s   3 OK / 3     True
         ```
 === "kubectl"
-    View a list of Knative Services by running the command:
+    运行命令查看Knative服务列表:
     ```bash
     kubectl get ksvc
     ```
@@ -27,9 +28,9 @@ Use the Knative (`kn`) CLI to view the URL where your Knative Service is hosted:
         hello   http://hello.default.${LOADBALANCER_IP}.sslip.io   hello-00001     hello-00001   True
         ```
 
-## Access your Knative Service
+## 访问您的Knative服务
 
-Access your Knative Service by opening the previous URL in your browser or by running the command:
+通过在浏览器中打开前面的URL或运行以下命令来访问您的Knative服务:
 
 ```bash
 echo "Accessing URL $(kn service describe hello -o url)"
@@ -41,11 +42,13 @@ curl "$(kn service describe hello -o url)"
     Hello World!
     ```
 
-??? question "Are you seeing `curl: (6) Could not resolve host: hello.default.${LOADBALANCER_IP}.sslip.io`?"
+??? question "你看到 `curl: (6) Could not resolve host: hello.default.${LOADBALANCER_IP}.sslip.io`?"
 
-    In some cases your DNS server may be set up not to resolve `*.sslip.io` addresses. If you encounter this problem, it can be fixed by using a different nameserver to resolve these addresses.
+    在某些情况下，您的DNS服务器可能设置为不解析`*.sslip.io`地址。
+    如果遇到这个问题，可以通过使用不同的名称服务器来解决这些地址。
 
-    The exact steps will differ according to your distribution. For example, with Ubuntu derived systems which use `systemd-resolved`, you can add the following entry to the `/etc/systemd/resolved.conf`:
+    具体的步骤将根据您的发行版有所不同。
+    例如，对于使用`systemd-resolved`的Ubuntu派生系统，你可以在`/etc/systemd/resolved.conf`中添加以下条目:
 
     ```ini
     [Resolve]
@@ -53,20 +56,20 @@ curl "$(kn service describe hello -o url)"
     Domains=~sslip.io.
     ```
 
-    Then simply restart the service with `sudo service systemd-resolved restart`.
+    然后简单地用`sudo service systemd-resolved restart`重新启动服务。
 
-    For MacOS users, you can add the DNS and domain using the network settings as explained [here](https://support.apple.com/en-gb/guide/mac-help/mh14127/mac).
+    对于MacOS用户，可以使用[这里](https://support.apple.com/en-gb/guide/mac-help/mh14127/mac)所述的网络设置添加DNS和域。
 
-## Observe autoscaling
+## 观察自动伸缩
 
-Watch the pods and see how they scale to zero after traffic stops going to the URL:
+观察这些Pod，看看在流量停止访问URL后，它们是如何缩小到零的:
 
 ```bash
 kubectl get pod -l serving.knative.dev/service=hello -w
 ```
 
 !!! note
-    It may take up to 2 minutes for your pods to scale down. Pinging your service again resets this timer.
+    可能需要2分钟才能让你的舱缩小。再次ping您的服务将重置此计时器。
 
 !!! Success "Expected output"
     ```{ .bash .no-copy }
@@ -77,9 +80,9 @@ kubectl get pod -l serving.knative.dev/service=hello -w
     hello-world                              0/2     Terminating
     ```
 
-## Scale up your Knative Service
+## 扩大您的Knative服务
 
-Rerun the Knative Service in your browser. You can see a new pod running again:
+在浏览器中重新运行Knative服务。你可以看到一个新的Pod再次运行:
 
 !!! Success "Expected output"
     ```{ .bash .no-copy }
@@ -90,4 +93,4 @@ Rerun the Knative Service in your browser. You can see a new pod running again:
     hello-world                              2/2     Running
     ```
 
-Exit the `kubectl watch` command with `Ctrl+c`.
+用`Ctrl+c`退出`kubectl watch`命令。

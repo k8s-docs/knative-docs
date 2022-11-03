@@ -1,26 +1,26 @@
-# Knative Eventing
+# Knative 事件
 
 --8<-- "about-eventing.md"
 
-Examples of supported Knative Eventing use cases:
+支持的Knative事件用例示例:
 
-- Publish an event without creating a consumer. You can send events to a broker as an HTTP POST, and use binding to decouple the destination configuration from your application that produces events.
+- 在不创建消费者的情况下发布事件。您可以将事件作为HTTP POST发送到代理，并使用绑定将目标配置与生成事件的应用程序分离开来。
 
-- Consume an event without creating a publisher. You can use a trigger to consume events from a broker based on event attributes. The application receives events as an HTTP POST.
+- 在不创建发布者的情况下使用事件。可以使用触发器根据事件属性使用来自代理的事件。应用程序以HTTP POST的形式接收事件。
 
 !!! tip
-    Multiple event producers and sinks can be used together to create more advanced [Knative Eventing flows](flows/README.md){target=_blank} to solve complex use cases.
+    多个事件生产者和接收器可以一起使用，以创建更高级的[Knative事件](flows/README.md)流，以解决复杂的用例。
 
-## Eventing examples
+## 事件示例
 
-:material-file-document: [Creating and responding to Kubernetes API events](../eventing/sources/apiserversource/README.md){target=blank}
-
---8<-- "YouTube_icon.svg"
-[Creating an image processing pipeline](https://www.youtube.com/watch?v=DrmOpjAunlQ){target=blank}
+:material-file-document: [创建并响应Kubernetes API事件](../eventing/sources/apiserversource/README.md){target=blank}
 
 --8<-- "YouTube_icon.svg"
-[Facilitating AI workloads at the edge in large-scale, drone-powered sustainable agriculture projects](https://www.youtube.com/watch?v=lVfJ5WEQ5_s){target=blank}
+[创建一个图像处理管道](https://www.youtube.com/watch?v=DrmOpjAunlQ){target=blank}
 
-## Next steps
+--8<-- "YouTube_icon.svg"
+[在大规模、无人机驱动的可持续农业项目中促进AI工作](https://www.youtube.com/watch?v=lVfJ5WEQ5_s){target=blank}
 
-- You can install Knative Eventing by using the methods listed on the [installation page](../install/README.md).
+## 下一步
+
+- 您可以使用[安装页面](../install/README.md)中列出的方法安装Knative事件处理.

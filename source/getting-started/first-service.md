@@ -1,10 +1,10 @@
-# Deploying a Knative Service
+# 部署 Knative 服务
 
-In this tutorial, you will deploy a "Hello world" Knative Service that accepts the environment variable `TARGET` and prints `Hello ${TARGET}!`.
+在本教程中，您将部署一个"Hello world"Knative服务，该服务接受环境变量`TARGET`并打印`Hello ${TARGET}!`
 
 === "kn"
 
-    Deploy the Service by running the command:
+    运行命令部署服务:
 
     ```bash
     kn service create hello \
@@ -21,7 +21,7 @@ In this tutorial, you will deploy a "Hello world" Knative Service that accepts t
         for `kind` it will be `127.0.0.1` for `minikube` depends on the local tunnel.
 
 === "YAML"
-    1. Copy the following YAML into a file named `hello.yaml`:
+    1. 将以下YAML复制到名为`hello.yaml`的文件中:
 
         ```yaml
         apiVersion: serving.knative.dev/v1
@@ -39,7 +39,7 @@ In this tutorial, you will deploy a "Hello world" Knative Service that accepts t
                     - name: TARGET
                       value: "World"
         ```
-    1. Deploy the Knative Service by running the command:
+    2. 运行命令部署Knative Service:
 
         ```bash
         kubectl apply -f hello.yaml

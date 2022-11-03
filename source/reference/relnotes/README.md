@@ -1,6 +1,6 @@
-# Knative release notes
+# Knative 发布说明
 
-For details about the Knative releases, see the following pages:
+有关Knative发行版的详细信息，请参见以下页面:
 
 - [Knative CLI releases](https://github.com/knative/client/releases)
 - [Knative Eventing releases](https://github.com/knative/eventing/releases)

@@ -1,4 +1,4 @@
-# Installing Knative
+# 安装 Knative
 
 You can install the Serving component, Eventing component, or both on your
 cluster by using one of the following deployment options:

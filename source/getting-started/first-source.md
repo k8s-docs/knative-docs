@@ -1,34 +1,36 @@
-# Using a Knative Service as a source
+# 使用Knative服务作为源
 
-In this tutorial, you will use the [CloudEvents Player](https://github.com/ruromero/cloudevents-player){target=blank} app to showcase the core concepts of Knative Eventing. By the end of this tutorial, you should have an architecture that looks like this:
+在本教程中，您将使用[CloudEvents Player](https://github.com/ruromero/cloudevents-player){target=blank}应用程序来展示Knative事件的核心概念。
+在本教程结束时，您应该拥有一个如下所示的体系结构:
 
-![The CloudEvents Player acts as both a source and a sink for CloudEvents](images/event_diagram.png)
+![CloudEvents Player既是CloudEvents的源，也是CloudEvents的接收器](images/event_diagram.png)
 
-The above image is Figure 6.6 from [Knative in Action](https://www.manning.com/books/knative-in-action){target=_blank}.
+上面的图像是[Knative in Action](https://www.manning.com/books/knative-in-action){target=_blank}的图6.6
 
-## Creating your first source
+## 创建第一个源代码
 
-The CloudEvents Player acts as a Source for CloudEvents by intaking the URL of the Broker as an environment variable, `BROKER_URL`. You will send CloudEvents to the Broker through the CloudEvents Player application.
+通过将代理的URL(`BROKER_URL`)作为环境变量，CloudEvents Player充当了CloudEvents的源。
+您将通过CloudEvents Player应用程序向代理发送CloudEvents。
 
-Create the CloudEvents Player Service:
+创建CloudEvents播放器服务:
 === "kn"
-    Run the command:
+    运行以下命令:
     ```bash
     kn service create cloudevents-player \
     --image ruromero/cloudevents-player:latest \
     --env BROKER_URL=http://broker-ingress.knative-eventing.svc.cluster.local/default/example-broker
     ```
-    !!! Success "Expected output"
+    !!! Success "预期的输出"
         ```{ .bash .no-copy }
         Service 'cloudevents-player' created to latest revision 'cloudevents-player-vwybw-1' is available at URL:
         http://cloudevents-player.default.${LOADBALANCER_IP}.sslip.io
         ```
 
-    ??? question "Why is my Revision named something different!"
-        Because we didn't assign a `revision-name`, Knative Serving automatically created one for us. It's okay if your Revision is named something different.
+    ??? question "为什么我的修订版的名字不一样!"
+        因为我们没有分配`版本名`，所以服务会自动为我们创建一个。如果你的修订版命名不同也没关系。
 
 === "YAML"
-    1. Copy the following YAML into a file named `cloudevents-player.yaml`:
+    1. 将以下YAML复制到名为 `cloudevents-player.yaml` 的文件中:
         ```bash
         apiVersion: serving.knative.dev/v1
         kind: Service
@@ -47,7 +49,7 @@ Create the CloudEvents Player Service:
                       value: http://broker-ingress.knative-eventing.svc.cluster.local/default/example-broker
         ```
 
-    1. Apply the YAML file by running the command:
+    2. 通过运行该命令应用YAML文件:
         ``` bash
         kubectl apply -f cloudevents-player.yaml
         ```
@@ -57,44 +59,44 @@ Create the CloudEvents Player Service:
             service.serving.knative.dev/cloudevents-player created
             ```
 
-## Examining the CloudEvents Player
+## 测试CloudEvents Player
 
-**You can use the CloudEvents Player to send and receive CloudEvents.**
-If you open the Service URL in your browser, the **Create Event** form appears.
+**您可以使用CloudEvents Player来发送和接收CloudEvents。**
+如果在浏览器中打开服务URL，则会出现**Create Event**表单。
 
-The Service URL is `http://cloudevents-player.default.${LOADBALANCER_IP}.sslip.io`,
-for example, [http://cloudevents-player.default.127.0.0.1.sslip.io](http://cloudevents-player.default.127.0.0.1.sslip.io) for `kind`.
+如果在浏览器中打开服务URL，则会出现**Create Event**表单。 `http://cloudevents-player.default.${LOADBALANCER_IP}.sslip.io`,
+例如, [http://cloudevents-player.default.127.0.0.1.sslip.io](http://cloudevents-player.default.127.0.0.1.sslip.io) `那种`.
 
 ![The user interface for the CloudEvents Player](images/event_form.png)
 
-??? question "What do these fields mean?"
-    | Field          | Description |
-    |:----------------:|:-------------|
-    | `Event ID`     | A unique ID. Click the loop icon to generate a new one.   |
-    | `Event Type`   | An event type.|
-    | `Event Source` | An event source.|
-    | `Specversion`  | Demarcates which CloudEvents spec you're using (should always be 1.0).|
-    | `Message`      | The `data` section of the CloudEvent, a payload which is carrying the data you care to be delivered.|
+??? question "这些字段是什么意思?"
+    |     Field      | Description                                                  |
+    | :------------: | :----------------------------------------------------------- |
+    |   `Event ID`   | 一个惟一的ID。单击循环图标生成一个新的循环。                 |
+    |  `Event Type`  | 一个事件类型。                                               |
+    | `Event Source` | 一个事件源。                                                 |
+    | `Specversion`  | 界定您正在使用的CloudEvents规范(应该总是1.0)。               |
+    |   `Message`    | CloudEvent的`data`部分，一个承载您想要传递的数据的有效载荷。 |
 
-    For more information on the CloudEvents Specification, check out the [CloudEvents Spec](https://github.com/cloudevents/spec/blob/v1.0.1/spec.md){target=_blank}.
+    有关CloudEvents规范的更多信息，请查看[CloudEvents规范](https://github.com/cloudevents/spec/blob/v1.0.1/spec.md){target=_blank}.
 
-### Sending an event
+### 发送一个事件
 
-Try sending an event using the CloudEvents Player interface:
+尝试使用CloudEvents Player界面发送一个事件:
 
-1. Fill in the form with whatever you data you want.
-1. Ensure your Event Source does not contain any spaces.
-1. Click **SEND EVENT**.
+1. 在表格中填上你想要的任何数据。
+1. 确保事件源不包含任何空格。
+1. 点击 **SEND EVENT**.
 
 ![CloudEvents Player Send](images/event_sent.png)
 
-??? tip "Clicking the :fontawesome-solid-envelope: shows you the CloudEvent as the Broker sees it."
-    ![Event Details](images/event_details.png){:width="500px"}
+??? tip "单击:fontawesome-solid-envelope: 向您展示代理看到的CloudEvent。"
+    ![事件详细信息](images/event_details.png){:width="500px"}
 
-??? question "Want to send events using the command line instead?"
-    As an alternative to the Web form, events can also be sent/viewed using the command line.
+??? question "想要使用命令行发送事件吗?"
+    作为Web表单的替代方案，还可以使用命令行发送/查看事件。
 
-    To post an event:
+    发布事件:
     ```bash
     curl -i http://cloudevents-player.default.${LOADBALANCER_IP}.sslip.io \
         -H "Content-Type: application/json" \
@@ -105,11 +107,15 @@ Try sending an event using the CloudEvents Player interface:
         -d '{"msg":"Hello CloudEvents!"}'
     ```
 
-    And to view events:
+    和查看事件:
     ```bash
     curl http://cloudevents-player.default.${LOADBALANCER_IP}.sslip.io/messages
     ```
 
-The :material-send: icon in the "Status" column implies that the event has been sent to our Broker... but where has the event gone? **Well, right now, nowhere!**
+"Status"列中的 :material-send: 图标意味着事件已经发送到我们的代理…
+但这一事件到哪里去了?
+现在，**哪儿也去不了!**
 
-A Broker is simply a receptacle for events. In order for your events to be sent anywhere, you must create a Trigger which listens for your events and places them somewhere. And, you're in luck; you'll create your first Trigger on the next page!
+代理只是事件的容器。
+为了将事件发送到任何地方，必须创建一个触发器来监听事件并将它们放置到某个地方。
+你很幸运;你将在下一页创建你的第一个触发器!

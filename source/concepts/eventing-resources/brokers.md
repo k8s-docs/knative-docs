@@ -1,14 +1,14 @@
-# Brokers
+# 代理
 
 --8<-- "about-brokers.md"
 
-## Related concepts
+## 相关的概念
 
-### Triggers
+### 触发器
 
 --8<-- "about-triggers.md"
 
-### Subscribers
+### 订阅者
 
 --8<-- "about-subscribers.md"
 

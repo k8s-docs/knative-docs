@@ -9,11 +9,11 @@
 
 ## 创建第一个触发器
 
-创建一个 Trigger，从事件源监听 CloudEvents，并将它们放入接收器中，这也是 CloudEvents Player 应用程序。
+创建一个触发器，从事件源监听 CloudEvents，并将它们放入接收器中，这也是 CloudEvents Player 应用程序。
 
 === "kn"
 
-    To create the Trigger, run the command:
+    要创建触发器，运行以下命令:
     ```bash
     kn trigger create cloudevents-trigger --sink cloudevents-player  --broker example-broker
     ```
@@ -24,7 +24,7 @@
 
 === "YAML"
 
-    1. Copy the following YAML into a file named `ce-trigger.yaml`:
+    1. 将以下YAML复制到名为 `ce-trigger.yaml` 的文件中:
         ```bash
         apiVersion: eventing.knative.dev/v1
         kind: Trigger
@@ -41,7 +41,7 @@
               name: cloudevents-player
         ```
 
-    1. Create the Trigger by running the command:
+    1. 通过运行命令创建触发器:
         ```bash
         kubectl apply -f ce-trigger.yaml
         ```
@@ -51,25 +51,26 @@
             trigger.eventing.knative.dev/cloudevents-trigger created
             ```
 
-??? question "What CloudEvents is my Trigger listening for?"
-Because we didn't specify a `--filter` in our `kn` command, the Trigger is listening for any CloudEvents coming into the Broker.
+??? question "我的触发器在听什么CloudEvents ?"
+    因为我们没有在`kn`命令中指定`--filter`，所以触发器正在监听进入代理的任何CloudEvents。
 
-    Expand the next note to see how to use Filters.
+    展开下一个注释，查看如何使用过滤器。
 
-Now, when we go back to the CloudEvents Player and send an event, we see that CloudEvents are both sent and received by the CloudEvents Player:
+现在，当我们返回到CloudEvents Player并发送一个事件时，我们看到CloudEvents既被CloudEvents发送，也被CloudEvents Player接收:
 
 ![CloudEvents Player user interface](images/event_received.png){draggable=false}
 
-You may need to refresh the page to see your changes.
+您可能需要刷新页面以查看更改。
 
-??? question "What if I want to filter on CloudEvent attributes?"
-First, delete your existing Trigger:
-`bash kn trigger delete cloudevents-trigger `
-Now let's add a Trigger that listens for a certain CloudEvent Type
-`bash kn trigger create cloudevents-player-filter --sink cloudevents-player --broker example-broker --filter type=some-type `
+??? question "如果我想过滤CloudEvent属性怎么办?"
+    首先，删除现有的触发器: `bash kn trigger delete cloudevents-trigger `
 
-    If you send a CloudEvent with type `some-type`, it is reflected in the CloudEvents Player UI.  The Trigger ignores any other types.
+    现在，让我们添加一个监听某个CloudEvent类型的触发器: 
+    `bash kn trigger create cloudevents-player-filter --sink cloudevents-player --broker example-broker --filter type=some-type `
 
-    You can filter on any aspect of the CloudEvent you would like to.
+    如果你发送一个类型为' some-type '的CloudEvent，它会反映在CloudEvents Player UI中。
+    触发器忽略任何其他类型。
 
-Some people call this **"Event-Driven Architecture"** which can be used to create your own **"Functions as a Service"** on Kubernetes :tada: :taco: :fire:
+    您可以过滤CloudEvent的任何方面。
+
+有些人称之为 **“事件驱动架构”** ，可以用来在Kubernetes上创建自己的 **“功能即服务”**  :tada: :taco: :fire:。

@@ -1,32 +1,33 @@
-# Knative code samples
+# Knative 代码示例
 
-You can use Knative code samples to help you get up and running with common use
-cases.
+您可以使用Knative代码示例来帮助您建立和运行常用用例。
 
-## Knative owned samples
+## Knative所有样品
 
-Knative code samples that are actively tested and maintained by Knative working groups:
+由Knative工作组积极测试和维护的Knative代码示例:
 
-- [Eventing and Eventing Sources code samples](eventing.md)
-- [Serving code samples](serving.md)
+- [事件和事件的源代码示例](eventing.md)
+- [服务代码示例](serving.md)
 
-## Community owned samples
+## 社区拥有的样品
 
-Get up and running with one of the community code samples. These samples are
-contributed and maintained by members of the Knative community. [View code samples that are contributed and maintained by the community](https://github.com/knative/docs/tree/main/code-samples/community).
+使用一个社区代码示例启动并运行。 
+这些样本是由Knative社区的成员贡献和维护的。
+[查看由社区贡献和维护的代码示例](https://github.com/knative/docs/tree/main/code-samples/community).
 
-**Note:** These samples might become outdated or the original author might be unable to maintain their contribution. If you find that something isn't working, lend a helping hand and fix it in a PR.
+!!! note 
+    这些样本可能会过时，或者原始作者可能无法维持他们的贡献。如果你发现有什么东西不能工作，伸出援助之手，在公共关系中解决它。
 
-[Learn more about the lifespan of samples](https://github.com/knative/docs/blob/main/contribute-to-docs/what-to-contribute/creating-code-samples.md#user-focused-content)
+[了解更多关于样本寿命的信息](https://github.com/knative/docs/blob/main/contribute-to-docs/what-to-contribute/creating-code-samples.md#user-focused-content)
 
-| Sample Name | Description | Language(s) |
-| ----------- | ----------- | ----------- |
-| Hello World | A quick introduction to Knative Serving that highlights how to deploy an app. | [Clojure](serving/helloworld-clojure/), [Dart](serving/helloworld-dart/), [Elixir](serving/helloworld-elixir/), [Haskell](serving/helloworld-haskell/), [Java - Micronaut](serving/helloworld-java-micronaut/), [Java - Quarkus](serving/helloworld-java-quarkus/), [R - Go Server](serving/helloworld-r/), [Rust](serving/helloworld-rust/), [Swift](serving/helloworld-swift/), [Vertx](serving/helloworld-vertx/) |
-| Machine Learning | A quick introduction to using Knative Serving to serve machine learning models | [Python - BentoML](serving/machinelearning-python-bentoml)
+| Sample Name      | Description                                       | Language(s)                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ---------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hello World      | 快速介绍Knative服务，重点介绍如何部署应用程序。   | [Clojure](serving/helloworld-clojure/), [Dart](serving/helloworld-dart/), [Elixir](serving/helloworld-elixir/), [Haskell](serving/helloworld-haskell/), [Java - Micronaut](serving/helloworld-java-micronaut/), [Java - Quarkus](serving/helloworld-java-quarkus/), [R - Go Server](serving/helloworld-r/), [Rust](serving/helloworld-rust/), [Swift](serving/helloworld-swift/), [Vertx](serving/helloworld-vertx/) |
+| Machine Learning | 快速介绍如何使用Knative Serving为机器学习模型服务 | [Python - BentoML](serving/machinelearning-python-bentoml)                                                                                                                                                                                                                                                                                                                                                           |
 
-## External code samples
+## 外部代码示例
 
-A list of links to Knative code samples located outside of Knative repos:
+位于Knative repos之外的Knative代码示例链接列表:
 
 <!--LINK TITLES must match the title of the sample page they link to to avoid confusion and provide a consistent UX). If descriptions are required here, this should be converted to a table as above-->
 
@@ -39,4 +40,4 @@ A list of links to Knative code samples located outside of Knative repos:
 - [Simple Performance Testing with SLOs](/blog/articles/performance-test-with-slos/)
 
 !!! tip
-    Add a link here to your externally hosted Knative code sample.
+    在这里添加一个链接到您的外部托管Knative代码示例。

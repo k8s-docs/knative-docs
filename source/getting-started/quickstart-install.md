@@ -1,11 +1,11 @@
-# Install Knative using quickstart
+# 使用快速启动安装Knative
 
-Following this quickstart tutorial provides you with a simplified, local Knative installation by using the Knative `quickstart` plugin.
+本快速入门教程通过使用Knative `quickstart`插件为您提供一个简化的本地Knative安装。
 
 --8<-- "quickstart-prereqs.md"
 --8<-- "install-kn.md"
 --8<-- "quickstart-install.md"
 
-## Next steps
+## 下一个步骤
 
-Now that you have installed Knative, you can learn how to deploy your first Knative Service in the next topic in this tutorial.
+现在您已经安装了Knative，您可以在本教程的下一个主题中学习如何部署您的第一个Knative服务。

@@ -1,28 +1,28 @@
-# Autoscale Sample App - Go
+# 自动缩放样本应用程序-Go
 
-A demonstration of the autoscaling capabilities of a Knative Serving Revision.
+Knative服务修订的自动缩放功能的演示。
 
-## Prerequisites
+## 先决条件
 
-1. A Kubernetes cluster with [Knative Serving](../../../install/yaml-install/serving/install-serving-with-yaml.md))
-   installed.
-1. The `hey` load generator installed (`go get -u github.com/rakyll/hey`).
-1. Clone this repository, and move into the sample directory:
+1. 安装了[Knative服务](../../../install/yaml-install/serving/install-serving-with-yaml.md)的Kubernetes集群
+   .
+1. 安装了`hey` 负载生成器 (`go get -u github.com/rakyll/hey`).
+1. 克隆这个存储库，并移动到示例目录:
 
      ```bash
      git clone -b "{{ branch }}" https://github.com/knative/docs knative-docs
      cd knative-docs
      ```
 
-## Deploy the Service
+## 部署服务
 
-1. Deploy the [sample](service.yaml) Knative Service:
+1. 部署[样例](service.yaml)Knative服务:
 
      ```bash
      kubectl apply -f docs/serving/autoscaling/autoscale-go/service.yaml
      ```
 
-1. Obtain the URL of the service (once `Ready`):
+1. 获取服务的URL(一旦为`Ready`):
 
      ```{ .bash .no-copy }
      $ kubectl get ksvc autoscale-go
@@ -30,9 +30,9 @@ A demonstration of the autoscaling capabilities of a Knative Serving Revision.
      autoscale-go    http://autoscale-go.default.1.2.3.4.sslip.io    autoscale-go-96dtk    autoscale-go-96dtk    True
      ```
 
-## Load the Service
+## 加载服务
 
-1. Make a request to the autoscale app to see it consume some resources.
+1. 向自动伸缩应用程序发出一个请求，以查看它消耗一些资源。
 
      ```bash
      curl "http://autoscale-go.default.1.2.3.4.sslip.io?sleep=100&prime=10000&bloat=5"
@@ -44,7 +44,7 @@ A demonstration of the autoscaling capabilities of a Knative Serving Revision.
      Slept for 100.13 milliseconds.
      ```
 
-1. Send 30 seconds of traffic maintaining 50 in-flight requests.
+1. 发送30秒的流量，维持50个飞行请求。
 
      ```bash
      hey -z 30s -c 50 \
@@ -105,26 +105,20 @@ A demonstration of the autoscaling capabilities of a Knative Serving Revision.
      autoscale-go-00001-deployment-78cdc67bf4-thjbq   3/3     Running   0          26s
      ```
 
-## Analysis
+## 分析
 
-### Algorithm
+### 算法
 
-Knative Serving autoscaling is based on the average number of in-flight requests
-per pod (concurrency). The system has a default
-[target concurrency of 100](https://github.com/knative/serving/blob/main/config/core/configmaps/autoscaler.yaml)(Search for container-concurrency-target-default)
-but [we used 10](service.yaml#L25-L26) for our service. We loaded the service
-with 50 concurrent requests so the autoscaler created 5 pods
-(`50 concurrent requests / target of 10 = 5 pods`)
+Knative服务自动伸缩是基于每个Pod的飞行请求的平均数量(并发性)。
+系统默认[目标并发数为100](https://github.com/knative/serving/blob/main/config/core/configmaps/autoscaler.yaml)(搜索 container-concurrency-target-default),但我们的服务[用了10](service.yaml#L25-L26)。
+我们加载了50个并发请求的服务，因此自动缩放器创建了5个Pod(`50 concurrent requests / target of 10 = 5 pods`)
 
-#### Panic
+#### 恐慌
 
-The autoscaler calculates average concurrency over a 60 second window so it
-takes a minute for the system to stabilize at the desired level of concurrency.
-However the autoscaler also calculates a 6 second `panic` window and will enter
-panic mode if that window reached 2x the target concurrency. In panic mode the
-autoscaler operates on the shorter, more sensitive panic window. Once the panic
-conditions are no longer met for 60 seconds, the autoscaler will return to the
-initial 60 second `stable` window.
+自动计算器在60秒的窗口内计算平均并发性，因此系统需要一分钟时间才能稳定在所需的并发性水平上。
+然而，自动缩放器也会计算一个6秒的“恐慌”窗口，如果该窗口达到目标并发数的2倍，就会进入恐慌模式。
+在恐慌模式下，自动缩放器在更短、更敏感的恐慌窗口上操作。
+一旦恐慌条件在60秒内不再满足，自动缩放器将返回到最初的60秒“稳定”窗口。
 
 ```{ .bash .no-copy }
                                                        |
@@ -141,17 +135,14 @@ initial 60 second `stable` window.
                      TIME
 ```
 
-#### Customization
+#### 定制
 
-The autoscaler supports customization through annotations. There are two
-autoscaler classes built into Knative:
+自动缩放器支持通过注释进行定制。Knative中内置了两个自动缩放类:
 
-1. `kpa.autoscaling.knative.dev` which is the concurrency-based autoscaler
-   described earlier (the default), and
-2. `hpa.autoscaling.knative.dev` which delegates to the Kubernetes HPA which
-   autoscales on CPU usage.
+1. `kpa.autoscaling.knative.dev` 它是前面描述的基于并发的自动缩放器(默认值), 和
+2. `hpa.autoscaling.knative.dev` 它委托给Kubernetes HPA，它会根据CPU使用自动伸缩.
 
-   Example of a Service scaled on CPU:
+   在CPU上扩展服务的示例:
 
    ```yaml
    apiVersion: serving.knative.dev/v1
@@ -171,8 +162,7 @@ autoscaler classes built into Knative:
            - image: gcr.io/knative-samples/autoscale-go:0.1
    ```
 
-   Additionally the autoscaler targets and scaling bounds can be specified in
-   annotations. Example of a Service with custom targets and scale bounds:
+   此外，自动缩放器目标和缩放边界可以在注释中指定。具有自定义目标和规模边界的服务示例:
 
    ```yaml
    apiVersion: serving.knative.dev/v1
@@ -199,58 +189,55 @@ autoscaler classes built into Knative:
    ```
 
 !!! note
-    For an `hpa.autoscaling.knative.dev` class Service, the `autoscaling.knative.dev/target` specifies the CPU percentage target (default `"80"`).
+    对于 `hpa.autoscaling.knative.dev` 类服务， `autoscaling.knative.dev/target` 指定CPU百分比目标(默认为`"80"`)。
 
-#### Demo
+#### 演示
 
-View the [Kubecon Demo](https://youtu.be/OPSIPr-Cybs) of Knative autoscaler
-customization (32 minutes).
+查看Knative自动缩放自定义的[Kubecon演示](https://youtu.be/OPSIPr-Cybs)(32分钟)。
 
-### Other Experiments
+### 其他的实验
 
-1. Send 60 seconds of traffic maintaining 100 concurrent requests.
+1. 发送60秒的流量，维持100个并发请求。
 
      ```bash
      hey -z 60s -c 100 \
        "http://autoscale-go.default.1.2.3.4.sslip.io?sleep=100&prime=10000&bloat=5"
      ```
 
-1. Send 60 seconds of traffic maintaining 100 qps with short requests (10 ms).
+1. 发送60秒的流量，保持100 qps的短请求(10毫秒)。
 
      ```bash
      hey -z 60s -q 100 \
        "http://autoscale-go.default.1.2.3.4.sslip.io?sleep=10"
      ```
 
-1. Send 60 seconds of traffic maintaining 100 qps with long requests (1 sec).
+1. 发送60秒的流量，保持100 qps的长请求(1秒)。
 
      ```bash
      hey -z 60s -q 100 \
        "http://autoscale-go.default.1.2.3.4.sslip.io?sleep=1000"
      ```
 
-1. Send 60 seconds of traffic with heavy CPU usage (~1 cpu/sec/request, total
-   100 cpus).
+1. 发送60秒的高CPU使用率的流量(~1 cpu/sec/request，总共100个CPU)。
 
      ```bash
      hey -z 60s -q 100 \
        "http://autoscale-go.default.1.2.3.4.sslip.io?prime=40000000"
      ```
 
-1. Send 60 seconds of traffic with heavy memory usage (1 gb/request, total 5
-   gb).
+2. 发送60秒的高内存使用流量(每请求1gb，共5gb)。
 
      ```bash
      hey -z 60s -c 5 \
        "http://autoscale-go.default.1.2.3.4.sslip.io?bloat=1000"
      ```
 
-## Cleanup
+## 清理
 
 ```bash
 kubectl delete -f docs/serving/autoscaling/autoscale-go/service.yaml
 ```
 
-## Further reading
+## 进一步的阅读
 
-[Autoscaling Developer Documentation](https://github.com/knative/serving/blob/main/docs/scaling/SYSTEM.md)
+[自动定量开发人员文档](https://github.com/knative/serving/blob/main/docs/scaling/SYSTEM.md)
