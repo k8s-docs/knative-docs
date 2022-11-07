@@ -1,31 +1,32 @@
-# Language packs
+# 语言包
 
-Language packs can be used to extend Knative Functions to support additional runtimes, function signatures, operating systems, and installed tooling for functions. Language Packs are distributed through Git repositories or as a directory on a disc.
+语言包可用于扩展Knative函数，以支持额外的运行时、函数签名、操作系统和已安装的函数工具。
+语言包通过Git存储库或作为磁盘上的目录分发。
 
-For more information see the [language pack](https://github.com/knative/func/blob/main/docs/language-pack-providers/language-pack-contract.md){target=_blank} documentation.
+有关更多信息，请参阅[语言包](https://github.com/knative/func/blob/main/docs/language-pack-providers/language-pack-contract.md){target=_blank}文档。
 
-## Using external Git repositories
+## 使用外部Git存储库
 
-When creating a new function, a Git repository can be specified as the source
-for the template files. The Knative Sandbox maintains a set of [example templates](https://github.com/knative-sandbox/func-tastic){target=_blank} which can be used during project creation.
+在创建新函数时，可以指定Git存储库作为模板文件的源。
+Knative沙盒维护了一组[示例模板](https://github.com/knative-sandbox/func-tastic){target=_blank}，可以在项目创建过程中使用。
 
-For example, you can run the following command to use the [`metacontroller`](https://metacontroller.github.io/metacontroller/){target=_blank} template for Node.js:
+例如，你可以运行以下命令为Node.js使用[`metacontroller`](https://metacontroller.github.io/metacontroller/){target=_blank}模板:
 
 ```{ .console }
 func create myfunc -l nodejs -t metacontroller --repository https://github.com/knative-sandbox/func-tastic
 ```
 
-## Installing language packs locally
+## 在本地安装语言包
 
-Language packs can be installed locally by using the [`func repository`](https://github.com/knative/func/blob/main/docs/reference/func_repository.md){target=_blank} command.
+语言包可以通过使用[`func repository`](https://github.com/knative/func/blob/main/docs/reference/func_repository.md){target=_blank}命令在本地安装。
 
-For example, to add the Knative Sandbox example templates, you can run the following command:
+例如，要添加Knative Sandbox示例模板，可以运行以下命令:
 
 ```{ .console }
 func repository add knative https://github.com/knative-sandbox/func-tastic
 ```
 
-After the Knative Sandbox example templates are installed, you can use the `metacontroller` template by specifying the `knative` prefix in the `create` command:
+安装Knative沙盒示例模板后，你可以通过在 `create` 命令中指定 `Knative` 前缀来使用 `metacontroller` 模板:
 
 ```{ .console }
 func create -t knative/metacontroller -l nodejs my-controller-function

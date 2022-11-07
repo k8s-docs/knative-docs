@@ -1,9 +1,9 @@
-### Configure DNS
+### 配置 DNS
 
-You can configure DNS to prevent the need to run curl commands with a host header.
+可以配置DNS以避免使用主机标头运行curl命令。
 
-The following tabs expand to show instructions for configuring DNS.
-Follow the procedure for the DNS of your choice:
+下面的选项卡展开显示配置DNS的说明。
+按照以下步骤选择DNS:
 
 === "Magic DNS (sslip.io)"
 

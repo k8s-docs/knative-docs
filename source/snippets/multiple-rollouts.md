@@ -1,3 +1,3 @@
-## Multiple rollouts
+## 多个延展
 
-If a new revision is created while a rollout is in progress, the system begins to shift traffic immediately to the newest Revision, and drains the incomplete rollouts from newest to oldest.
+如果在实施过程中创建了一个新的修订，那么系统将立即开始将流量转移到最新的修订，并将不完整的实施从最新的转移到最旧的。

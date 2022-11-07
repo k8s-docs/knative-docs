@@ -2,25 +2,25 @@
 - /docs/getting-started/build-run-deploy-func.md
 - /docs/functions/running-functions.md
 -->
-The `run` command builds an image for your function if required, and runs this image locally, instead of deploying it on a cluster.
+如果需要，`run` 命令为函数构建一个映像，并在本地运行该映像，而不是将其部署到集群上。
 
 === "func"
 
-    Run the function locally, by running the command inside the project directory:
+    在本地运行函数，在项目目录中运行命令:
 
     ```bash
     func run
     ```
 
-    Using this command also builds the function if necessary.
+    如果需要，使用此命令还会构建函数。
 
-    You can force a rebuild of the image by running the command:
+    你可以通过运行命令强制映像的重建:
 
     ```bash
     func run --build
     ```
 
-    It is also possible to disable the build, by running the command:
+    也可以通过运行以下命令禁用构建:
 
     ```bash
     func run --build=false
@@ -28,27 +28,27 @@ The `run` command builds an image for your function if required, and runs this i
 
 === "kn func"
 
-    Run the function locally, by running the command inside the project directory:
+    在本地运行函数，在项目目录中运行命令:
 
     ```bash
     kn func run
     ```
 
-    Using this command also builds the function if necessary.
+    如果需要，使用此命令还会构建函数。
 
-    You can force a rebuild of the image by running the command:
+    可以通过运行该命令强制重建映像:
 
     ```bash
     kn func run --build
     ```
 
-    It is also possible to disable the build, by running the command:
+    也可以通过运行该命令禁用构建:
 
     ```bash
     kn func run --build=false
     ```
 
-You can verify that your function has been successfully run by using the `invoke` command and observing the output:
+你可以通过使用 `invoke` 命令并观察输出来验证你的函数已经成功运行:
 
 === "func"
 

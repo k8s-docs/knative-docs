@@ -2,4 +2,5 @@
 - /docs/concepts/eventing-resources/brokers.md
 -->
 
-After an event has entered a broker, it can be forwarded to subscribers by using Triggers. Triggers allow events to be filtered by attributes, so that events with particular attributes can be sent to Subscribers that have registered interest in events with those attributes.
+事件进入代理后，可以使用触发器将其转发给订阅者。
+触发器允许通过属性对事件进行过滤，这样具有特定属性的事件就可以发送到注册了对具有这些属性的事件感兴趣的订阅服务器。

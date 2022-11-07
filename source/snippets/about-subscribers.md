@@ -2,4 +2,5 @@
 - /docs/concepts/eventing-resources/brokers.md
 -->
 
-A Subscriber can be any URL or Addressable resource. Subscribers can also reply to an active request from the Broker, and can respond with a new event that is sent back into the Broker.
+订阅服务器可以是任何URL或可寻址资源。
+订阅者还可以响应来自代理的活动请求，并使用发送回代理的新事件进行响应。

@@ -1,4 +1,4 @@
-# Configuring Log Settings
+# 配置日志设置
 
 Log configuration for all Knative components is managed through the `config-logging` ConfigMap in the corresponding namespace. For example, Serving components are configured through `config-logging` in the `knative-serving` namespace and Eventing components are configured through `config-logging` in the `knative-eventing` namespace, etc.
 

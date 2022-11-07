@@ -1,4 +1,4 @@
-# Logging
+# 日志
 
 You can use [Fluent Bit](https://docs.fluentbit.io/), a log processor and forwarder, to collect
 Kubernetes logs in a central directory.
@@ -7,7 +7,7 @@ This is not required to run Knative, but can be helpful with
 
 Fluent Bit supports exporting to a number of other log providers. If you already have an existing log provider, for example, Splunk, Datadog, ElasticSearch, or Stackdriver, you can follow the [FluentBit documentation](https://docs.fluentbit.io/manual/pipeline/outputs) to configure log forwarders.
 
-## Setting up logging components
+## 设置日志记录组件
 
 Setting up log collection requires two steps:
 
@@ -17,7 +17,7 @@ Setting up log collection requires two steps:
 !!! tip
     In the following example, a StatefulSet is used, which stores logs on a Kubernetes PersistentVolumeClaim, but you can also use a HostPath.
 
-### Setting up the collector
+### 设置收集器
 
 The `fluent-bit-collector.yaml` file defines a StatefulSet, as well as a Kubernetes Service which allows accessing and reading the logs from within the cluster. The supplied configuration will create the monitoring configuration in a namespace called `logging`.
 
@@ -35,7 +35,7 @@ The `fluent-bit-collector.yaml` file defines a StatefulSet, as well as a Kuberne
 [nginx]-[shared volume]
 -->
 
-#### Procedure
+#### 过程
 
 1. Apply the configuration by entering the command:
 
@@ -67,7 +67,7 @@ The `fluent-bit-collector.yaml` file defines a StatefulSet, as well as a Kuberne
     kubectl exec --namespace logging --stdin --tty --container nginx log-collector-0
     ```
 
-### Setting up the forwarders
+### 建立货代
 
 See the [Fluent Bit](https://docs.fluentbit.io/manual/installation/kubernetes) documentation to set up a Fluent Bit DaemonSet that forwards logs to ElasticSearch by default.
 
@@ -86,7 +86,7 @@ When you create a ConfigMap during the installation steps, you must:
           Require_ack_response  True
     ```
 
-### Setting up a local collector
+### 设置本地收集器
 
 !!! warning
     This procedure describes a development environment setup and is not suitable for production use.
@@ -154,7 +154,7 @@ You can then use `/shared/logs` as the `spec.hostPath.path` in your
 PersistentVolume. Note that the directory path `./logs` is relative to the
 directory that the Kind cluster was created in.
 
-### Docker Desktop
+### Docker 桌面
 
 Docker desktop automatically creates some shared mounts between the host and the
 guest operating systems, so you only need to know the path to your home

@@ -1,4 +1,4 @@
-# Configuring the Defaults ConfigMap
+# 配置默认ConfigMap
 
 The `config-defaults` ConfigMap, known as the Defaults ConfigMap, contains settings that determine how Knative sets default values for resources.
 
@@ -9,7 +9,7 @@ You can view the current `config-defaults` ConfigMap by running the following co
 ```yaml
 kubectl get configmap -n knative-serving config-defaults -oyaml
 ```
-## Example config-defaults ConfigMap
+## 例子 config-defaults ConfigMap
 
 ```yaml
 apiVersion:  v1
@@ -35,9 +35,9 @@ data:
 
 See below for a description of each property.
 
-## Properties
+## 属性
 
-### Revision timeout seconds
+### 修订的超时秒
 {% raw %}
 The revision timeout value determines the default number of seconds to use for the revision's per-request timeout if none is specified.
 {% endraw %}
@@ -75,7 +75,7 @@ The revision timeout value determines the default number of seconds to use for t
             - image: gcr.io/knative-samples/helloworld-go
     ```
 
-### Max revision timeout seconds
+### 最大修订超时秒数
 {% raw %}
 The `max-revision-timeout-seconds` value determines the maximum number of seconds that can be used for `revision-timeout-seconds`. This value must be greater than or equal to `revision-timeout-seconds`. If omitted, the system default is used (600 seconds).
 
@@ -100,7 +100,7 @@ If this value is increased, the activator's `terminationGraceTimeSeconds` should
       max-revision-timeout-seconds: "600"
     ```
 
-### Revision CPU request
+### 修订的CPU请求
 {% raw %}
 The `revision-cpu-request` value determines the CPU allocation assigned to revisions by default. If this value is omitted, the system default is used. This key is not enabled by default for Knative.
 {% endraw %}
@@ -140,7 +140,7 @@ The `revision-cpu-request` value determines the CPU allocation assigned to revis
                   cpu: "400m"
     ```
 
-### Revision memory request
+### 修订的内存请求
 {% raw %}
 The `revision-memory-request` value determines the memory allocation assigned
 to revisions by default. If this value is omitted, the system default is used. This key is not enabled by default for Knative.
@@ -181,7 +181,7 @@ to revisions by default. If this value is omitted, the system default is used. T
                   memory: "100M"
     ```
 
-### Revision Ephemeral Storage Request
+### 修订临时存储请求
 {% raw %}
 The `revision-ephemeral-storage-request` value determines the ephemeral storage
 allocation assigned to revisions by default. If this value is omitted, the system default is used. This key is not enabled by default for Knative.
@@ -222,7 +222,7 @@ allocation assigned to revisions by default. If this value is omitted, the syste
                   ephemeral-storage: "500M"
     ```
 
-### Revision CPU limit
+### 修订 CPU 限制
 {% raw %}
 The `revision-cpu-limit` value determines the default CPU allocation limit for revisions. If this value is omitted, the system default is used. This key is not enabled by default for Knative.
 {% endraw %}
@@ -262,7 +262,7 @@ The `revision-cpu-limit` value determines the default CPU allocation limit for r
                   cpu: "1000m"
     ```
 
-### Revision memory limit
+### 修订内存限制
 {% raw %}
 The `revision-memory-limit` value determines the default memory allocation limit for revisions. If this value is omitted, the system default is used. This key is not enabled by default for Knative.
 {% endraw %}
@@ -302,7 +302,7 @@ The `revision-memory-limit` value determines the default memory allocation limit
                   memory: "200M"
     ```
 
-### Revision Ephemeral Storage Limit
+### 修订临时存储限制
 {% raw %}
 The `revision-ephemeral-storage-limit` value determines the default ephemeral storage limit allocated to revisions. If this value is omitted, the system default is used. This key is not enabled by default for Knative.
 {% endraw %}
@@ -342,7 +342,7 @@ The `revision-ephemeral-storage-limit` value determines the default ephemeral st
                   ephemeral-storage: "750M"
     ```
 
-### Container name template
+### 容器名称模板
 {% raw %}
 The `container-name-template` value provides a template for the default
 container name if no container name is specified. This field supports Go templating and is supplied by the `ObjectMeta` of the enclosing Service or Configuration, so values such as `{{.Name}}` are also valid.
@@ -381,7 +381,7 @@ container name if no container name is specified. This field supports Go templat
               image: gcr.io/knative-samples/helloworld-go
     ```
 
-### Container concurrency
+### 容器的并发
 {% raw %}
 The `container-concurrency` value specifies the maximum number of requests the container can handle at once. Requests above this threshold are queued. Setting a value of zero disables this throttling and lets through as many requests as
 the pod receives.
@@ -418,7 +418,7 @@ the pod receives.
           containerConcurrency: 0
     ```
 
-### Container concurrency max limit
+### 容器并发最大限制
 
 {% raw %}
 
@@ -460,7 +460,7 @@ The `container-concurrency-max-limit` setting disables arbitrary large concurren
           container-concurrency-max-limit: "1000"
     ```
 
-### Allow container concurrency zero
+### 允许容器并发为零
 {% raw %}
 The `allow-container-concurrency-zero` value determines whether users can
 specify `0` (unbounded) for `containerConcurrency`.
@@ -484,7 +484,7 @@ specify `0` (unbounded) for `containerConcurrency`.
       allow-container-concurrency-zero: "true"
     ```
 
-### Enable Service links
+### 使服务链接
 
 {% raw %}
 

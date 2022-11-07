@@ -1,4 +1,4 @@
-# Configuring gradual rollout of traffic to Revisions
+# 配置逐步向修订版推出流量
 
 If your traffic configuration points to a Configuration target instead of a Revision target, when a new Revision is created and ready, 100% of the traffic from the target is immediately shifted to the new Revision.
 

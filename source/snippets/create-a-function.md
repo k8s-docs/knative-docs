@@ -1,7 +1,7 @@
 <!-- Snippet used in the following topics:
 - /docs/concepts/eventing-resources/brokers.md
 -->
-After you have installed Knative Functions, you can create a function project by using the `func` CLI or the `kn func` plugin:
+安装Knative函数后，可以使用 `func` 命令行或 `kn func` 插件创建函数项目:
 
 === "`func` CLI"
 
@@ -9,19 +9,19 @@ After you have installed Knative Functions, you can create a function project by
     func create -l <language> <function-name>
     ```
 
-    Example:
+    举例:
 
     ```bash
     func create -l go hello
     ```
 
-=== "`kn func` plugin"
+=== "`kn func` 插件"
 
     ```bash
     kn func create -l <language> <function-name>
     ```
 
-    Example:
+    例子:
 
     ```bash
     kn func create -l go hello
@@ -33,4 +33,4 @@ After you have installed Knative Functions, you can create a function project by
     Created go function in hello
     ```
 
-For more information about options for function `create` commands, see the [func create](https://github.com/knative/func/blob/main/docs/reference/func_create.md){target=_blank} documentation.
+有关函数 `create` 命令选项的更多信息，请参阅[func create](https://github.com/knative/func/blob/main/docs/reference/func_create.md){target=_blank}文档。

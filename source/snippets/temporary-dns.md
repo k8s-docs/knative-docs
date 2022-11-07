@@ -1,11 +1,11 @@
-=== "Temporary DNS"
+=== "临时DNS"
 
-    If you are using `curl` to access the sample applications, or your own Knative app, and are unable to use the "Magic DNS (sslip.io)" or "Real DNS" methods, there is a temporary approach. This is useful for those who wish to evaluate Knative without altering their DNS configuration, as per the "Real DNS" method, or cannot use the "Magic DNS" method due to using,
-    for example, minikube locally or IPv6 clusters.
+    如果您正在使用`curl`访问样例应用程序，或者您自己的Knative应用程序，并且不能使用"Magic DNS (sslip.io)"或“Real DNS”方法，那么有一种临时的方法。
+    这对于那些希望在不更改DNS配置的情况下评估Knative的人是很有用的，就像"Real DNS"方法一样，或者因为使用本地minikube或IPv6集群而不能使用 "Magic DNS"方法。
 
-    To access your application using `curl` using this method:
+    要使用curl访问你的应用程序，使用以下方法:
 
-    1. After starting your application, get the URL of your application:
+    1. 启动应用程序后，获取应用程序的URL:
       ```bash
       kubectl get ksvc
       ```

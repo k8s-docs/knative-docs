@@ -1,47 +1,49 @@
-# CLI tools
+# CLI 工具
 
-The following CLI tools are supported for use with Knative.
+
 
 ## kubectl
 
-You can use `kubectl` to apply the YAML files required to install Knative components, and also to create Knative resources, such as services and event sources using YAML.
+可以使用`kubectl`应用安装Knative组件所需的YAML文件，也可以使用YAML创建Knative资源，例如服务和事件源。
 
-See [Install and Set Up `kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/){target=_blank}.
+参见[安装和设置`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/){target=_blank}.
 
 ## kn
 
-`kn` provides a quick and easy interface for creating Knative resources such as services and event sources, without the need to create or modify YAML files directly. `kn` also simplifies completion of otherwise complex procedures such as autoscaling and traffic splitting.
+`kn` 为创建Knative资源(如服务和事件源)提供了一个快速、简单的接口，而不需要直接创建或修改YAML文件。
+`kn` 还简化了自动伸缩和流量分割等复杂程序的完成。
 
 !!! note
-    `kn` cannot be used to install Knative components such as Serving or Eventing.
+    `kn`不能用于安装Knative组件，如服务或事件。
 
-### Additional resources
+### 额外的资源
 
-- See [Installing `kn`](install-kn.md).
-- See the [`kn` documentation]({{ clientdocs() }}){target=_blank} in Github.
+- 查看 [安装 `kn`](install-kn.md).
+- 参见Github中的[`kn` 文档]({{ clientdocs() }}){target=_blank}。
 
 ## func
 
-The `func` CLI enables you to create, build, and deploy Knative Functions without the need to create or modify YAML files directly.
+`func`  CLI使您能够创建、构建和部署Knative函数，而不需要直接创建或修改YAML文件。
 
-### Additional resources
+### 额外的资源
 
-- See [Installing Knative Functions](../functions/install-func.md).
-- See the [`func` documentation]({{ funcdocs() }}){target=_blank} in Github.
+- 参见[安装Knative函数](../functions/install-func.md).
+- 参见Github中的[`func`文档]({{ funcdocs() }}){target=_blank}。
 
-## Connecting CLI tools to your cluster
+## 将CLI工具连接到集群
 
-After you have installed `kubectl` or `kn`, these tools will search for the `kubeconfig` file of your cluster in the default location of `$HOME/.kube/config`, and will use this file to connect to the cluster. A `kubeconfig` file is usually automatically created when you create a Kubernetes cluster.
+安装了`kubectl`或`kn`后，这些工具将在默认位置`$HOME/.kube/config`中搜索集群的`kubeconfig`文件，并使用该文件连接到集群。
+在创建Kubernetes集群时，通常会自动创建一个`kubeconfig`文件。
 
-You can also set the environment variable `$KUBECONFIG`, and point it to the kubeconfig file.
-
-Using the `kn` CLI, you can specify the following options to connect to the cluster:
-
-- `--kubeconfig`: use this option to point to the `kubeconfig` file. This is equivalent to setting the `$KUBECONFIG` environment variable.
-- `--context`: use this option to specify the name of a context from the existing `kubeconfig` file. Use one of the contexts from the output of `kubectl config get-contexts`.
+您还可以设置环境变量`$KUBECONFIG`，并将其指向KUBECONFIG文件。
 
 
-You can also specify a config file in the following ways:
+
+- `--kubeconfig`: 使用此选项指向`kubeconfig`文件。这相当于设置`$KUBECONFIG`环境变量。
+- `--context`: 使用此选项可从现有的`kubeconfig`文件中指定上下文的名称。使用`kubectl`输出中的一个上下文。
+
+
+您还可以通过以下方式指定配置文件:
 
 - Setting the environment variable `$KUBECONFIG`, and point it to the kubeconfig file.
 
@@ -50,13 +52,12 @@ You can also specify a config file in the following ways:
 For more information about `kubeconfig` files, see
 [Organizing Cluster Access Using kubeconfig Files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/){target=_blank}.
 
-### Using kubeconfig files with your platform
+### 在平台上使用kubeconfig文件
 
-Instructions for using `kubeconfig` files are available for the following platforms:
+使用`kubeconfig`文件的说明可用于以下平台:
 
 - [Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html){target=_blank}
 - [Google GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl){target=_blank}
 - [IBM IKS](https://cloud.ibm.com/docs/containers?topic=containers-getting-started){target=_blank}
 - [Red Hat OpenShift Cloud Platform](https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/administrator-cli-commands.html#create-kubeconfig){target=_blank}
-- Starting [minikube](https://minikube.sigs.k8s.io/docs/start/){target=_blank} writes this file
-automatically, or provides an appropriate context in an existing configuration file.
+- 启动[minikube](https://minikube.sigs.k8s.io/docs/start/){target=_blank}会自动写入该文件，或者在现有配置文件中提供适当的上下文。

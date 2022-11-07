@@ -2,11 +2,11 @@
 - /docs/getting-started/quickstart-install.md
 - /docs/install/quickstart-install.md
 -->
-## Install the Knative quickstart plugin
+## 安装Knative快速启动插件
 
-To get started, install the Knative `quickstart` plugin:
+要开始，安装knative  `quickstart` 插件:
 
-=== "Using Homebrew"
+=== "使用 Homebrew"
 
     Do one of the following:
 
@@ -16,7 +16,7 @@ To get started, install the Knative `quickstart` plugin:
         brew install knative-sandbox/kn-plugins/quickstart
         ```
 
-=== "Using a binary"
+=== "使用二进制"
 
     1. Download the binary for your system from the [`quickstart` release page](https://github.com/knative-sandbox/kn-plugin-quickstart/releases){target=_blank}.
 
@@ -36,7 +36,7 @@ To get started, install the Knative `quickstart` plugin:
         kn quickstart --help
         ```
 
-=== "Using Go"
+=== "使用 Go"
     1. Check out the `kn-plugin-quickstart` repository:
 
           ```bash
@@ -62,19 +62,19 @@ To get started, install the Knative `quickstart` plugin:
           kn quickstart --help
           ```
 
-## Run the Knative quickstart plugin
+## 运行Knative快速启动插件
 
-The `quickstart` plugin completes the following functions:
+`quickstart`插件完成以下功能:
 
-1. **Checks if you have the selected Kubernetes instance installed**
-1. **Creates a cluster called `knative`**
-1. **Installs Knative Serving** with Kourier as the default networking layer, and sslip.io as the DNS
-1. **Installs Knative Eventing** and creates an in-memory Broker and Channel implementation
+1. **检查是否安装了选定的Kubernetes实例**
+1. **创建一个名为`knative`的集群**
+1. **安装Knative服务** 其中，Kourier作为默认的网络层，sslip.io作为DNS
+1. **安装Knative事件** 并创建内存中代理和通道实现
 
 
-To get a local deployment of Knative, run the `quickstart` plugin:
+要获得Knative的本地部署，运行 `quickstart` 插件:
 
-=== "Using kind"
+=== "使用 kind"
 
 
     1. Install Knative and Kubernetes using [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation) by running:
@@ -89,7 +89,7 @@ To get a local deployment of Knative, run the `quickstart` plugin:
         kind get clusters
         ```
 
-=== "Using minikube"
+=== "使用 minikube"
 
     1. Install Knative and Kubernetes in a [minikube](https://minikube.sigs.k8s.io/docs/start/) instance by running:
 

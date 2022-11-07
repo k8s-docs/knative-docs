@@ -1,307 +1,307 @@
 INHERIT: redirects.yml
 
 nav:
-    ###############################################################################
-    # Home page
-    ###############################################################################
-    - 主页: index.md
-    ###############################################################################
-    # Concepts
-    ###############################################################################
-    - 概念:
-          - 概述: concepts/README.md
-          - 资源:
-                - 服务资源:
-                      - 修正: concepts/serving-resources/revisions.md
-                - 事件资源:
-                      - 代理: concepts/eventing-resources/brokers.md
-          - Duck types: concepts/duck-typing.md
-    ###############################################################################
-    # Getting started
-    ###############################################################################
-    - 教程:
-          - 教程简介: getting-started/README.md
-          - 使用快速启动安装Knative: getting-started/quickstart-install.md
-          - Knative 函数:
-                - 关于函数: getting-started/about-knative-functions.md
-                - 安装函数: getting-started/install-func.md
-                - 创建函数: getting-started/create-a-function.md
-                - 构建运行部署函数: getting-started/build-run-deploy-func.md
-          - Knative 服务:
-                - 部署服务: getting-started/first-service.md
-                - 自动缩放: getting-started/first-autoscale.md
-                - 流量分发: getting-started/first-traffic-split.md
-          - Knative 事件:
-                - 关于事件: getting-started/getting-started-eventing.md
-                - 来源代理触发器: getting-started/first-broker.md
-                - 使用服务作为源: getting-started/first-source.md
-                - 使用触发器和接收器: getting-started/first-trigger.md
-          - 接下来是什么?: getting-started/next-steps.md
-          - 清理: getting-started/clean-up.md
-    ###############################################################################
-    # Installing
-    ###############################################################################
-    - 安装:
-          - 安装Knative: install/README.md
-          - 安装KN: client/install-kn.md
-          - 快速启动安装Knative: install/quickstart-install.md
-          # YAML Installation
-          - YAML安装Knative:
-                - 关于YAML-based安装: install/yaml-install/README.md
-                - 安装服务:
-                      - YAML安装服务: install/yaml-install/serving/install-serving-with-yaml.md
-                      - 服务安装文件: install/yaml-install/serving/serving-installation-files.md
-                - 安装事件:
-                      - YAML安装事件处理: install/yaml-install/eventing/install-eventing-with-yaml.md
-                      - 事件安装文件: install/yaml-install/eventing/eventing-installation-files.md
-          # Operator Installation
-          - 使用Operator安装:
-                - 使用Operator安装: install/operator/knative-with-operators.md
-                - 使用Knative Operator CLI插件进行安装: install/operator/knative-with-operator-cli.md
-                - 使用Operator配置Knative: install/operator/configuring-with-operator.md
-                - 配置Knative服务CRDs: install/operator/configuring-serving-cr.md
-                - 配置Knative事件CRDs: install/operator/configuring-eventing-cr.md
-          # Advanced options for Serving
-          - 安装高级选项:
-                # Istio Installation
-                - 安装Istio: install/installing-istio.md
-                # Cert-manager Installation
-                - 安装cert-manager: install/installing-cert-manager.md
-          # Vendor docs
-          - 使用基于Knative-based的产品: install/knative-offerings.md
-          # Upgrading Knative
-          - 升级您的安装:
-                - 升级Knative: install/upgrade/README.md
-                - 检查您的Knative版本: install/upgrade/check-install-version.md
-                - 升级与kubectl: install/upgrade/upgrade-installation.md
-                - 使用Operator进行升级: install/upgrade/upgrade-installation-with-operator.md
-          # Uninstall
-          - 卸载Knative: install/uninstall.md
-    ###############################################################################
-    # Functions
-    ###############################################################################
-    - 函数:
-          - 函数概述: functions/README.md
-          - 安装函数: functions/install-func.md
-          - 创建函数: functions/creating-functions.md
-          - 构建函数: functions/building-functions.md
-          - 运行函数: functions/running-functions.md
-          - 部署函数: functions/deploying-functions.md
-          - 调用函数: functions/invoking-functions.md
-          - 语言包: functions/language-packs.md
-    ###############################################################################
-    # Serving
-    ###############################################################################
-    - 服务:
-          - 服务概述: serving/README.md
-          - 资源:
-                - 修订:
-                      - 关于修订: serving/revisions/README.md
-                      - 管理员配置选项: serving/revisions/revision-admin-config-options.md
-                      - 开发人员配置选项: serving/revisions/revision-developer-config-options.md
-          # add other resource types
-          - 自动缩放:
-                - 关于自动缩放: serving/autoscaling/README.md
-                - 支持类型: serving/autoscaling/autoscaler-types.md
-                - 配置指标: serving/autoscaling/autoscaling-metrics.md
-                - 配置目标: serving/autoscaling/autoscaling-targets.md
-                - 配置缩零: serving/autoscaling/scale-to-zero.md
-                - 配置并发: serving/autoscaling/concurrency.md
-                - 配置RPS: serving/autoscaling/rps-target.md
-                - 配置边界: serving/autoscaling/scale-bounds.md
-                - 额外配置: serving/autoscaling/kpa-specific.md
-                - 样本应用: serving/autoscaling/autoscale-go/README.md
-                - container-freezer: serving/autoscaling/container-freezer.md
-          # Serving - developer docs
-          - 开发主题:
-                - 服务:
-                      - 关于服务: serving/services/README.md
-                      - 创建服务: serving/services/creating-services.md
-                      - 服务指标: serving/services/service-metrics.md
-                      - 配置私人服务: serving/services/private-services.md
-                      - 配置导入类: serving/services/ingress-class.md
-                      - 配置证书类: serving/services/certificate-class.md
-                      - 配置自定义的域: serving/services/custom-domains.md
-                      - 为DomainMapping使用自定义TLS证书: serving/services/byo-certificate.md
-                      - 使用QPOptions启用的扩展: serving/services/using-queue-extensions.md
-                      # TODO: Add security section to docs?
-                      - 配置资源请求和限制: serving/services/configure-requests-limits-services.md
-                      - HTTPS重定向: serving/services/http-protocol.md
-                - 交通管理: serving/traffic-management.md
-                - 配置逐步向修订版推出流量: serving/rolling-out-latest-revision.md
-                - 标签的决议: serving/tag-resolution.md
-                - 从私有注册中心部署: serving/deploying-from-private-registry.md
-                - 负载平衡:
-                      - 对负载平衡: serving/load-balancing/README.md
-                      - 配置目标突发容量: serving/load-balancing/target-burst-capacity.md
-                      - 配置激活能力: serving/load-balancing/activator-capacity.md
-          # Serving - admin docs
-          - 管理员的话题:
-                - Kubernetes 服务: serving/knative-kubernetes-services.md
-                - 访问请求的痕迹: serving/accessing-traces.md
-                - 在启用其他授权策略时，启用对Knative服务的请求: serving/istio-authorization.md
-                - 从Knative webhook中排除名称空间: serving/webhook-customizations.md
-                - 高可用性配置组件: serving/config-ha.md
-                - 配置HTTPS连接: serving/using-a-tls-cert.md
-                - 使auto-TLS确实的事情: serving/using-auto-tls.md
-                - 配置入口网关: serving/setting-up-custom-ingress-gateway.md
-                - 配置域名: serving/using-a-custom-domain.md
-                - 将Kubernetes部署转换为Knative服务: serving/convert-deployment-to-knative-service.md
-                - 用QPOptions扩展队列代理映像: serving/queue-extensions.md
-                # Serving config
-                - 服务配置:
-                      - 配置部署资源: serving/configuration/deployment.md
-                      - 配置逐步向修订版推出流量: serving/configuration/rolling-out-latest-revision-configmap.md
-                      - 特性和扩展标志: serving/configuration/feature-flags.md
-                      - 配置默认的ConfigMap: serving/configuration/config-defaults.md
-          # Serving - Application Security
-          - 应用保护:
-                - 关于保安: serving/app-security/security-guard-about.md
-                - 安装的保安: serving/app-security/security-guard-install.md
-                - 保安快速入门: serving/app-security/security-guard-quickstart.md
-                - 保安警报例子: serving/app-security/security-guard-example-alerts.md
-          # Serving - observability
-          - 可观察性:
-                - 收集日志: serving/observability/logging/collecting-logs.md
-                - 配置日志记录: serving/observability/logging/config-logging.md
-                - 收集度量标准: serving/observability/metrics/collecting-metrics.md
-                - Knative服务指标: serving/observability/metrics/serving-metrics.md
-          # Serving - troubleshooting
-          - 故障排除:
-                - 调试应用程序问题: serving/troubleshooting/debugging-application-issues.md
-          # Serving reference docs
-          - 参考:
-                - 服务API: serving/reference/serving-api.md
-    ###############################################################################
-    # Eventing
-    ###############################################################################
-    - 事件:
-          - 事件概述: eventing/README.md
-          - 资源:
-                - 代理器:
-                      - 关于代理器: eventing/brokers/README.md
-                      - 代理类型:
-                            - 代理类型: eventing/brokers/broker-types/README.md
-                            # add default IMC broker page, page explaining broker types
-                            - Kafka代理器: eventing/brokers/broker-types/kafka-broker/README.md
-                            - RabbitMQ代理器: eventing/brokers/broker-types/rabbitmq-broker/README.md
-                      - 创建代理器: eventing/brokers/create-mtbroker.md
-                      - 管理员配置选项: eventing/brokers/broker-admin-config-options.md
-                      - 开发配置选项: eventing/brokers/broker-developer-config-options.md
-                - 触发器:
-                      - 使用触发器: eventing/triggers/README.md
-                  # about triggers docs
-            #  - Administrator configuration options: eventing/triggers/trigger-admin-config-options.md
-            #  - Developer configuration options: eventing/triggers/trigger-developer-config-options.md
-          # Eventing - developer docs
-          - 开发主题:
-                - 事件资源:
-                      - 关于事件源: eventing/sources/README.md
-                      - ApiServerSource:
-                            - 关于 ApiServerSource: eventing/sources/apiserversource/README.md
-                            - 创建 ApiServerSource 对象: eventing/sources/apiserversource/getting-started.md
-                            - ApiServerSource 参考: eventing/sources/apiserversource/reference.md
-                      - KafkaSource: eventing/sources/kafka-source/README.md
-                      - PingSource:
-                            - 创建 PingSource 对象: eventing/sources/ping-source/README.md
-                            - PingSource 参考: eventing/sources/ping-source/reference.md
-                      - RabbitMQSource: eventing/sources/rabbitmq-source/README.md
-                      - RedisStreamSource:
-                            - 关于 RedisStreamSource: eventing/sources/redis/README.md
-                            - 创建 RedisStreamSource 对象: eventing/sources/redis/getting-started.md
-                # BYO event source
-                - 自定义事件源:
-                      - 自定义事件源概述: eventing/custom-event-source/README.md
-                      - 创建事件源:
-                            - 创建事件源概述: eventing/custom-event-source/custom-event-source/README.md
-                            - 使用Knative示例存储库:
-                                  - 配置示例: eventing/custom-event-source/custom-event-source/sample-repo.md
-                                  - 创建一个控制器: eventing/custom-event-source/custom-event-source/controller.md
-                                  - 创建接收适配器: eventing/custom-event-source/custom-event-source/receive-adapter.md
-                            - 将事件源发布到集群: eventing/custom-event-source/custom-event-source/publish-event-source.md
-                      - SinkBinding:
-                            - 关于 SinkBinding: eventing/custom-event-source/sinkbinding/README.md
-                            - 创建 SinkBinding: eventing/custom-event-source/sinkbinding/create-a-sinkbinding.md
-                            - SinkBinding 参考: eventing/custom-event-source/sinkbinding/reference.md
-                      - ContainerSource:
-                            - 创建 ContainerSource: eventing/custom-event-source/containersource/README.md
-                            - ContainerSource 参考: eventing/custom-event-source/containersource/reference.md
-                - 事件 sinks:
-                      - 关于 sinks: eventing/sinks/README.md
-                      - KafkaSink: eventing/sinks/kafka-sink.md
-                - 处理交货失败: eventing/event-delivery.md
-                - 流:
-                      - 关于流: eventing/flows/README.md
-                      - 平行: eventing/flows/parallel.md
-                      - 序列:
-                            - 关于序列: eventing/flows/sequence/README.md
-                            - 显示顺序输出: eventing/flows/sequence/sequence-reply-to-event-display/README.md
-                            - 使用序列: eventing/flows/sequence/sequence-reply-to-sequence/README.md
-                            - 创建额外的事件: eventing/flows/sequence/sequence-terminal/README.md
-                            - 与代理和触发器一起使用: eventing/flows/sequence/sequence-with-broker-trigger/README.md
-                - 渠道:
-                      - 关于渠道: eventing/channels/README.md
-                      - 通道类型和默认值: eventing/channels/channel-types-defaults.md
-                      - 使用集群或命名空间默认值创建通道: eventing/channels/create-default-channel.md
-                      - 可用的频道: eventing/channels/channels-crds.md
-                      - 订阅: eventing/channels/subscriptions.md
-                - 事件注册表: eventing/event-registry.md
-                - 糖控制器: eventing/sugar/README.md
-          - 管理员的话题:
-                # Eventing config
-                - 事件配置:
-                      - 配置通道违约: eventing/configuration/channel-configuration.md
-                      - 配置Kafka通道默认值: eventing/configuration/kafka-channel-configuration.md
-                      - 配置事件源默认值: eventing/configuration/sources-configuration.md
-                      - 配置糖控制器: eventing/configuration/sugar-configuration.md
-          # Eventing - observability
-          - 可观察性:
-                - 访问CloudEvent痕迹: eventing/accessing-traces.md
-                - 收集日志: eventing/observability/logging/collecting-logs.md
-                - 配置日志记录: eventing/observability/logging/config-logging.md
-                - 收集度量标准: eventing/observability/metrics/collecting-metrics.md
-                - Knative事件指标: eventing/observability/metrics/eventing-metrics.md
-          # Eventing - troubleshooting
-          - 故障排除:
-                - 调试: eventing/troubleshooting/README.md
-          - 实验特性:
-                - 关于event实验功能: eventing/experimental-features/README.md
-                - DeliverySpec.Timeout field: eventing/experimental-features/delivery-timeout.md
-                - DeliverySpec.RetryAfterMax field: eventing/experimental-features/delivery-retryafter.md
-                - 新触发过滤器: eventing/experimental-features/new-trigger-filters.md
-                - KReference.Group field: eventing/experimental-features/kreference-group.md
-                - Knative引用映射: eventing/experimental-features/kreference-mapping.md
-                - 严格的用户: eventing/experimental-features/strict-subscriber.md
-          # Eventing reference docs
-          - 参考:
-                - Eventing API: eventing/reference/eventing-api.md
-    ###############################################################################
-    # CLI
-    ###############################################################################
-    - Knative CLI:
-          - CLI 工具: client/README.md
-          - 安装 Knative CLI: client/install-kn.md
-          - 定制 kn: client/configure-kn.md
-          - kn 插件: client/kn-plugins.md
-    ###############################################################################
-    # Code samples
-    ###############################################################################
-    - 代码示例:
-          - 代码示例概述: samples/README.md
-          - 服务代码示例: samples/serving.md
-          - 事件代码示例: samples/eventing.md
-    # Reference docs
-    - 参考:
-          - 安全: reference/security/README.md
-          - 发布说明: reference/relnotes/README.md
-    - 贡献:
-          - 欢迎来到Knative社区: contributing/README.md
-          - 贡献 Knative: contributing/contributing.md
-          - 关于社区: contributing/about.md
-    - 关于:
-          - 奖状: about/testimonials.md
-          - 案例研究:
-                - deepc: about/case-studies/deepc.md
-                - Outfit7: about/case-studies/outfit7.md
-                - Puppet: about/case-studies/puppet.md
-    - 博客: /blog/
+        ###############################################################################
+        # Home page
+        ###############################################################################
+        - 主页: index.md
+        ###############################################################################
+        # Concepts
+        ###############################################################################
+        - 概念:
+                  - 概述: concepts/README.md
+                  - 资源:
+                            - 服务资源:
+                                      - 修正: concepts/serving-resources/revisions.md
+                            - 事件资源:
+                                      - 代理: concepts/eventing-resources/brokers.md
+                  - Duck types: concepts/duck-typing.md
+        ###############################################################################
+        # Getting started
+        ###############################################################################
+        - 教程:
+                  - 教程简介: getting-started/README.md
+                  - 使用quickstart安装: getting-started/quickstart-install.md
+                  - Knative 函数:
+                            - 关于函数: getting-started/about-knative-functions.md
+                            - 安装函数: getting-started/install-func.md
+                            - 创建函数: getting-started/create-a-function.md
+                            - 构建运行部署函数: getting-started/build-run-deploy-func.md
+                  - Knative 服务:
+                            - 部署服务: getting-started/first-service.md
+                            - 自动缩放: getting-started/first-autoscale.md
+                            - 流量分发: getting-started/first-traffic-split.md
+                  - Knative 事件:
+                            - 关于事件: getting-started/getting-started-eventing.md
+                            - 来源代理触发器: getting-started/first-broker.md
+                            - 使用服务作为源: getting-started/first-source.md
+                            - 使用触发器和接收器: getting-started/first-trigger.md
+                  - 接下来是什么?: getting-started/next-steps.md
+                  - 清理: getting-started/clean-up.md
+        ###############################################################################
+        # Installing
+        ###############################################################################
+        - 安装:
+                  - 安装Knative: install/README.md
+                  - 安装KN: client/install-kn.md
+                  - 快速启动安装: install/quickstart-install.md
+                  # YAML Installation
+                  - YAML安装:
+                            - 关于YAML-based安装: install/yaml-install/README.md
+                            - 安装服务:
+                                      - YAML安装服务: install/yaml-install/serving/install-serving-with-yaml.md
+                                      - 服务安装文件: install/yaml-install/serving/serving-installation-files.md
+                            - 安装事件:
+                                      - YAML安装事件处理: install/yaml-install/eventing/install-eventing-with-yaml.md
+                                      - 事件安装文件: install/yaml-install/eventing/eventing-installation-files.md
+                  # Operator Installation
+                  - Operator安装:
+                            - 使用Operator安装: install/operator/knative-with-operators.md
+                            - 使用Knative Operator CLI插件进行安装: install/operator/knative-with-operator-cli.md
+                            - 使用Operator配置Knative: install/operator/configuring-with-operator.md
+                            - 配置Knative服务CRDs: install/operator/configuring-serving-cr.md
+                            - 配置Knative事件CRDs: install/operator/configuring-eventing-cr.md
+                  # Advanced options for Serving
+                  - 高级选项:
+                            # Istio Installation
+                            - 安装Istio: install/installing-istio.md
+                            # Cert-manager Installation
+                            - 安装cert-manager: install/installing-cert-manager.md
+                  # Vendor docs
+                  - 使用基于Knative-based产品: install/knative-offerings.md
+                  # Upgrading Knative
+                  - 升级安装:
+                            - 升级Knative: install/upgrade/README.md
+                            - 检查Knative版本: install/upgrade/check-install-version.md
+                            - 使用kubectl升级: install/upgrade/upgrade-installation.md
+                            - 使用Operator升级: install/upgrade/upgrade-installation-with-operator.md
+                  # Uninstall
+                  - 卸载Knative: install/uninstall.md
+        ###############################################################################
+        # Functions
+        ###############################################################################
+        - 函数:
+                  - 函数概述: functions/README.md
+                  - 安装函数: functions/install-func.md
+                  - 创建函数: functions/creating-functions.md
+                  - 构建函数: functions/building-functions.md
+                  - 运行函数: functions/running-functions.md
+                  - 部署函数: functions/deploying-functions.md
+                  - 调用函数: functions/invoking-functions.md
+                  - 语言包: functions/language-packs.md
+        ###############################################################################
+        # Serving
+        ###############################################################################
+        - 服务:
+                  - 服务概述: serving/README.md
+                  - 资源:
+                            - 修订:
+                                      - 关于修订: serving/revisions/README.md
+                                      - 管理员配置选项: serving/revisions/revision-admin-config-options.md
+                                      - 开发人员配置选项: serving/revisions/revision-developer-config-options.md
+                  # add other resource types
+                  - 自动缩放:
+                            - 关于自动缩放: serving/autoscaling/README.md
+                            - 支持类型: serving/autoscaling/autoscaler-types.md
+                            - 配置指标: serving/autoscaling/autoscaling-metrics.md
+                            - 配置目标: serving/autoscaling/autoscaling-targets.md
+                            - 配置缩零: serving/autoscaling/scale-to-zero.md
+                            - 配置并发: serving/autoscaling/concurrency.md
+                            - 配置RPS: serving/autoscaling/rps-target.md
+                            - 配置边界: serving/autoscaling/scale-bounds.md
+                            - 额外配置: serving/autoscaling/kpa-specific.md
+                            - 样本应用: serving/autoscaling/autoscale-go/README.md
+                            - container-freezer: serving/autoscaling/container-freezer.md
+                  # Serving - developer docs
+                  - 开发主题:
+                            - 服务:
+                                      - 关于服务: serving/services/README.md
+                                      - 创建服务: serving/services/creating-services.md
+                                      - 服务指标: serving/services/service-metrics.md
+                                      - 配置私人服务: serving/services/private-services.md
+                                      - 配置导入类: serving/services/ingress-class.md
+                                      - 配置证书类: serving/services/certificate-class.md
+                                      - 配置自定义的域: serving/services/custom-domains.md
+                                      - 为DomainMapping使用自定义TLS证书: serving/services/byo-certificate.md
+                                      - 使用QPOptions启用的扩展: serving/services/using-queue-extensions.md
+                                      # TODO: Add security section to docs?
+                                      - 配置资源请求和限制: serving/services/configure-requests-limits-services.md
+                                      - HTTPS重定向: serving/services/http-protocol.md
+                            - 交通管理: serving/traffic-management.md
+                            - 配置逐步向修订版推出流量: serving/rolling-out-latest-revision.md
+                            - 标签的决议: serving/tag-resolution.md
+                            - 从私有注册中心部署: serving/deploying-from-private-registry.md
+                            - 负载平衡:
+                                      - 对负载平衡: serving/load-balancing/README.md
+                                      - 配置目标突发容量: serving/load-balancing/target-burst-capacity.md
+                                      - 配置激活能力: serving/load-balancing/activator-capacity.md
+                  # Serving - admin docs
+                  - 管理员主题:
+                            - Kubernetes 服务: serving/knative-kubernetes-services.md
+                            - 访问请求的痕迹: serving/accessing-traces.md
+                            - 授权策略: serving/istio-authorization.md
+                            - 排除名称空间: serving/webhook-customizations.md
+                            - 高可用性配置组件: serving/config-ha.md
+                            - 配置HTTPS连接: serving/using-a-tls-cert.md
+                            - 启用auto-TLS: serving/using-auto-tls.md
+                            - 配置入口网关: serving/setting-up-custom-ingress-gateway.md
+                            - 配置域名: serving/using-a-custom-domain.md
+                            - 将K8S部署转为Knative服务: serving/convert-deployment-to-knative-service.md
+                            - 用QPOptions扩展队列代理映像: serving/queue-extensions.md
+                            # Serving config
+                            - 服务配置:
+                                      - 配置部署资源: serving/configuration/deployment.md
+                                      - 配置逐步向修订版推出流量: serving/configuration/rolling-out-latest-revision-configmap.md
+                                      - 特性和扩展标志: serving/configuration/feature-flags.md
+                                      - 配置ConfigMap默认值: serving/configuration/config-defaults.md
+                  # Serving - Application Security
+                  - 应用保护:
+                            - 关于保安: serving/app-security/security-guard-about.md
+                            - 安装的保安: serving/app-security/security-guard-install.md
+                            - 保安快速入门: serving/app-security/security-guard-quickstart.md
+                            - 保安警报例子: serving/app-security/security-guard-example-alerts.md
+                  # Serving - observability
+                  - 可观察性:
+                            - 收集日志: serving/observability/logging/collecting-logs.md
+                            - 配置日志记录: serving/observability/logging/config-logging.md
+                            - 收集度量标准: serving/observability/metrics/collecting-metrics.md
+                            - Knative服务指标: serving/observability/metrics/serving-metrics.md
+                  # Serving - troubleshooting
+                  - 故障排除:
+                            - 调试应用程序问题: serving/troubleshooting/debugging-application-issues.md
+                  # Serving reference docs
+                  - 参考:
+                            - 服务API: serving/reference/serving-api.md
+        ###############################################################################
+        # Eventing
+        ###############################################################################
+        - 事件:
+                  - 事件概述: eventing/README.md
+                  - 资源:
+                            - 代理器:
+                                      - 关于代理器: eventing/brokers/README.md
+                                      - 代理类型:
+                                                - 代理类型: eventing/brokers/broker-types/README.md
+                                                # add default IMC broker page, page explaining broker types
+                                                - Kafka代理器: eventing/brokers/broker-types/kafka-broker/README.md
+                                                - RabbitMQ代理器: eventing/brokers/broker-types/rabbitmq-broker/README.md
+                                      - 创建代理器: eventing/brokers/create-mtbroker.md
+                                      - 管理员配置选项: eventing/brokers/broker-admin-config-options.md
+                                      - 开发配置选项: eventing/brokers/broker-developer-config-options.md
+                            - 触发器:
+                                      - 使用触发器: eventing/triggers/README.md
+                              # about triggers docs
+                    #  - Administrator configuration options: eventing/triggers/trigger-admin-config-options.md
+                    #  - Developer configuration options: eventing/triggers/trigger-developer-config-options.md
+                  # Eventing - developer docs
+                  - 开发主题:
+                            - 事件资源:
+                                      - 关于事件源: eventing/sources/README.md
+                                      - ApiServerSource:
+                                                - 关于 ApiServerSource: eventing/sources/apiserversource/README.md
+                                                - 创建 ApiServerSource 对象: eventing/sources/apiserversource/getting-started.md
+                                                - ApiServerSource 参考: eventing/sources/apiserversource/reference.md
+                                      - KafkaSource: eventing/sources/kafka-source/README.md
+                                      - PingSource:
+                                                - 创建 PingSource 对象: eventing/sources/ping-source/README.md
+                                                - PingSource 参考: eventing/sources/ping-source/reference.md
+                                      - RabbitMQSource: eventing/sources/rabbitmq-source/README.md
+                                      - RedisStreamSource:
+                                                - 关于 RedisStreamSource: eventing/sources/redis/README.md
+                                                - 创建 RedisStreamSource 对象: eventing/sources/redis/getting-started.md
+                            # BYO event source
+                            - 自定义事件源:
+                                      - 自定义事件源概述: eventing/custom-event-source/README.md
+                                      - 创建事件源:
+                                                - 创建事件源概述: eventing/custom-event-source/custom-event-source/README.md
+                                                - 使用Knative示例存储库:
+                                                          - 配置示例: eventing/custom-event-source/custom-event-source/sample-repo.md
+                                                          - 创建一个控制器: eventing/custom-event-source/custom-event-source/controller.md
+                                                          - 创建接收适配器: eventing/custom-event-source/custom-event-source/receive-adapter.md
+                                                - 将事件源发布到集群: eventing/custom-event-source/custom-event-source/publish-event-source.md
+                                      - SinkBinding:
+                                                - 关于 SinkBinding: eventing/custom-event-source/sinkbinding/README.md
+                                                - 创建 SinkBinding: eventing/custom-event-source/sinkbinding/create-a-sinkbinding.md
+                                                - SinkBinding 参考: eventing/custom-event-source/sinkbinding/reference.md
+                                      - ContainerSource:
+                                                - 创建 ContainerSource: eventing/custom-event-source/containersource/README.md
+                                                - ContainerSource 参考: eventing/custom-event-source/containersource/reference.md
+                            - 事件 sinks:
+                                      - 关于 sinks: eventing/sinks/README.md
+                                      - KafkaSink: eventing/sinks/kafka-sink.md
+                            - 处理交货失败: eventing/event-delivery.md
+                            - 流:
+                                      - 关于流: eventing/flows/README.md
+                                      - 平行: eventing/flows/parallel.md
+                                      - 序列:
+                                                - 关于序列: eventing/flows/sequence/README.md
+                                                - 显示顺序输出: eventing/flows/sequence/sequence-reply-to-event-display/README.md
+                                                - 使用序列: eventing/flows/sequence/sequence-reply-to-sequence/README.md
+                                                - 创建额外的事件: eventing/flows/sequence/sequence-terminal/README.md
+                                                - 与代理和触发器一起使用: eventing/flows/sequence/sequence-with-broker-trigger/README.md
+                            - 渠道:
+                                      - 关于渠道: eventing/channels/README.md
+                                      - 通道类型和默认值: eventing/channels/channel-types-defaults.md
+                                      - 使用集群或命名空间默认值创建通道: eventing/channels/create-default-channel.md
+                                      - 可用的频道: eventing/channels/channels-crds.md
+                                      - 订阅: eventing/channels/subscriptions.md
+                            - 事件注册表: eventing/event-registry.md
+                            - 糖控制器: eventing/sugar/README.md
+                  - 管理员的话题:
+                            # Eventing config
+                            - 事件配置:
+                                      - 配置通道违约: eventing/configuration/channel-configuration.md
+                                      - 配置Kafka通道默认值: eventing/configuration/kafka-channel-configuration.md
+                                      - 配置事件源默认值: eventing/configuration/sources-configuration.md
+                                      - 配置糖控制器: eventing/configuration/sugar-configuration.md
+                  # Eventing - observability
+                  - 可观察性:
+                            - 访问CloudEvent痕迹: eventing/accessing-traces.md
+                            - 收集日志: eventing/observability/logging/collecting-logs.md
+                            - 配置日志记录: eventing/observability/logging/config-logging.md
+                            - 收集度量标准: eventing/observability/metrics/collecting-metrics.md
+                            - Knative事件指标: eventing/observability/metrics/eventing-metrics.md
+                  # Eventing - troubleshooting
+                  - 故障排除:
+                            - 调试: eventing/troubleshooting/README.md
+                  - 实验特性:
+                            - 关于event实验功能: eventing/experimental-features/README.md
+                            - DeliverySpec.Timeout field: eventing/experimental-features/delivery-timeout.md
+                            - DeliverySpec.RetryAfterMax field: eventing/experimental-features/delivery-retryafter.md
+                            - 新触发过滤器: eventing/experimental-features/new-trigger-filters.md
+                            - KReference.Group field: eventing/experimental-features/kreference-group.md
+                            - Knative引用映射: eventing/experimental-features/kreference-mapping.md
+                            - 严格的用户: eventing/experimental-features/strict-subscriber.md
+                  # Eventing reference docs
+                  - 参考:
+                            - Eventing API: eventing/reference/eventing-api.md
+        ###############################################################################
+        # CLI
+        ###############################################################################
+        - KN:
+                  - kn 概述: client/README.md
+                  - kn 安装: client/install-kn.md
+                  - kn 定制: client/configure-kn.md
+                  - kn 插件: client/kn-plugins.md
+        ###############################################################################
+        # Code samples
+        ###############################################################################
+        - 代码示例:
+                  - 代码示例概述: samples/README.md
+                  - 服务代码示例: samples/serving.md
+                  - 事件代码示例: samples/eventing.md
+        # Reference docs
+        - 参考:
+                  - 安全: reference/security/README.md
+                  - 发布说明: reference/relnotes/README.md
+        - 贡献:
+                  - 欢迎来到Knative社区: contributing/README.md
+                  - 贡献 Knative: contributing/contributing.md
+                  - 关于社区: contributing/about.md
+        - 关于:
+                  - 奖状: about/testimonials.md
+                  - 案例研究:
+                            - deepc: about/case-studies/deepc.md
+                            - Outfit7: about/case-studies/outfit7.md
+                            - Puppet: about/case-studies/puppet.md
+        - 博客: /blog/

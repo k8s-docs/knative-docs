@@ -1,31 +1,31 @@
-# Building functions
+# 构建函数
 
 --8<-- "build-func-intro.md"
 
-## Local builds
+## 本地构建
 
-You can build a container image for your function locally without deploying it to a cluster, by using the `build` command.
+您可以使用 `build` 命令在本地为函数构建容器映像，而无需将其部署到集群中。
+### 先决条件
 
-### Prerequisites
+- 您的本地机器上有一个Docker守护进程。如果您已经使用了快速入门安装，则已经提供了该功能。
 
-- You have a Docker daemon on your local machine. This is already provided if you have used the Quickstart installation.
-
-### Procedure
+### 过程
 
 --8<-- "proc-building-function.md"
 
-## On-cluster Builds
+## 集群构建
 
-If you do not have a local Docker daemon running, or you are using a CI/CD pipeline, you might want to build your function on the cluster instead of using a local build. You can create an on-cluster build by using the `func deploy --remote` command.
+如果您没有运行本地Docker守护进程，或者您正在使用CI/CD管道，那么您可能希望在集群上构建函数，而不是使用本地构建。
+您可以使用`func deploy --remote`命令创建一个集群上构建。
 
-### Prerequisites
+### 先决条件
 
-- The function must exist in a Git repository.
-- You must configure your cluster to use Tekton Pipelines. See the [on-cluster build](https://github.com/knative/func/blob/main/docs/reference/on_cluster_build.md){target=_blank} documentation.
+- 该函数必须存在于Git存储库中。
+- 您必须配置您的集群以使用Tekton pipeline。请参阅[集群构建](https://github.com/knative/func/blob/main/docs/reference/on_cluster_build.md){target=_blank}文档。
 
-### Procedure
+### 过程
 
-When running the command for the first time, you must specify the Git URL for the function:
+第一次运行该命令时，必须指定该函数的Git URL:
 
 === "func"
 
@@ -39,4 +39,4 @@ When running the command for the first time, you must specify the Git URL for th
     kn func deploy --remote --registry <registry> --git-url <git-url> -p hello
     ```
 
-After you have specified the Git URL for your function once, you can omit it in subsequent commands.
+在为函数指定Git URL一次之后，可以在后续命令中省略它。

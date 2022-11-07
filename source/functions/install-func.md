@@ -1,11 +1,11 @@
-# Installing Knative Functions
+# 安装 Knative 函数
 
 --8<-- "install-functions-intro.md"
 
-## Installing the `func` CLI
+## 安装 `func` 命令行
 
 --8<-- "install-func-CLI.md"
 
-## Installing the `kn func` CLI plugin
+## 安装  `kn func` 命令行插件
 
 --8<-- "install-kn-func-plugin.md"

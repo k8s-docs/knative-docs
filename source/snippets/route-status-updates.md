@@ -1,8 +1,9 @@
-## Route status updates
+## 路由更新状态
 
-During a rollout, the system updates the Route and Knative Service status conditions. Both the `traffic` and `conditions` status parameters are affected.
+在rollout过程中，系统会更新路由和Knative服务状态条件。
+`traffic` and `conditions`状态参数都受到影响。
 
-For example, for the following traffic configuration:
+以以下流量配置为例:
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -18,7 +19,7 @@ spec:
     revisionName: config-00005 # Pinned to a specific Revision.
 ```
 
-Initially 1% of the traffic is rolled out to the Revisions:
+最初，1%的流量被推出到修订:
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -36,7 +37,7 @@ spec:
     revisionName: config-00005 # Pinned to a specific Revision.
 ```
 
-Then the rest of the traffic is rolled out in increments of 18%:
+然后其余的流量以18%的增量推出:
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -54,7 +55,7 @@ spec:
     revisionName: config-00005 # Pinned to a specific Revision.
 ```
 
-The rollout continues until the target traffic configuration is reached:
+rollout继续进行，直到达到目标流量配置:
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -70,7 +71,7 @@ spec:
     revisionName: config-00005 # Pinned to a specific Revision.
 ```
 
-During the rollout, the Route and Knative Service status conditions are as follows:
+rollout过程中，路由和Knative服务状态条件如下:
 
 ```yaml
 apiVersion: serving.knative.dev/v1

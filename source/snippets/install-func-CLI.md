@@ -4,7 +4,7 @@
 -->
 === "Homebrew"
 
-    To install `func` using Homebrew, run the following commands:
+    要使用Homebrew安装 `func`，运行以下命令:
 
     ```bash
     brew tap knative-sandbox/kn-plugins
@@ -19,7 +19,7 @@
     !!! note
         Use `brew upgrade` instead if you are upgrading from a previous version.
 
-=== "Executable binary"
+=== "可执行的二进制文件"
 
     You can install `func` by downloading the executable binary for your system and placing it in the system path.
 
@@ -73,9 +73,9 @@
         func version
         ```
 
-=== "Container image"
+=== "容器镜像"
 
-    Run `func` from a container image. For example:
+    从容器映像运行 `func`。例如:
 
     ```bash
     docker run --rm -it ghcr.io/knative/func/func create -l node -t http myfunc

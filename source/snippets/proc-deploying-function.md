@@ -2,11 +2,12 @@
 - /docs/getting-started/build-run-deploy-func.md
 - /docs/functions/deploying-functions.md
 -->
-The `deploy` command uses the function project name as the Knative Service name. When the function is built, the project name and the image registry name are used to construct a fully qualified image name for the function.
+`deploy` 命令使用函数项目名称作为Knative服务名称。
+在构建函数时，将使用项目名称和图像注册表名称为函数构造一个完全限定的图像名称。
 
 === "func"
 
-    Deploy the function by running the command inside the project directory:
+    通过在项目目录中运行命令来部署函数:
 
     ```bash
     func deploy --registry <registry>
@@ -14,7 +15,7 @@ The `deploy` command uses the function project name as the Knative Service name.
 
 === "kn func"
 
-    Deploy the function by running the command inside the project directory:
+    通过在项目目录中运行命令来部署函数:
 
     ```bash
     kn func deploy --registry <registry>
@@ -27,7 +28,7 @@ The `deploy` command uses the function project name as the Knative Service name.
         http://hello.default.127.0.0.1.sslip.io
     ```
 
-You can verify that your function has been successfully deployed by using the `invoke` command and observing the output:
+你可以通过使用 `invoke` 命令并观察输出来验证你的函数已经成功部署: 
 
 === "func"
 

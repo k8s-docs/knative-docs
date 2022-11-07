@@ -1,6 +1,6 @@
 # 流量分发
 
-流量分发对于[蓝/绿部署](https://martinfowler.com/bliki/BlueGreenDeployment.html){target=blank_}和[金丝雀部署](https://martinfowler.com/bliki/CanaryRelease.html){target=blank_})很有用。
+流量分发对于[蓝/绿部署](https://martinfowler.com/bliki/BlueGreenDeployment.html){target=blank_}和[金丝雀部署](https://martinfowler.com/bliki/CanaryRelease.html){target=blank_}很有用。
 
 [修订版](../serving/ readme .md#serving-resources){target=_blank}是应用程序代码和配置的实时快照。
 每次更改Knative服务的配置时，都会创建一个新的修订。

@@ -1,6 +1,6 @@
-# Snippets
+# 片段
 
-This folder is for commonly used bits of information that need a single source of truth. Some examples include:
+这个文件夹是用来存放需要单一真相来源的常用信息的。一些例子包括:
 
 1. Code blocks that may be used in several locations
 2. Topics that may need to be included in multiple places (e.g. "create a service")

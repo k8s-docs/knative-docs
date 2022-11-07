@@ -4,15 +4,15 @@
 - docs/install/quickstart-install.md
 -->
 
-## Install the Knative CLI
+## 安装Knative CLI
 
-The Knative CLI (`kn`) provides a quick and easy interface for creating Knative resources, such as Knative Services and Event Sources, without the need to create or modify YAML files directly.
+Knative CLI (`kn`)为创建Knative资源(如Knative服务和事件源)提供了一个快速而简单的界面，而不需要直接创建或修改YAML文件。
 
-The `kn` CLI also simplifies completion of otherwise complex procedures such as autoscaling and traffic splitting.
+`kn` CLI还简化了诸如自动伸缩和流量分割等复杂过程的完成。
 
-=== "Using Homebrew"
+=== "使用 Homebrew"
 
-    Do one of the following:
+    做以下任何一件事:
 
     - To install `kn` by using [Homebrew](https://brew.sh){target=_blank}, run the command (Use `brew upgrade` instead if you are upgrading from a previous version):
 
@@ -30,13 +30,13 @@ The `kn` CLI also simplifies completion of otherwise complex procedures such as 
             brew install knative/client/kn
             ```
 
-=== "Using a binary"
+=== "使用二进制"
 
-    You can install `kn` by downloading the executable binary for your system and placing it in the system path.
+    您可以通过下载系统的可执行二进制文件并将其放在系统路径中来安装 `kn` 。
 
     1. Download the binary for your system from the [`kn` release page](https://github.com/knative/client/releases){target=_blank}.
 
-    1. Rename the binary to `kn` and make it executable by running the commands:
+    2. Rename the binary to `kn` and make it executable by running the commands:
 
         ```bash
         mv <path-to-binary-file> kn
@@ -45,19 +45,19 @@ The `kn` CLI also simplifies completion of otherwise complex procedures such as 
 
         Where `<path-to-binary-file>` is the path to the binary file you downloaded in the previous step, for example, `kn-darwin-amd64` or `kn-linux-amd64`.
 
-    1. Move the executable binary file to a directory on your PATH by running the command:
+    3. Move the executable binary file to a directory on your PATH by running the command:
 
         ```bash
         mv kn /usr/local/bin
         ```
 
-    1. Verify that the plugin is working by running the command:
+    4. Verify that the plugin is working by running the command:
 
         ```bash
         kn version
         ```
 
-=== "Using Go"
+=== "使用 Go"
 
     1. Check out the `kn` client repository:
 
@@ -78,7 +78,7 @@ The `kn` CLI also simplifies completion of otherwise complex procedures such as 
           kn version
           ```
 
-=== "Using a container image"
+=== "使用容器映像"
 
     Links to images are available here:
 

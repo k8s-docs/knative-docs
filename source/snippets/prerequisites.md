@@ -1,6 +1,6 @@
-## Prerequisites
+## 先决条件
 
-Before installing Knative, you must meet the following prerequisites:
+在安装Knative之前，您必须满足以下前提条件:
 
 - **For prototyping purposes**, Knative works on most local deployments of Kubernetes. For example, you can use a local, one-node cluster that has 3&nbsp;CPUs and 4&nbsp;GB of memory.
 

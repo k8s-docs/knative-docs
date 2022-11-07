@@ -1,11 +1,11 @@
-# Running functions
+# 运行函数
 
 --8<-- "run-func-intro.md"
 
-## Prerequisites
+## 先决条件
 
-- You have a Docker daemon on your local machine. This is already provided if you have used the Quickstart installation.
+- 您的本地机器上有一个Docker守护进程。如果您已经使用了快速入门安装，则已经提供了该功能。
 
-## Procedure
+## 过程
 
 --8<-- "proc-running-function.md"

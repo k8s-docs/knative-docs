@@ -1,16 +1,17 @@
-# Knative Functions overview
+# Knative 函数概述
 
 --8<-- "about-functions.md"
 
-## Function templates
+## 函数模板
 
 --8<-- "functions-templates-intro.md"
 
-## Language packs
+## 语言包
 
-Functions can be written in any language supported by the available [language packs](https://github.com/knative/func/blob/main/docs/language-pack-providers/language-pack-contract.md){target=_blank}.
+函数可以用可用[语言包](https://github.com/knative/func/blob/main/docs/language-pack-providers/language-pack-contract.md){target=_blank}支持的任何语言编写.
 <!--TODO: Remove and replace with lang pack snippet in future PR, similar to templates-->
 
-## Getting started with functions
+## 函数入门
 
-Before you can use Knative Functions, you must have access to a Knative development environment. To set up a development environment, you can follow the [Knative Quickstart tutorial](../getting-started/){target=_blank}.
+在使用Knative函数之前，必须能够访问Knative开发环境。
+要建立一个开发环境，您可以跟随[Knative快速入门教程](../getting-started/){target=_blank}。

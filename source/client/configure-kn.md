@@ -1,12 +1,14 @@
-# Customizing kn
+# 定制 kn
 
-You can customize your `kn` CLI setup by creating a `config.yaml` configuration file. You can provide this configuration by using the `--config` flag, otherwise the configuration is picked up from a default location. The default configuration location conforms to the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html), and is different for Unix systems and Windows systems.
+您可以通过创建一个`config.yaml`配置文件来定制您的`kn`命令行设置。
+您可以通过使用`——config`标志来提供此配置，否则配置将从默认位置获取。
+默认配置位置符合[XDG基本目录规范](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)，对于Unix系统和Windows系统是不同的。
 
 - If the `XDG_CONFIG_HOME` environment variable is set, the default configuration location that `kn` looks for is `$XDG_CONFIG_HOME/kn`.
 - If the `XDG_CONFIG_HOME` environment variable is not set, `kn` looks for the configuration in the home directory of the user at `$HOME/.config/kn/config.yaml`.
 - For Windows systems, the default `kn` configuration location is `%APPDATA%\kn`.
 
-## Example configuration file
+## 示例配置文件
 
 ```yaml
 plugins:
@@ -20,7 +22,7 @@ eventing:
     resource: services
 ```
 
-Where
+哪里
 
 - `path-lookup` specifies whether `kn` should look for [plugins](kn-plugins.md) in the `PATH` environment variable. This is a boolean configuration option (default: `true`). Note: the `path-lookup` option has been deprecated and will be removed in a future version where path lookup will be enabled unconditionally.
 - `directory` specifies the directory where `kn` will look for plugins. The default path depends on the operating system, as described earlier. This can be any directory that is visible to the user (default: `$base_dir/plugins`, where `$base_dir` is the directory where this configuration file is stored).

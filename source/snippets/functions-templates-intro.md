@@ -1,9 +1,9 @@
 <!-- Snippet used in the following topics:
 - /docs/functions/README.md
 -->
-Knative Functions provides templates that can be used to create basic functions, by initiating a function project boilerplate when you run a `create` command.
+Knative函数通过在运行`create`命令时启动函数项目样板，提供了可用于创建基本函数的模板。
 
-Templates allow you to choose the language and invocation format for your function. The following templates are available with both CloudEvent and HTTP invocation formats:
+模板允许您为函数选择语言和调用格式。以下模板适用于CloudEvent和HTTP调用格式:
 
 - [Node.js](https://github.com/knative/func/blob/main/docs/function-developers/nodejs.md){target=_blank}
 - [Python](https://github.com/knative/func/blob/main/docs/function-developers/python.md){target=_blank}

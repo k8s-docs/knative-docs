@@ -2,11 +2,12 @@
 - /docs/getting-started/build-run-deploy-func.md
 - /docs/functions/building-functions.md
 -->
-The `build` command uses the project name and the image registry name to construct a fully qualified container image name for the function. If the function project has not previously been built, you are prompted to provide an image registry.
+`build` 命令使用项目名称和镜像注册表名称为函数构造一个完全限定的容器镜像名称。
+如果之前没有构建该函数项目，则会提示您提供一个镜像注册表。
 
 === "func"
 
-    To build the function, run the following command:
+    要构建该函数，运行以下命令:
 
     ```bash
     func build
@@ -14,7 +15,7 @@ The `build` command uses the project name and the image registry name to constru
 
 === "kn func"
 
-    To build the function, run the following command:
+    要构建该函数，运行以下命令:
 
     ```bash
     kn func build

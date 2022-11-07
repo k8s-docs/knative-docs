@@ -1,8 +1,6 @@
 === "Real DNS"
 
-    To configure DNS for Knative, take the External IP
-    or CNAME from setting up networking, and configure it with your DNS provider as
-    follows:
+    要为Knative配置DNS，请从建立网络中获取External IP或CNAME，并按照以下方法与您的DNS提供商进行配置:
 
     - If the networking layer produced an External IP address, then configure a
       wildcard `A` record for the domain:

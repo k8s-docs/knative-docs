@@ -4,7 +4,7 @@
 -->
 === "kn plugin"
 
-    You can install Knative Functions as a `kn` CLI plugin, by downloading the executable binary for your system and placing it in the system path.
+    通过下载系统的可执行二进制文件并将其放在系统路径中，您可以将Knative函数作为 `kn` CLI插件安装。
 
     1. Download the binary for your system from the [`func` release page](https://github.com/knative/func/releases){target=_blank}.
 

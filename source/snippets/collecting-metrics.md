@@ -1,4 +1,4 @@
-# Collecting Metrics in Knative
+# 在Knative中收集度量
 
 Knative supports different popular tools for collecting metrics:
 
@@ -12,12 +12,12 @@ You can also set up the OpenTelemetry Collector to receive metrics from Knative 
 !!! warning
     You can't use OpenTelemetry Collector and Prometheus at the same time. The default metrics backend is Prometheus. You will need to remove `metrics.backend-destination` and `metrics.request-metrics-backend-destination` keys from the config-observability Configmap to enable Prometheus metrics.
 
-## About Prometheus
+## 关于 Prometheus
 
 [Prometheus](https://prometheus.io/) is an open-source tool for collecting,
 aggregating timeseries metrics and alerting. It can also be used to scrape the OpenTelemetry Collector that is demonstrated below when Prometheus is used.
 
-## Setting up Prometheus
+## 配置 Prometheus
 
 1. Install the [Prometheus Operator](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) by using [Helm](https://helm.sh/docs/intro/using_helm/):
 
@@ -55,7 +55,7 @@ aggregating timeseries metrics and alerting. It can also be used to scrape the O
     kubectl apply -f https://raw.githubusercontent.com/knative-sandbox/monitoring/main/grafana/dashboards.yaml
     ```
 
-### Access the Prometheus instance locally
+### 本地访问Prometheus实例
 
 By default, the Prometheus instance is only exposed on a private service named `prometheus-operated`.
 
@@ -69,7 +69,7 @@ To access the console in your web browser:
 
 1. Access the console in your browser via `http://localhost:9090`.
 
-## About OpenTelemetry
+## 痊愈 OpenTelemetry
 
 OpenTelemetry is a CNCF observability framework for cloud-native software, which provides a collection of tools, APIs, and SDKs.
 
@@ -77,7 +77,7 @@ You can use OpenTelemetry to instrument, generate, collect, and export telemetry
 
 OpenTelemetry allows you to easily export metrics to multiple monitoring services without needing to rebuild or reconfigure the Knative binaries.
 
-## Understanding the collector
+## 理解收集器
 
 The collector provides a location where various Knative components can push metrics to be retained and collected by a monitoring service.
 
@@ -99,7 +99,7 @@ In the following example, you can configure a single collector instance using a 
 [Collector]<-scrape[Prometheus]
 -->
 
-## Set up the collector
+## 设置收集器
 
 1. Create a namespace for the collector to run in, by entering the following command:
 
@@ -126,7 +126,7 @@ In the following example, you can configure a single collector instance using a 
          --patch '{"data":{"metrics.backend-destination":"opencensus","metrics.opencensus-address":"otel-collector.metrics:55678"}}'
        ```
 
-## Verify the collector setup
+## 验证收集器设置
 
 1. You can check that metrics are being forwarded by loading the Prometheus export port on the collector, by entering the following command:
 

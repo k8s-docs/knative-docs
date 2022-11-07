@@ -1,10 +1,10 @@
-# Invoking functions
+# 调用函数
 
-You can use the `func invoke` command to send a test request to invoke a
-function either locally or on your Knative cluster.
+您可以使用 `func invoke` 命令发送一个测试请求来调用本地或Knative集群上的函数。
 
-This command can be used to test that a function is working and able to receive HTTP requests and CloudEvents correctly.
+这个命令可以用来测试一个函数是否正常工作，是否能够正确地接收HTTP请求和CloudEvents。
 
-If your function is running locally, `func invoke` sends a test request to the local instance.
+如果你的函数在本地运行， `func invoke` 会向本地实例发送一个测试请求。
 
-You can use the `func invoke` command to send test data to your function with the `--data` flag, as well as other options to simulate different types of requests. See the [func invoke](https://github.com/knative/func/blob/main/docs/reference/func_invoke.md){target=_blank} documentation for more information.
+您可以使用`func invoke`命令将测试数据发送到带有`--data`标志的函数，以及其他选项来模拟不同类型的请求。
+更多信息请参见[函数调用](https://github.com/knative/func/blob/main/docs/reference/func_invoke.md){target=_blank}文档。

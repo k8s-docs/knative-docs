@@ -1,15 +1,14 @@
 ---
 hide_next: true
 ---
-# Clean Up
+# 清理
 
-We recommend that you delete the cluster used for this tutorial to free up resources
-on your local machine.
+我们建议您删除本教程中使用的集群，以释放本地机器上的资源。
 
-If you want to continue experimenting with Knative after deleting the cluster,
-you can reinstall Knative on a new cluster using the [`quickstart` plugin](quickstart-install.md#run-the-knative-quickstart-plugin) again.
+如果您想在删除集群后继续使用Knative，
+你可以使用[`quickstart` plugin](quickstart-install.md#run-the-knative-quickstart-plugin)在新的集群上重新安装Knative。
 
-## Delete the Cluster
+## 删除集群
 
 === "kind"
 

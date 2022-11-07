@@ -1,53 +1,56 @@
-# kn plugins
+# kn 插件
 
-The `kn` CLI supports the use of plugins. Plugins enable you to extend the functionality of your `kn` installation by adding custom commands and other shared commands that are not part of the core distribution of `kn`.
+`kn` 命令行支持使用插件。
+插件允许您通过添加自定义命令和其他不属于 `kn` 核心发行版的共享命令来扩展`kn`安装的功能。
 
 !!! warning
-    The plugins must be named with the prefix `kn-` to be detected by `kn`. For example, `kn-func` will be detected but `func` won't be detected.
+    插件必须以前缀`kn-`命名，以便由`kn`检测。
+    例如，`kn-func`会被检测到，但`func`不会被检测到。
 
-## kn source plugins
+## kn 源的插件
 
-An event source plugin has the following characteristics:
+事件源插件具有以下特征:
 
-- It has a name that is part of the `kn source` group.
-- It provides CRUD sub-commands; `create`, `update`, `delete`, `describe`, and sometimes `apply`.
-- It requires a mandatory `--sink` flag to be passed when using the `create` command.
+- 它的名称属于`kn source`组的一部分。
+- 它提供CRUD子命令; `create`, `update`, `delete`, `describe`, 有时 `apply`.
+- 当使用`create`命令时，它要求传递一个强制的`--sink`标志。
 
-## List of Knative plugins
+## Knative插件列表
 
-You can view all available `kn` plugins in the [Knative Sandbox repository](https://github.com/orgs/knative-sandbox/repositories?q=kn+plugin&type=all&language=&sort=).
+您可以在[Knative Sandbox库](https://github.com/orgs/knative-sandbox/repositories?q=kn+plugin&type=all&language=&sort=)中查看所有可用的`kn`插件.
 
 <!--TODO: If we're including the following table, the Client WG must be responsible for ensuring that the table is kept up to date, otherwise it should be removed from the docs and just the link to the sandbox repo should be provided-->
 
-| Plugin | Description | Available via Homebrew? |
-| --- | --- | :---: |
-| [kn-plugin-admin](https://github.com/knative-sandbox/kn-plugin-admin) | `kn` plugin for managing a Kubernetes based Knative installation | Y |
-| [kn-plugin-diag](https://github.com/knative-sandbox/kn-plugin-diag) | `kn` plugin for diagnosing issues by exposing detailed information for different layers of Knative objects | N |
-| [kn-plugin-event](https://github.com/knative-sandbox/kn-plugin-event) | `kn` plugin for sending events to Knative sinks | Y |
-| [kn-plugin-func](https://github.com/knative/func) | `kn` plugin for functions | Y |
-| [kn-plugin-migration](https://github.com/knative-sandbox/kn-plugin-migration) | `kn` plugin for migrating Knative Services from one cluster to another | N |
-| [kn-plugin-operator](https://github.com/knative-sandbox/kn-plugin-operator) | `kn` plugin for managing Knative with Knative Operator | N |
-| [kn-plugin-quickstart](https://github.com/knative-sandbox/kn-plugin-quickstart) | `kn` plugin for developers to install a quickstart Knative cluster for experimentation purposes | Y |
-| [kn-plugin-service-log](https://github.com/knative-sandbox/kn-plugin-service-log) | `kn` plugin for showing the standard output of Knative Services | N |
-| [kn-plugin-source-kafka](https://github.com/knative-sandbox/kn-plugin-source-kafka) | `kn` plugin for managing Kafka event sources | Y |
-| [kn-plugin-source-kamelet](https://github.com/knative-sandbox/kn-plugin-source-kamelet) | `kn` plugin for managing Kamelets and KameletBindings | Y |
+| 插件                                                                                    | 描述                                                            | 可以通过Homebrew? |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------- | :---------------: |
+| [kn-plugin-admin](https://github.com/knative-sandbox/kn-plugin-admin)                   | `kn` plugin 用于管理基于Kubernetes的Knative安装                 |         Y         |
+| [kn-plugin-diag](https://github.com/knative-sandbox/kn-plugin-diag)                     | `kn` plugin 用于通过公开Knative对象的不同层的详细信息来诊断问题 |         N         |
+| [kn-plugin-event](https://github.com/knative-sandbox/kn-plugin-event)                   | `kn` plugin 用于将事件发送到Knative接收器                       |         Y         |
+| [kn-plugin-func](https://github.com/knative/func)                                       | `kn` plugin 用户函数                                            |         Y         |
+| [kn-plugin-migration](https://github.com/knative-sandbox/kn-plugin-migration)           | `kn` plugin 用于将Knative服务从一个集群迁移到另一个集群         |         N         |
+| [kn-plugin-operator](https://github.com/knative-sandbox/kn-plugin-operator)             | `kn` plugin 使用Knative Operator管理Knative                     |         N         |
+| [kn-plugin-quickstart](https://github.com/knative-sandbox/kn-plugin-quickstart)         | `kn` plugin 为开发人员安装一个快速启动的Knative集群，以进行实验 |         Y         |
+| [kn-plugin-service-log](https://github.com/knative-sandbox/kn-plugin-service-log)       | `kn` plugin 用于显示Knative服务的标准输出                       |         N         |
+| [kn-plugin-source-kafka](https://github.com/knative-sandbox/kn-plugin-source-kafka)     | `kn` plugin 用于管理Kafka事件源                                 |         Y         |
+| [kn-plugin-source-kamelet](https://github.com/knative-sandbox/kn-plugin-source-kamelet) | `kn` plugin 用于管理Kamelets和KameletBindings                   |         Y         |
 
-## Manually install a plugin
+## 手动安装插件
 
-You can manually install all plugins. To manually install a plugin:
+您可以手动安装所有插件。手动安装插件:
 
-1. Download the current release of the plugin from GitHub. See the [list of Knative plugins](#list-of-knative-plugins) you can download.
-1. Rename the file to remove the OS and architecture information. For example, rename `kn-admin-darwin-amd64` to `kn-admin`.
-1. Make the plugin executable. For example, `chmod +x kn-admin`.
-1. Move the file to a directory on your `PATH`. For example, `/usr/local/bin`.
+1. 从GitHub下载插件的当前版本。你可以下载[Knative插件列表](#list-of-knative-plugins)。
+1. 重命名文件以删除操作系统和体系结构信息。例如，将`kn-admin-darwin-amd64`重命名为`kn-admin`。
+1. 使插件可执行。例如，`chmod +x kn-admin`。
+1. 将文件移动到`PATH`上的目录中。例如,`/usr/local/bin`。
 
-## Install a plugin by using Homebrew
+## 使用Homebrew安装插件
 
-You can install some plugins can be installed using the [Knative plugins Homebrew Tap](https://github.com/knative-sandbox/homebrew-kn-plugins/). For example, you can install the `kn-admin` plugin by running `brew install knative-sandbox/kn-plugins/admin`.
+可以使用[Knative plugins Homebrew Tap](https://github.com/knative-sandbox/homebrew-kn-plugins/)安装一些插件。
+例如，你可以通过运行`brew install knative-sandbox/kn-plugins/admin`来安装`kn-admin`插件。
 
-## List available plugins
+## 可用插件列表
 
-You can list all available (installed) plugins by entering the command:
+你可以输入以下命令列出所有可用的(已安装的)插件:
 
 ```bash
 kn plugin list

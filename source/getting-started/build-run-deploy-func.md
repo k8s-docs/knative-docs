@@ -1,41 +1,41 @@
-# Building, running, or deploying functions
+# 构建、运行或部署函数
 
-After you have created a function project, you can build, run, or deploy your function, depending on your use case.
+在创建了函数项目之后，可以根据用例构建、运行或部署函数。
 
-## Running a function
+## 运行函数
 
 --8<-- "run-func-intro.md"
 
-### Prerequisites
+### 先决条件
 
-- You have a Docker daemon on your local machine. This is already provided if you have used the Quickstart installation.
+- 您的本地机器上有一个Docker守护进程。如果您已经使用了快速入门安装，则已经提供了该功能。
 
-### Procedure
+### 过程
 
 --8<-- "proc-running-function.md"
 
-## Deploying a function
+## 部署函数
 
 --8<-- "deploy-func-intro.md"
 
-### Prerequisites
+### 先决条件
 
-- You have a Docker daemon on your local machine. This is already provided if you have used the Quickstart installation.
+- 您的本地机器上有一个Docker守护进程。如果您已经使用了快速入门安装，则已经提供了该功能。
 
-- You have access to a container registry and are able to push images to this registry.
+- 您可以访问容器注册中心，并能够将图像推送到该注册中心。
 
-### Procedure
+### 过程
 
 --8<-- "proc-deploying-function.md"
 
-## Building a function
+## 构建函数
 
 --8<-- "build-func-intro.md"
 
-### Prerequisites
+### 先决条件
 
-- You have a Docker daemon on your local machine. This is already provided if you have used the Quickstart installation.
+- 您的本地机器上有一个Docker守护进程。如果您已经使用了快速入门安装，则已经提供了该功能。
 
-### Procedure
+### 过程
 
 --8<-- "proc-building-function.md"

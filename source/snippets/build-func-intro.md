@@ -2,4 +2,5 @@
 - /docs/getting-started/build-run-deploy-func.md
 - /docs/functions/building-functions.md
 -->
-Building a function creates an OCI container image for your function that can be pushed to a container registry. It does not run or deploy the function, which can be useful if you want to build a container image for your function locally, but do not want to automatically run the function or deploy it to a cluster, for example, in a testing scenario.
+构建函数会为函数创建一个OCI容器映像，可以将其推入容器注册表。
+它不运行或部署函数，如果您想在本地为函数构建容器映像，但不想自动运行函数或将其部署到集群(例如在测试场景中)，这可能很有用。
