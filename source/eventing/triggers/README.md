@@ -1,15 +1,14 @@
-# Using Triggers
+# 使用触发器
 
-A trigger represents a desire to subscribe to events from a specific broker.
+触发器表示从特定代理订阅事件的愿望。
 
 The `subscriber` value must be a [Destination](https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Destination).
 
-## Example Triggers
+## 触发器举例
 
-The following trigger receives all the events from the `default` broker and
-delivers them to the Knative Serving service `my-service`:
+下面的触发器从 `default` 代理接收所有事件，并将它们传递给Knative服务 `my-service`:
 
-1. Create a YAML file using the following example:
+1. 使用以下示例创建一个YAML文件:
 
     ```yaml
     apiVersion: eventing.knative.dev/v1
@@ -25,7 +24,7 @@ delivers them to the Knative Serving service `my-service`:
           name: my-service
     ```
 
-1. Apply the YAML file by running the command:
+1. 通过运行该命令应用YAML文件:
 
     ```bash
     kubectl apply -f <filename>.yaml
@@ -36,7 +35,7 @@ delivers them to the Knative Serving service `my-service`:
 The following trigger receives all the events from the `default` broker and
 delivers them to the custom path `/my-custom-path` for the Kubernetes service `my-service`:
 
-1. Create a YAML file using the following example:
+1. 使用以下示例创建一个YAML文件:
 
     ```yaml
     apiVersion: eventing.knative.dev/v1
@@ -53,21 +52,21 @@ delivers them to the custom path `/my-custom-path` for the Kubernetes service `m
         uri: /my-custom-path
     ```
 
-1. Apply the YAML file by running the command:
+1. 通过运行该命令应用YAML文件:
 
     ```bash
     kubectl apply -f <filename>.yaml
     ```
     Where `<filename>` is the name of the file you created in the previous step.
 
-## Trigger filtering
+## 触发过滤
 
 Exact match filtering on any number of CloudEvents attributes as well as
 extensions are supported. If your filter sets multiple attributes, an event must
 have all of the attributes for the trigger to filter it. Note that we only
 support exact matching on string values.
 
-### Example
+### 举例
 
 This example filters events from the `default` broker that are of type
 `dev.knative.foo.bar` and have the extension `myextension` with the value
@@ -100,7 +99,7 @@ This example filters events from the `default` broker that are of type
     ```
     Where `<filename>` is the name of the file you created in the previous step.
 
-## Trigger annotations
+## 触发注释
 
 You can modify a Trigger's behavior by setting the following two annotations:
 

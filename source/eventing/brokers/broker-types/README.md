@@ -1,24 +1,24 @@
-# Available Broker types
+# 可用的代理类型
 
-The following broker types are available for use with Knative Eventing.
+以下代理类型可与Knative事件一起使用。
 
-## Multi-tenant channel-based broker
+## 基于多租户通道的代理
 
-Knative Eventing provides a multi-tenant (MT) channel-based broker implementation that uses channels for event routing.
+Knative事件提供了一个基于多租户(MT)通道的代理实现，该实现使用通道进行事件路由。
 
-Before you can use the MT channel-based broker, you must install a channel implementation.
+在使用MT基于通道的代理之前，必须安装通道实现。
 
-## Alternative broker implementations
+## 可选的代理实现
 
-In the Knative Eventing ecosystem, alternative broker implementations are welcome as long as they respect the [broker specifications](https://github.com/knative/specs/blob/main/specs/eventing/control-plane.md#broker-lifecycle).
+在Knative事件生态系统中，只要遵守[代理规范](https://github.com/knative/specs/blob/main/specs/eventing/control-plane.md#broker-lifecycle)，其他代理实现都是受欢迎的。
 
-The following is a list of brokers provided by the community or vendors:
+以下是社区或供应商提供的代理列表:
 
-### Apache Kafka broker
+### Apache Kafka代理
 
-For more information, see [Apache Kafka Broker](kafka-broker/README.md).
+更多信息，参见[Apache Kafka Broker](kafka-broker/README.md).
 
-### RabbitMQ broker
+### RabbitMQ 代理
 
-The RabbitMQ Broker uses [RabbitMQ](https://www.rabbitmq.com/) for its underlying implementation.
-For more information, see [RabbitMQ Broker](rabbitmq-broker/README.md) or [the docs available on GitHub](https://github.com/knative-sandbox/eventing-rabbitmq).
+RabbitMQ代理使用[RabbitMQ](https://www.rabbitmq.com/)作为底层实现。
+要了解更多信息，请参见[RabbitMQ代理](rabbitmq-broker/README.md)或[GitHub上可用的文档](https://github.com/knative-sandbox/eventing-rabbitmq).

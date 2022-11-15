@@ -1,6 +1,6 @@
-# Developer configuration options
+# 开发人员配置选项
 
-## Broker configuration example
+## 代理配置示例
 
 The following is a full example of a multi-tenant (MT) channel-based Broker object which shows the possible configuration options that you can modify:
 

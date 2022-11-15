@@ -1,4 +1,4 @@
-# Administrator configuration options
+# 管理员配置选项
 
 If you have cluster administrator permissions for your Knative installation, you can modify ConfigMaps to change the global default configuration options for Brokers on the cluster.
 
@@ -25,7 +25,7 @@ data:
       namespace: knative-eventing
 ```
 
-## Channel implementation options
+## 通道实现选项
 
 The following example shows a Broker object where the `spec.config` configuration is specified in a `config-br-default-channel` ConfigMap:
 
@@ -73,7 +73,7 @@ Now every Broker created in the cluster that does not have a `spec.config` will 
 For more information about creating a `kafka-channel` ConfigMap to use with your Broker, see the
 [Kafka Channel ConfigMap](../configuration/kafka-channel-configuration.md#create-a-kafka-channel-configmap) documentation.
 
-### Changing the default Channel implementation for a namespace
+### 更改名称空间的默认通道实现
 
 You can modify the default Broker creation behavior for one or more namespaces.
 
@@ -109,7 +109,7 @@ data:
         namespace: knative-eventing
 ```
 
-## Configuring delivery spec defaults
+## 配置交付规范默认值
 
 You can configure default event delivery parameters for Brokers that are applied in cases where an event fails to be delivered:
 
@@ -153,23 +153,23 @@ data:
           backoffDelay: "PT0.2S"
 ```
 
-### Dead letter sink
+### 死信槽
 
 You can configure the `deadLetterSink` delivery parameter so that if an event fails to be delivered it is sent to the specified event sink.
 
-### Retries
+### 重试
 
 You can set a minimum number of times that the delivery must be retried before the event is sent to the dead letter sink, by configuring the `retry` delivery parameter with an integer value.
 
-### Back off delay
+### 后退延迟
 
 You can set the `backoffDelay` delivery parameter to specify the time delay before an event delivery retry is attempted after a failure. The duration of the `backoffDelay` parameter is specified using the ISO 8601 format.
 
-### Back off policy
+### 退出政策
 
 The `backoffPolicy` delivery parameter can be used to specify the retry back off policy. The policy can be specified as either linear or exponential. When using the linear back off policy, the back off delay is the time interval specified between retries. When using the exponential backoff policy, the back off delay is equal to `backoffDelay*2^<numberOfRetries>`.
 
-## Broker class options
+## 代理类选项
 
 When a Broker is created without a specified `BrokerClass` annotation, the default `MTChannelBasedBroker` Broker class is used, as specified in the `config-br-defaults` ConfigMap.
 
@@ -193,7 +193,7 @@ The following example creates a Broker called `default` in the default namespace
     Where `<filename>` is the name of the file you created in the previous step.
 
 
-### Configuring the Broker class
+### 配置代理类
 
 To configure a Broker class, you can modify the
 `eventing.knative.dev/broker.class` annotation and `spec.config` for the Broker
@@ -231,7 +231,7 @@ the backing Channel for the Broker class:
         namespace: knative-eventing
     ```
 
-### Configuring the default BrokerClass for the cluster
+### 为集群配置默认的BrokerClass
 
 You can configure the `clusterDefault` Broker class so that any Broker created in the cluster that does not have a `BrokerClass` annotation uses this default class.
 
@@ -252,7 +252,7 @@ data:
       brokerClass: MTChannelBasedBroker
 ```
 
-### Configuring the default BrokerClass for namespaces
+### 为名称空间配置默认的BrokerClass
 
 You can modify the default Broker class for one or more namespaces.
 
@@ -278,16 +278,16 @@ data:
         brokerClass: MTChannelBasedBroker
 ```
 
-## Integrating Istio with Knative Brokers
+## 将Istio与Knative代理集成
 
-### Protect a Knative Broker by using JSON Web Token (JWT) and Istio
+### 通过使用JSON Web Token (JWT)和Istio来保护Knative代理
 
-#### Prerequisites
+#### 先决条件
 
 - You have installed Knative Eventing.
 - You have installed Istio.
 
-#### Procedure
+#### 过程
 
 1. Label the `knative-eventing` namespace, so that Istio can handle JWT-based user authentication, by running the command:
 

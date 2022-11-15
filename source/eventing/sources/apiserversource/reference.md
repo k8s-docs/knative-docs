@@ -1,4 +1,4 @@
-# ApiServerSource reference
+# ApiServerSource 参考
 
 ![version](https://img.shields.io/badge/API_Version-v1-green?style=flat-square)
 
@@ -10,21 +10,21 @@ ApiServerSource object.
 
 An ApiServerSource definition supports the following fields:
 
-| Field | Description | Required or optional |
-|-------|-------------|----------------------|
-| [`apiVersion`][kubernetes-overview] | Specifies the API version, for example `sources.knative.dev/v1`. | Required |
-| [`kind`][kubernetes-overview] | Identifies this resource object as an ApiServerSource object. | Required |
-| [`metadata`][kubernetes-overview] | Specifies metadata that uniquely identifies the ApiServerSource object. For example, a `name`. | Required |
-| [`spec`][kubernetes-overview] | Specifies the configuration information for this ApiServerSource object. | Required |
-| [`spec.resources`](#resources-parameter) | The resources that the source tracks so it can send related lifecycle events from the Kubernetes ApiServer. Includes an optional label selector to help filter. | Required |
-| `spec.mode` | EventMode controls the format of the event. Set to `Reference` to send a `dataref` event type for the resource being watched. Only a reference to the resource is included in the event payload. Set to `Resource` to have the full resource lifecycle event in the payload. Defaults to `Reference`. | Optional |
-| [`spec.owner`](#owner-parameter) | ResourceOwner is an additional filter to only track resources that are owned by a specific resource type. If ResourceOwner matches Resources[n] then Resources[n] is allowed to pass the ResourceOwner filter. | Optional |
-| [`spec.serviceAccountName`](#serviceaccountname-parameter) | The name of the ServiceAccount to use to run this source. Defaults to `default` if not set. | Optional |
-| [`spec.sink`](../../sinks/README.md#sink-as-a-parameter) | A reference to an object that resolves to a URI to use as the sink. | Required |
-| [`spec.ceOverrides`](#cloudevent-overrides) | Defines overrides to control the output format and modifications to the event sent to the sink. | Optional |
+| Field                                                      | Description                                                                                                                                                                                                                                                                                           | Required or optional |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| [`apiVersion`][kubernetes-overview]                        | Specifies the API version, for example `sources.knative.dev/v1`.                                                                                                                                                                                                                                      | Required             |
+| [`kind`][kubernetes-overview]                              | Identifies this resource object as an ApiServerSource object.                                                                                                                                                                                                                                         | Required             |
+| [`metadata`][kubernetes-overview]                          | Specifies metadata that uniquely identifies the ApiServerSource object. For example, a `name`.                                                                                                                                                                                                        | Required             |
+| [`spec`][kubernetes-overview]                              | Specifies the configuration information for this ApiServerSource object.                                                                                                                                                                                                                              | Required             |
+| [`spec.resources`](#resources-parameter)                   | The resources that the source tracks so it can send related lifecycle events from the Kubernetes ApiServer. Includes an optional label selector to help filter.                                                                                                                                       | Required             |
+| `spec.mode`                                                | EventMode controls the format of the event. Set to `Reference` to send a `dataref` event type for the resource being watched. Only a reference to the resource is included in the event payload. Set to `Resource` to have the full resource lifecycle event in the payload. Defaults to `Reference`. | Optional             |
+| [`spec.owner`](#owner-parameter)                           | ResourceOwner is an additional filter to only track resources that are owned by a specific resource type. If ResourceOwner matches Resources[n] then Resources[n] is allowed to pass the ResourceOwner filter.                                                                                        | Optional             |
+| [`spec.serviceAccountName`](#serviceaccountname-parameter) | The name of the ServiceAccount to use to run this source. Defaults to `default` if not set.                                                                                                                                                                                                           | Optional             |
+| [`spec.sink`](../../sinks/README.md#sink-as-a-parameter)   | A reference to an object that resolves to a URI to use as the sink.                                                                                                                                                                                                                                   | Required             |
+| [`spec.ceOverrides`](#cloudevent-overrides)                | Defines overrides to control the output format and modifications to the event sent to the sink.                                                                                                                                                                                                       | Optional             |
 
 
-### Resources parameter
+### 资源参数
 
 The `resources` parameter specifies the resources that the source tracks so that
 it can send related lifecycle events from the Kubernetes ApiServer.
@@ -32,16 +32,16 @@ The parameter includes an optional label selector to help filter.
 
 A `resources` definition supports the following fields:
 
-| Field | Description | Required or optional |
-|-------|-------------|----------------------|
-| `apiVersion` | API version of the resource to watch. | Required |
-| [`kind`][kubernetes-kinds] | Kind of the resource to watch. | Required |
-| [`selector`][label-selectors] | LabelSelector filters this source to objects to those resources pass the label selector. <!-- unsure what this means --> | Optional |
-| `selector.matchExpressions` | A list of label selector requirements. The requirements are ANDed. | Use one of `matchExpressions` or `matchLabels` |
-| `selector.matchExpressions.key` | The label key that the selector applies to. | Required if using `matchExpressions` |
-| `selector.matchExpressions.operator` | Represents a key's relationship to a set of values. Valid operators are `In`, `NotIn`, `Exists` and `DoesNotExist`. | Required if using `matchExpressions` |
-| `selector.matchExpressions.values` | An array of string values. If `operator` is `In` or `NotIn`, the values array must be non-empty. If `operator` is `Exists` or `DoesNotExist`, the values array must be empty. This array is replaced during a strategic merge patch. | Required if using `matchExpressions` |
-| `selector.matchLabels` | A map of key-value pairs. Each key-value pair in the `matchLabels` map is equivalent to an element of `matchExpressions`, where the key field is `matchLabels.<key>`, the `operator` is `In`, and the `values` array contains only "matchLabels.<value>". The requirements are ANDed. | Use one of `matchExpressions` or `matchLabels` |
+| Field                                | Description                                                                                                                                                                                                                                                                           | Required or optional                           |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `apiVersion`                         | API version of the resource to watch.                                                                                                                                                                                                                                                 | Required                                       |
+| [`kind`][kubernetes-kinds]           | Kind of the resource to watch.                                                                                                                                                                                                                                                        | Required                                       |
+| [`selector`][label-selectors]        | LabelSelector filters this source to objects to those resources pass the label selector. <!-- unsure what this means -->                                                                                                                                                              | Optional                                       |
+| `selector.matchExpressions`          | A list of label selector requirements. The requirements are ANDed.                                                                                                                                                                                                                    | Use one of `matchExpressions` or `matchLabels` |
+| `selector.matchExpressions.key`      | The label key that the selector applies to.                                                                                                                                                                                                                                           | Required if using `matchExpressions`           |
+| `selector.matchExpressions.operator` | Represents a key's relationship to a set of values. Valid operators are `In`, `NotIn`, `Exists` and `DoesNotExist`.                                                                                                                                                                   | Required if using `matchExpressions`           |
+| `selector.matchExpressions.values`   | An array of string values. If `operator` is `In` or `NotIn`, the values array must be non-empty. If `operator` is `Exists` or `DoesNotExist`, the values array must be empty. This array is replaced during a strategic merge patch.                                                  | Required if using `matchExpressions`           |
+| `selector.matchLabels`               | A map of key-value pairs. Each key-value pair in the `matchLabels` map is equivalent to an element of `matchExpressions`, where the key field is `matchLabels.<key>`, the `operator` is `In`, and the `values` array contains only "matchLabels.<value>". The requirements are ANDed. | Use one of `matchExpressions` or `matchLabels` |
 
 #### Example: Resources parameter
 
@@ -63,7 +63,7 @@ spec:
       kind: Deployment
 ```
 
-#### Example: Resources parameter using matchExpressions
+#### 示例:使用matchExpressions的资源参数
 
 Given the following YAML, ApiServerSource object receives events for all Pods in
 the namespace that have a label `app=myapp` or `app=yourapp`:
@@ -88,7 +88,7 @@ spec:
               - yourapp
 ```
 
-#### Example: Resources parameter using matchLabels
+#### 示例:使用matchLabels的资源参数
 
 Given the following YAML, the ApiServerSource object receives events for all Pods
 in the namespace that have a label `app=myapp`:
@@ -116,7 +116,7 @@ ServiceAccountName is a reference to a Kubernetes service account.
 To track the lifecycle events of the specified [`resources`](#resources-parameter),
 you must assign the proper permissions to the ApiServerSource object.
 
-#### Example: tracking Pods
+#### 例子:追踪Pod
 
 The following YAML files create a ServiceAccount, Role and RoleBinding
 and grant the permission to get, list and watch Pod resources in the namespace
@@ -181,7 +181,7 @@ spec:
   ...
 ```
 
-### Owner parameter
+### 主参数
 
 ResourceOwner is an additional filter to only track resources that are owned by
 a specific resource type. If ResourceOwner matches Resources[n] then Resources[n]
@@ -189,12 +189,12 @@ is allowed to pass the ResourceOwner filter.
 
 An `owner` definition supports the following fields:
 
-| Field | Description | Required or optional |
-|-------|-------------|----------------------|
-| `apiVersion` | API version of the resource to watch. | Required |
-| [`kind`][kubernetes-kinds] | Kind of the resource to watch. | Required |
+| Field                      | Description                           | Required or optional |
+| -------------------------- | ------------------------------------- | -------------------- |
+| `apiVersion`               | API version of the resource to watch. | Required             |
+| [`kind`][kubernetes-kinds] | Kind of the resource to watch.        | Required             |
 
-#### Example: Owner parameter
+#### 示例:主参数
 
 ```yaml
 apiVersion: sources.knative.dev/v1
@@ -211,16 +211,16 @@ spec:
 ```
 
 
-### CloudEvent Overrides
+### CloudEvent 覆盖
 
 CloudEvent Overrides defines overrides to control the output format and
 modifications of the event sent to the sink.
 
 A `ceOverrides` definition supports the following fields:
 
-| Field | Description | Required or optional |
-|-------|-------------|----------------------|
-| `extensions` | Specifies which attributes are added or overridden on the outbound event. Each `extensions` key-value pair is set independently on the event as an attribute extension. | Optional  |
+| Field        | Description                                                                                                                                                             | Required or optional |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `extensions` | Specifies which attributes are added or overridden on the outbound event. Each `extensions` key-value pair is set independently on the event as an attribute extension. | Optional             |
 
 !!! note
     Only valid [CloudEvent attribute names][cloudevents-attribute-naming] are
@@ -228,7 +228,7 @@ A `ceOverrides` definition supports the following fields:
     the extensions override configuration. For example, you can not modify the
     `type` attribute.
 
-#### Example: CloudEvent Overrides
+#### 例如:CloudEvent Overrides
 
 ```yaml
 apiVersion: sources.knative.dev/v1

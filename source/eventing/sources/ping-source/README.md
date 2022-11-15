@@ -1,19 +1,18 @@
-# Creating a PingSource object
+# 创建一个PingSource对象
 
 ![stage](https://img.shields.io/badge/Stage-stable-green?style=flat-square)
 ![version](https://img.shields.io/badge/API_Version-v1-green?style=flat-square)
 
-This topic describes how to create a PingSource object.
+介绍如何创建PingSource对象。
 
-A PingSource is an event source that produces events with a fixed payload on a specified [cron](https://en.wikipedia.org/wiki/Cron) schedule.
+PingSource是一种事件源，它在指定的[cron](https://en.wikipedia.org/wiki/Cron)调度上使用固定的有效负载生成事件。
 
-The following example shows how you can configure a PingSource as an event source
-that sends events every minute to a Knative service named `event-display` that is used as a sink.
-If you have an existing sink, you can replace the examples with your own values.
+下面的示例展示了如何将PingSource配置为事件源，该事件源每分钟向名为`event-display`的Knative服务发送事件，该服务用作接收器。
+如果您有一个现有的接收器，您可以用您自己的值替换示例。
 
-## Before you begin
+## 在开始之前
 
-To create a PingSource:
+创建PingSource:
 
 - You must install [Knative Eventing](../../../install/yaml-install/eventing/install-eventing-with-yaml.md).
 The PingSource event source type is enabled by default when you install Knative Eventing.
@@ -22,9 +21,9 @@ to create components such as a sink and PingSource.
 - You can use either `kubectl` or [`kail`](https://github.com/boz/kail) for logging
 during the verification step in this procedure.
 
-## Create a PingSource object
+## 创建PingSource对象
 
-1. Optional: Create a namespace for your PingSource by running the command:
+1. 可选:为你的PingSource创建一个命名空间。
 
     ```bash
     kubectl create namespace <namespace>
@@ -41,7 +40,7 @@ during the verification step in this procedure.
         It also makes removing the source easier, because you can delete the
         namespace to remove all of the resources.
 
-1. Create a sink. If you do not have your own sink, you can use the following example Service that dumps incoming messages to a log:
+1. 创建一个水槽。如果您没有自己的接收器，您可以使用以下示例服务将传入的消息转储到日志中:
 
     1. Copy the YAML below into a file:
 
@@ -89,7 +88,7 @@ during the verification step in this procedure.
         ```
         Where `<filename>` is the name of the file you created in the previous step.
 
-1. Create the PingSource object.
+1. 创建PingSource对象。
 
     !!! note
         The data you want to send must be represented as text in the PingSource YAML file.
@@ -227,9 +226,9 @@ during the verification step in this procedure.
                 Where `<filename>` is the name of the file you created in the previous step.
 
 
-## Verify the PingSource object
+## 验证PingSource对象
 
-1. View the logs for the `event-display` event consumer by running the command:
+1. 查看 `event-display` 事件消费者的日志:
 
     === "kubectl"
 
@@ -244,8 +243,7 @@ during the verification step in this procedure.
         kail -l serving.knative.dev/service=event-display -c user-container --since=10m
         ```
 
-1. Verify that the output returns the properties of the events that your
-PingSource sent to your sink.
+1. 验证输出是否返回PingSource发送到接收器的事件的属性。
 In the example below, the command has returned the `Attributes` and `Data` properties
 of the events that the PingSource sent to the `event-display` Service:
 
@@ -266,9 +264,9 @@ of the events that the PingSource sent to the `event-display` Service:
     ```
 
 
-## Delete the PingSource object
+## 删除PingSource对象
 
-You can either delete the PingSource and all related resources, or delete the resources individually:
+您可以删除PingSource和所有相关资源，也可以单独删除资源:
 
 - To remove the PingSource object and all of the related resources, delete the namespace by running the command:
 

@@ -1,10 +1,10 @@
-# Creating an ApiServerSource object
+# 创建ApiServerSource对象
 
 ![version](https://img.shields.io/badge/API_Version-v1-green?style=flat-square)
 
-This topic describes how to create an ApiServerSource object.
+介绍如何创建ApiServerSource对象。
 
-## Before you begin
+## 在开始之前
 
 Before you can create an ApiServerSource object:
 
@@ -14,7 +14,7 @@ installed on your cluster.
 tool.
 - Optional: If you want to use the `kn` commands, install the [`kn`](../../../client/configure-kn.md) tool.
 
-## Create an ApiServerSource object
+## 创建一个ApiServerSource对象
 
 1. Optional: Create a namespace for the API server source instance by running the
 command:
@@ -236,7 +236,7 @@ command:
             ```
             Where `<filename>` is the name of the file you created in the previous step.
 
-## Verify the ApiServerSource object
+## 验证ApiServerSource对象
 
 1. Make the Kubernetes API server create events by launching a test Pod in your namespace by running the command:
 
@@ -316,7 +316,7 @@ command:
       }
     ```
 
-## Delete the ApiServerSource object
+## 删除ApiServerSource对象
 
 To remove the ApiServerSource object and all of the related resources:
 

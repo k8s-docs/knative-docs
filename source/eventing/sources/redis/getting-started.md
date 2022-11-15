@@ -1,20 +1,20 @@
-# Creating a RedisStreamSource
+# 创建 RedisStreamSource
 
 ![version](https://img.shields.io/badge/API_Version-v1alpha1-red?style=flat-square)
 
 This topic describes how to create a `RedisStreamSource` object.
 
-## Install the RedisStreamSource add-on
+## 安装RedisStreamSource插件
 
-`RedisStreamSource` is a Knative Eventing add-on.
+`RedisStreamSource` 是一个Knative事件附加组件。
 
-1. Install RedisStreamSource by running the command:
+1. 通过运行命令安装RedisStreamSource:
 
     ```bash
     kubectl apply -f {{ artifact(org="knative-sandbox", repo="eventing-redis", file="redis-source.yaml") }}
     ```
 
-1. Verify that `redis-controller-manager`is running:
+1. 验证`redis-controller-manager`正在运行:
 
     ```bash
     kubectl get deployments.apps -n knative-sources
@@ -29,7 +29,7 @@ This topic describes how to create a `RedisStreamSource` object.
 
 {% include "event-display.md" %}
 
-## Create a RedisStreamSource object
+## 创建 RedisStreamSource 对象
 
 1. Create the `RedisStreamSource` object using the YAML template below:
 
@@ -62,7 +62,7 @@ Where:
 
     Where `<filename>` is the name of the file you created in the previous step.
 
-## Verify the RedisStreamSource object
+## 验证RedisStreamSource对象
 
 1. View the logs for the `event-display` event consumer by running the command:
 
@@ -91,7 +91,7 @@ Where:
       ]
     ```
 
-## Delete the RedisStreamSource object
+## 删除RedisStreamSource对象
 
 * Delete the `RedisStreamSource` object:
 
@@ -99,6 +99,6 @@ Where:
     kubectl delete -f <filename>
     ```
 
-## Additional information
+## 额外的信息
 
-* For more information about Redis Stream source, see the [`eventing-redis` Github repository](https://github.com/knative-sandbox/eventing-redis/tree/main/config/source)
+* 有关Redis流源的更多信息，请参见[`eventing-redis` Github库](https://github.com/knative-sandbox/eventing-redis/tree/main/config/source)

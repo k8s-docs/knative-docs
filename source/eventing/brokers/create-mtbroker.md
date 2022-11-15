@@ -1,27 +1,28 @@
-# Creating a broker
+# 创建代理
 
-Once you have installed Knative Eventing, you can create an instance of the multi-tenant (MT) channel-based broker that is provided by default. The default backing channel type for an MT channel-based broker is InMemoryChannel.
+安装了Knative事件处理之后，就可以创建默认提供的基于多租户(MT)通道的代理实例。
+基于MT通道的代理的默认后备通道类型是InMemoryChannel。
 
-You can create a broker by using the `kn` CLI or by applying YAML files using `kubectl`.
+您可以通过使用 `kn`  CLI或使用 `kubectl` 应用YAML文件来创建代理。
 
 === "kn"
 
-    1. You can create a broker in current namespace by entering the following command:
+    1. 您可以通过输入以下命令在当前名称空间中创建代理:
 
         ```bash
         kn broker create <broker-name> -n <namespace>
         ```
 
         !!! note
-            If you choose not to specify a namespace, the broker will be created in the current namespace.
+            如果选择不指定名称空间，则代理将在当前名称空间中创建。
 
-    1. Optional: Verify that the broker was created by listing existing brokers. Enter the following command:
+    1. 可选:验证是否通过列出现有的代理创建了代理。输入以下命令:
 
         ```bash
         kn broker list
         ```
 
-    1. Optional: You can also verify the broker exists by describing the broker you have created. Enter the following command:
+    1. 可选:您还可以通过描述您创建的代理来验证代理是否存在。输入以下命令:
 
         ```bash
         kn broker describe <broker-name>
@@ -30,10 +31,9 @@ You can create a broker by using the `kn` CLI or by applying YAML files using `k
 
 === "kubectl"
 
-    The YAML in the following example creates a broker named `default` in the current namespace.
+    下面示例中的YAML在当前名称空间中创建了一个名为`default`的代理。
 
-    1. Create a broker in the current namespace by creating a YAML file using the
-    following template:
+    1. 通过使用以下模板创建YAML文件，在当前名称空间中创建代理:
 
         ```yaml
         apiVersion: eventing.knative.dev/v1
@@ -42,24 +42,24 @@ You can create a broker by using the `kn` CLI or by applying YAML files using `k
          name: <broker-name>
         ```
 
-    1. Apply the YAML file by running the command:
+    1. 通过运行该命令应用YAML文件:
 
         ```bash
         kubectl apply -f <filename>.yaml
         ```
         Where `<filename>` is the name of the file you created in the previous step.
 
-    1. Optional: Verify that the broker is working correctly, by entering the following command:
+    1. 可选:通过输入以下命令，验证代理是否正常工作:
 
         ```bash
         kubectl -n <namespace> get broker <broker-name>
         ```
 
-        This shows information about your broker. If the broker is working correctly, it shows a `READY` status of `True`:
+        这将显示有关您的代理的信息。如果代理正常工作，它会显示`True`的`READY`状态:
 
         ```{ .bash .no-copy }
         NAME      READY   REASON   URL                                                                                 AGE
         default   True             http://broker-ingress.knative-eventing.svc.cluster.local/event-example/default      1m
         ```
 
-        If the `READY` status is `False`, wait a few moments and then run the command again.
+        如果`READY`状态为`False`，等待几分钟，然后再次运行命令。
