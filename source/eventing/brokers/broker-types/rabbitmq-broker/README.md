@@ -1,41 +1,42 @@
-# Creating a RabbitMQ Broker
+# 创建 RabbitMQ Broker
 
-This topic describes how to create a RabbitMQ Broker.
+本节介绍如何创建 RabbitMQ Broker。
 
-## Prerequisites
+## 先决条件
 
-1. You have installed Knative Eventing.
-1. You have installed [CertManager v1.5.4](https://github.com/jetstack/cert-manager/releases/tag/v1.5.4) - easiest integration with RabbitMQ Messaging Topology Operator
-1. You have installed [RabbitMQ Messaging Topology Operator](https://github.com/rabbitmq/messaging-topology-operator) - our recommendation is [latest release](https://github.com/rabbitmq/messaging-topology-operator/releases/latest) with CertManager
-1. You have access to a working RabbitMQ instance. You can create a RabbitMQ instance by using the [RabbitMQ Cluster Kubernetes Operator](https://github.com/rabbitmq/cluster-operator). For more information see the [RabbitMQ website](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
+1. 您已经安装了 knative 事件
+2. 已安装[CertManager v1.5.4](https://github.com/jetstack/cert-manager/releases/tag/v1.5.4) - 与 RabbitMQ 消息拓扑操作符最简单的集成
+3. 您已经安装[RabbitMQ 消息传递拓扑操作符](https://github.com/rabbitmq/messaging-topology-operator) - 我们的建议是使用 CertManager 的[最新版本](https://github.com/rabbitmq/messaging-topology-operator/releases/latest)
+4. 你可以访问一个正在工作的 RabbitMQ 实例。你可以使用[RabbitMQ 集群 Kubernetes 操作符](https://github.com/rabbitmq/cluster-operator)来创建一个 RabbitMQ 实例。更多信息请参见[RabbitMQ 网站](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
 
-## Install the RabbitMQ controller
+## 安装 RabbitMQ 控制器
 
-1. Install the RabbitMQ controller by running the command:
+1. 运行命令安装 RabbitMQ 控制器:
 
-    ```bash
-    kubectl apply -f {{ artifact(org="knative-sandbox", repo="eventing-rabbitmq", file="rabbitmq-broker.yaml") }}
-    ```
+   ```bash
+   kubectl apply -f {{ artifact(org="knative-sandbox", repo="eventing-rabbitmq", file="rabbitmq-broker.yaml") }}
+   ```
 
-1. Verify that `rabbitmq-broker-controller` and `rabbitmq-broker-webhook` are running:
+1. 验证`rabbitmq-broker-controller` 和 `rabbitmq-broker-webhook`正在运行:
 
-    ```bash
-    kubectl get deployments.apps -n knative-eventing
-    ```
+   ```bash
+   kubectl get deployments.apps -n knative-eventing
+   ```
 
-    Example output:
+   示例输出:
 
-    ```{ .bash .no-copy }
-    NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
-    eventing-controller            1/1     1            1           10s
-    eventing-webhook               1/1     1            1           9s
-    rabbitmq-broker-controller     1/1     1            1           3s
-    rabbitmq-broker-webhook        1/1     1            1           4s
-    ```
+   ```{ .bash .no-copy }
+   NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+   eventing-controller            1/1     1            1           10s
+   eventing-webhook               1/1     1            1           9s
+   rabbitmq-broker-controller     1/1     1            1           3s
+   rabbitmq-broker-webhook        1/1     1            1           4s
+   ```
 
-## Create a RabbitMQBrokerConfig object
+## 创建一个 RabbitMQBrokerConfig 对象
 
-1. Create a YAML file using the following template:
+1.  使用以下模板创建一个 YAML 文件:
+
     ```yaml
     apiVersion: eventing.knative.dev/v1alpha1
     kind: RabbitmqBrokerConfig
@@ -50,24 +51,29 @@ This topic describes how to create a RabbitMQ Broker.
           name: rabbitmq-secret-credentials
       queueType: quorum
     ```
-    Where:
 
-    - <rabbitmq-broker-config-name> is the name you want for your RabbitMQBrokerConfig object.
-    - <cluster-name> is the name of the RabbitMQ cluster you created earlier.
+    在哪里:
+
+    - `<rabbitmq-broker-config-name>` 是你想要的 RabbitMQBrokerConfig 对象的名称。
+    - `<cluster-name>` 是之前创建的 RabbitMQ 集群的名称。
 
     !!! note
-        You cannot set `name` and `connectionSecret` at the same time, since `name` is for a RabbitMQ Cluster Operator instance running in the same cluster as the Broker, and `connectionSecret` is for an external RabbitMQ server.
 
-1. Apply the YAML file by running the command:
+         你不能同时设置`name`和`connectionSecret`，
+         因为`name`是针对与Broker运行在同一集群中的RabbitMQ集群操作实例，
+         而`connectionSecret`是针对外部RabbitMQ服务器。
+
+2.  运行以下命令应用 YAML 文件:
 
     ```bash
     kubectl create -f <filename>
     ```
-   Where `<filename>` is the name of the file you created in the previous step.
 
-## Create a RabbitMQBroker object
+    其中`<filename>`是您在上一步中创建的文件的名称。
 
-1. Create a YAML file using the following template:
+## 创建一个 RabbitMQBroker 对象
+
+1.  使用以下模板创建一个 YAML 文件:
 
     ```yaml
     apiVersion: eventing.knative.dev/v1
@@ -82,21 +88,24 @@ This topic describes how to create a RabbitMQ Broker.
         kind: RabbitmqBrokerConfig
         name: <rabbitmq-broker-config-name>
     ```
-    Where `<rabbitmq-broker-config-name>` is the name you gave your RabbitMQBrokerConfig in the step above.
 
-1. Apply the YAML file by running the command:
+    其中`<rabbitmq-broker-config-name>`是你在上面步骤中给你的 RabbitMQBrokerConfig 的名称。
+
+2.  运行以下命令应用 YAML 文件:
 
     ```bash
     kubectl apply -f <filename>
     ```
-    Where `<filename>` is the name of the file you created in the previous step.
 
-## Configure message ordering
+    其中`<filename>`是您在上一步中创建的文件的名称。
 
-By default, Triggers will consume messages one at a time to preserve ordering. If ordering of events isn't important and higher performance is desired, you can configure this by using the
-`parallelism` annotation. Setting `parallelism` to `n` creates `n` workers for the Trigger that will all consume messages in parallel.
+## 配置消息排序
 
-The following YAML shows an example of a Trigger with parallelism set to `10`:
+默认情况下，触发器每次使用一条消息以保持顺序。
+如果事件的顺序并不重要，并且希望获得更高的性能，那么可以通过使用`parallelism`注释来配置。
+将`parallelism`设置为`n`为触发器创建`n`个 worker，这些 worker 都将并行使用消息。
+
+下面的 YAML 显示了一个并行度设置为`10`的触发器示例:
 
 ```yaml
 apiVersion: eventing.knative.dev/v1
@@ -105,10 +114,9 @@ metadata:
   name: high-throughput-trigger
   annotations:
     rabbitmq.eventing.knative.dev/parallelism: "10"
-...
 ```
 
-## Additional information
+## 额外的信息
 
-- For more samples visit the [`eventing-rabbitmq` Github repository samples directory](https://github.com/knative-sandbox/eventing-rabbitmq/tree/main/samples)
-- To report a bug or request a feature, open an issue in the [`eventing-rabbitmq` Github repository](https://github.com/knative-sandbox/eventing-rabbitmq).
+- 更多示例请访问[`eventing-rabbitmq` Github 库示例目录](https://github.com/knative-sandbox/eventing-rabbitmq/tree/main/samples)
+- 要报告一个 bug 或请求一个特性，在 [`eventing-rabbitmq` Github 存储库](https://github.com/knative-sandbox/eventing-rabbitmq)中打开一个问题.

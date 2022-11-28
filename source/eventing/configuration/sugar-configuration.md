@@ -1,17 +1,17 @@
-# Configure Sugar Controller
+# 配置糖控制器
 
-This topic describes how to configure the Sugar Controller. You can configure the Sugar controller to create a Broker when a Namespace or Trigger is created with configured labels. See [Knative Eventing Sugar Controller](../sugar/README.md) for an example.
+介绍糖控制器的配置方法。
+您可以配置糖控制器，以便在使用配置的标签创建名称空间或触发器时创建代理。
+参见[Knative 事件糖控制器](../sugar/README.md)的示例。
 
+默认的`config-sugar` ConfigMap 通过将`namespace-selector`和`trigger-selector`设置为空字符串来禁用糖控制器。
 
-The default `config-sugar` ConfigMap disables Sugar Controller, by setting `namespace-selector` and `trigger-selector` to an empty string.
+启用糖控制器
 
-To enable the Sugar Controller
+- 对于命名空间，可以配置 LabelSelector `namespace-selector`。
+- 对于触发器，可以配置 LabelSelector `trigger-selector`。
 
-* for Namespaces, the LabelSelector `namespace-selector` can be configured.
-* for Triggers, the LabelSelector `trigger-selector` can be configured.
-
-
-Sample configuration to enable Sugar Controller on selected Namespaces and Triggers
+在选定的名称空间和触发器上启用糖控制器的示例配置
 
 ```yaml
 apiVersion: v1
@@ -20,7 +20,7 @@ metadata:
 name: config-sugar
 namespace: knative-eventing
 labels:
-    eventing.knative.dev/release: devel
+  eventing.knative.dev/release: devel
 data:
   namespace-selector: |
     matchExpressions:
@@ -35,10 +35,10 @@ data:
       values: ["enabled"]
 ```
 
-The Sugar Controller will only operate on Namespaces or Triggers with the label `eventing.knative.dev/injection: enabled`. This also emulates the legacy Sugar Controller behavior for Namespaces.
+糖控制器只会在带有`eventing.knative.dev/injection: enabled`标签的命名空间或触发器上操作。
+这也模拟了命名空间的遗留糖控制器行为。
 
-
-You can edit this ConfigMap by running the command:
+你可以通过下面的命令编辑这个 ConfigMap:
 
 ```bash
 kubectl edit cm config-sugar -n knative-eventing

@@ -2,13 +2,13 @@
 
 触发器表示从特定代理订阅事件的愿望。
 
-The `subscriber` value must be a [Destination](https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Destination).
+`subscriber` 值必须是[type Destination](https://pkg.go.dev/knative.dev/pkg/apis/duck/v1#Destination).
 
 ## 触发器举例
 
-下面的触发器从 `default` 代理接收所有事件，并将它们传递给Knative服务 `my-service`:
+下面的触发器从 `default` 代理接收所有事件，并将它们传递给 Knative 服务 `my-service`:
 
-1. 使用以下示例创建一个YAML文件:
+1.  使用以下示例创建一个 YAML 文件:
 
     ```yaml
     apiVersion: eventing.knative.dev/v1
@@ -24,18 +24,17 @@ The `subscriber` value must be a [Destination](https://pkg.go.dev/knative.dev/pk
           name: my-service
     ```
 
-1. 通过运行该命令应用YAML文件:
+1.  通过运行该命令应用 YAML 文件:
 
     ```bash
     kubectl apply -f <filename>.yaml
     ```
-    Where `<filename>` is the name of the file you created in the previous step.
 
+    其中 `<filename>` 是您在上一步中创建的文件的名称。
 
-The following trigger receives all the events from the `default` broker and
-delivers them to the custom path `/my-custom-path` for the Kubernetes service `my-service`:
+以下触发器从`default`代理接收所有事件，并将它们交付到 Kubernetes 服务`my-service`的自定义路径`/my-custom-path`:
 
-1. 使用以下示例创建一个YAML文件:
+1.  使用以下示例创建一个 YAML 文件:
 
     ```yaml
     apiVersion: eventing.knative.dev/v1
@@ -52,27 +51,25 @@ delivers them to the custom path `/my-custom-path` for the Kubernetes service `m
         uri: /my-custom-path
     ```
 
-1. 通过运行该命令应用YAML文件:
+1.  通过运行该命令应用 YAML 文件:
 
     ```bash
     kubectl apply -f <filename>.yaml
     ```
-    Where `<filename>` is the name of the file you created in the previous step.
+
+    其中' <filename> '是您在上一步中创建的文件的名称。
 
 ## 触发过滤
 
-Exact match filtering on any number of CloudEvents attributes as well as
-extensions are supported. If your filter sets multiple attributes, an event must
-have all of the attributes for the trigger to filter it. Note that we only
-support exact matching on string values.
+支持对任意数量的 CloudEvents 属性和扩展进行精确匹配筛选。
+如果过滤器设置了多个属性，那么一个事件必须具有触发器筛选它所需的所有属性。
+注意，我们只支持字符串值的精确匹配。
 
 ### 举例
 
-This example filters events from the `default` broker that are of type
-`dev.knative.foo.bar` and have the extension `myextension` with the value
-`my-extension-value`.
+此示例过滤来自`default`代理的事件，这些事件类型为`dev.knative.foo.bar`，扩展名为`myextension`，值为`my-extension-value`。
 
-1. Create a YAML file using the following example:
+1.  使用以下示例创建一个 YAML 文件:
 
     ```yaml
     apiVersion: eventing.knative.dev/v1
@@ -92,21 +89,26 @@ This example filters events from the `default` broker that are of type
           name: my-service
     ```
 
-1. Apply the YAML file by running the command:
+1.  通过运行该命令应用 YAML 文件:
 
     ```bash
     kubectl apply -f <filename>.yaml
     ```
-    Where `<filename>` is the name of the file you created in the previous step.
 
-## 触发注释
+    其中`<filename>`是您在上一步中创建的文件的名称。
 
-You can modify a Trigger's behavior by setting the following two annotations:
+## 触发器注释
 
-- `eventing.knative.dev/injection`: if set to `enabled`, Eventing automatically creates a Broker for a Trigger if it doesn't exist. The Broker is created in the namespace where the Trigger is created. This annotation only works if you have the [Sugar Controller](../sugar/README.md) enabled, which is optional and not enabled by default.
-- `knative.dev/dependency`: this annotation is used to mark the sources that the Trigger depends on. If one of the dependencies is not ready, the Trigger will not be ready.
+你可以通过设置以下两个注释来修改触发器的行为:
 
-The following YAML is an example of a Trigger with a dependency:
+- `eventing.knative.dev/injection`: 如果设置为`enabled`，事件将自动为触发器创建一个不存在的代理。
+  代理在创建触发器的名称空间中创建。
+  此注释仅在启用[糖控制器](../sugar/README.md)时有效，这是可选的，默认情况下不启用。
+- `knative.dev/dependency`: 此注释用于标记触发器所依赖的源。
+  如果其中一个依赖项没有准备好，那么触发器也不会准备好。
+
+下面的 YAML 是一个带有依赖的触发器的例子:
+
 ```yaml
 apiVersion: eventing.knative.dev/v1
 kind: Trigger

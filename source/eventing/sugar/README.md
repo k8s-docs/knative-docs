@@ -1,22 +1,18 @@
-# Knative Eventing Sugar Controller
+# Knative 事件糖控
 
-Knative Eventing Sugar Controller will react to configured labels
-to produce or control eventing resources in a cluster or namespace. This allows
-cluster operators and developers to focus on creating fewer resources, and the
-underlying eventing infrastructure is created on-demand, and cleaned up when no
-longer needed.
+Knative 事件糖控将对配置的标签做出反应，以生成或控制集群或命名空间中的事件资源。
+这允许集群操作人员和开发人员专注于创建更少的资源，并按需创建底层事件基础设施，并在不再需要时进行清理。
 
-## Installing
+## 安装
 
-The Sugar Controller is `disabled` by default and can be enabled by configuring `config-sugar` ConfigMap.
-See below for a simple example and [Configure Sugar Controller](../configuration/sugar-configuration.md) for more details.
+糖控默认是`disabled`的，可以通过配置`config-sugar` ConfigMap 启用。
+参见下面的简单示例，并配置糖控以获得更多细节。
 
-## Automatic Broker Creation
+## 自动创建代理
 
-One way to create a Broker is to manually apply a resource to a cluster using
-the default settings:
+创建代理的一种方法是使用默认设置手动将资源应用到集群:
 
-1. Copy the following YAML into a file:
+1.  将以下 YAML 复制到一个文件中:
 
     ```yaml
     apiVersion: eventing.knative.dev/v1
@@ -26,17 +22,17 @@ the default settings:
       namespace: default
     ```
 
-1. Apply the YAML file by running the command:
+1.  运行以下命令应用 YAML 文件:
 
     ```bash
     kubectl apply -f <filename>.yaml
     ```
-    Where `<filename>` is the name of the file you created in the previous step.
 
-There might be cases where automated Broker creation is desirable, such as on
-namespace creation, or on Trigger creation. The Sugar controller enables those
-use-cases. The following sample configuration of the `sugar-config` ConfigMap
-enables Sugar Controller for select Namespaces & all Triggers.
+    其中`<filename>``是您在上一步中创建的文件的名称。
+
+在某些情况下，可能需要自动创建代理，例如在名称空间创建时，或者在触发器创建时。
+糖控使这些用例成为可能。
+下面是 `sugar-config` ConfigMap 的示例配置，为选定的名称空间和所有触发器启用糖控。
 
 ```yaml
 apiVersion: v1
@@ -45,7 +41,7 @@ metadata:
 name: config-sugar
 namespace: knative-eventing
 labels:
-    eventing.knative.dev/release: devel
+  eventing.knative.dev/release: devel
 data:
   # Specify a label selector to selectively apply sugaring to certain namespaces
   namespace-selector: |
@@ -58,19 +54,16 @@ data:
     {}
 ```
 
-- When a Namespace is created with label `my.custom.injection.key: enabled` , the Sugar controller will create a Broker named "default" in that
-  namespace.
-- When a Trigger is created, the Sugar controller will create a Broker named "default" in the
-  Trigger's namespace.
+- 当使用标签`my.custom.injection.key: enabled` 创建命名空间时，糖控将在该命名空间中创建一个名为`default`的代理。
+- 当创建一个触发器时，糖控将在触发器的名称空间中创建一个名为`default`的代理。
 
-When a Broker is deleted and but the referenced label selectors are in use, the
-Sugar Controller will automatically recreate a default Broker.
+当一个代理被删除，但引用的标签选择器正在使用时，糖控将自动重新创建一个默认代理。
 
-### Namespace Examples
+### 名称空间的例子
 
-Creating a "default" Broker when creating a Namespace:
+在创建命名空间时创建一个"default"代理:
 
-1. Copy the following YAML into a file:
+1.  将以下 YAML 复制到一个文件中:
 
     ```yaml
     apiVersion: v1
@@ -81,25 +74,25 @@ Creating a "default" Broker when creating a Namespace:
         my.custom.injection.key: enabled
     ```
 
-1. Apply the YAML file by running the command:
+1.  运行以下命令应用 YAML 文件:
 
     ```bash
     kubectl apply -f <filename>.yaml
     ```
-    Where `<filename>` is the name of the file you created in the previous step.
 
-To automatically create a Broker after a namespace exists, label the Namespace:
+    其中 `<filename>` 是您在上一步中创建的文件的名称。
+
+要在命名空间存在后自动创建代理，请将命名空间标记为:
 
 ```bash
 kubectl label namespace default my.custom.injection.key=enabled
 ```
 
-If the Broker named "default" already exists in the Namespace, the Sugar
-Controller will do nothing.
+如果命名为“default”的代理已经存在于命名空间中，糖控将不做任何事情。
 
-### Trigger Example
+### 触发的例子
 
-Create a "default" Broker in the Trigger's Namespace when creating a Trigger:
+当创建一个触发器时，在触发器的命名空间中创建一个"default"代理:
 
 ```bash
 kubectl apply -f - << EOF
@@ -118,6 +111,6 @@ spec:
 EOF
 ```
 
-This will make a Broker called "default" in the Namespace "hello", and attempt to send events to the "event-display" service.
+这将在命名空间“hello”中创建一个名为“default”的代理，并尝试向“event-display”服务发送事件。
 
-If the Broker named "default" already exists in the Namespace, the Sugar Controller will do nothing and the Trigger will not own the existing Broker.
+如果命名为“default”的代理已经存在于命名空间中，糖控将不做任何事情，触发器也不会拥有现有的代理。
