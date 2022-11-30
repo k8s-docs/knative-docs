@@ -2,25 +2,25 @@
 
 ![version](https://img.shields.io/badge/API_Version-v1alpha1-red?style=flat-square)
 
-This topic describes how to create a `RedisStreamSource` object.
+本主题描述如何创建一个`RedisStreamSource`对象。
 
-## 安装RedisStreamSource插件
+## 安装 RedisStreamSource 插件
 
-`RedisStreamSource` 是一个Knative事件附加组件。
+`RedisStreamSource` 是一个 Knative 事件附加组件。
 
-1. 通过运行命令安装RedisStreamSource:
+1.  通过运行命令安装 RedisStreamSource:
 
     ```bash
     kubectl apply -f {{ artifact(org="knative-sandbox", repo="eventing-redis", file="redis-source.yaml") }}
     ```
 
-1. 验证`redis-controller-manager`正在运行:
+1.  验证`redis-controller-manager`正在运行:
 
     ```bash
     kubectl get deployments.apps -n knative-sources
     ```
 
-    Example output:
+    示例输出:
 
     ```{ .bash .no-copy }
     NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
@@ -31,46 +31,45 @@ This topic describes how to create a `RedisStreamSource` object.
 
 ## 创建 RedisStreamSource 对象
 
-1. Create the `RedisStreamSource` object using the YAML template below:
+1.  使用下面的 YAML 模板创建 `RedisStreamSource` 对象:
 
-  ```yaml
-  apiVersion: sources.knative.dev/v1alpha1
-  kind: RedisStreamSource
-  metadata:
-    name: <redis-stream-source>
-  spec:
-    address: <redis-uri>
-    stream: <redis-stream-name>
-    group: <consumer-group-name>
-    sink: <sink>
-  ```
+    ```yaml
+    apiVersion: sources.knative.dev/v1alpha1
+    kind: RedisStreamSource
+    metadata:
+      name: <redis-stream-source>
+    spec:
+      address: <redis-uri>
+      stream: <redis-stream-name>
+      group: <consumer-group-name>
+      sink: <sink>
+    ```
 
-Where:
+    Where:
 
-* `<redis-stream-source>` is the name of your source. (required)
-* `<redis-uri>` is the Redis URI. See the [Redis documentation](https://redis.io/docs/manual/cli/#host-port-password-and-database) for more information. (required)
-* `<redis-stream-name>` is the name of the Redis stream. (required)
-* `<consumer-group-name>` is the name of the Redis consumer group. When left empty a group
-   is automatically created for this source, and deleted when this source is deleted. (optional)
-* `<sink>` is where to send events. (required)
+    - `<redis-stream-source>` 是你的源名字。(必需)
+    - `<redis-uri>` 是 Redis URI. 更多信息请参见[Redis 文档](https://redis.io/docs/manual/cli/#host-port-password-and-database)。(必需)
+    - `<redis-stream-name>` 是 Redis 流的名称. (必需)
+    - `<consumer-group-name>` 是 Redis 消费群体的名称。当为空时，将自动为该源创建一个组，并在删除该源时删除该组。(可选)
+    - `<sink>` 它是发送事件。(必需)
 
-1. Apply the YAML file by running the command:
+1.  运行以下命令应用 YAML 文件:
 
     ```bash
     kubectl apply -f <filename>
     ```
 
-    Where `<filename>` is the name of the file you created in the previous step.
+    其中 `<filename>` 是您在上一步中创建的文件的名称。
 
-## 验证RedisStreamSource对象
+## 验证 RedisStreamSource 对象
 
-1. View the logs for the `event-display` event consumer by running the command:
+1.  查看 `event-display` 事件消费者的日志:
 
     ```bash
     kubectl logs -l app=event-display --tail=100
     ```
 
-    Sample output:
+    样例输出:
 
     ```{ .bash .no-copy }
     ☁️  cloudevents.Event
@@ -91,14 +90,14 @@ Where:
       ]
     ```
 
-## 删除RedisStreamSource对象
+## 删除 RedisStreamSource 对象
 
-* Delete the `RedisStreamSource` object:
+- 删除 `RedisStreamSource` 对象:
 
-    ```bash
-    kubectl delete -f <filename>
-    ```
+  ```bash
+  kubectl delete -f <filename>
+  ```
 
 ## 额外的信息
 
-* 有关Redis流源的更多信息，请参见[`eventing-redis` Github库](https://github.com/knative-sandbox/eventing-redis/tree/main/config/source)
+- 有关 Redis 流源的更多信息，请参见[`eventing-redis` Github 库](https://github.com/knative-sandbox/eventing-redis/tree/main/config/source)

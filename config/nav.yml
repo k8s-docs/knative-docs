@@ -198,17 +198,17 @@ nav:
                             - 事件资源:
                                       - 关于事件源: eventing/sources/README.md
                                       - ApiServerSource:
-                                                - 关于 ApiServerSource: eventing/sources/apiserversource/README.md
-                                                - 创建 ApiServerSource 对象: eventing/sources/apiserversource/getting-started.md
-                                                - ApiServerSource 参考: eventing/sources/apiserversource/reference.md
+                                                - 关于源: eventing/sources/apiserversource/README.md
+                                                - 创建对象: eventing/sources/apiserversource/getting-started.md
+                                                - 源参考: eventing/sources/apiserversource/reference.md
                                       - KafkaSource: eventing/sources/kafka-source/README.md
                                       - PingSource:
-                                                - 创建 PingSource 对象: eventing/sources/ping-source/README.md
-                                                - PingSource 参考: eventing/sources/ping-source/reference.md
+                                                - 创建对象: eventing/sources/ping-source/README.md
+                                                - 源参考: eventing/sources/ping-source/reference.md
                                       - RabbitMQSource: eventing/sources/rabbitmq-source/README.md
                                       - RedisStreamSource:
-                                                - 关于 RedisStreamSource: eventing/sources/redis/README.md
-                                                - 创建 RedisStreamSource 对象: eventing/sources/redis/getting-started.md
+                                                - 关于源: eventing/sources/redis/README.md
+                                                - 创建对象: eventing/sources/redis/getting-started.md
                             # BYO event source
                             - 自定义事件源:
                                       - 自定义事件源概述: eventing/custom-event-source/README.md
