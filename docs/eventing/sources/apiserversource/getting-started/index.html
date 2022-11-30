@@ -17,7 +17,7 @@
     
     
       
-        <title>创建 ApiServerSource 对象 - Knative</title>
+        <title>创建对象 - Knative</title>
       
     
     
@@ -77,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#creating-an-apiserversource-object" class="md-skip">
+        <a href="#apiserversource" class="md-skip">
           Skip to content
         </a>
       
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              创建 ApiServerSource 对象
+              创建对象
             
           </span>
         </div>
@@ -3293,7 +3293,7 @@
   
     <li class="md-nav__item">
       <a href="../" class="md-nav__link">
-        关于 ApiServerSource
+        关于源
       </a>
     </li>
   
@@ -3316,12 +3316,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          创建 ApiServerSource 对象
+          创建对象
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        创建 ApiServerSource 对象
+        创建对象
       </a>
       
         
@@ -3340,29 +3340,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    Before you begin
+  <a href="#_1" class="md-nav__link">
+    在开始之前
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-an-apiserversource-object" class="md-nav__link">
-    Create an ApiServerSource object
+  <a href="#apiserversource_1" class="md-nav__link">
+    创建 ApiServerSource 对象
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#verify-the-apiserversource-object" class="md-nav__link">
-    Verify the ApiServerSource object
+  <a href="#apiserversource_2" class="md-nav__link">
+    验证 ApiServerSource 对象
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#delete-the-apiserversource-object" class="md-nav__link">
-    Delete the ApiServerSource object
+  <a href="#apiserversource_3" class="md-nav__link">
+    删除 ApiServerSource 对象
   </a>
   
 </li>
@@ -3383,7 +3383,7 @@
   
     <li class="md-nav__item">
       <a href="../reference/" class="md-nav__link">
-        ApiServerSource 参考
+        源参考
       </a>
     </li>
   
@@ -3444,7 +3444,7 @@
   
     <li class="md-nav__item">
       <a href="../../ping-source/" class="md-nav__link">
-        创建 PingSource 对象
+        创建对象
       </a>
     </li>
   
@@ -3458,7 +3458,7 @@
   
     <li class="md-nav__item">
       <a href="../../ping-source/reference/" class="md-nav__link">
-        PingSource 参考
+        源参考
       </a>
     </li>
   
@@ -3519,7 +3519,7 @@
   
     <li class="md-nav__item">
       <a href="../../redis/" class="md-nav__link">
-        关于 RedisStreamSource
+        关于源
       </a>
     </li>
   
@@ -3533,7 +3533,7 @@
   
     <li class="md-nav__item">
       <a href="../../redis/getting-started/" class="md-nav__link">
-        创建 RedisStreamSource 对象
+        创建对象
       </a>
     </li>
   
@@ -5175,29 +5175,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    Before you begin
+  <a href="#_1" class="md-nav__link">
+    在开始之前
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-an-apiserversource-object" class="md-nav__link">
-    Create an ApiServerSource object
+  <a href="#apiserversource_1" class="md-nav__link">
+    创建 ApiServerSource 对象
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#verify-the-apiserversource-object" class="md-nav__link">
-    Verify the ApiServerSource object
+  <a href="#apiserversource_2" class="md-nav__link">
+    验证 ApiServerSource 对象
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#delete-the-apiserversource-object" class="md-nav__link">
-    Delete the ApiServerSource object
+  <a href="#apiserversource_3" class="md-nav__link">
+    删除 ApiServerSource 对象
   </a>
   
 </li>
@@ -5220,110 +5220,103 @@
 
 
 
-<h1 id="creating-an-apiserversource-object">Creating an ApiServerSource object<a class="headerlink" href="#creating-an-apiserversource-object" title="Permanent link">&para;</a></h1>
+<h1 id="apiserversource">创建 ApiServerSource 对象<a class="headerlink" href="#apiserversource" title="Permanent link">&para;</a></h1>
 <p><img alt="version" src="https://img.shields.io/badge/API_Version-v1-green?style=flat-square" /></p>
-<p>This topic describes how to create an ApiServerSource object.</p>
-<h2 id="before-you-begin">Before you begin<a class="headerlink" href="#before-you-begin" title="Permanent link">&para;</a></h2>
-<p>Before you can create an ApiServerSource object:</p>
+<p>介绍如何创建 ApiServerSource 对象。</p>
+<h2 id="_1">在开始之前<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在创建 ApiServerSource 对象之前:</p>
 <ul>
-<li>You must have <a href="../../../../install/yaml-install/eventing/install-eventing-with-yaml/">Knative Eventing</a>
-installed on your cluster.</li>
-<li>You must install the <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/"><code>kubectl</code> CLI</a>
-tool.</li>
-<li>Optional: If you want to use the <code>kn</code> commands, install the <a href="../../../../client/configure-kn/"><code>kn</code></a> tool.</li>
+<li>您必须在集群上安装<a href="../../../../install/yaml-install/eventing/install-eventing-with-yaml/">Knative 事件</a>。</li>
+<li>必须安装<a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/"><code>kubectl</code> CLI</a>工具。</li>
+<li>可选:如果要使用 <code>kn</code> 命令，请安装<a href="../../../../client/configure-kn/"><code>kn</code></a>工具。</li>
 </ul>
-<h2 id="create-an-apiserversource-object">Create an ApiServerSource object<a class="headerlink" href="#create-an-apiserversource-object" title="Permanent link">&para;</a></h2>
+<h2 id="apiserversource_1">创建 ApiServerSource 对象<a class="headerlink" href="#apiserversource_1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Optional: Create a namespace for the API server source instance by running the
-command:</p>
-<p><div class="highlight"><pre><span></span><code>kubectl create namespace &lt;namespace&gt;
+<p>可选:为 API 服务器源实例创建命名空间。</p>
+<div class="highlight"><pre><span></span><code>kubectl create namespace &lt;namespace&gt;
 </code></pre></div>
-Where <code>&lt;namespace&gt;</code> is the name of the namespace that you want to create.</p>
+<p>其中 <code>&lt;namespace&gt;</code> 是您想要创建的名称空间的名称。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Creating a namespace for your ApiServerSource and related components
-allows you to view changes and events for this workflow more easily, because
-these are isolated from the other components that might exist in your <code>default</code> namespace.<br><br>
-It also makes removing the source easier, because you can delete the namespace to remove all of the resources.</p>
+<p>为您的ApiServerSource和相关组件创建一个名称空间，
+允许您更容易地查看此工作流的更改和事件，
+因为这些与可能存在于<code>default</code>名称空间中的其他组件隔离开来。
+它还使删除源变得更容易，因为您可以删除名称空间来删除所有资源。</p>
 </div>
 </li>
 <li>
-<p>Create a ServiceAccount:</p>
+<p>创建 ServiceAccount:</p>
 <ol>
 <li>
-<p>Create a YAML file using the following template:</p>
-<p><div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
+<p>使用以下模板创建一个 YAML 文件:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span><span class="w"></span>
 <span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;service-account&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;namespace&gt;</span><span class="w"></span>
 </code></pre></div>
-Where:</p>
+<p>Where:</p>
 <ul>
-<li><code>&lt;service-account&gt;</code> is the name of the ServiceAccount that you want to create.</li>
-<li><code>&lt;namespace&gt;</code> is the namespace that you created in step 1 earlier.</li>
+<li><code>&lt;service-account&gt;</code> 是要创建的 ServiceAccount 的名称。</li>
+<li><code>&lt;namespace&gt;</code> 是您在前面的步骤 1 中创建的名称空间。</li>
 </ul>
 </li>
 <li>
-<p>Apply the YAML file by running the command:</p>
-<p><div class="highlight"><pre><span></span><code>kubectl apply -f &lt;filename&gt;.yaml
+<p>运行以下命令应用 YAML 文件:</p>
+<div class="highlight"><pre><span></span><code>kubectl apply -f &lt;filename&gt;.yaml
 </code></pre></div>
-Where <code>&lt;filename&gt;</code> is the name of the file you created in the previous step.</p>
+<p>其中 <code>&lt;filename&gt;</code> 是您在上一步中创建的文件的名称。</p>
 </li>
 </ol>
 </li>
 <li>
-<p>Create a Role:</p>
+<p>创建角色:</p>
 <ol>
 <li>
-<p>Create a YAML file using the following template:</p>
-<p><div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span><span class="w"></span>
+<p>使用以下模板创建一个 YAML 文件:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span><span class="w"></span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Role</span><span class="w"></span>
 <span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;role&gt;</span><span class="w"></span>
 <span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;namespace&gt;</span><span class="w"></span>
-<span class="nt">rules</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">&lt;rules&gt;</span><span class="w"></span>
+<span class="nt">rules</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;rules&gt;</span><span class="w"></span>
 </code></pre></div>
-Where:</p>
+<p>Where:</p>
 <ul>
 <li><code>&lt;role&gt;</code> is the name of the Role that you want to create.</li>
 <li><code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 earlier.</li>
-<li>
-<p><code>&lt;rules&gt;</code> are the set of permissions you want to grant to the APIServerSource object.
-This set of permissions must match the resources you want to receive events from.
-For example, to receive events related to the <code>events</code> resource, use the following set of permissions:
-<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroups</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">events</span><span class="w"></span>
-<span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">list</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">watch</span><span class="w"></span>
-</code></pre></div></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The only required verbs are <code>get</code>, <code>list</code> and <code>watch</code>.</p>
-</div>
-</li>
+<li><code>&lt;rules&gt;</code> are the set of permissions you want to grant to the APIServerSource object.
+  This set of permissions must match the resources you want to receive events from.
+  For example, to receive events related to the <code>events</code> resource, use the following set of permissions:</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroups</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">events</span><span class="w"></span>
+<span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">list</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">watch</span><span class="w"></span>
+</code></pre></div>
+<pre><code>!!! note
+    The only required verbs are `get`, `list` and `watch`.
+</code></pre>
 </li>
 <li>
 <p>Apply the YAML file by running the command:</p>
-<p><div class="highlight"><pre><span></span><code>kubectl apply -f &lt;filename&gt;.yaml
+<div class="highlight"><pre><span></span><code>kubectl apply -f &lt;filename&gt;.yaml
 </code></pre></div>
-Where <code>&lt;filename&gt;</code> is the name of the file you created in the previous step.</p>
+<p>Where <code>&lt;filename&gt;</code> is the name of the file you created in the previous step.</p>
 </li>
 </ol>
 </li>
 <li>
 <p>Create a RoleBinding:</p>
 <ol>
-<li>
-<p>Create a YAML file using the following template:</p>
-<p><div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span><span class="w"></span>
+<li>Create a YAML file using the following template:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span><span class="w"></span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RoleBinding</span><span class="w"></span>
 <span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;role-binding&gt;</span><span class="w"></span>
@@ -5333,31 +5326,31 @@ Where <code>&lt;filename&gt;</code> is the name of the file you created in the p
 <span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Role</span><span class="w"></span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;role&gt;</span><span class="w"></span>
 <span class="nt">subjects</span><span class="p">:</span><span class="w"></span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;service-account&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;namespace&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;service-account&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;namespace&gt;</span><span class="w"></span>
 </code></pre></div>
-Where:</p>
+<p>Where:</p>
 <ul>
 <li><code>&lt;role-binding&gt;</code> is the name of the RoleBinding that you want to create.</li>
 <li><code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 earlier.</li>
 <li><code>&lt;role&gt;</code> is the name of the Role that you created in step 3 earlier.</li>
-<li><code>&lt;service-account&gt;</code> is the name of the ServiceAccount that you created in step 2 earlier.</li>
-</ul>
+<li>
+<p><code>&lt;service-account&gt;</code> is the name of the ServiceAccount that you created in step 2 earlier.</p>
 </li>
 <li>
 <p>Apply the YAML file by running the command:</p>
-<p><div class="highlight"><pre><span></span><code>kubectl apply -f &lt;filename&gt;.yaml
-</code></pre></div>
-Where <code>&lt;filename&gt;</code> is the name of the file you created in the previous step.</p>
 </li>
-</ol>
+</ul>
+<div class="highlight"><pre><span></span><code>kubectl apply -f &lt;filename&gt;.yaml
+</code></pre></div>
+<p>Where <code>&lt;filename&gt;</code> is the name of the file you created in the previous step.</p>
 </li>
 <li>
 <p>Create a sink. If you do not have your own sink, you can use the following example Service that dumps incoming messages to a log:</p>
 <ol>
-<li>
-<p>Copy the YAML below into a file:</p>
+<li>Copy the YAML below into a file:</li>
+</ol>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span><span class="w"></span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span><span class="w"></span>
 <span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
@@ -5377,7 +5370,6 @@ Where <code>&lt;filename&gt;</code> is the name of the file you created in the p
 <span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcr.io/knative-releases/knative.dev/eventing/cmd/event_display</span><span class="w"></span>
 
 <span class="nn">---</span><span class="w"></span>
-
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span><span class="w"></span>
 <span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
 <span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
@@ -5387,109 +5379,96 @@ Where <code>&lt;filename&gt;</code> is the name of the file you created in the p
 <span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">event-display</span><span class="w"></span>
 <span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span><span class="w"></span>
-<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span><span class="w"></span>
-<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span><span class="w"></span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span><span class="w"></span>
+<span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span><span class="w"></span>
 </code></pre></div>
 <p>Where <code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 above.</p>
-</li>
-<li>
-<p>Apply the YAML file by running the command:</p>
-<p><div class="highlight"><pre><span></span><code>kubectl apply -f &lt;filename&gt;.yaml
-</code></pre></div>
-Where <code>&lt;filename&gt;</code> is the name of the file you created in the previous step.</p>
-</li>
+<ol>
+<li>Apply the YAML file by running the command:</li>
 </ol>
+<div class="highlight"><pre><span></span><code>kubectl apply -f &lt;filename&gt;.yaml
+</code></pre></div>
+<p>Where <code>&lt;filename&gt;</code> is the name of the file you created in the previous step.</p>
 </li>
 <li>
 <p>Create the ApiServerSource object:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">kn</label><label for="__tabbed_1_2">YAML</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<ul>
-<li>
-<p>To create the ApiServerSource, run the command:</p>
-<p><div class="highlight"><pre><span></span><code>kn <span class="nb">source</span> apiserver create &lt;apiserversource&gt; <span class="se">\</span>
-  --namespace &lt;namespace&gt; <span class="se">\</span>
-  --mode <span class="s2">&quot;Resource&quot;</span> <span class="se">\</span>
-  --resource <span class="s2">&quot;Event:v1&quot;</span> <span class="se">\</span>
-  --service-account &lt;service-account&gt; <span class="se">\</span>
-  --sink &lt;sink-name&gt;
-</code></pre></div>
-Where:</p>
-<ul>
-<li><code>&lt;apiserversource&gt;</code> is the name of the source that you want to create.</li>
-<li><code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 earlier.</li>
-<li><code>&lt;service-account&gt;</code> is the name of the ServiceAccount that you created in step 2 earlier.</li>
-<li><code>&lt;sink-name&gt;</code> is the name of your sink, for example, <code>http://event-display.pingsource-example.svc.cluster.local</code>.</li>
-</ul>
-<p>For a list of available options, see the <a href="https://github.com/knative/client/blob/main/docs/cmd/kn_source_apiserver_create.md#kn-source-apiserver-create">Knative client documentation</a>.</p>
-</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<ol>
-<li>
-<p>Create a YAML file using the following template:</p>
-<p><div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sources.knative.dev/v1</span><span class="w"></span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ApiServerSource</span><span class="w"></span>
-<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
-<span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;apiserversource-name&gt;</span><span class="w"></span>
-<span class="w"> </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;namespace&gt;</span><span class="w"></span>
-<span class="nt">spec</span><span class="p">:</span><span class="w"></span>
-<span class="w"> </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;service-account&gt;</span><span class="w"></span>
-<span class="w"> </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;event-mode&gt;</span><span class="w"></span>
-<span class="w"> </span><span class="nt">resources</span><span class="p">:</span><span class="w"></span>
-<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
-<span class="w">     </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Event</span><span class="w"></span>
-<span class="w"> </span><span class="nt">sink</span><span class="p">:</span><span class="w"></span>
-<span class="w">   </span><span class="nt">ref</span><span class="p">:</span><span class="w"></span>
-<span class="w">     </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
-<span class="w">     </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;sink-kind&gt;</span><span class="w"></span>
-<span class="w">     </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;sink-name&gt;</span><span class="w"></span>
-</code></pre></div>
-Where:</p>
-<ul>
-<li><code>&lt;apiserversource-name&gt;</code> is the name of the source that you want to create.</li>
-<li><code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 earlier.</li>
-<li><code>&lt;service-account&gt;</code> is the name of the ServiceAccount that you created in step 2 earlier.</li>
-<li><code>&lt;event-mode&gt;</code> is either <code>Resource</code> or <code>Reference</code>. If set to <code>Resource</code>, the event payload contains the entire resource that the event is for. If set to <code>Reference</code>, the event payload only contains a reference to the resource that the event is for. The default is <code>Reference</code>.</li>
-<li><code>&lt;sink-kind&gt;</code> is any supported Addressable object that you want to use as a sink, for example, a <code>Service</code> or <code>Deployment</code>.</li>
-<li><code>&lt;sink-name&gt;</code> is the name of your sink.</li>
-</ul>
-<p>For more information about the fields you can configure for the ApiServerSource object, see <a href="../reference/">ApiServerSource reference</a>.</p>
-</li>
-<li>
-<p>Apply the YAML file by running the command:</p>
-<p><div class="highlight"><pre><span></span><code>kubectl apply -f &lt;filename&gt;.yaml
-</code></pre></div>
-Where <code>&lt;filename&gt;</code> is the name of the file you created in the previous step.</p>
+<p>=== "kn" - To create the ApiServerSource, run the command:</p>
+<pre><code>    ```bash
+    kn source apiserver create &lt;apiserversource&gt; \
+      --namespace &lt;namespace&gt; \
+      --mode "Resource" \
+      --resource "Event:v1" \
+      --service-account &lt;service-account&gt; \
+      --sink &lt;sink-name&gt;
+    ```
+    Where:
+
+    - `&lt;apiserversource&gt;` is the name of the source that you want to create.
+    - `&lt;namespace&gt;` is the name of the namespace that you created in step 1 earlier.
+    - `&lt;service-account&gt;` is the name of the ServiceAccount that you created in step 2 earlier.
+    - `&lt;sink-name&gt;` is the name of your sink, for example, `http://event-display.pingsource-example.svc.cluster.local`.
+
+    For a list of available options, see the [Knative client documentation](https://github.com/knative/client/blob/main/docs/cmd/kn_source_apiserver_create.md#kn-source-apiserver-create).
+</code></pre>
+<p>=== "YAML" 1. Create a YAML file using the following template:</p>
+<pre><code>    ```yaml
+    apiVersion: sources.knative.dev/v1
+    kind: ApiServerSource
+    metadata:
+     name: &lt;apiserversource-name&gt;
+     namespace: &lt;namespace&gt;
+    spec:
+     serviceAccountName: &lt;service-account&gt;
+     mode: &lt;event-mode&gt;
+     resources:
+       - apiVersion: v1
+         kind: Event
+     sink:
+       ref:
+         apiVersion: v1
+         kind: &lt;sink-kind&gt;
+         name: &lt;sink-name&gt;
+    ```
+    Where:
+
+    - `&lt;apiserversource-name&gt;` is the name of the source that you want to create.
+    - `&lt;namespace&gt;` is the name of the namespace that you created in step 1 earlier.
+    - `&lt;service-account&gt;` is the name of the ServiceAccount that you created in step 2 earlier.
+    - `&lt;event-mode&gt;` is either `Resource` or `Reference`. If set to `Resource`, the event payload contains the entire resource that the event is for. If set to `Reference`, the event payload only contains a reference to the resource that the event is for. The default is `Reference`.
+    - `&lt;sink-kind&gt;` is any supported Addressable object that you want to use as a sink, for example, a `Service` or `Deployment`.
+    - `&lt;sink-name&gt;` is the name of your sink.
+
+    For more information about the fields you can configure for the ApiServerSource object, see [ApiServerSource reference](reference.md).
+
+1. Apply the YAML file by running the command:
+
+    ```bash
+    kubectl apply -f &lt;filename&gt;.yaml
+    ```
+    Where `&lt;filename&gt;` is the name of the file you created in the previous step.
+</code></pre>
 </li>
 </ol>
-</div>
-</div>
-</div>
-</li>
-</ol>
-<h2 id="verify-the-apiserversource-object">Verify the ApiServerSource object<a class="headerlink" href="#verify-the-apiserversource-object" title="Permanent link">&para;</a></h2>
+<h2 id="apiserversource_2">验证 ApiServerSource 对象<a class="headerlink" href="#apiserversource_2" title="Permanent link">&para;</a></h2>
 <ol>
-<li>
-<p>Make the Kubernetes API server create events by launching a test Pod in your namespace by running the command:</p>
-<p><div class="highlight"><pre><span></span><code>kubectl run busybox --image<span class="o">=</span>busybox --namespace<span class="o">=</span>&lt;namespace&gt; --restart<span class="o">=</span>Never -- ls
+<li>Make the Kubernetes API server create events by launching a test Pod in your namespace by running the command:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>kubectl run busybox --image<span class="o">=</span>busybox --namespace<span class="o">=</span>&lt;namespace&gt; --restart<span class="o">=</span>Never -- ls
 </code></pre></div>
-Where <code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 earlier.</p>
-</li>
-<li>
-<p>Delete the test Pod by running the command:</p>
-<p><div class="highlight"><pre><span></span><code>kubectl --namespace<span class="o">=</span>&lt;namespace&gt; delete pod busybox
+<p>Where <code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 earlier.</p>
+<ol>
+<li>Delete the test Pod by running the command:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>kubectl --namespace<span class="o">=</span>&lt;namespace&gt; delete pod busybox
 </code></pre></div>
-Where <code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 earlier.</p>
-</li>
-<li>
-<p>View the logs to verify that Kubernetes events were sent to the sink by the Knative Eventing system by running the command:</p>
-<p><div class="highlight"><pre><span></span><code>kubectl logs --namespace<span class="o">=</span>&lt;namespace&gt; -l <span class="nv">app</span><span class="o">=</span>&lt;sink&gt; --tail<span class="o">=</span><span class="m">100</span>
+<p>Where <code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 earlier.</p>
+<ol>
+<li>View the logs to verify that Kubernetes events were sent to the sink by the Knative Eventing system by running the command:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>kubectl logs --namespace<span class="o">=</span>&lt;namespace&gt; -l <span class="nv">app</span><span class="o">=</span>&lt;sink&gt; --tail<span class="o">=</span><span class="m">100</span>
 </code></pre></div>
-Where:</p>
+<p>Where:</p>
 <ul>
 <li><code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 earlier.</li>
 <li><code>&lt;sink&gt;</code> is the name of the PodSpecable object that you used as a sink in step 5 earlier.</li>
@@ -5545,18 +5524,14 @@ Data,
     <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;Normal&quot;</span>
   <span class="o">}</span>
 </code></pre></div>
-</li>
-</ol>
-<h2 id="delete-the-apiserversource-object">Delete the ApiServerSource object<a class="headerlink" href="#delete-the-apiserversource-object" title="Permanent link">&para;</a></h2>
+<h2 id="apiserversource_3">删除 ApiServerSource 对象<a class="headerlink" href="#apiserversource_3" title="Permanent link">&para;</a></h2>
 <p>To remove the ApiServerSource object and all of the related resources:</p>
 <ul>
-<li>
-<p>Delete the namespace by running the command:</p>
-<p><div class="highlight"><pre><span></span><code>kubectl delete namespace &lt;namespace&gt;
-</code></pre></div>
-Where <code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 earlier.</p>
-</li>
+<li>Delete the namespace by running the command:</li>
 </ul>
+<div class="highlight"><pre><span></span><code>kubectl delete namespace &lt;namespace&gt;
+</code></pre></div>
+<p>Where <code>&lt;namespace&gt;</code> is the name of the namespace that you created in step 1 earlier.</p>
 
               
             </article>
@@ -5584,7 +5559,7 @@ Where <code>&lt;namespace&gt;</code> is the name of the namespace that you creat
       <div class="md-footer__title">
         <div class="md-ellipsis">
           <span class="md-footer__direction"> Previous </span>
-          关于 ApiServerSource
+          关于源
         </div>
       </div>
     </a>
@@ -5596,7 +5571,7 @@ Where <code>&lt;namespace&gt;</code> is the name of the namespace that you creat
       <div class="md-footer__title">
         <div class="md-ellipsis">
           <span class="md-footer__direction"> Next </span>
-          ApiServerSource 参考
+          源参考
         </div>
       </div>
       <div class="md-footer__button md-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg></div>

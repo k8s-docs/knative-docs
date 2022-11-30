@@ -77,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#knative-eventing-code-samples" class="md-skip">
+        <a href="#knative" class="md-skip">
           Skip to content
         </a>
       
@@ -3285,7 +3285,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/sources/apiserversource/" class="md-nav__link">
-        关于 ApiServerSource
+        关于源
       </a>
     </li>
   
@@ -3299,7 +3299,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/sources/apiserversource/getting-started/" class="md-nav__link">
-        创建 ApiServerSource 对象
+        创建对象
       </a>
     </li>
   
@@ -3313,7 +3313,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/sources/apiserversource/reference/" class="md-nav__link">
-        ApiServerSource 参考
+        源参考
       </a>
     </li>
   
@@ -3374,7 +3374,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/sources/ping-source/" class="md-nav__link">
-        创建 PingSource 对象
+        创建对象
       </a>
     </li>
   
@@ -3388,7 +3388,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/sources/ping-source/reference/" class="md-nav__link">
-        PingSource 参考
+        源参考
       </a>
     </li>
   
@@ -3449,7 +3449,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/sources/redis/" class="md-nav__link">
-        关于 RedisStreamSource
+        关于源
       </a>
     </li>
   
@@ -3463,7 +3463,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/sources/redis/getting-started/" class="md-nav__link">
-        创建 RedisStreamSource 对象
+        创建对象
       </a>
     </li>
   
@@ -5126,11 +5126,10 @@
 
 
 
-<h1 id="knative-eventing-code-samples">Knative Eventing code samples<a class="headerlink" href="#knative-eventing-code-samples" title="Permanent link">&para;</a></h1>
-<p>Use the following code samples to help you understand the various use cases for
-Knative Eventing and Event Sources.
-<a href="../../eventing/">Learn more about Knative Eventing and Eventing Sources</a>.</p>
-<p>See <a href="https://github.com/knative/docs/tree/main/code-samples">all Knative code samples</a> in GitHub.</p>
+<h1 id="knative">Knative 事件代码示例<a class="headerlink" href="#knative" title="Permanent link">&para;</a></h1>
+<p>使用下面的代码示例来帮助您理解 Knative 事件和事件源的各种用例。</p>
+<p><a href="../../eventing/">了解更多关于 Knative 事件和事件来源</a>.</p>
+<p>参见 GitHub 中的<a href="https://github.com/knative/docs/tree/main/code-samples">所有 Knative 代码示例</a>。</p>
 <table>
 <thead>
 <tr>
@@ -5142,62 +5141,62 @@ Knative Eventing and Event Sources.
 <tbody>
 <tr>
 <td>Hello World</td>
-<td>简要介绍如何使用Knative部署应用程序。</td>
+<td>简要介绍如何使用 Knative 部署应用程序。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/helloworld/helloworld-go">Go</a> and <a href="https://github.com/knative/docs/tree/main/code-samples/eventing/helloworld/helloworld-python">Python</a></td>
 </tr>
 <tr>
 <td>CloudAuditLogsSource</td>
-<td>配置一个CloudAuditLogsSource资源，从云审计日志中读取数据，并以CloudEvents格式直接发布到底层传输(Pub/Sub)。</td>
+<td>配置一个 CloudAuditLogsSource 资源，从云审计日志中读取数据，并以 CloudEvents 格式直接发布到底层传输(Pub/Sub)。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/cloud-audit-logs-source">YAML</a></td>
 </tr>
 <tr>
 <td>CloudPubSubSource</td>
-<td>配置一个CloudPubSubSource，使其每次在云发布/订阅主题上发布消息时触发一个新事件。此源使用与push兼容的格式发送事件。</td>
+<td>配置一个 CloudPubSubSource，使其每次在云发布/订阅主题上发布消息时触发一个新事件。此源使用与 push 兼容的格式发送事件。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/cloud-pubsub-source">YAML</a></td>
 </tr>
 <tr>
 <td>CloudSchedulerSource</td>
-<td>配置CloudSchedulerSource资源，用于从谷歌CloudScheduler接收预定事件。</td>
+<td>配置 CloudSchedulerSource 资源，用于从谷歌 CloudScheduler 接收预定事件。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/cloud-scheduler-source">YAML</a></td>
 </tr>
 <tr>
 <td>CloudStorageSource</td>
-<td>配置CloudStorageSource资源，当一个新对象被添加到谷歌云存储(GCS)时，该资源将下发对象通知。</td>
+<td>配置 CloudStorageSource 资源，当一个新对象被添加到谷歌云存储(GCS)时，该资源将下发对象通知。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/cloud-storage-source">YAML</a></td>
 </tr>
 <tr>
 <td>GitHub source</td>
-<td>展示如何连接GitHub事件，以供Knative服务使用。</td>
+<td>展示如何连接 GitHub 事件，以供 Knative 服务使用。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/github-source">YAML</a></td>
 </tr>
 <tr>
 <td>GitLab source</td>
-<td>演示如何连接GitLab事件，以供Knative服务使用。</td>
+<td>演示如何连接 GitLab 事件，以供 Knative 服务使用。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/gitlab-source">YAML</a></td>
 </tr>
 <tr>
 <td>Apache Kafka Binding</td>
-<td>KafkaBinding负责将Kafka引导连接信息注入到嵌入PodSpec(如<code>spec.template.spec</code>)的Kubernetes资源中。这使得Kafka客户端可以轻松引导。</td>
+<td>KafkaBinding 负责将 Kafka 引导连接信息注入到嵌入 PodSpec(如<code>spec.template.spec</code>)的 Kubernetes 资源中。这使得 Kafka 客户端可以轻松引导。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/kafka/binding">YAML</a></td>
 </tr>
 <tr>
 <td>Apache Kafka Channel</td>
-<td>安装并配置Apache Kafka通道作为Knative event的默认通道配置。</td>
+<td>安装并配置 Apache Kafka 通道作为 Knative event 的默认通道配置。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/kafka/channel">YAML</a></td>
 </tr>
 <tr>
 <td>Writing an event source using JavaScript</td>
-<td>本教程提供了如何用JavaScript构建事件源并使用ContainerSource或SinkBinding实现它的指导。</td>
+<td>本教程提供了如何用 JavaScript 构建事件源并使用 ContainerSource 或 SinkBinding 实现它的指导。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/writing-event-source-easy-way">JavaScript</a></td>
 </tr>
 <tr>
 <td>Parallel with multiple cases</td>
-<td>用两个分支创建一个Parallel。</td>
+<td>用两个分支创建一个 Parallel。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/parallel/multiple-branches">YAML</a></td>
 </tr>
 <tr>
 <td>Parallel with mutually exclusive cases</td>
-<td>创建具有互斥分支的Parallel。</td>
+<td>创建具有互斥分支的 Parallel。</td>
 <td><a href="https://github.com/knative/docs/tree/main/code-samples/eventing/parallel/mutual-exclusivity">YAML</a></td>
 </tr>
 </tbody>

@@ -77,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#about-brokers" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -3040,29 +3040,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#event-delivery" class="md-nav__link">
-    Event delivery
+  <a href="#_2" class="md-nav__link">
+    事件交付
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#advanced-use-cases" class="md-nav__link">
-    Advanced use cases
+  <a href="#_3" class="md-nav__link">
+    高级用例
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    Next steps
+  <a href="#_4" class="md-nav__link">
+    下一个步骤
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
-    Additional resources
+  <a href="#_5" class="md-nav__link">
+    额外的资源
   </a>
   
 </li>
@@ -3353,7 +3353,7 @@
   
     <li class="md-nav__item">
       <a href="../sources/apiserversource/" class="md-nav__link">
-        关于 ApiServerSource
+        关于源
       </a>
     </li>
   
@@ -3367,7 +3367,7 @@
   
     <li class="md-nav__item">
       <a href="../sources/apiserversource/getting-started/" class="md-nav__link">
-        创建 ApiServerSource 对象
+        创建对象
       </a>
     </li>
   
@@ -3381,7 +3381,7 @@
   
     <li class="md-nav__item">
       <a href="../sources/apiserversource/reference/" class="md-nav__link">
-        ApiServerSource 参考
+        源参考
       </a>
     </li>
   
@@ -3442,7 +3442,7 @@
   
     <li class="md-nav__item">
       <a href="../sources/ping-source/" class="md-nav__link">
-        创建 PingSource 对象
+        创建对象
       </a>
     </li>
   
@@ -3456,7 +3456,7 @@
   
     <li class="md-nav__item">
       <a href="../sources/ping-source/reference/" class="md-nav__link">
-        PingSource 参考
+        源参考
       </a>
     </li>
   
@@ -3517,7 +3517,7 @@
   
     <li class="md-nav__item">
       <a href="../sources/redis/" class="md-nav__link">
-        关于 RedisStreamSource
+        关于源
       </a>
     </li>
   
@@ -3531,7 +3531,7 @@
   
     <li class="md-nav__item">
       <a href="../sources/redis/getting-started/" class="md-nav__link">
-        创建 RedisStreamSource 对象
+        创建对象
       </a>
     </li>
   
@@ -5173,29 +5173,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#event-delivery" class="md-nav__link">
-    Event delivery
+  <a href="#_2" class="md-nav__link">
+    事件交付
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#advanced-use-cases" class="md-nav__link">
-    Advanced use cases
+  <a href="#_3" class="md-nav__link">
+    高级用例
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    Next steps
+  <a href="#_4" class="md-nav__link">
+    下一个步骤
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
-    Additional resources
+  <a href="#_5" class="md-nav__link">
+    额外的资源
   </a>
   
 </li>
@@ -5218,7 +5218,7 @@
 
 
 
-<h1 id="about-brokers">About Brokers<a class="headerlink" href="#about-brokers" title="Permanent link">&para;</a></h1>
+<h1 id="_1">关于代理器<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <!-- Snippet used in the following topics:
 - /docs/concepts/eventing-resources/brokers.md
 - /docs/eventing/broker/README.md
@@ -5228,23 +5228,21 @@
 代理为事件输入提供可发现的端点，并使用触发器进行事件传递。
 事件生产者可以通过发布事件将事件发送到代理。</p>
 <p><img alt="Source 1 and Source 2 are transmitting some data -- ones and twos -- to the Broker, which then gets filtered by Triggers to the desired Sink." draggable="false" src="https://user-images.githubusercontent.com/16281246/116248768-1fe56080-a73a-11eb-9a85-8bdccb82d16c.png" /></p>
-<h2 id="event-delivery">Event delivery<a class="headerlink" href="#event-delivery" title="Permanent link">&para;</a></h2>
-<p>Event delivery mechanics are an implementation detail that depend on the configured broker class. Using brokers and triggers abstracts the details of event routing from the event producer and event consumer.</p>
-<h2 id="advanced-use-cases">Advanced use cases<a class="headerlink" href="#advanced-use-cases" title="Permanent link">&para;</a></h2>
-<p>For most use cases, a single broker per namespace is sufficient, but
-there are several use cases where multiple brokers can simplify
-architecture. For example, separate brokers for events containing Personally
-Identifiable Information (PII) and non-PII events can simplify audit and access
-control rules.</p>
-<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<h2 id="_2">事件交付<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>事件传递机制是依赖于配置的代理类的实现细节。
+使用代理和触发器可以从事件生产者和事件使用者抽象事件路由的细节。</p>
+<h2 id="_3">高级用例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>对于大多数用例来说，每个名称空间一个代理就足够了，但是在一些用例中，多个代理可以简化体系结构。
+例如，针对包含个人身份信息(PII)和非PII事件的独立代理可以简化审计和访问控制规则。</p>
+<h2 id="_4">下一个步骤<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Create an <a href="create-mtbroker/">MT channel-based broker</a>.</li>
-<li>Configure <a href="broker-admin-config-options/">default broker ConfigMap settings</a>.</li>
+<li>创建一个<a href="create-mtbroker/">基于MT通道的代理</a>.</li>
+<li>配置<a href="broker-admin-config-options/">默认代理ConfigMap设置</a>.</li>
 </ul>
-<h2 id="additional-resources">Additional resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<h2 id="_5">额外的资源<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../concepts/eventing-resources/brokers/">Brokers concept documentation</a></li>
-<li><a href="https://github.com/knative/specs/blob/main/specs/eventing/overview.md#broker" target="_blank">Broker specifications</a></li>
+<li><a href="../../concepts/eventing-resources/brokers/">代理概念文档</a></li>
+<li><a href="https://github.com/knative/specs/blob/main/specs/eventing/overview.md#broker" target="_blank">代理的规范</a></li>
 </ul>
 
               
