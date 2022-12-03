@@ -1,29 +1,29 @@
-# Converting a Kubernetes Deployment to a Knative Service
+# 将Kubernetes部署转换为Knative服务
 
-This topic shows how to convert a Kubernetes Deployment to a Knative Service.
+本主题展示如何将Kubernetes部署转换为Knative服务。
 
-## Benefits
+## 好处
 
-Converting to a Knative Service has the following benefits:
+转换为Knative服务有以下好处:
 
-- Reduces the footprint of the service instance because the instance scales to 0 when it becomes idle.
-- Improves performance due to built-in autoscaling for the Knative Service.
+- 减少服务实例的占用空间，因为当实例变为空闲时，它会扩展到0。
+- 由于Knative服务的内置自动伸缩，因此提高了性能。
 
-## Determine if your workload is a good fit for Knative
+## 确定您的工作负载是否适合Knative
 
-In general, if your Kubernetes workload is a good fit for Knative, you can remove a lot of your manifest to create a Knative Service.
+一般来说，如果您的Kubernetes工作负载非常适合Knative，您可以删除大量清单来创建Knative Service。
 
-There are three aspects you need to consider:
+你需要考虑三个方面:
 
-- All work done is triggered by HTTP.
-- The container is stateless. All state is stored elsewhere or can be re-created.
-- Your workload uses only Secret and ConfigMap volumes.
+- 所有完成的工作都由HTTP触发。
+- 容器是无状态的。所有状态都存储在其他地方，或者可以重新创建。
+- 您的工作负载只使用Secret和ConfigMap卷。
 
-## Example conversion
+## 转换示例
 
-The following example shows a [Kubernetes Nginx Deployment and Service](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/), and shows how it converts to a Knative Service.
+下面的例子展示了[Kubernetes Nginx部署和服务](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/), 并展示了它如何转换为Knative服务。
 
-### Kubernetes Nginx Deployment and Service
+### Kubernetes Nginx 部署和服务
 
 ```yaml
 apiVersion: apps/v1
@@ -61,7 +61,7 @@ spec:
 
 ```
 
-### Knative Service
+### Knative 服务
 
 ```yaml
 apiVersion: serving.knative.dev/v1

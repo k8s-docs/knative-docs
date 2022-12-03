@@ -1,32 +1,32 @@
-# Installing Knative Serving using YAML files
+# 使用 YAML 文件安装 Knative 服务
 
-This topic describes how to install Knative Serving by applying YAML files using the `kubectl` CLI.
+本节介绍如何使用`kubectl`命令行应用 YAML 文件来安装 Knative 服务。
 
 --8<-- "prerequisites.md"
 
-## Install the Knative Serving component
+## 安装 Knative Serving 组件
 
-To install the Knative Serving component:
+安装 Knative Serving 组件。
 
-1. Install the required custom resources by running the command:
+1.  Install the required custom resources by running the command:
 
     ```bash
     kubectl apply -f {{ artifact(repo="serving",file="serving-crds.yaml")}}
     ```
 
-1. Install the core components of Knative Serving by running the command:
+1.  Install the core components of Knative Serving by running the command:
 
     ```bash
     kubectl apply -f {{ artifact(repo="serving",file="serving-core.yaml")}}
     ```
 
     !!! info
-        For information about the YAML files in Knative Serving, see [Knative Serving installation files](serving-installation-files.md).
+    For information about the YAML files in Knative Serving, see [Knative Serving installation files](serving-installation-files.md).
 
-## Install a networking layer
+## 安装网络层
 
-The following tabs expand to show instructions for installing a networking layer.
-Follow the procedure for the networking layer of your choice:
+下面的选项卡展开显示安装网络层的说明。
+按照以下步骤选择网络层:
 
 <!-- TODO: Link to document/diagram describing what is a networking layer.  -->
 <!-- This indentation is important for things to render properly. -->
@@ -57,7 +57,6 @@ Follow the procedure for the networking layer of your choice:
         !!! tip
             Save this to use in the following [Configure DNS](#configure-dns) section.
 
-
 === "Istio"
 
     The following commands install Istio and enable its Knative integration.
@@ -84,7 +83,6 @@ Follow the procedure for the networking layer of your choice:
 
         !!! tip
             Save this to use in the following [Configure DNS](#configure-dns) section.
-
 
 === "Contour"
 
@@ -119,12 +117,12 @@ Follow the procedure for the networking layer of your choice:
         !!! tip
             Save this to use in the following [Configure DNS](#configure-dns) section.
 
-
-## Verify the installation
+## 验证安装
 
 !!! success
-    Monitor the Knative components until all of the components show a `STATUS` of `Running` or `Completed`.
-    You can do this by running the following command and inspecting the output:
+
+    监视Knative组件，直到所有组件显示`STATUS`为`Running`或`Completed`。
+    可以通过运行以下命令并检查输出:
 
     ```bash
     kubectl get pods -n knative-serving
@@ -144,13 +142,14 @@ Follow the procedure for the networking layer of your choice:
     ```
 
 <!-- These are snippets from the docs/snippets directory -->
+
 {% include "dns.md" %}
 {% include "real-dns-yaml.md" %}
 {% include "temporary-dns.md" %}
 
-## Install optional Serving extensions
+## 安装可选的服务扩展
 
-The following tabs expand to show instructions for installing each Serving extension.
+下面的选项卡展开显示安装每个服务扩展的说明。
 
 === "HPA autoscaling"
 

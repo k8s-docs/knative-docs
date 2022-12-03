@@ -1,4 +1,4 @@
-# Configuring the ingress gateway
+# 配置入口网关
 
 Knative uses a shared ingress Gateway to serve all incoming traffic within
 Knative service mesh, which is the `knative-ingress-gateway` Gateway under
@@ -6,9 +6,9 @@ the `knative-serving` namespace. By default, we use Istio gateway service
 `istio-ingressgateway` under `istio-system` namespace as its underlying service.
 You can replace the service and the gateway with that of your own as follows.
 
-## Replace the default `istio-ingressgateway` service
+## 更换默认的`istio-ingressgateway`服务
 
-### Step 1: Create the gateway service and deployment instance
+### 步骤1: 创建网关服务和部署实例
 
 You'll need to create the gateway service and deployment instance to handle
 traffic first. Let's say you customized the default `istio-ingressgateway` to
@@ -27,7 +27,7 @@ spec:
           istio: custom-gateway
 ```
 
-### Step 2: Update the Knative gateway
+### 步骤2: 更新Knative网关
 
 Update gateway instance `knative-ingress-gateway` under `knative-serving`
 namespace:
@@ -51,10 +51,9 @@ istio: custom-gateway
 If there is a change in service ports (compared with that of
 `istio-ingressgateway`), update the port info in the gateway accordingly.
 
-### Step 3: Update the gateway ConfigMap
+### 步骤3: 更新网关ConfigMap
 
-1. Update gateway configmap `config-istio` under `knative-serving`
-namespace:
+1. Update gateway configmap `config-istio` under `knative-serving` namespace:
 
      ```bash
      kubectl edit configmap config-istio -n knative-serving
@@ -87,12 +86,12 @@ For the example `custom-ingressgateway` service mentioned earlier, it should be 
      [...]
      ```
 
-## Replace the `knative-ingress-gateway` gateway
+## 替换`knative-ingress-gateway`网关
 
 We customized the gateway service so far, but we may also want to use our own gateway.
 We can replace the default gateway with our own gateway with following steps.
 
-### Step 1: Create the gateway
+### 步骤1:创建网关
 
 Let's say you replace the default `knative-ingress-gateway` gateway with
 `knative-custom-gateway` in `custom-ns`.
@@ -126,7 +125,7 @@ First, create the `knative-custom-gateway` gateway:
     ```
     Where `<filename>` is the name of the file you created in the previous step.
 
-### Step 2: Update the gateway ConfigMap
+### 步骤2:更新网关ConfigMap
 
 1. Update gateway configmap `config-istio` under `knative-serving`
 namespace:

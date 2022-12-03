@@ -1,38 +1,23 @@
-# Configuring HTTPS with TLS certificates
+# 配置HTTPS使用TLS证书
 
-Learn how to configure secure HTTPS connections in Knative using TLS
-certificates
-([TLS replaces SSL](https://en.wikipedia.org/wiki/Transport_Layer_Security)).
-Configure secure HTTPS connections to enable your Knative services and routes to
-[terminate external TLS connections](https://en.wikipedia.org/wiki/Transport_Layer_Security#TLS_interception).
-You can configure Knative to handle certificates that you manually specify, or
-you can enable Knative to automatically obtain and renew certificates.
+了解如何在Knative中使用TLS证书配置安全HTTPS连接([TLS取代SSL](https://en.wikipedia.org/wiki/Transport_Layer_Security)).
+配置安全HTTPS连接，使您的Knative服务和路由能够[终止外部TLS连接](https://en.wikipedia.org/wiki/Transport_Layer_Security#TLS_interception).
+可以配置Knative来处理手动指定的证书，也可以启用Knative来自动获取和更新证书。
 
-You can use either [Certbot][cb] or [cert-manager][cm] to obtain certificates.
-Both tools support TLS certificates but if you want to enable Knative for
-automatic TLS certificate provisioning, you must install and configure the
-cert-manager tool:
+您可以使用[Certbot][cb]或[cert-manager][cm]两种方式获取证书。
+这两个工具都支持TLS证书，但如果您想启用Knative来自动发放TLS证书，您必须安装和配置证书管理器工具:
 
-- **Manually obtain and renew certificates**: Both the Certbot and cert-manager
-  tools can be used to manually obtain TLS certificates. In general, after you
-  obtain a certificate, you must create a Kubernetes secret to use that
-  certificate in your cluster. See the procedures later in this topic for details
-  about manually obtaining and configuring certificates.
+- **手动获取和更新证书**: 可以使用Certbot和cert-manager工具手动获取TLS证书。
+  通常，在您获得证书后，您必须创建一个Kubernetes秘密以在您的集群中使用该证书。
+  有关手动获取和配置证书的详细信息，请参见本主题后面的步骤。
 
-- **Enable Knative to automatically obtain and renew TLS certificates**: You can
-  also use cert-manager to configure Knative to automatically obtain new TLS
-  certificates and renew existing ones. If you want to enable Knative to
-  automatically provision TLS certificates, instead see the
-  [Enabling automatic TLS certificate provisioning](using-auto-tls.md) topic.
+- **启用Knative自动获取和更新TLS证书**: 您还可以使用证书管理器配置Knative以自动获取新的TLS证书并更新现有的证书。
+  如果您希望启用Knative自动发放TLS证书，请参见[启用TLS证书自动发放](using-auto-tls.md)主题。
 
-By default, the [Let's Encrypt Certificate Authority (CA)][le] is used to
-demonstrate how to enable HTTPS connections, but you can configure Knative to
-use any certificate from a CA that supports the ACME protocol. However, you must
-use and configure your certificate issuer to use the
-[`DNS-01` challenge type](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge).
+默认情况下，[Let's Encrypt颁发机构(CA)][le]用于演示如何启用HTTPS连接，但是您可以配置Knative使用来自支持ACME协议的CA的任何证书。但是，您必须使用并配置您的证书颁发者使用[`DNS-01`挑战类型](https://letsencrypt.org/docs/challenge-types/#dns-01-challenge).
 
 !!! warning
-    Certificates issued by Let's Encrypt are valid for only [90days][le-faqs]. Therefore, if you choose to manually obtain and configure your certificates, you must ensure that you renew each certificate before it expires.
+    Let's Encrypt颁发的证书有效期仅为[90天][le-faqs]。因此，如果您选择手动获取并配置证书，请确保每个证书都在过期前进行了更新。
 
 [cm]: https://github.com/jetstack/cert-manager
 [cm-docs]: https://cert-manager.readthedocs.io/en/latest/getting-started/
@@ -45,112 +30,86 @@ use and configure your certificate issuer to use the
 [cb-providers]: https://certbot.eff.org/docs/using.html#changing-the-acme-server
 [cb-cli]: https://certbot.eff.org/docs/using.html#certbot-command-line-options
 
-## Before you begin
+## 在开始之前
 
-You must meet the following requirements to enable secure HTTPS connections:
+启用HTTPS安全连接需要满足以下要求:
 
-- Knative Serving must be installed. For details about installing the Serving
-  component, see the [Knative installation guides](../install/yaml-install/serving/install-serving-with-yaml.md).
-- You must configure your Knative cluster to use a
-  [custom domain](using-a-custom-domain.md).
+- 必须安装Knative服务。关于安装服务组件的详细信息，请参见[Knative安装指南](../install/yaml-install/serving/install-serving-with-yaml.md)。
+- 您必须配置您的Knative集群以使用[自定义域](using-a-custom-domain.md).
 
 !!! warning
-    Istio only supports a single certificate per Kubernetes cluster.
-    To serve multiple domains using your Knative cluster, you must ensure that your new or existing certificate is signed for each of the domains that you want to serve.
+    Istio只支持每个Kubernetes集群一个证书。
+    要使用Knative集群为多个域提供服务，必须确保为想要服务的每个域签署了新的或现有的证书。
 
-## Obtaining a TLS certificate
+## 获取TLS证书
 
-If you already have a signed certificate for your domain, see
-[Manually adding a TLS certificate](#manually-adding-a-tls-certificate) for
-details about configuring your Knative cluster.
+如果您已经有了域的签名证书，请参见[手动添加TLS证书](#manually-adding-a-tls-certificate)了解有关配置Knative集群的详细信息。
 
-If you need a new TLS certificate, you can choose to use one of the following
-tools to obtain a certificate from Let's Encrypt:
+如果您需要新的TLS证书，您可以选择使用以下工具之一从Let's Encrypt获取证书:
 
-- Setup Certbot to manually obtain Let's Encrypt certificates
-- Setup cert-manager to either manually obtain a certificate, or to
-  automatically provision certificates
+- 设置Certbot手动获取Let's Encrypt证书
+- 将cert-manager设置为手动获取证书或自动提供证书
 
-This page covers details for both options.
+本页涵盖了这两个选项的详细信息。
 
-For details about using other CA's, see the tool's reference documentation:
+有关使用其他CA的详细信息，请参见该工具的参考文档:
 
-- [Certbot supported providers][cb-providers]
-- [cert-manager supported providers][cm-providers]
+- [Certbot支持提供者][cb-providers]
+- [证书管理器支持的提供者][cm-providers]
 
-### Using Certbot to manually obtain Let’s Encrypt certificates
+### 使用Certbot手动获取Let 's Encrypt证书
 
-Use the following steps to install [Certbot][cb] and the use the tool to
-manually obtain a TLS certificate from Let's Encrypt.
+请按照以下步骤安装[Certbot][cb]，并使用该工具从Let's Encrypt手动获取TLS证书。
 
-1. Install Certbot by following the [`certbot-auto` wrapper script][cb-docs]
-   instructions.
+1. 按照[`certbot-auto`包装脚本][cb-docs]说明安装Certbot。
 
-1. Run the following command to use Certbot to request a certificate using DNS
-   challenge during authorization:
+1. 使用Certbot在授权过程中通过DNS challenge请求证书:
 
      ```bash
      ./certbot-auto certonly --manual --preferred-challenges dns -d '*.default.yourdomain.com'
      ```
 
-   where `-d` specifies your domain. If you want to validate multiple domain's,
-   you can include multiple flags:
-   `-d MY.EXAMPLEDOMAIN.1 -d MY.EXAMPLEDOMAIN.2`. For more information, see the
-   [Cerbot command-line][cb-cli] reference.
+   其中`-d`指定你的域。如果你想验证多个域，你可以包含多个标志:   `-d MY.EXAMPLEDOMAIN.1 -d MY.EXAMPLEDOMAIN.2`. 
+   有关更多信息，请参见[Cerbot命令行][cb-cli]参考。
 
-   The Certbot tool walks you through the steps of validating that you own each
-   domain that you specify by creating TXT records in those domains.
+   Certbot工具将引导您通过在这些域中创建TXT记录来验证您是否拥有指定的每个域。
 
-   Result: CertBot creates two files:
+   结果: CertBot创建两个文件:
 
    - Certificate:`fullchain.pem`
    - Private key: `privkey.pem`
 
-What's next:
+接下来是什么:
 
-Add the certificate and private key to your Knative cluster by
-[creating a Kubernetes secret](#manually-adding-a-tls-certificate).
+通过[创建一个Kubernetes secret](#manually-adding-a-tls-certificate)将证书和私钥添加到您的Knative集群中.
 
-### Using cert-manager to obtain Let's Encrypt certificates
+### 使用证书管理器获取Let's Encrypt证书
 
-You can install and use [cert-manager][cm] to either manually obtain a
-certificate or to configure your Knative cluster for automatic certificate
-provisioning:
+您可以安装并使用[cert-manager][cm]手动获取证书，或者配置您的Knative集群以自动发放证书:
 
-- **Manual certificates**: Install cert-manager and then use the tool to
-  manually obtain a certificate.
+- **手动证书**: 安装cert-manager后，使用工具手动获取证书。
 
-  To use cert-manager to manually obtain certificates:
+  使用cert-manager手动获取证书:
 
-  1.  [Install and configure cert-manager](../install/installing-cert-manager.md).
+  1.  [安装和配置cert-manager](../install/installing-cert-manager.md).
 
-  1.  Continue to the steps about
-      [manually adding a TLS certificate](#manually-adding-a-tls-certificate) by
-      creating and using a Kubernetes secret.
+  1.  通过创建和使用Kubernetes秘密，继续执行有关[手动添加TLS证书](#manually-adding-a-tls-certificate)的步骤。
 
-- **Automatic certificates**: Configure Knative to use cert-manager for
-  automatically obtaining and renewing TLS certificate. The steps for installing
-  and configuring cert-manager for this method are covered in full in the
-  [Enabling automatic TLS cert provisioning](using-auto-tls.md) topic.
+- **自动证书**: 配置Knative使用证书管理器自动获取和更新TLS证书。为这种方法安装和配置证书管理器的步骤在[启用自动TLS证书发放](using-auto-tls.md)主题中有详细介绍。
 
-## Manually adding a TLS certificate
+## 手动添加TLS证书
 
-If you have an existing certificate or have used one of the Certbot or
-cert-manager tool to manually obtain a new certificate, you can use the
-following steps to add that certificate to your Knative cluster.
+如果您有一个现有的证书，或者使用了Certbot或证书管理器工具中的一个来手动获取一个新证书，您可以使用以下步骤将该证书添加到您的Knative集群中。
 
-For instructions about enabling Knative for automatic certificate provisioning,
-see [Enabling automatic TLS cert provisioning](using-auto-tls.md). Otherwise,
-follow the steps in the relevant tab to manually add a certificate:
+有关为自动证书发放启用Knative的说明，请参见[启用自动TLS证书发放](using-auto-tls.md)。
+否则，请按照相应页签的步骤手动添加证书:
 
 
 === "Contour"
 
-    To manually add a TLS certificate to your Knative cluster, you must create a
-    Kubernetes secret and then configure the Knative Contour plugin.
+    要手动向Knative集群添加TLS证书，必须创建一个Kubernetes secret，然后配置Knative Contour插件。
 
-    1. Create a Kubernetes secret to hold your TLS certificate, `cert.pem`, and the
-       private key, `key.pem`, by running the command:
+    1. 创建一个Kubernetes secret 来保存您的TLS证书`cert.pem`和私钥`key.pem`，运行以下命令:
 
            ```bash
            kubectl create -n contour-external secret tls default-cert \
@@ -159,10 +118,9 @@ follow the steps in the relevant tab to manually add a certificate:
            ```
 
         !!! note
-            Take note of the namespace and secret name. You will need these in future steps.
+            注意命名空间和秘密名称。在以后的步骤中您将需要这些。
 
-    1. To use this certificate and private key in different namespaces, you must
-    create a delegation. To do so, create a YAML file using the following template:
+    1. 要在不同的名称空间中使用此证书和私钥，必须创建一个委托。为此，使用以下模板创建一个YAML文件:
 
          ```yaml
          apiVersion: projectcontour.io/v1
@@ -176,15 +134,14 @@ follow the steps in the relevant tab to manually add a certificate:
                targetNamespaces:
                - "*"
          ```
-    1. Apply the YAML file by running the command:
+    1. 运行以下命令应用YAML文件:
 
         ```bash
         kubectl apply -f <filename>.yaml
         ```
-        Where `<filename>` is the name of the file you created in the previous step.
+        其中 `<filename>` 是您在上一步中创建的文件的名称。
 
-    1. Update the Knative Contour plugin to use the certificate as a fallback
-       when autoTLS is disabled by running the command:
+    1. 更新Knative Contour插件，当autoTLS被禁用时，使用证书作为备份，通过运行以下命令:
 
          ```bash
          kubectl patch configmap config-contour -n knative-serving \
@@ -194,11 +151,9 @@ follow the steps in the relevant tab to manually add a certificate:
 
 
 === "Istio"
-    To manually add a TLS certificate to your Knative cluster, you create a
-    Kubernetes secret and then configure the `knative-ingress-gateway`:
+    要手动添加一个TLS证书到您的Knative集群，您需要创建一个Kubernetes secret，然后配置`knative-ingress-gateway`:
 
-    1. Create a Kubernetes secret to hold your TLS certificate, `cert.pem`, and the
-       private key, `key.pem`, by entering the following command:
+    1. 输入以下命令，创建一个Kubernetes secret来保存您的TLS证书`cert.pem`和私钥`key.pem`:
 
        ```bash
        kubectl create --namespace istio-system secret tls tls-cert \
@@ -207,18 +162,15 @@ follow the steps in the relevant tab to manually add a certificate:
        ```
 
 
-    1. Configure Knative to use the new secret that you created for HTTPS
-       connections:
+    1. 配置Knative使用您为HTTPS连接创建的新秘密:
 
-       1. Run the following command to open the Knative shared `gateway` in edit
-          mode:
+       1. 以编辑模式打开Knative共享的`gateway`:
 
           ```bash
           kubectl edit gateway knative-ingress-gateway --namespace knative-serving
           ```
 
-       1. Update the `gateway` to include the following `tls:` section and
-          configuration:
+       1. 更新`gateway`以包含以下`tls:`部分和配置:
 
           ```yaml
           tls:
@@ -226,7 +178,7 @@ follow the steps in the relevant tab to manually add a certificate:
             credentialName: tls-cert
           ```
 
-          Example:
+          实例:
 
           ```yaml
           # Edit the following object. Lines beginning with a '#' will be ignored.
@@ -256,10 +208,10 @@ follow the steps in the relevant tab to manually add a certificate:
                   mode: SIMPLE
                   credentialName: tls-cert
           ```
-          In this example, `TLS_HOSTS` represents the hosts of your TLS certificate. It can be a single host, multiple hosts, or a wildcard host.
-          For detailed instructions, please refer [Istio documentation](https://istio.io/latest/docs/tasks/traffic-management/ingress/secure-ingress/)
+          在本例中，`TLS_HOSTS`表示TLS证书的主机。
+          它可以是单个主机、多个主机或通配符主机。
+          有关详细说明，请参阅[Istio文档](https://istio.io/latest/docs/tasks/traffic-management/ingress/secure-ingress/)
 
-## What's next:
+## 接下来是什么:
 
-After your changes are running on your Knative cluster, you can begin using the
-HTTPS protocol for secure access your deployed Knative services.
+在Knative集群上运行更改之后，可以开始使用HTTPS协议来安全访问部署的Knative服务。

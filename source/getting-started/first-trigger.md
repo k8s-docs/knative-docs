@@ -17,14 +17,16 @@
     ```bash
     kn trigger create cloudevents-trigger --sink cloudevents-player  --broker example-broker
     ```
+
     !!! Success "Expected output"
+
         ```{ .bash .no-copy }
         Trigger 'cloudevents-trigger' successfully created in namespace 'default'.
         ```
 
 === "YAML"
 
-    1. 将以下YAML复制到名为 `ce-trigger.yaml` 的文件中:
+    1.  将以下YAML复制到名为 `ce-trigger.yaml` 的文件中:
         ```bash
         apiVersion: eventing.knative.dev/v1
         kind: Trigger
@@ -41,7 +43,7 @@
               name: cloudevents-player
         ```
 
-    1. 通过运行命令创建触发器:
+    1.  通过运行命令创建触发器:
         ```bash
         kubectl apply -f ce-trigger.yaml
         ```
@@ -51,26 +53,28 @@
             trigger.eventing.knative.dev/cloudevents-trigger created
             ```
 
-??? question "我的触发器在听什么CloudEvents ?"
+??? question "我的触发器在听什么 CloudEvents ?"
+
     因为我们没有在`kn`命令中指定`--filter`，所以触发器正在监听进入代理的任何CloudEvents。
 
     展开下一个注释，查看如何使用过滤器。
 
-现在，当我们返回到CloudEvents Player并发送一个事件时，我们看到CloudEvents既被CloudEvents发送，也被CloudEvents Player接收:
+现在，当我们返回到 CloudEvents Player 并发送一个事件时，我们看到 CloudEvents 既被 CloudEvents 发送，也被 CloudEvents Player 接收:
 
 ![CloudEvents Player user interface](images/event_received.png){draggable=false}
 
 您可能需要刷新页面以查看更改。
 
-??? question "如果我想过滤CloudEvent属性怎么办?"
-    首先，删除现有的触发器: `bash kn trigger delete cloudevents-trigger `
+??? question "如果我想过滤 CloudEvent 属性怎么办?"
 
-    现在，让我们添加一个监听某个CloudEvent类型的触发器: 
-    `bash kn trigger create cloudevents-player-filter --sink cloudevents-player --broker example-broker --filter type=some-type `
+    首先，删除现有的触发器: `kn trigger delete cloudevents-trigger `
 
-    如果你发送一个类型为' some-type '的CloudEvent，它会反映在CloudEvents Player UI中。
+    现在，让我们添加一个监听某个 CloudEvent 类型的触发器:
+    `kn trigger create cloudevents-player-filter --sink cloudevents-player --broker example-broker --filter type=some-type `
+
+    如果你发送一个类型为 `some-type` 的CloudEvent，它会反映在CloudEvents Player UI中。
     触发器忽略任何其他类型。
 
     您可以过滤CloudEvent的任何方面。
 
-有些人称之为 **“事件驱动架构”** ，可以用来在Kubernetes上创建自己的 **“功能即服务”**  :tada: :taco: :fire:。
+有些人称之为 **“事件驱动架构”** ，可以用来在 Kubernetes 上创建自己的 **“功能即服务”** :tada: :taco: :fire:。

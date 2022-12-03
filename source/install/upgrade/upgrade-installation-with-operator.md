@@ -1,4 +1,4 @@
-# Upgrading using the Knative Operator
+# 使用 Knative Operator 更新
 
 This topic describes how to upgrade Knative if you installed using the Operator.
 If you installed using YAML, see [Upgrading with kubectl](upgrade-installation.md).
@@ -11,7 +11,7 @@ The Knative Operator supports up to the last three major releases. For example, 
 !!! note
     In the following examples, Knative Serving custom resources are installed in the `knative-serving` namespace, and  Knative Eventing custom resources are installed in the `knative-eventing` namespace.
 
-## Performing the upgrade
+## 执行升级
 
 To upgrade, apply the Operator custom resources, adding the `spec.version` for the Knative version that you want to upgrade to:
 
@@ -35,7 +35,7 @@ To upgrade, apply the Operator custom resources, adding the `spec.version` for t
     ```
     Where `<filename>` is the name of the file you created in the previous step.
 
-## Verifying an upgrade by viewing pods
+## 通过查看Pod验证升级
 
 You can confirm that your Knative components have upgraded successfully, by viewing the status of the pods for the components in the relevant namespace.
 
@@ -86,7 +86,7 @@ You can confirm that your Knative components have upgraded successfully, by view
     ```
 
 <!-- TODO: Make this a snippet for verifying all installations-->
-## Verifying an upgrade by viewing custom resources
+## 通过查看自定义资源验证升级
 
 You can verify the status of a Knative component by checking that the custom resource `READY` status is `True`.
 
@@ -117,7 +117,7 @@ You can verify the status of a Knative component by checking that the custom res
     ```
     <!--- END snippet-->
 
-## Rollback to an earlier version
+## 回滚到较早版本
 
 If the upgrade fails, you can rollback to restore your Knative to the previous version. For example, if something goes wrong with an upgrade to 1.2, and your previous version is 1.1, you can apply the following custom resources to restore Knative Serving and Knative Eventing to version 1.1.
 

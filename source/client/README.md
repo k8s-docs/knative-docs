@@ -45,12 +45,12 @@
 
 您还可以通过以下方式指定配置文件:
 
-- Setting the environment variable `$KUBECONFIG`, and point it to the kubeconfig file.
+- 设置环境变量 `$KUBECONFIG`，并将其指向KUBECONFIG文件。
 
-- Using the `kn` CLI `--config` option, for example, `kn service list --config path/to/config.yaml`. The default config is at `~/.config/kn/config.yaml`.
+- 使用`kn` CLI `--config`选项，例如，`kn service list --config path/to/config.yaml`。
+  默认的配置是`~/.config/kn/config.yaml`。
 
-For more information about `kubeconfig` files, see
-[Organizing Cluster Access Using kubeconfig Files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/){target=_blank}.
+有关`kubeconfig`文件的更多信息，请参见[使用kubeconfig文件组织集群访问](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/){target=_blank}.
 
 ### 在平台上使用kubeconfig文件
 

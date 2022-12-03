@@ -1,10 +1,10 @@
 # 管理员配置选项
 
-If you have cluster administrator permissions for your Knative installation, you can modify ConfigMaps to change the global default configuration options for Brokers on the cluster.
+如果您对 Knative 安装具有集群管理员权限，则可以修改 ConfigMaps 以更改集群上代理的全局默认配置选项。
 
-Knative Eventing provides a `config-br-defaults` ConfigMap that contains the configuration settings that govern default Broker creation.
+Knative 事件提供了一个`config-br-defaults` ConfigMap，其中包含管理默认代理创建的配置设置。
 
-The default `config-br-defaults` ConfigMap is as follows:
+默认的`config-br-defaults` ConfigMap 如下:
 
 ```yaml
 apiVersion: v1
@@ -27,7 +27,7 @@ data:
 
 ## 通道实现选项
 
-The following example shows a Broker object where the `spec.config` configuration is specified in a `config-br-default-channel` ConfigMap:
+下面的示例显示了一个代理对象，其中`spec.config`配置在`config-br-default-channel` ConfigMap 中指定:
 
 ```yaml
 apiVersion: eventing.knative.dev/v1
@@ -175,7 +175,7 @@ When a Broker is created without a specified `BrokerClass` annotation, the defau
 
 The following example creates a Broker called `default` in the default namespace, and uses `MTChannelBasedBroker` as the implementation:
 
-1. Create a YAML file for your Broker using the following example:
+1.  Create a YAML file for your Broker using the following example:
 
     ```yaml
     apiVersion: eventing.knative.dev/v1
@@ -185,13 +185,13 @@ The following example creates a Broker called `default` in the default namespace
       namespace: default
     ```
 
-1. Apply the YAML file by running the command:
+1.  Apply the YAML file by running the command:
 
     ```bash
     kubectl apply -f <filename>.yaml
     ```
-    Where `<filename>` is the name of the file you created in the previous step.
 
+    Where `<filename>` is the name of the file you created in the previous step.
 
 ### 配置代理类
 
@@ -199,39 +199,39 @@ To configure a Broker class, you can modify the
 `eventing.knative.dev/broker.class` annotation and `spec.config` for the Broker
 object. `MTChannelBasedBroker` is the Broker class default.
 
-1. Modify the `eventing.knative.dev/broker.class` annotation. Replace
-`MTChannelBasedBroker` with the class type you want to use:
+1.  Modify the `eventing.knative.dev/broker.class` annotation. Replace
+    `MTChannelBasedBroker` with the class type you want to use:
 
-    ```yaml
-    apiVersion: eventing.knative.dev/v1
-    kind: Broker
-    metadata:
-      annotations:
-        eventing.knative.dev/broker.class: MTChannelBasedBroker
-      name: default
-      namespace: default
-    ```
+        ```yaml
+        apiVersion: eventing.knative.dev/v1
+        kind: Broker
+        metadata:
+          annotations:
+            eventing.knative.dev/broker.class: MTChannelBasedBroker
+          name: default
+          namespace: default
+        ```
 
-1. Configure the `spec.config` with the details of the ConfigMap that defines
-the backing Channel for the Broker class:
+1.  Configure the `spec.config` with the details of the ConfigMap that defines
+    the backing Channel for the Broker class:
 
-    ```yaml
-    apiVersion: eventing.knative.dev/v1
-    kind: Broker
-    metadata:
-      annotations:
-        eventing.knative.dev/broker.class: MTChannelBasedBroker
-      name: default
-      namespace: default
-    spec:
-      config:
-        apiVersion: v1
-        kind: ConfigMap
-        name: config-br-default-channel
-        namespace: knative-eventing
-    ```
+        ```yaml
+        apiVersion: eventing.knative.dev/v1
+        kind: Broker
+        metadata:
+          annotations:
+            eventing.knative.dev/broker.class: MTChannelBasedBroker
+          name: default
+          namespace: default
+        spec:
+          config:
+            apiVersion: v1
+            kind: ConfigMap
+            name: config-br-default-channel
+            namespace: knative-eventing
+        ```
 
-### 为集群配置默认的BrokerClass
+### 为集群配置默认的 BrokerClass
 
 You can configure the `clusterDefault` Broker class so that any Broker created in the cluster that does not have a `BrokerClass` annotation uses this default class.
 
@@ -252,7 +252,7 @@ data:
       brokerClass: MTChannelBasedBroker
 ```
 
-### 为名称空间配置默认的BrokerClass
+### 为名称空间配置默认的 BrokerClass
 
 You can modify the default Broker class for one or more namespaces.
 
@@ -278,9 +278,9 @@ data:
         brokerClass: MTChannelBasedBroker
 ```
 
-## 将Istio与Knative代理集成
+## 将 Istio 与 Knative 代理集成
 
-### 通过使用JSON Web Token (JWT)和Istio来保护Knative代理
+### 通过使用 JSON Web Token (JWT)和 Istio 来保护 Knative 代理
 
 #### 先决条件
 
@@ -291,156 +291,156 @@ data:
 
 1. Label the `knative-eventing` namespace, so that Istio can handle JWT-based user authentication, by running the command:
 
-    ```bash
-    kubectl label namespace knative-eventing istio-injection=enabled
-    ```
+   ```bash
+   kubectl label namespace knative-eventing istio-injection=enabled
+   ```
 
 1. Restart the broker ingress pod, so that the `istio-proxy` container can be injected as a sidecar, by running the command:
 
-    ```bash
-    kubectl delete pod <broker-ingress-pod-name> -n knative-eventing
-    ```
+   ```bash
+   kubectl delete pod <broker-ingress-pod-name> -n knative-eventing
+   ```
 
-    Where `<broker-ingress-pod-name>` is the name of your broker ingress pod.
+   Where `<broker-ingress-pod-name>` is the name of your broker ingress pod.
 
-    The pod now has two containers:
+   The pod now has two containers:
 
-    ```{ .bash .no-copy }
-    knative-eventing     <broker-ingress-pod-name>           2/2     Running   1              175m
-    ```
+   ```{ .bash .no-copy }
+   knative-eventing     <broker-ingress-pod-name>           2/2     Running   1              175m
+   ```
 
 1. Create a broker, then use get the URL of your broker by running the command:
 
-    ```bash
-    kubectl get broker <broker-name>
-    ```
+   ```bash
+   kubectl get broker <broker-name>
+   ```
 
-    Example output:
+   Example output:
 
-    ```{ .bash .no-copy }
-    NAMESPACE   NAME        URL                                                                          AGE   READY   REASON
-    default     my-broker   http://broker-ingress.knative-eventing.svc.cluster.local/default/my-broker   6s    True
-    ```
+   ```{ .bash .no-copy }
+   NAMESPACE   NAME        URL                                                                          AGE   READY   REASON
+   default     my-broker   http://broker-ingress.knative-eventing.svc.cluster.local/default/my-broker   6s    True
+   ```
 
 1. Start a `curl` pod:
 
-    ```bash
-    kubectl -n default run curl --image=radial/busyboxplus:curl -i --tty
-    ```
+   ```bash
+   kubectl -n default run curl --image=radial/busyboxplus:curl -i --tty
+   ```
 
 1. Send a CloudEvent with an HTTP POST against the broker URL:
 
-    ```bash
-    curl -X POST -v \
-    -H "content-type: application/json"  \
-    -H "ce-specversion: 1.0"  \
-    -H "ce-source: my/curl/command"  \
-    -H "ce-type: my.demo.event"  \
-    -H "ce-id: 0815"  \
-    -d '{"value":"Hello Knative"}' \
-    <broker-URL>
-    ```
+   ```bash
+   curl -X POST -v \
+   -H "content-type: application/json"  \
+   -H "ce-specversion: 1.0"  \
+   -H "ce-source: my/curl/command"  \
+   -H "ce-type: my.demo.event"  \
+   -H "ce-id: 0815"  \
+   -d '{"value":"Hello Knative"}' \
+   <broker-URL>
+   ```
 
-    Where `<broker-URL>` is the URL of your broker. For example:
+   Where `<broker-URL>` is the URL of your broker. For example:
 
-    ```{ .bash .no-copy }
-    curl -X POST -v \
-    -H "content-type: application/json"  \
-    -H "ce-specversion: 1.0"  \
-    -H "ce-source: my/curl/command"  \
-    -H "ce-type: my.demo.event"  \
-    -H "ce-id: 0815"  \
-    -d '{"value":"Hello Knative"}' \
-    http://broker-ingress.knative-eventing.svc.cluster.local/default/my-broker
-    ```
+   ```{ .bash .no-copy }
+   curl -X POST -v \
+   -H "content-type: application/json"  \
+   -H "ce-specversion: 1.0"  \
+   -H "ce-source: my/curl/command"  \
+   -H "ce-type: my.demo.event"  \
+   -H "ce-id: 0815"  \
+   -d '{"value":"Hello Knative"}' \
+   http://broker-ingress.knative-eventing.svc.cluster.local/default/my-broker
+   ```
 
 1. You will receive a `202` HTTP response code, that the broker did accept the request:
 
-    ```{ .bash .no-copy }
-    ...
-    * Mark bundle as not supporting multiuse
-    < HTTP/1.1 202 Accepted
-    < allow: POST, OPTIONS
-    < date: Tue, 15 Mar 2022 13:37:57 GMT
-    < content-length: 0
-    < x-envoy-upstream-service-time: 79
-    < server: istio-envoy
-    < x-envoy-decorator-operation: broker-ingress.knative-eventing.svc.cluster.local:80/*
-    ```
+   ```{ .bash .no-copy }
+   ...
+   * Mark bundle as not supporting multiuse
+   < HTTP/1.1 202 Accepted
+   < allow: POST, OPTIONS
+   < date: Tue, 15 Mar 2022 13:37:57 GMT
+   < content-length: 0
+   < x-envoy-upstream-service-time: 79
+   < server: istio-envoy
+   < x-envoy-decorator-operation: broker-ingress.knative-eventing.svc.cluster.local:80/*
+   ```
 
 1. Apply a `AuthorizationPolicy` object in the `knative-eventing` namespace to describe that the path to the Broker is restricted to a given user:
 
-    ```yaml
-    apiVersion: security.istio.io/v1beta1
-    kind: AuthorizationPolicy
-    metadata:
-      name: require-jwt
-      namespace: knative-eventing
-    spec:
-      action: ALLOW
-      rules:
-      - from:
-        - source:
-           requestPrincipals: ["testing@secure.istio.io/testing@secure.istio.io"]
-        to:
-        - operation:
-            methods: ["POST"]
-            paths: ["/default/my-broker"]
-    ```
+   ```yaml
+   apiVersion: security.istio.io/v1beta1
+   kind: AuthorizationPolicy
+   metadata:
+     name: require-jwt
+     namespace: knative-eventing
+   spec:
+     action: ALLOW
+     rules:
+       - from:
+           - source:
+               requestPrincipals: ["testing@secure.istio.io/testing@secure.istio.io"]
+         to:
+           - operation:
+               methods: ["POST"]
+               paths: ["/default/my-broker"]
+   ```
 
 1. Create a `RequestAuthentication` object for the user `requestPrincipal` in the `istio-system` namespace:
 
-    ```yaml
-    apiVersion: security.istio.io/v1beta1
-    kind: RequestAuthentication
-    metadata:
-      name: "jwt-example"
-      namespace: istio-system
-    spec:
-      jwtRules:
-      - issuer: "testing@secure.istio.io"
-        jwksUri: "https://raw.githubusercontent.com/istio/istio/release-1.13/security/tools/jwt/samples/jwks.json"
-    ```
+   ```yaml
+   apiVersion: security.istio.io/v1beta1
+   kind: RequestAuthentication
+   metadata:
+     name: "jwt-example"
+     namespace: istio-system
+   spec:
+     jwtRules:
+       - issuer: "testing@secure.istio.io"
+         jwksUri: "https://raw.githubusercontent.com/istio/istio/release-1.13/security/tools/jwt/samples/jwks.json"
+   ```
 
 1. Now retrying the `curl` command results in a `403 - Forbidden` response code from the server:
 
-    ```{ .bash .no-copy }
-    ...
-    * Mark bundle as not supporting multiuse
-    < HTTP/1.1 403 Forbidden
-    < content-length: 19
-    < content-type: text/plain
-    < date: Tue, 15 Mar 2022 13:47:53 GMT
-    < server: istio-envoy
-    < connection: close
-    < x-envoy-decorator-operation: broker-ingress.knative-eventing.svc.cluster.local:80/*
-    ```
+   ```{ .bash .no-copy }
+   ...
+   * Mark bundle as not supporting multiuse
+   < HTTP/1.1 403 Forbidden
+   < content-length: 19
+   < content-type: text/plain
+   < date: Tue, 15 Mar 2022 13:47:53 GMT
+   < server: istio-envoy
+   < connection: close
+   < x-envoy-decorator-operation: broker-ingress.knative-eventing.svc.cluster.local:80/*
+   ```
 
 1. To access the Broker, add the Bearer JSON Web Token as part of the request:
 
-    ```bash
-    TOKEN=$(curl https://raw.githubusercontent.com/istio/istio/release-1.13/security/tools/jwt/samples/demo.jwt -s)
+   ```bash
+   TOKEN=$(curl https://raw.githubusercontent.com/istio/istio/release-1.13/security/tools/jwt/samples/demo.jwt -s)
 
-    curl -X POST -v \
-    -H "content-type: application/json"  \
-    -H "Authorization: Bearer ${TOKEN}"  \
-    -H "ce-specversion: 1.0"  \
-    -H "ce-source: my/curl/command"  \
-    -H "ce-type: my.demo.event"  \
-    -H "ce-id: 0815"  \
-    -d '{"value":"Hello Knative"}' \
-    <broker-URL>
-    ```
+   curl -X POST -v \
+   -H "content-type: application/json"  \
+   -H "Authorization: Bearer ${TOKEN}"  \
+   -H "ce-specversion: 1.0"  \
+   -H "ce-source: my/curl/command"  \
+   -H "ce-type: my.demo.event"  \
+   -H "ce-id: 0815"  \
+   -d '{"value":"Hello Knative"}' \
+   <broker-URL>
+   ```
 
-    The server now responds with a `202` response code, indicating that it has accepted the HTTP request:
+   The server now responds with a `202` response code, indicating that it has accepted the HTTP request:
 
-    ```{ .bash .no-copy }
-    * Mark bundle as not supporting multiuse
-    < HTTP/1.1 202 Accepted
-    < allow: POST, OPTIONS
-    < date: Tue, 15 Mar 2022 14:05:09 GMT
-    < content-length: 0
-    < x-envoy-upstream-service-time: 40
-    < server: istio-envoy
-    < x-envoy-decorator-operation: broker-ingress.knative-eventing.svc.cluster.local:80/*
-    ```
+   ```{ .bash .no-copy }
+   * Mark bundle as not supporting multiuse
+   < HTTP/1.1 202 Accepted
+   < allow: POST, OPTIONS
+   < date: Tue, 15 Mar 2022 14:05:09 GMT
+   < content-length: 0
+   < x-envoy-upstream-service-time: 40
+   < server: istio-envoy
+   < x-envoy-decorator-operation: broker-ingress.knative-eventing.svc.cluster.local:80/*
+   ```

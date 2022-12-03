@@ -1,15 +1,13 @@
-# Checking your Knative version
+# 检测 Knative 版本
 
-To check the version of your Knative installation, use one of the following commands,
-depending on whether you installed Knative with YAML or with the Operator.
+要检查Knative安装的版本，可以使用以下命令之一，具体取决于您是用YAML还是用Operator安装Knative。
 
-## If you installed with YAML
+## 如果你使用 YAML 安装
 
-To verify the version of the Knative component that you have running on your cluster, query for the
-`<component>.knative.dev/release` label.
+要验证在集群上运行的Knative组件的版本，请查询`<component>.knative.dev/release` 标签。
 
 === "Knative Serving"
-    Check the installed Knative Serving version by running the command:
+    运行命令查看已安装的Knative服务版本:
 
     ```bash
     {% raw %}
@@ -17,7 +15,7 @@ To verify the version of the Knative component that you have running on your clu
     {% endraw %}
     ```
 
-    Example output:
+    示例输出:
 
     ```{ .bash .no-copy }
     v0.23.0
@@ -25,7 +23,7 @@ To verify the version of the Knative component that you have running on your clu
 
 
 === "Knative Eventing"
-    Check the installed Knative Eventing version by running the command:
+    运行以下命令检查安装的Knative event版本:
 
     ```bash
     {% raw %}
@@ -33,24 +31,24 @@ To verify the version of the Knative component that you have running on your clu
     {% endraw %}
     ```
 
-    Example output:
+    示例输出:
 
     ```{ .bash .no-copy }
     v0.23.0
     ```
 
-## If you installed with the Operator
+## 如果你使用 Operator 安装
 
-To verify the version of your current Knative installation:
+要验证您当前安装的Knative版本:
 
 === "Knative Serving"
-    Check the installed Knative Serving version by running the command:
+    运行命令查看已安装的Knative服务版本:
 
     ```bash
     kubectl get KnativeServing knative-serving --namespace knative-serving
     ```
 
-    Example output:
+    示例输出:
 
     ```{ .bash .no-copy }
     NAME              VERSION         READY   REASON
@@ -58,13 +56,13 @@ To verify the version of your current Knative installation:
     ```
 
 === "Knative Eventing"
-    Check the installed Knative Eventing version by running the command:
+    运行以下命令检查安装的Knative event版本:
 
     ```bash
     kubectl get KnativeEventing knative-eventing --namespace knative-eventing
     ```
 
-    Example output:
+    示例输出:
 
     ```{ .bash .no-copy }
     NAME               VERSION         READY   REASON

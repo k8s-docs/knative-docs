@@ -1,40 +1,39 @@
-# Enabling auto-TLS certs
+# 启用自动tls证书
 
-If you install and configure cert-manager, you can configure Knative to
-automatically obtain new TLS certificates and renew existing ones for Knative
-Services. To learn more about using secure connections in Knative, see
-[Configuring HTTPS with TLS certificates](using-a-tls-cert.md).
+如果安装并配置了证书管理器，则可以配置Knative自动获取新的TLS证书，并为Knative Services更新现有的TLS证书。
+要了解有关在Knative中使用安全连接的详细信息，请参见[配置带TLS证书的HTTPS](using-a-tls-cert.md).
 
-## Before you begin
+## 在开始之前
 
-The following must be installed on your Knative cluster:
+必须在您的Knative集群上安装以下组件:
 
 - [Knative Serving](../install/yaml-install/serving/install-serving-with-yaml.md).
 
-- A Networking layer such as Kourier, Istio with SDS v1.3 or higher, or Contour v1.1 or higher. See [Install a networking layer](../install/yaml-install/serving/install-serving-with-yaml.md#install-a-networking-layer) or [Istio with SDS, version 1.3 or higher](../install/installing-istio.md#installing-istio-with-SDS-to-secure-the-ingress-gateway).
+- 一个网络层，如Kourier, Istio具有SDS v1.3或更高版本，或Contour v1.1或更高版本。
+  参见[安装网络层](../install/yaml-install/serving/install-serving-with-yaml.md#install-a-networking-layer)或[带有SDS的Istio，版本1.3或更高](../install/installing-istio.md#installing-istio-with-SDS-to-secure-the-ingress-gateway)。
 
-- [`cert-manager` version `1.0.0` or higher](../install/installing-cert-manager.md).
+- [`cert-manager` 版本 `1.0.0` 或更高](../install/installing-cert-manager.md).
 
-- Your Knative cluster must be configured to use a [custom domain](using-a-custom-domain.md).
+- 您的Knative集群必须配置为使用[自定义域](using-a-custom-domain.md).
 
-- Your DNS provider must be setup and configured to your domain.
+- 您的DNS提供程序必须设置并配置到您的域。
 
-- If you want to use HTTP-01 challenge, you need to configure your custom
-domain to map to the IP of ingress. You can achieve this by adding a DNS A record to map the domain to the IP according to the instructions of your DNS provider.
+- 如果您想使用HTTP-01 challenge，您需要配置您的自定义域以映射到入接口的IP。
+  您可以通过添加一个DNS a记录来根据您的DNS提供者的说明将域映射到IP来实现这一点。
 
-## Automatic TLS provision mode
+## TLS自动发放模式
 
-Knative supports the following Auto TLS modes:
+Knative支持以下自动TLS模式:
 
-1.  Using DNS-01 challenge
+1.  使用 DNS-01 challenge
 
-    In this mode, your cluster needs to be able to talk to your DNS server to verify the ownership of your domain.
+    在这种模式下，您的集群需要能够与您的DNS服务器通信，以验证您的域的所有权。
 
-    - **Provision Certificate per namespace is supported when using DNS-01 challenge mode.**
+    - **使用DNS-01挑战模式时，支持每个命名空间颁发证书。**
         - This is the recommended mode for faster certificate provision.
         - In this mode, a single Certificate will be provisioned per namespace and is reused across the Knative Services within the same namespace.
 
-    - **Provision Certificate per Knative Service is supported when using DNS-01 challenge mode.**
+    - **使用DNS-01挑战模式时，支持根据Knative服务提供证书。**
         - This is the recommended mode for better certificate isolation between Knative Services.
         - In this mode, a Certificate will be provisioned for each Knative Service.
         - The TLS effective time is longer as it needs Certificate provision for each Knative Service creation.
@@ -45,7 +44,7 @@ Knative supports the following Auto TLS modes:
     - When using HTTP-01 challenge, **a certificate will be provisioned per Knative Service.**
     - **HTTP-01 does not support provisioning a certificate per namespace.**
 
-## Enabling Auto TLS
+## 启用自动TLS
 
 1.  Create and add the `ClusterIssuer` configuration file to your Knative cluster
 to define who issues the TLS certificates, how requests are validated,
@@ -125,7 +124,7 @@ and which DNS provider validates those requests.
 
     Result: The `Status.Conditions` should include `Ready=True`.
 
-### DNS-01 challenge only: Configure your DNS provider
+### DNS-01 challenge only: 配置DNS提供程序
 
 If you choose to use DNS-01 challenge, configure which DNS provider is used to
 validate the DNS-01 challenge requests.
@@ -138,7 +137,7 @@ Note that DNS-01 challenges can be used to either validate an
 individual domain name or to validate an entire namespace using a
 wildcard certificate like `*.my-ns.example.com`.
 
-### Install net-certmanager-controller deployment
+### 安装net-certmanager-controller部署
 
 1.  Determine if `net-certmanager-controller` is already installed by running the
     following command:
@@ -153,7 +152,7 @@ wildcard certificate like `*.my-ns.example.com`.
     kubectl apply -f {{ artifact( repo="net-certmanager", file="release.yaml") }}
     ```
 
-### Provisioning certificates per namespace (wildcard certificates)
+### 为每个名称空间提供证书(通配符证书)
 
 !!! warning
     Provisioning a certificate per namespace only works with DNS-01
@@ -179,7 +178,7 @@ kubectl patch --namespace knative-serving configmap config-network -p '{"data": 
 
 This selects all namespaces where the label value is not in the set `"true"`.
 
-### Configure config-certmanager ConfigMap
+### 配置config-certmanager ConfigMap
 
 Update your [`config-certmanager` ConfigMap](https://github.com/knative-sandbox/net-certmanager/blob/main/config/config.yaml)
 in the `knative-serving` namespace to reference your new `ClusterIssuer`.
@@ -215,7 +214,7 @@ in the `knative-serving` namespace to reference your new `ClusterIssuer`.
     kubectl get configmap config-certmanager -n knative-serving -o yaml
     ```
 
-### Turn on Auto TLS
+### 开启自动TLS
 
 Update the [`config-network` ConfigMap](https://github.com/knative/serving/blob/main/config/core/configmaps/network.yaml) in the `knative-serving` namespace to enable `auto-tls` and specify how HTTP requests are handled:
 
@@ -282,7 +281,7 @@ Congratulations! Knative is now configured to obtain and renew TLS certificates.
 When your TLS certificate is active on your cluster, your Knative services will
 be able to handle HTTPS traffic.
 
-### Verify Auto TLS
+### 自动TLS验证
 
 1.  Run the following command to create a Knative Service:
 
@@ -299,7 +298,7 @@ be able to handle HTTPS traffic.
 
     Note that the URL will be **https** in this case.
 
-### Disable Auto TLS per service or route
+### 禁用每个服务或路由的自动TLS
 
 If you have Auto TLS enabled in your cluster, you can choose to disable Auto TLS for individual services or routes by adding the annotation `networking.knative.dev/disable-auto-tls: true`.
 

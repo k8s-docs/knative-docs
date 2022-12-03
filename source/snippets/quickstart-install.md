@@ -2,15 +2,16 @@
 - /docs/getting-started/quickstart-install.md
 - /docs/install/quickstart-install.md
 -->
-## 安装Knative快速启动插件
 
-要开始，安装knative  `quickstart` 插件:
+## 安装 Knative quickstart 插件
+
+要开始，安装 knative `quickstart` 插件:
 
 === "使用 Homebrew"
 
-    Do one of the following:
+    做以下任何一件事:
 
-    - To install the `quickstart` plugin by using [Homebrew](https://brew.sh){target=_blank}, run the command (Use `brew upgrade` instead if you are upgrading from a previous version):
+    - 要使用[Homebrew](https://brew.sh){target=_blank})安装`quickstart`插件，请运行以下命令(如果您是从以前的版本升级，请使用 `brew upgrade` 代替):
 
         ```bash
         brew install knative-sandbox/kn-plugins/quickstart
@@ -18,72 +19,71 @@
 
 === "使用二进制"
 
-    1. Download the binary for your system from the [`quickstart` release page](https://github.com/knative-sandbox/kn-plugin-quickstart/releases){target=_blank}.
+    1. 从[`quickstart` 发布页面](https://github.com/knative-sandbox/kn-plugin-quickstart/releases){target=_blank}下载您系统的二进制文件.
 
-    1. Rename the file to remove the OS and architecture information. For example, rename `kn-quickstart-amd64` to `kn-quickstart`.
+    1. 重命名文件以删除操作系统和体系结构信息。例如，将`kn-quickstart-amd64`重命名为`kn-quickstart`。
 
-    1. Make the plugin executable. For example, `chmod +x kn-quickstart`.
+    1. 使插件可执行。例如，`chmod +x kn-quickstart`。
 
-    1. Move the executable binary file to a directory on your `PATH` by running the command:
+    1. 通过运行以下命令将可执行的二进制文件移动到“PATH”上的某个目录:
 
         ```bash
         mv kn-quickstart /usr/local/bin
         ```
 
-    1. Verify that the plugin is working by running the command:
+    1. 通过运行以下命令验证插件是否正在工作:
 
         ```bash
         kn quickstart --help
         ```
 
 === "使用 Go"
-    1. Check out the `kn-plugin-quickstart` repository:
+
+    1. 查看`kn-plugin-quickstart`库:
 
           ```bash
           git clone https://github.com/knative-sandbox/kn-plugin-quickstart.git
           cd kn-plugin-quickstart/
           ```
 
-    1. Build an executable binary:
+    2. 构建一个可执行的二进制文件:
 
           ```bash
           hack/build.sh
           ```
 
-    1. Move the executable binary file to a directory on your `PATH`:
+    3. 将可执行的二进制文件移动到“PATH”上的目录:
 
           ```bash
           mv kn-quickstart /usr/local/bin
           ```
 
-     1. Verify that the plugin is working by running the command:
+     4. 通过运行以下命令验证插件是否正在工作:
 
           ```bash
           kn quickstart --help
           ```
 
-## 运行Knative快速启动插件
+## 运行 Knative quickstart 插件
 
 `quickstart`插件完成以下功能:
 
-1. **检查是否安装了选定的Kubernetes实例**
+1. **检查是否安装了选定的 Kubernetes 实例**
 1. **创建一个名为`knative`的集群**
-1. **安装Knative服务** 其中，Kourier作为默认的网络层，sslip.io作为DNS
-1. **安装Knative事件** 并创建内存中代理和通道实现
+1. **安装 Knative 服务** 其中，Kourier 作为默认的网络层，sslip.io 作为 DNS
+1. **安装 Knative 事件** 并创建内存中代理和通道实现
 
-
-要获得Knative的本地部署，运行 `quickstart` 插件:
+要获得 Knative 的本地部署，运行 `quickstart` 插件:
 
 === "使用 kind"
 
-
-    1. Install Knative and Kubernetes using [kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation) by running:
+    1. 使用[kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)安装Knative和Kubernetes:
 
         ```bash
         kn quickstart kind
         ```
 
-    1. After the plugin is finished, verify you have a cluster called `knative`:
+    1. 插件完成后，验证你有一个名为`knative`的集群:
 
         ```bash
         kind get clusters
@@ -91,29 +91,33 @@
 
 === "使用 minikube"
 
-    1. Install Knative and Kubernetes in a [minikube](https://minikube.sigs.k8s.io/docs/start/) instance by running:
+    1. 在[minikube](https://minikube.sigs.k8s.io/docs/start/)实例中安装Knative和Kubernetes:
 
         !!! note
-            The minikube cluster will be created with 6&nbsp;GB of RAM. If you don't have enough memory, you can change to a
-            different value not lower than 3&nbsp;GB by running the command `minikube config set memory 3078` before this command.
+
+            minikube集群将使用6&nbsp;GB的RAM创建。
+            如果没有足够的内存，可以在此命令之前运行命令`minikube config set memory 3078`，将其更改为不低于3&nbsp;GB的值。
         ```bash
         kn quickstart minikube
         ```
 
-    1. The output of the previous command asked you to run minikube tunnel.
-       Run the following command to start the process in a secondary terminal window, then return to the primary window and press enter to continue:
+    1. 上一个命令的输出要求您运行minikube tunnel。
+       运行以下命令在辅助终端窗口中启动进程，然后返回到主窗口并按回车继续:
+
         ```bash
         minikube tunnel --profile knative
         ```
-        The tunnel must continue to run in a terminal window any time you are using your Knative `quickstart` environment.
 
-        The tunnel command is required because it allows your cluster to access Knative ingress service as a LoadBalancer from your host computer.
+        在使用Knative“quickstart”环境时，隧道必须在终端窗口中继续运行。
+
+        需要使用tunnel命令，因为它允许您的集群作为LoadBalancer从您的主机访问Knative ingress服务。
 
         !!! note
-            To terminate the tunnel process and clean up network routes, enter `Ctrl-C`.
-            For more information about the `minikube tunnel` command, see the [minikube documentation](https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-tunnel).
 
-    1. After the plugin is finished, verify you have a cluster called `knative`:
+            输入`Ctrl-C`可以终止隧道进程并清理网络路由。
+            有关`minikube tunnel`命令的更多信息，请参见[minikube文档](https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-tunnel).
+
+    1. 插件完成后，验证你有一个名为`knative`的集群:
 
         ```bash
         minikube profile list

@@ -1,10 +1,10 @@
-# Upgrading Knative
+# 更新 Knative
 
-Knative supports upgrading by a single [minor](https://semver.org/) version number. For example, if you have v0.21.0 installed, you must upgrade to v0.22.0 before attempting to upgrade to v0.23.0.
-To verify your current version, see [Checking your Knative version](check-install-version.md).
+Knative 支持通过单个[minor](https://semver.org/)版本号进行升级。
+例如，如果您安装了 v0.21.0，那么在尝试升级到 v0.23.0 之前，您必须升级到 v0.22.0。
+要验证当前版本，请参见[检查 Knative 版本](<(check-install-version.md)>)。
 
-To upgrade Knative:
+升级 Knative:
 
-- If you installed Knative using YAML, see [Upgrading with kubectl](upgrade-installation.md).
-- If you installed Knative using the Knative Operator, see
-[Upgrading using the Knative Operator](upgrade-installation-with-operator.md).
+- 如果您使用 YAML 安装 Knative，请参见[用 kubectl 升级](upgrade-installation.md).
+- 如果您使用 Knative 操作符安装 Knative，请参阅[使用 Knative Operator 升级](upgrade-installation-with-operator.md).

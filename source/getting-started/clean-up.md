@@ -12,7 +12,7 @@ hide_next: true
 
 === "kind"
 
-    Delete your `kind` cluster by running the command:
+    通过运行以下命令删除你的`kind`集群:
 
     ```bash
     kind delete clusters knative
@@ -24,7 +24,7 @@ hide_next: true
 
 === "minikube"
 
-    Delete your `minikube` cluster by running the command:
+    通过以下命令删除你的`minikube`集群:
 
     ```bash
     minikube delete -p knative

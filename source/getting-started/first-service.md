@@ -1,6 +1,6 @@
 # 部署 Knative 服务
 
-在本教程中，您将部署一个"Hello world"Knative服务，该服务接受环境变量`TARGET`并打印`Hello ${TARGET}!`
+在本教程中，您将部署一个 `Hello world` Knative服务，该服务接受环境变量`TARGET`并打印`Hello ${TARGET}!`
 
 === "kn"
 

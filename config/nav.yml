@@ -33,9 +33,9 @@ nav:
                             - 流量分发: getting-started/first-traffic-split.md
                   - Knative 事件:
                             - 关于事件: getting-started/getting-started-eventing.md
-                            - 来源代理触发器: getting-started/first-broker.md
-                            - 使用服务作为源: getting-started/first-source.md
-                            - 使用触发器和接收器: getting-started/first-trigger.md
+                            - 第一个代理: getting-started/first-broker.md
+                            - 第一个源: getting-started/first-source.md
+                            - 第一个触发器: getting-started/first-trigger.md
                   - 接下来是什么?: getting-started/next-steps.md
                   - 清理: getting-started/clean-up.md
         ###############################################################################
@@ -44,7 +44,7 @@ nav:
         - 安装:
                   - 安装Knative: install/README.md
                   - 安装KN: client/install-kn.md
-                  - 快速启动安装: install/quickstart-install.md
+                  - quickstart安装: install/quickstart-install.md
                   # YAML Installation
                   - YAML安装:
                             - 关于YAML-based安装: install/yaml-install/README.md
@@ -68,7 +68,7 @@ nav:
                             # Cert-manager Installation
                             - 安装cert-manager: install/installing-cert-manager.md
                   # Vendor docs
-                  - 使用基于Knative-based产品: install/knative-offerings.md
+                  - 基于Knative产品: install/knative-offerings.md
                   # Upgrading Knative
                   - 升级安装:
                             - 升级Knative: install/upgrade/README.md

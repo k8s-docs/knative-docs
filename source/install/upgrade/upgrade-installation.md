@@ -1,34 +1,28 @@
-# Upgrading with kubectl
+# 使用kubectl升级
 
-If you installed Knative using YAML, you can use the `kubectl apply` command in
-this topic to upgrade your Knative components and plugins.
-If you installed using the Operator, see [Upgrading using the Knative Operator](upgrade-installation-with-operator.md).
+如果使用YAML安装Knative，则可以在本主题中使用`kubectl apply`命令升级Knative组件和插件。
+如果使用Operator安装，请参见[使用Knative Operator升级](upgrade-installation-with-operator.md).
 
-## Before you begin
+## 在开始之前
 
-Before upgrading, there are a few steps you must take to ensure a successful
-upgrade process.
+在升级之前，必须采取一些步骤以确保升级过程成功。
 
-### Identify breaking changes
+### 识别破坏性更改
 
-You should be aware of any breaking changes between your current and desired
-versions of Knative. Breaking changes between Knative versions are documented in
-the Knative release notes. Before upgrading, review the release notes for the
-target version to learn about any changes you might need to make to your Knative
-applications:
+您应该注意Knative当前版本和期望版本之间的任何破坏性更改。
+Knative版本之间的突破性更改记录在Knative发布说明中。
+在升级之前，请查看目标版本的发布说明，了解您可能需要对Knative应用程序进行的任何更改:
 
 - [Serving](https://github.com/knative/serving/releases)
 - [Eventing](https://github.com/knative/eventing/releases)
 
-Release notes are published with each version on the "Releases" page of their
-respective repositories in GitHub.
+每个版本的发布说明都发布在GitHub中各自存储库的"Releases"页面上。
 
-### View current pod status
+### 查看当前Pod状态
 
-Before upgrading, view the status of the pods for the namespaces you plan on
-upgrading. This allows you to compare the before and after state of your
-namespace. For example, if you are upgrading Knative Serving and Eventing, enter the following commands to see the current state of
-each namespace:
+在升级之前，查看您计划升级的名称空间的 `pods` 的状态。
+这允许您比较名称空间的前后状态。
+例如，如果您正在升级Knative服务和事件，输入以下命令查看每个名称空间的当前状态:
 
 ```bash
 kubectl get pods -n knative-serving
@@ -38,47 +32,46 @@ kubectl get pods -n knative-serving
 kubectl get pods -n knative-eventing
 ```
 
-### Upgrade plugins
+### 升级插件
 
-If you have a plugin installed, make sure to upgrade it at the same time as
-you upgrade your Knative components.
+如果您安装了一个插件，请确保在升级Knative组件的同时升级它。
 
-### Run pre-install tools before upgrade
+### 升级前运行预安装工具
 
-For some upgrades, there are steps that must be completed before the actual
-upgrade. These steps, where applicable, are identified in the release notes.
+对于某些升级，在实际升级之前必须完成一些步骤。
+这些步骤(如果适用的话)在发布说明中进行了标识。
 
-### Upgrade existing resources to the latest stored version
+### 将现有资源升级到最新的存储版本
 
-Knative custom resources are stored within Kubernetes at a particular version.
-As we introduce newer and remove older supported versions, you must migrate the resources to the designated stored version. This ensures removing older versions
-will succeed when upgrading.
+Knative自定义资源存储在Kubernetes的特定版本中。
+当我们引入较新的支持版本并删除较旧的支持版本时，您必须将资源迁移到指定的存储版本。
+这确保了在升级时删除旧版本会成功。
 
-For the various subprojects there is a K8s job to help operators perform this migration. The release notes for each release will state explicitly whether a migration is required.
+对于各种子项目，有一个K8s工作来帮助操作人员执行这种迁移。
+每个版本的版本说明将明确说明是否需要迁移。
 
-## Performing the upgrade
+## 执行升级
 
-To upgrade, apply the YAML files for the subsequent minor versions of all your installed Knative components and features, remembering to only upgrade by one minor version at a time.
+要升级，请为所有已安装Knative组件和特性的后续小版本应用YAML文件，记住每次只升级一个小版本。
 
-Before upgrading, [check your Knative version](check-install-version.md).
+升级前，[检查您的Knative版本](check-install-version.md).
 
-For a cluster running version 1.1 of the Knative Serving and Knative Eventing components, the following command upgrades the installation to version 1.2:
+对于运行Knative Serving和Knative event组件1.1版本的集群，以下命令将安装升级到1.2版本:
 
 ```bash
 kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.2.0/serving-core.yaml \
 -f https://github.com/knative/eventing/releases/download/knative-v1.2.0/eventing.yaml \
 ```
 
-### Run post-install tools after the upgrade
+### 升级完成后运行安装后工具
 
-In some upgrades there are some steps that must happen after the actual
-upgrade, and these are identified in the release notes.
+在某些升级中，有些步骤必须在实际升级之后进行，这些步骤在发布说明中进行了标识。
 
-## Verifying the upgrade
+## 升级后验证
 
-To confirm that your components and plugins have successfully upgraded, view the status of their pods in the relevant namespaces.
-All pods will restart during the upgrade and their age will reset.
-If you upgraded Knative Serving and Eventing, enter the following commands to get information about the pods for each namespace:
+要确认组件和插件已经成功升级，请在相关名称空间中查看它们的 `pods` 的状态。
+所有的`Pod`将在升级过程中重新启动，它们的年龄将重置。
+如果升级了Knative服务和事件，请输入以下命令来获取关于每个名称空间的`Pod`的信息:
 
 ```bash
 kubectl get pods -n knative-serving
@@ -88,7 +81,7 @@ kubectl get pods -n knative-serving
 kubectl get pods -n knative-eventing
 ```
 
-These commands return something similar to:
+这些命令返回类似于:
 
 ```bash
 NAME                                READY   STATUS        RESTARTS   AGE
@@ -109,7 +102,7 @@ imc-dispatcher-f59b7c57-q9xcl          1/1     Running   0          80s
 sources-controller-8596684d7b-jxkmd    1/1     Running   0          83s
 ```
 
-If the age of all your pods has been reset and all pods are up and running, the upgrade was completed successfully.
-You might notice a status of `Terminating` for the old pods as they are cleaned up.
+如果所有`Pod`的年龄都已重置，并且所有`Pod`都已启动并运行，则升级已成功完成。
+你可能会注意到旧`Pod`被清理时的`Terminating`状态。
 
-If necessary, repeat the upgrade process until you reach your desired minor version number.
+如果需要，重复升级过程，直到达到所需的次要版本号。

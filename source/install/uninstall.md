@@ -1,15 +1,15 @@
-# Uninstalling Knative
+# 卸载 Knative
 
 To uninstall an Operator-based Knative installation, see the following [Uninstall an Operator-based Knative Installation](#uninstall-an-operator-based-knative-installation) procedure.
 To uninstall a YAML-based Knative installation, see the following [Uninstall a YAML-based Knative Installation](#uninstall-a-yaml-based-knative-installation) procedure.
 
 
-## Uninstalling a YAML-based Knative installation
+## 卸载基于yaml的Knative安装
 
 To uninstall a YAML-based Knative installation:
 
 
-### Uninstalling optional Serving extensions
+### 正在卸载可选服务扩展
 
 Uninstall any Serving extensions you have installed by performing the steps in the following relevant tab:
 
@@ -50,7 +50,7 @@ Uninstall any Serving extensions you have installed by performing the steps in t
 
 
 
-### Uninstalling a networking layer
+### 卸载网络层
 
 Follow the relevant procedure to uninstall the networking layer you installed:
 
@@ -108,7 +108,7 @@ Follow the relevant procedure to uninstall the networking layer you installed:
 
 
 
-### Uninstalling the Serving component
+### 卸载服务组件
 
 1. Uninstall the Serving core components by running:
 
@@ -123,7 +123,7 @@ Follow the relevant procedure to uninstall the networking layer you installed:
     ```
 
 
-### Uninstalling optional Eventing extensions
+### 正在卸载可选的事件扩展
 
 Uninstall any Eventing extensions you have installed by following the relevant procedure:
 
@@ -215,7 +215,7 @@ Uninstall any Eventing extensions you have installed by following the relevant p
 
 
 
-### Uninstalling an optional Broker (Eventing) layer
+### 卸载一个可选的Broker (event)层
 
 Uninstall a Broker (Eventing) layer, if you installed one:
 
@@ -251,7 +251,7 @@ Uninstall a Broker (Eventing) layer, if you installed one:
 
 
 
-### Uninstalling optional channel (messaging) layers
+### 卸载可选通道(消息传递)层
 
 Uninstall each channel layer you have installed:
 
@@ -308,7 +308,7 @@ Uninstall each channel layer you have installed:
 
 
 
-### Uninstalling the Eventing component
+### 卸载事件组件
 
 1. Uninstall the Eventing core components by running:
 
@@ -323,12 +323,12 @@ Uninstall each channel layer you have installed:
     ```
 
 
-## Uninstall an Operator-based Knative installation
+## 卸载基于operator的Knative安装
 
 To uninstall an Operator-based Knative installation, follow these procedures:
 
 
-### Removing the Knative Serving component
+### 删除Knative服务组件
 
 Remove the Knative Serving CR:
 
@@ -337,7 +337,7 @@ kubectl delete KnativeServing knative-serving -n knative-serving
 ```
 
 
-### Removing Knative Eventing component
+### 删除Knative事件组件
 
 Remove the Knative Eventing CR:
 
@@ -350,7 +350,7 @@ Even if the Knative Serving and Knative Eventing CRs are successfully removed, a
 Knative are still kept in the cluster. All your resources relying on Knative CRDs can still work.
 
 
-### Removing the Knative Operator:
+### 删除Knative操作符
 
 If you have installed Knative using the Release page, remove the operator using the following command:
 

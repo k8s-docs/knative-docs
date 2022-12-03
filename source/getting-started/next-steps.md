@@ -16,17 +16,18 @@
 
 请参阅以下针对您的用例的文档指南:
 
-- [Serving Guide](../serving/README.md)
-- [Eventing Guide](../eventing/README.md)
+- [服务指南](../serving/README.md)
+- [事件指南](../eventing/README.md)
 
 ## :book: Knative 书籍
 
 帮助你理解 Knative 概念并获得额外示例的书籍:
 
 - [Knative 实例](https://www.manning.com/books/knative-in-action)
-  
-    ??? question "想要Knative实例的免费数字拷贝?"
-        VMWare慷慨地捐赠了Knative实例电子书的免费访问权限，[在这里获取您的副本!](https://tanzu.vmware.com/content/ebooks/knative-in-action){target=\_blank}
+
+    ??? question "想要 Knative 实例的免费数字拷贝?"
+
+        VMWare 慷慨地捐赠了 Knative 实例电子书的免费访问权限，[在这里获取您的副本!](https://tanzu.vmware.com/content/ebooks/knative-in-action){target=_blank}
 
 - [Knative Cookbook](https://www.oreilly.com/library/view/knative-cookbook/9781492061182/)
 
