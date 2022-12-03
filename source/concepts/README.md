@@ -4,7 +4,7 @@
 
 ## 什么是 Knative?
 
-Knative是一个平台无关的解决方案，用于运行[无服务器](https://en.wikipedia.org/wiki/Serverless_computing){target=\_blank}部署。
+Knative是一个平台无关的解决方案，用于运行[无服务器](https://en.wikipedia.org/wiki/Serverless_computing){target=_blank}部署。
 
 ## Knative 服务
 

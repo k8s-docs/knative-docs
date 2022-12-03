@@ -1,7 +1,7 @@
-# Custom event sources
+# 自定义事件源
 
-If you need to ingress events from an event producer that is not included in Knative, or from a producer that emits events which are not in the CloudEvent format that is used by Knative, you can do this by using one of the following methods:
+如果您需要从Knative中不包含的事件生成器输入事件，或者从Knative使用的CloudEvent格式之外的事件生成器输入事件，您可以使用以下方法之一来实现此目的:
 
-- [Create a custom Knative event source](custom-event-source/README.md).
-- Use a PodSpecable object as an event source, by creating a [SinkBinding](sinkbinding/README.md).
-- Use a container as an event source, by creating a [ContainerSource](containersource/README.md).
+- [创建一个自定义Knative事件源](custom-event-source/README.md).
+- 通过创建[SinkBinding](sinkbinding/README.md)，使用PodSpecable对象作为事件源。
+- 使用容器作为事件源，通过创建[ContainerSource](containersource/README.md).

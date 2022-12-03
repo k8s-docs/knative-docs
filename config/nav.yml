@@ -15,7 +15,7 @@ nav:
                                       - 修正: concepts/serving-resources/revisions.md
                             - 事件资源:
                                       - 代理: concepts/eventing-resources/brokers.md
-                  - Duck types: concepts/duck-typing.md
+                  - 鸭子类型: concepts/duck-typing.md
         ###############################################################################
         # Getting started
         ###############################################################################
@@ -47,7 +47,7 @@ nav:
                   - quickstart安装: install/quickstart-install.md
                   # YAML Installation
                   - YAML安装:
-                            - 关于YAML-based安装: install/yaml-install/README.md
+                            - 基于YAML安装: install/yaml-install/README.md
                             - 安装服务:
                                       - YAML安装服务: install/yaml-install/serving/install-serving-with-yaml.md
                                       - 服务安装文件: install/yaml-install/serving/serving-installation-files.md
@@ -229,21 +229,21 @@ nav:
                             - 事件 sinks:
                                       - 关于 sinks: eventing/sinks/README.md
                                       - KafkaSink: eventing/sinks/kafka-sink.md
-                            - 处理交货失败: eventing/event-delivery.md
+                            - 投递失败处理: eventing/event-delivery.md
                             - 流:
                                       - 关于流: eventing/flows/README.md
-                                      - 平行: eventing/flows/parallel.md
+                                      - 并行: eventing/flows/parallel.md
                                       - 序列:
                                                 - 关于序列: eventing/flows/sequence/README.md
                                                 - 显示顺序输出: eventing/flows/sequence/sequence-reply-to-event-display/README.md
                                                 - 使用序列: eventing/flows/sequence/sequence-reply-to-sequence/README.md
                                                 - 创建额外的事件: eventing/flows/sequence/sequence-terminal/README.md
                                                 - 与代理和触发器一起使用: eventing/flows/sequence/sequence-with-broker-trigger/README.md
-                            - 渠道:
-                                      - 关于渠道: eventing/channels/README.md
+                            - 通道:
+                                      - 关于通道: eventing/channels/README.md
                                       - 通道类型和默认值: eventing/channels/channel-types-defaults.md
                                       - 使用集群或命名空间默认值创建通道: eventing/channels/create-default-channel.md
-                                      - 可用的频道: eventing/channels/channels-crds.md
+                                      - 可用通道: eventing/channels/channels-crds.md
                                       - 订阅: eventing/channels/subscriptions.md
                             - 事件注册表: eventing/event-registry.md
                             - 糖控制器: eventing/sugar/README.md

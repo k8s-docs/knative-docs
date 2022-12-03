@@ -1,10 +1,10 @@
-# Duck typing
+# 鸭子类型
 
-Knative通过使用[duck类型](https://en.wikipedia.org/wiki/Duck_typing)支持其组件的[松散耦合](https://en.wikipedia.org/wiki/Loose_coupling)。
+Knative通过使用[鸭子类型](https://zh.wikipedia.org/wiki/%E9%B8%AD%E5%AD%90%E7%B1%BB%E5%9E%8B){target=_blank}支持其组件的[松散耦合](https://zh.wikipedia.org/wiki/%E6%9D%BE%E8%80%A6%E5%90%88){target=_blank}。
 
 
-Duck类型意味着在Knative系统中使用的资源的兼容性由用于识别资源控制平面形状和行为的某些属性决定。
-这些属性基于一组针对不同类型资源的公共定义，称为duck类型。
+鸭子类型意味着在Knative系统中使用的资源的兼容性由用于识别资源控制平面形状和行为的某些属性决定。
+这些属性基于一组针对不同类型资源的公共定义，称为鸭子类型。
 
 Knative可以像使用泛型鸭类型一样使用资源，而不需要对资源类型有具体的了解，如果:
 
@@ -13,11 +13,11 @@ Knative可以像使用泛型鸭类型一样使用资源，而不需要对资源�
 
 有些资源可以选择加入多种鸭子类型。
 
-<!-- TODO: point to Discovery ClusterDuckType documentation. -->
+<!-- TODO: 指向发现ClusterDuckType文档。 -->
 
-Knative中duck类型的一个基本用途是在资源 _规范_ 中使用对象引用来指向其他资源。
+Knative中鸭子类型的一个基本用途是在资源 _规范_ 中使用对象引用来指向其他资源。
 
-包含引用的对象的定义规定了被引用资源的预期duck类型。
+包含引用的对象的定义规定了被引用资源的预期鸭子类型。
 
 ## 例子
 
@@ -63,7 +63,7 @@ status:
 
 当`示例`资源起作用时，它只作用于大尺寸鸭子类型形状的信息，而`Dog`实现可以自由地拥有对该资源最有意义的信息。
 
-当我们用一种新类型扩展系统时，duck类型的威力是显而易见的，例如，
+当我们用一种新类型扩展系统时，鸭子类型的威力是显而易见的，例如，
 `Human`, 如果新资源符合大公司设定的合同。
 
 ```yaml
@@ -93,20 +93,20 @@ status:
 
 `示例`资源能够应用为其配置的逻辑，而无需显式地了解`Human`或`Dog`。
 
-## Knative Duck Types
+## Knative 鸭子类型
 
-Knative定义了几个在整个项目中使用的duck类型的契约:
+Knative定义了几个在整个项目中使用的鸭子类型的契约:
 
-- [Duck typing](#duck-typing)
+- [鸭子类型](#鸭子类型)
   - [例子](#例子)
-  - [Knative Duck Types](#knative-duck-types)
-    - [Addressable](#addressable)
-    - [Binding](#binding)
-    - [Source](#source)
+  - [Knative 鸭子类型](#knative-鸭子类型)
+    - [Addressable(可寻址)](#addressable可寻址)
+    - [Binding(绑定)](#binding绑定)
+    - [Source(源)](#source源)
 
-### Addressable
+### Addressable(可寻址)
 
-Addressable is expected to be the following shape:
+可寻址的形状预期如下:
 
 ```yaml
 apiVersion: group/version
@@ -116,9 +116,9 @@ status:
     url: http://host/path?query
 ```
 
-### Binding
+### Binding(绑定)
 
-With a direct `subject`, Binding is expected to be in the following shape:
+有了直接的`subject`, Binding 应该是以下形状:
 
 ```yaml
 apiVersion: group/version
@@ -131,7 +131,7 @@ spec:
     name: a-name
 ```
 
-With an indirect `subject`, Binding is expected to be in the following shape:
+使用间接`subject`时, Binding 应该是以下形状:
 
 ```yaml
 apiVersion: group/version
@@ -146,9 +146,9 @@ spec:
         key: value
 ```
 
-### Source
+### Source(源)
 
-With a `ref` Sink, Source is expected to be in the following shape:
+使用`ref`接收器，Source 应该是以下形状:
 
 ```yaml
 apiVersion: group/version
@@ -170,7 +170,7 @@ status:
   sinkUri: http://host
 ```
 
-With a `uri` Sink, Source is expected to be in the following shape:
+使用`uri`接收器时，Source 应该是以下形状:
 
 ```yaml
 apiVersion: group/version
@@ -189,7 +189,7 @@ status:
   sinkUri: http://host/path?query
 ```
 
-With `ref` and `uri` Sinks, Source is expected to be in the following shape:
+对于`ref` 和 `uri`接收器，Source 应该是以下形状:
 
 ```yaml
 apiVersion: group/version

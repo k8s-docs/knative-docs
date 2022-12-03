@@ -1,4 +1,4 @@
-# Channel types and defaults
+# 通道类型和默认值
 
 Knative uses two types of Channels:
 

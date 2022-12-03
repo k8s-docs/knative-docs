@@ -5,7 +5,7 @@
 
 ![CloudEvents Player既是CloudEvents的源，也是CloudEvents的接收器](images/event_diagram.png)
 
-上面的图像是[Knative in Action](https://www.manning.com/books/knative-in-action){target=\_blank}的图 6.6
+上面的图像是[Knative in Action](https://www.manning.com/books/knative-in-action){target=_blank}的图 6.6
 
 ## 创建第一个源
 
@@ -77,15 +77,15 @@
 
 ??? question "这些字段是什么意思?"
 
-    | Field | Description |
-    | :------------: | :----------------------------------------------------------- |
-    | `Event ID` | 一个惟一的 ID。单击循环图标生成一个新的循环。 |
-    | `Event Type` | 一个事件类型。 |
-    | `Event Source` | 一个事件源。 |
-    | `Specversion` | 界定您正在使用的 CloudEvents 规范(应该总是 1.0)。 |
-    | `Message` | CloudEvent 的`data`部分，一个承载您想要传递的数据的有效载荷。 |
+    |     Field      | Description                                                   |
+    | :------------: | :------------------------------------------------------------ |
+    |   `Event ID`   | 一个惟一的 ID。单击循环图标生成一个新的循环。                 |
+    |  `Event Type`  | 一个事件类型。                                                |
+    | `Event Source` | 一个事件源。                                                  |
+    | `Specversion`  | 界定您正在使用的 CloudEvents 规范(应该总是 1.0)。             |
+    |   `Message`    | CloudEvent 的`data`部分，一个承载您想要传递的数据的有效载荷。 |
 
-有关 CloudEvents 规范的更多信息，请查看[CloudEvents 规范](https://github.com/cloudevents/spec/blob/v1.0.1/spec.md){target=\_blank}.
+有关 CloudEvents 规范的更多信息，请查看[CloudEvents 规范](https://github.com/cloudevents/spec/blob/v1.0.1/spec.md){target=_blank}.
 
 ### 发送一个事件
 

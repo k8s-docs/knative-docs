@@ -1,4 +1,4 @@
-# Creating a Channel using cluster or namespace defaults
+# 使用集群或命名空间默认值创建通道
 
 Developers can create Channels of any supported implementation type by creating an instance of a
 Channel object.

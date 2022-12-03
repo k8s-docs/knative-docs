@@ -1,15 +1,13 @@
-# Subscriptions
+# 订阅
 
-After you have created a Channel and a Sink, you can create a Subscription to enable event delivery.
+在创建通道和接收器之后，可以创建订阅以启用事件传递。
 
-The Subscription consists of a Subscription object, which specifies the Channel and the Sink (also
-known as the Subscriber) to deliver events to. You can also specify some Sink-specific options, such
-as how to handle failures.
+订阅由一个订阅对象组成，该对象指定要向其传递事件的通道和接收器(也称为订阅服务器)。
+您还可以指定一些特定于接收器的选项，例如如何处理失败。
 
-For more information about Subscription objects, see
-[Subscription](https://knative.dev/docs/reference/api/eventing-api/#messaging.knative.dev/v1.Subscription).
+有关订阅对象的详细信息，请参见[订阅](https://knative.dev/docs/reference/api/eventing-api/#messaging.knative.dev/v1.Subscription).
 
-## Creating a Subscription
+## 创建订阅
 
 
 === "kn"
@@ -110,9 +108,9 @@ For more information about Subscription objects, see
         Where `<filename>` is the name of the file you created in the previous step.
 
 
-## Listing Subscriptions
+## 列出订阅
 
-You can list all existing Subscriptions by using the `kn` CLI tool.
+您可以使用`kn` CLI工具列出所有现有的订阅。
 
 - List all Subscriptions:
 
@@ -126,7 +124,7 @@ You can list all existing Subscriptions by using the `kn` CLI tool.
     kn subscription list -o yaml
     ```
 
-## Describing a Subscription
+## 描述订阅
 
 You can print details about a Subscription by using the `kn` CLI tool:
 
@@ -136,7 +134,7 @@ kn subscription describe <subscription-name>
 <!--TODO: Add an example command and output-->
 <!--TODO: Add details for kn Subscription update - existing generated docs weren't clear enough, need better explained examples-->
 
-## Deleting Subscriptions
+## 删除订阅
 
 You can delete a Subscription by using the `kn` or `kubectl` CLI tools.
 
@@ -151,6 +149,6 @@ You can delete a Subscription by using the `kn` or `kubectl` CLI tools.
     kubectl subscription delete <subscription-name>
     ```
 
-## Next steps
+## 下一部
 
-- [Creating a Channel using cluster or namespace defaults](create-default-channel.md)
+- [使用集群或命名空间默认值创建通道](create-default-channel.md)

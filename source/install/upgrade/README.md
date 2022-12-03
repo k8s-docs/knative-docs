@@ -2,7 +2,7 @@
 
 Knative 支持通过单个[minor](https://semver.org/)版本号进行升级。
 例如，如果您安装了 v0.21.0，那么在尝试升级到 v0.23.0 之前，您必须升级到 v0.22.0。
-要验证当前版本，请参见[检查 Knative 版本](<(check-install-version.md)>)。
+要验证当前版本，请参见[检查 Knative 版本](check-install-version.md)。
 
 升级 Knative:
 

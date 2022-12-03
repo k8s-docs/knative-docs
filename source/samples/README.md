@@ -31,13 +31,13 @@
 
 <!--LINK TITLES must match the title of the sample page they link to to avoid confusion and provide a consistent UX). If descriptions are required here, this should be converted to a table as above-->
 
-- [Image processing using Knative Eventing, Cloud Run on GKE and Google Cloud Vision API](https://github.com/akashrv/knative-samples/blob/master/docs/image-processing.md)
-- [Knative Eventing Examples](https://github.com/lionelvillard/knative-examples)
+- [使用Knative事件图像处理，云运行在GKE和谷歌云视觉API](https://github.com/akashrv/knative-samples/blob/master/docs/image-processing.md)
+- [Knative事件示例](https://github.com/lionelvillard/knative-examples)
 - [knfun](https://github.com/maximilien/knfun)
-- [Getting Started with Knative 2020](https://salaboy.com/2020/02/20/getting-started-with-knative-2020/)
-- [Image Processing Pipeline](https://github.com/meteatamel/knative-tutorial/blob/master/docs/image-processing-pipeline.md)
-- [BigQuery Processing Pipeline](https://github.com/meteatamel/knative-tutorial/blob/master/docs/bigquery-processing-pipeline.md)
-- [Simple Performance Testing with SLOs](/blog/articles/performance-test-with-slos/)
+- [开始使用Knative 2020](https://salaboy.com/2020/02/20/getting-started-with-knative-2020/)
+- [图像处理管道](https://github.com/meteatamel/knative-tutorial/blob/master/docs/image-processing-pipeline.md)
+- [BigQuery处理管道](https://github.com/meteatamel/knative-tutorial/blob/master/docs/bigquery-processing-pipeline.md)
+- [使用SLOs进行简单的性能测试](/blog/articles/performance-test-with-slos/)
 
 !!! tip
     在这里添加一个链接到您的外部托管Knative代码示例。

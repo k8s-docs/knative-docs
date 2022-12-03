@@ -1,13 +1,13 @@
-# Channels
+# 通道
 
-Channels are Kubernetes [custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) that define a single event forwarding and persistence layer.
+通道是Kubernetes[自定义资源](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)，它定义了单个事件转发和持久层。
 
-A channel provides an event delivery mechanism that can fan-out received events, through subscriptions, to multiple destinations, or sinks. Examples of sinks include brokers and Knative services.
+通道提供一种事件传递机制，可以通过订阅将接收到的事件扇向多个目的地或接收器。接收器的例子包括代理和Knative服务。
 
-![Sources send events to a Channel. The Channel fans out events to Subscriptions. The Subscriptions send events to Sinks.](images/channel-workflow.png)
+![源向Channel发送事件。通道将事件扇出到订阅。订阅将事件发送到接收器。](images/channel-workflow.png)
 
-## Next steps
+## 下一步
 
-- Learn about [default available channel types](channel-types-defaults.md)
-- Create a [channel](create-default-channel.md)
-- Create a [subscription](subscriptions.md)
+- 了解[默认可用通道类型](channel-types-defaults.md)
+- 创建[通道](create-default-channel.md)
+- 创建[订阅](subscriptions.md)

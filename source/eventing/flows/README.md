@@ -1,6 +1,6 @@
-# Eventing Flows
+# 事件流
 
-Knative Eventing provides a collection of [custom resource definitions (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) that you can use to define event flows:
+Knative事件提供了一组[自定义资源定义(crd)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)，您可以使用它们来定义事件流:
 
-* [Sequence](sequence/README.md) is for defining an in-order list of functions.
-* [Parallel](parallel.md) is for defining a list of branches, each receiving the same CloudEvent.
+* [Sequence](sequence/README.md) 用于定义按顺序排列的函数列表。
+* [Parallel](parallel.md) 它用于定义一个分支列表，每个分支接收相同的CloudEvent。

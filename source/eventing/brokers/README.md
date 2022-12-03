@@ -20,4 +20,4 @@
 ## 额外的资源
 
 - [代理概念文档](../../concepts/eventing-resources/brokers.md)
-- [代理的规范](https://github.com/knative/specs/blob/main/specs/eventing/overview.md#broker){target=\_blank}
+- [代理的规范](https://github.com/knative/specs/blob/main/specs/eventing/overview.md#broker){target=_blank}

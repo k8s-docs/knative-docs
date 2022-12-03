@@ -1,16 +1,15 @@
-# Parallel
+# 并行
 
-Parallel CRD provides a way to easily define a list of branches, each receiving
-the same CloudEvent sent to the Parallel ingress channel. Typically, each branch
-consists of a filter function guarding the execution of the branch.
+并行CRD提供了一种容易定义分支列表的方法，每个分支接收发送到并行入口通道的相同的CloudEvent。
+通常，每个分支都由一个过滤器函数组成，以保护分支的执行。
 
-Parallel creates `Channel`s and `Subscription`s under the hood.
+并行创建`Channel` 和 `Subscription` 的底层。
 
-## Usage
+## 使用
 
-### Parallel Spec
+### 并行的规范
 
-Parallel has three parts for the Spec:
+并行有三个部分的规格:
 
 1. `branches` defines the list of `filter` and `subscriber` pairs, one per branch,
    and optionally a `reply` object. For each branch:
@@ -24,7 +23,7 @@ Parallel has three parts for the Spec:
 1. (optional) `reply` defines where the result of each branch is sent to when
    the branch does not have its own `reply` object.
 
-### Parallel Status
+### 并行状态
 
 Parallel has three parts for the Status:
 
@@ -36,6 +35,6 @@ Parallel has three parts for the Status:
    be used. Sending to this address will target the `Channel` which is fronting
    this Parallel (same as `ingressChannelStatus`).
 
-## Examples
+## 例子
 
-Learn how to use Parallel by following the [code samples](https://github.com/knative/docs/tree/main/code-samples/eventing/parallel).
+按照[代码示例](https://github.com/knative/docs/tree/main/code-samples/eventing/parallel)学习如何使用并行.

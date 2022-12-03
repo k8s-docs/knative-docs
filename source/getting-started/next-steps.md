@@ -2,7 +2,7 @@
 
 本主题提供了一个资源列表，以帮助您继续您的 Knative 之旅。
 
-[![Knative Slack Link](images/slack-button.svg)](https://slack.knative.dev/){target=\_blank}
+[![Knative Slack Link](images/slack-button.svg)](https://slack.knative.dev/){target=_blank}
 
 ## :test_tube: Knative 样品
 

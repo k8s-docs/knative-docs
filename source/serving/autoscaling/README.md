@@ -11,7 +11,7 @@ Knative Serving为应用程序提供自动伸缩，或 _autoscaling_ ，以匹�
 如果您具有集群管理员权限，可以为集群启用和禁用伸缩至零功能。
 参见[配置缩放到零](scale-to-zero.md)。
 <!--TODO: How can you check if you have it enabled if you're not a cluster admin?-->
-如果在您的集群上启用了自动伸缩功能，要为您的应用程序使用自动伸缩功能，您必须配置[并发](concurrent.md)和[伸缩边界](scale-bounds.md)。
+如果在您的集群上启用了自动伸缩功能，要为您的应用程序使用自动伸缩功能，您必须配置[并发](concurrency.md)和[伸缩边界](scale-bounds.md)。
 <!--TODO: Include this in the basic config before other settings-->
 
 ## 额外的资源

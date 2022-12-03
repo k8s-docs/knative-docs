@@ -1,6 +1,6 @@
-# Event registry
+# 事件注册表
 
-Knative Eventing defines an `EventType` object to make it easier for consumers to discover the types of events they can consume from Brokers.
+Knative事件定义了一个`EventType`对象，以使消费者更容易发现他们可以从代理使用的事件类型。
 
 The event registry maintains a catalog of event types that each Broker can consume. The event types stored in the registry contain all required information for a consumer to create a Trigger without resorting to some other out-of-band mechanism.
 
@@ -9,7 +9,7 @@ This topic provides information about how you can populate the event registry, h
 !!! note
     Before using the event registry, it is recommended that you have a basic understanding of Brokers, Triggers, Event Sources, and the [CloudEvents spec](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md) (particularly the [Context Attributes](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#context-attributes) section).
 
-## About EventType objects
+## 关于EventType对象
 
 EventType objects represent a type of event that can be consumed from a Broker,
 such as Kafka messages or GitHub pull requests.
@@ -58,22 +58,22 @@ The following table has more information about the `spec` and `status` fields of
 EventType objects:
 <!-- info in table needs review for tech accuracy -->
 
-| Field | Description | Required or optional |
-|-------|-------------|----------------------|
-| `spec.type` | Refers to the [CloudEvent type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) as it enters into the event mesh. Event consumers can create Triggers filtering on this attribute. This field is authoritative. | Required |
-| `spec.source` | Refers to the [CloudEvent source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) as it enters into the event mesh. Event consumers can create Triggers filtering on this attribute. | Required |
-| `spec.schema` | A valid URI with the EventType schema such as a JSON schema or a protobuf schema. | Optional |
-| `spec.description` | A string describing what the EventType is about. | Optional |
-| `spec.broker` | Refers to the Broker that can provide the EventType. | Required |
-| `status` | Tells consumers, or cluster operators, whether the EventType is ready to be consumed or not. The _readiness_ is based on the Broker being ready. | Optional |
+| Field              | Description                                                                                                                                                                                                                               | Required or optional |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `spec.type`        | Refers to the [CloudEvent type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) as it enters into the event mesh. Event consumers can create Triggers filtering on this attribute. This field is authoritative. | Required             |
+| `spec.source`      | Refers to the [CloudEvent source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) as it enters into the event mesh. Event consumers can create Triggers filtering on this attribute.                        | Required             |
+| `spec.schema`      | A valid URI with the EventType schema such as a JSON schema or a protobuf schema.                                                                                                                                                         | Optional             |
+| `spec.description` | A string describing what the EventType is about.                                                                                                                                                                                          | Optional             |
+| `spec.broker`      | Refers to the Broker that can provide the EventType.                                                                                                                                                                                      | Required             |
+| `status`           | Tells consumers, or cluster operators, whether the EventType is ready to be consumed or not. The _readiness_ is based on the Broker being ready.                                                                                          | Optional             |
 
-## Populate the registry with events
+## 用事件填充注册表
 
 You can populate the registry with EventType objects manually or automatically.
 Automatic registration can be the easier method, but it only supports a subset of
 event sources.
 
-### Manual registration
+### 手动注册
 
 For manual registration, the cluster configurator applies EventTypes YAML files
 the same as with any other Kubernetes resource.
@@ -90,13 +90,13 @@ To apply EventTypes YAML files manually:
     kubectl apply -f <event-type.yaml>
     ```
 
-### Automatic registration
+### 自动登记
 
 Because manual registration might be tedious and error-prone, Knative also supports
 registering EventTypes automatically.
 EventTypes are created automatically when an event source is instantiated.
 
-#### Support for automatic registration
+#### 支持自动注册
 
 Knative supports automatic registration of EventTypes for the following event sources:
 
@@ -110,7 +110,7 @@ Knative supports automatic registration of EventTypes for the following event so
 Knative only supports automatic creation of EventTypes for sources that have a
 Broker as their sink.
 
-#### Procedure for automatic registration
+#### 自动登记程序
 
 - To register EventTypes automatically, apply your event source YAML file by running the command:
 
@@ -120,7 +120,7 @@ Broker as their sink.
 
 After your event source is instantiated, EventTypes are added to the registry.
 
-#### Example: Automatic registration using KafkaSource
+#### 示例:使用KafkaSource自动注册
 
 Given the following KafkaSource sample to populate the registry:
 
@@ -148,12 +148,12 @@ After running `kubectl apply` using the above YAML, the KafkaSource `kafka-sourc
 is instantiated, and two EventTypes are added to the registry because there are
 two topics.
 
-## Discover events using the registry
+## 使用注册表发现事件
 
 Using the registry, you can discover the different types of events that Broker
 event meshes can consume.
 
-### View all event types you can subscribe to
+### 查看您可以订阅的所有事件类型
 
 - To see a list of event types in the registry that are available to subscribe to,
 run the command:
@@ -180,7 +180,7 @@ run the command:
     It assumes that the event sources emitting the events reference a Broker as their sink.
 
 
-### View the YAML for an EventType object
+### 查看EventType对象的YAML
 
 - To see the YAML for an EventType object, run the command:
 
@@ -193,7 +193,7 @@ run the command:
 For an example EventType YAML, see
 [About EventType objects](#about-eventtype-objects) earlier on this page.
 
-## About subscribing to events
+## 关于订阅事件
 
 After you know what events can be consumed from the Brokers' event meshes,
 you can create Triggers to subscribe to particular events.
@@ -292,8 +292,7 @@ Here are a some example Triggers that subscribe to events using exact matching o
         The example registry output mentioned earlier lists this Broker's readiness as `false`.
         This Trigger's subscriber cannot consume events until the Broker becomes ready.
 
-## Next steps
+## 下一步
 
-[Knative code samples](../samples/eventing.md) is a useful resource to better understand
-some of the event sources. Remember, you must point the sources to a Broker if you want
-automatic registration of EventTypes in the registry.
+[Knative代码示例](../samples/eventing.md)是一个有用的资源，可以更好地理解一些事件源。
+记住，如果您想在注册表中自动注册eventtype，则必须将源指向代理。

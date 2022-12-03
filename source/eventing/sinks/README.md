@@ -1,31 +1,35 @@
-# About sinks
+# 关于sinks
 
-When you create an event source, you can specify a _sink_ where events are sent to from the source. A sink is an _Addressable_ or a _Callable_ resource that can receive incoming events from other resources. Knative Services, Channels, and Brokers are all examples of sinks.
+在创建事件源时，可以指定一个 _sink_，将事件从源发送到该 _sink_。
+接收器是一个 _Addressable_ 或 _Callable_ 资源，可以从其他资源接收传入的事件。
+Knative服务、通道和代理都是接收器的例子。
 
-Addressable objects receive and acknowledge an event delivered over HTTP to an address defined in their `status.address.url` field. As a special case, the core [Kubernetes Service object](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#service-v1-core) also fulfils the Addressable interface.
+可寻址对象接收并确认通过HTTP传递到其`statusaddressurl`字段中定义的地址的事件。
+作为一个特例，核心[Kubernetes服务对象](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#service-v1-core)也实现了可寻址接口。
 
-Callable objects are able to receive an event delivered over HTTP and transform the event, returning 0 or 1 new events in the HTTP response. These returned events may be further processed in the same way that events from an external event source are processed.
+可调用对象能够接收通过HTTP传递的事件并转换该事件，在HTTP响应中返回0或1个新事件。
+这些返回的事件可以进一步处理，处理方式与处理来自外部事件源的事件相同。
 
-## Sink as a parameter
+## Sink作为参数
 
-Sink is used as a reference to an object that resolves to a URI to use as the sink.
+Sink用作对解析为用作接收器的URI的对象的引用。
 
-A `sink` definition supports the following fields:
+`sink`定义支持以下字段:
 
-| Field | Description | Required or optional |
-|-------|-------------|----------------------|
-| `ref` | This points to an Addressable. | Required if _not_ using `uri`  |
-| `ref.apiVersion` | API version of the referent. | Required if using `ref` |
-| [`ref.kind`][kubernetes-kinds] | Kind of the referent. | Required if using `ref` |
-| [`ref.namespace`][kubernetes-namespaces] | Namespace of the referent. If omitted this defaults to the object holding it. | Optional |
-| [`ref.name`][kubernetes-names] | Name of the referent. | Required if using `ref` |
-| `uri` | This can be an absolute URL with a non-empty scheme and non-empty host that points to the target or a relative URI. Relative URIs are resolved using the base URI retrieved from Ref. | Required if _not_ using `ref` |
+| Field                                    | Description                                                                                                                                                                           | Required or optional          |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| `ref`                                    | This points to an Addressable.                                                                                                                                                        | Required if _not_ using `uri` |
+| `ref.apiVersion`                         | API version of the referent.                                                                                                                                                          | Required if using `ref`       |
+| [`ref.kind`][kubernetes-kinds]           | Kind of the referent.                                                                                                                                                                 | Required if using `ref`       |
+| [`ref.namespace`][kubernetes-namespaces] | Namespace of the referent. If omitted this defaults to the object holding it.                                                                                                         | Optional                      |
+| [`ref.name`][kubernetes-names]           | Name of the referent.                                                                                                                                                                 | Required if using `ref`       |
+| `uri`                                    | This can be an absolute URL with a non-empty scheme and non-empty host that points to the target or a relative URI. Relative URIs are resolved using the base URI retrieved from Ref. | Required if _not_ using `ref` |
 
 !!! note
     At least one of `ref` or `uri` is required. If both are specified, `uri` is
     resolved into the URL from the Addressable `ref` result.
 
-### Sink parameter example
+### Sink参数示例
 
 Given the following YAML, if `ref` resolves into
 `"http://mysink.default.svc.cluster.local"`, then `uri` is added to this
@@ -53,7 +57,7 @@ spec:
     This results in the `K_SINK` environment variable being set on the `subject`
     as `"http://mysink.default.svc.cluster.local/extra/path"`.
 
-## Using custom resources as sinks
+## 使用自定义资源作为接收器
 
 To use a Kubernetes custom resource (CR) as a sink for events, you must:
 
@@ -84,7 +88,7 @@ To use a Kubernetes custom resource (CR) as a sink for events, you must:
           - watch
     ```
 
-## Filtering events sent to sinks by using Triggers
+## 通过使用触发器过滤发送到接收器的事件
 
 You can connect a Trigger to a sink, so that events are filtered before they are sent to the sink. A sink that is connected to a Trigger is configured as a `subscriber` in the Trigger resource spec.
 
@@ -109,7 +113,7 @@ Where;
 - `<trigger-name>` is the name of the Trigger being connected to the sink.
 - `<kafka-sink-name>` is the name of a KafkaSink object.
 
-## Specifying sinks using the kn CLI --sink flag
+## 使用kn CLI --sink 标志指定接收器
 
 When you create an event-producing CR by using the Knative (`kn`) CLI, you can specify a sink where events are sent to from that resource, by using the `--sink` flag.
 
@@ -128,12 +132,12 @@ The `svc` in `http://event-display.svc.cluster.local` determines that the sink i
 !!! tip
     You can configure which resources can be used with the `--sink` flag for `kn` CLI commands by [customizing `kn`](../../client/configure-kn.md#example-configuration-file).
 
-## Supported third-party sink types
+## 支持的第三方接收器类型
 
-| Name | Maintainer | Description |
-| -- | -- | -- |
-| [KafkaSink](kafka-sink.md)  | Knative  | Send events to a Kafka topic |
-| [RedisSink](https://github.com/knative-sandbox/eventing-redis/tree/main/sink)  | Knative  | Send events to a Redis Stream |
+| Name                                                                          | Maintainer | Description                   |
+| ----------------------------------------------------------------------------- | ---------- | ----------------------------- |
+| [KafkaSink](kafka-sink.md)                                                    | Knative    | Send events to a Kafka topic  |
+| [RedisSink](https://github.com/knative-sandbox/eventing-redis/tree/main/sink) | Knative    | Send events to a Redis Stream |
 
 
 [kubernetes-kinds]:

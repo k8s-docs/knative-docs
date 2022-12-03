@@ -1,26 +1,26 @@
 # Apache Kafka Sink
 
-This page shows how to install and configure an Apache KafkaSink.
+本页面介绍如何安装和配置Apache KafkaSink。
 
-## Prerequisites
+## 先决条件
 
-You must have access to a Kubernetes cluster with [Knative Eventing installed](../../install/yaml-install/eventing/install-eventing-with-yaml.md).
+您必须能够访问安装了[Knative事件](../../install/yaml-install/eventing/install-eventing-with-yaml.md)的Kubernetes集群.
 
-## Installation
+## 安装
 
-1. Install the Kafka controller:
+1. 安装Kafka控制器:
 
     ```bash
     kubectl apply -f {{ artifact(org="knative-sandbox", repo="eventing-kafka-broker", file="eventing-kafka-controller.yaml") }}
     ```
 
-1. Install the KafkaSink data plane:
+1. 安装KafkaSink数据平面:
 
     ```bash
     kubectl apply -f {{ artifact(org="knative-sandbox", repo="eventing-kafka-broker", file="eventing-kafka-sink.yaml") }}
     ```
 
-1. Verify that `kafka-controller` and `kafka-sink-receiver` Deployments are running:
+1. 验证`kafka-controller`和`kafka-sink-receiver`部署正在运行:
 
     ```bash
     kubectl get deployments.apps -n knative-eventing
@@ -36,9 +36,9 @@ You must have access to a Kubernetes cluster with [Knative Eventing installed](.
     kafka-sink-receiver            1/1     1            1           5s
     ```
 
-## KafkaSink example
+## KafkaSink例子
 
-A KafkaSink object looks similar to the following:
+KafkaSink对象看起来类似如下:
 
 ```yaml
 apiVersion: eventing.knative.dev/v1alpha1
@@ -52,9 +52,9 @@ spec:
    - my-cluster-kafka-bootstrap.kafka:9092
 ```
 
-## Output Topic Content Mode
+## 输出主题内容模式
 
-The CloudEvent specification defines 2 modes to transport a CloudEvent: structured and binary.
+CloudEvent规范定义了两种传输clouddevent的模式:结构化和二进制。
 
 > A "structured-mode message" is one where the event is fully encoded using a stand-alone event
 > format and stored in the message body.
@@ -99,10 +99,20 @@ spec:
 
 Knative supports the following Apache Kafka security features:
 
-- [Authentication using `SASL` without encryption](#authentication-using-sasl)
-- [Authentication using `SASL` and encryption using `SSL`](#authentication-using-sasl-and-encryption-using-ssl)
-- [Authentication and encryption using `SSL`](#authentication-and-encryption-using-ssl)
-- [Encryption using `SSL` without client authentication](#encryption-using-ssl-without-client-authentication)
+- [Apache Kafka Sink](#apache-kafka-sink)
+  - [先决条件](#先决条件)
+  - [安装](#安装)
+  - [KafkaSink例子](#kafkasink例子)
+  - [输出主题内容模式](#输出主题内容模式)
+  - [Security](#security)
+  - [Enabling security features](#enabling-security-features)
+    - [Authentication using SASL](#authentication-using-sasl)
+    - [Authentication using SASL without encryption](#authentication-using-sasl-without-encryption)
+    - [Authentication using SASL and encryption using SSL](#authentication-using-sasl-and-encryption-using-ssl)
+    - [Encryption using SSL without client authentication](#encryption-using-ssl-without-client-authentication)
+    - [Authentication and encryption using SSL](#authentication-and-encryption-using-ssl)
+  - [Kafka Producer configurations](#kafka-producer-configurations)
+  - [Enable debug logging for data plane components](#enable-debug-logging-for-data-plane-components)
 
 ## Enabling security features
 
