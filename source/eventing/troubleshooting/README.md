@@ -1,38 +1,33 @@
-# Debugging Knative Eventing
+# 调试Knative事件
 
-This is an evolving document on how to debug a non-working Knative Eventing
-setup.
+这是一个关于如何调试一个不能工作的Knative事件设置的不断发展的文档。
 
-## Audience
+## 观众
 
-This document is intended for people that are familiar with the object model of
-[Knative Eventing](../README.md). You don't need to be an expert, but do need to
-know roughly how things fit together.
+本文档适用于熟悉[Knative事件](../README.md)的对象模型的人。
+你不需要成为专家，但需要大致了解事物是如何组合在一起的。
 
-## Prerequisites
+## 先决条件
 
-1. Setup [Knative Eventing and an Eventing-contrib resource](../README.md).
+1. 设置[Knative事件和事件贡献资源](../README.md).
 
-## Example
+## 例子
 
-This guide uses an example consisting of an event source that sends events to a
-function.
+本指南使用了一个由事件源组成的示例，该事件源向函数发送事件。
 
 ![src -> chan -> sub -> svc -> fn](ExampleModel.png)
 
-See [example.yaml](example.yaml) for the entire YAML. For any commands in this
-guide to work, you must apply [example.yaml](example.yaml):
+参见[example.yaml](example.yaml)了解整个YAML。
+要使本指南中的任何命令生效，必须应用[example.yaml](example.yaml):
 
 ```bash
 kubectl apply --filename example.yaml
 ```
 
-## Triggering Events
+## 触发事件
 
-Knative events will occur whenever a Kubernetes
-[`Event`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#event-v1-core)
-occurs in the `knative-debug` namespace. We can cause this to occur with the
-following commands:
+Knative事件将在`knative-debug`命名空间中发生Kubernetes[`Event`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#event-v1-core)时发生。
+我们可以通过以下命令来实现:
 
 ```bash
 kubectl --namespace knative-debug run to-be-deleted --image=image-that-doesnt-exist --restart=Never
@@ -41,43 +36,40 @@ sleep 5
 kubectl --namespace knative-debug delete pod to-be-deleted
 ```
 
-Then we can see the Kubernetes `Event`s (note that these are not Knative
-events!):
+然后我们可以看到Kubernetes的事件(注意，这些不是Knative事件!):
 
 ```bash
 kubectl --namespace knative-debug get events
 ```
 
-This should produce output along the lines of:
+这将产生如下的输出:
 
 ```{ .bash .no-copy }
 LAST SEEN   FIRST SEEN   COUNT     NAME                             KIND      SUBOBJECT                        TYPE      REASON                   SOURCE                                         MESSAGE
 20s         20s          1         to-be-deleted.157aadb9f376fc4e   Pod                                        Normal    Scheduled                default-scheduler                              Successfully assigned knative-debug/to-be-deleted to gke-kn24-default-pool-c12ac83b-pjf2
 ```
 
-## Where are my events?
+## 我的活动在哪里?
 
-You've applied [example.yaml](example.yaml) and you are inspecting `fn`'s logs:
+你已经应用了[example.yaml](example.yaml)，并且正在检查`fn`的日志:
 
 ```bash
 kubectl --namespace knative-debug logs -l app=fn -c user-container
 ```
 
-But you don't see any events arrive. Where is the problem?
+但是你看不到任何事件的到来。问题在哪里?
 
-### Check created resources
+### 检查已创建的资源
 
-The first thing to check are all the created resources, do their statuses
-contain `ready` true?
+首先要检查的是所有创建的资源，他们的状态包含`ready` true?
 
-We will attempt to determine why from the most basic pieces out:
+我们将尝试从最基本的部分来确定原因:
 
-1. `fn` - The `Deployment` has no dependencies inside Knative.
-1. `svc` - The `Service` has no dependencies inside Knative.
-1. `chan` - The `Channel` depends on its backing `channel implementation` and
-   somewhat depends on `sub`.
-1. `src` - The `Source` depends on `chan`.
-1. `sub` - The `Subscription` depends on both `chan` and `svc`.
+1. `fn` - `Deployment` 在Knative中没有依赖关系。
+2. `svc` - `Service` 在Knative内部没有依赖关系。
+3. `chan` - `Channel` 取决于它的支持`channel implementation`和一些取决于`sub`。
+4. `src` - `Source` 取决于  `chan`.
+5. `sub` - `Subscription` 取决于`chan` 和 `svc`.
 
 #### `fn`
 
@@ -85,17 +77,17 @@ We will attempt to determine why from the most basic pieces out:
 kubectl --namespace knative-debug get deployment fn -o jsonpath='{.status.availableReplicas}'
 ```
 
-We want to see `1`. If you don't, then you need to debug the `Deployment`. Is
-there anything obviously wrong mentioned in the `status`?
+我们想看到`1`。
+如果你没有，那么你需要调试`Deployment`。
+`status`中有什么明显的错误吗?
 
 ```bash
 kubectl --namespace knative-debug get deployment fn --output yaml
 ```
 
-If it is not obvious what is wrong, then you need to debug the `Deployment`,
-which is out of scope of this document.
+如果问题不明显，那么您需要调试“部署”，这超出了本文的范围。
 
-Verify that the `Pod` is `Ready`:
+确认`Pod` 为 `Ready`:
 
 ```bash
 kubectl --namespace knative-debug get pod -l app=fn -o jsonpath='{.items[*].status.conditions[?(@.type == "Ready")].status}'
@@ -211,7 +203,7 @@ This should return `True`. If it doesn't then, look at all the status entries.
 kubectl --namespace knative-debug get subscription sub --output yaml
 ```
 
-### Controllers
+### 控制器
 
 Each of the resources has a Controller that is watching it. As of today, they
 tend to do a poor job of writing failure status messages and events, so we need
@@ -221,12 +213,12 @@ to look at the Controller's logs.
 
     The Kubernetes Deployment Controller, which controls `fn`, is out of scope for this document.
 
-#### Service Controller
+#### 服务控制器
 
 The Kubernetes Service Controller, controlling `svc`, is out of scope for this
 document.
 
-#### Channel Controller
+#### 通道控制器
 
 There is not a single `Channel` Controller. Instead, there is one
 Controller for each Channel CRD. `chan` uses the
@@ -245,7 +237,7 @@ kubectl --namespace knative-eventing logs -l messaging.knative.dev/channel=in-me
 Pay particular attention to any lines that have a logging level of `warning` or
 `error`.
 
-#### Source Controller
+#### 源控制器
 
 Each Source will have its own Controller. `src` is a `ApiServerSource`, so
 its Controller is:
@@ -257,7 +249,7 @@ kubectl --namespace knative-eventing get pod -l app=sources-controller
 This is actually a single binary that runs multiple Source Controllers,
 importantly including [ApiServerSource Controller](#apiserversource-controller).
 
-#### ApiServerSource Controller
+#### ApiServerSource 控制器
 
 The `ApiServerSource` Controller is run in the same binary as some other Source
 Controllers from Eventing. It is:
@@ -275,7 +267,7 @@ kubectl --namespace knative-debug logs -l eventing.knative.dev/sourceName=src,ev
 Pay particular attention to any lines that have a logging level of `warning` or
 `error`.
 
-#### Subscription Controller
+#### 订阅控制器
 
 The `Subscription` Controller controls `sub`. It attempts to resolve the
 addresses that a `Channel` should send events to, and once resolved, inject
@@ -294,7 +286,7 @@ kubectl --namespace knative-eventing logs -l app=eventing-controller
 Pay particular attention to any lines that have a logging level of `warning` or
 `error`.
 
-### Data Plane
+### 数据平面
 
 The entire [Control Plane](#control-plane) looks healthy, but we're still not
 getting any events. Now we need to investigate the data plane.
@@ -319,7 +311,7 @@ The Knative event takes the following path:
 
 We will investigate components in the order in which events should travel.
 
-#### Channel Dispatcher
+#### 通道分配器
 
 The Channel Dispatcher is the component that receives POSTs pushing events into
 `Channel`s and then POSTs to subscribers of those `Channel`s when an event is

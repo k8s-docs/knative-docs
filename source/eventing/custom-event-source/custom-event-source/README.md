@@ -1,34 +1,35 @@
-# Create a custom event source
+# 创建一个自定义事件源
 
-If you want to create a custom event source for a specific event producer type, you must create the components that enable forwarding events from that producer type to a Knative sink.
+如果希望为特定事件生成器类型创建自定义事件源，则必须创建支持将事件从该生成器类型转发到Knative接收器的组件。
 
-This type of integration requires more effort than using some simpler integration types, such as [SinkBinding](../sinkbinding/README.md) or [ContainerSource](../containersource/README.md); however, this provides the most polished result and is the easiest integration type for users to consume. By providing a custom resource definition (CRD) for your source rather than a general container definition, it is easier to expose meaningful configuration options and documentation to users and hide implementation details.
+这种类型的集成比使用一些更简单的集成类型需要更多的工作，例如[SinkBinding](../sinkbinding/README.md)或[ContainerSource](../containersource/README.md);但是，这提供了最完善的结果，并且是用户最容易使用的集成类型。
+通过为源提供自定义资源定义(CRD)而不是通用容器定义，更容易向用户公开有意义的配置选项和文档，并隐藏实现细节。
 
 !!! note
-    If you have created a new event source type that is not a part of the core Knative project, you can open a pull request to add it to the list of [Third-Party Sources](../../sources/#third-party-sources), and announce the new source in one of the [Knative Slack](https://slack.knative.dev/) channels.
+    如果你已经创建了一个新的事件源类型，而不是核心Knative项目的一部分，你可以打开一个拉请求将它添加到[第三方源](../../sources/#third-party-sources)的列表中，并在[Knative Slack](https://slack.knative.dev/)的一个通道中宣布新的源。
 
-    You can also add your event source to the [`knative-sandbox`](https://github.com/knative-sandbox) organization, by following the instructions to [create a sandbox repository](https://github.com/knative/community/blob/main/mechanics/CREATING-A-SANDBOX-REPO.md).
+    您还可以将事件源添加到[`knative-sandbox`](https://github.com/knative-sandbox)组织中，方法是遵循[创建沙箱存储库](https://github.com/knative/community/blob/main/mechanics/CREATING-A-SANDBOX-REPO.md)的说明。
 
-## Required components
+## 所需的组件
 
-To create a custom event source, you must create the following components:
+要创建自定义事件源，必须创建以下组件:
 
-|Component |Description |
-|------|---------------------|
-|Receive adapter|Contains logic that specifies how to get events from a producer, what the sink URI is, and how to translate events into the CloudEvent format.|
-|Kubernetes controller|Manages the event source and reconciles underlying receive adapter deployments.|
-|Custom resource definition (CRD)|Provides the configuration that the controller uses to manage the receive adapter.|
+| 组件                 | 描述                                                                                    |
+| -------------------- | --------------------------------------------------------------------------------------- |
+| 收到适配器           | 包含指定如何从生产者获取事件、接收器URI是什么以及如何将事件转换为CloudEvent格式的逻辑。 |
+| Kubernetes控制器     | 管理事件源并协调底层接收适配器部署。                                                    |
+| 自定义资源定义 (CRD) | 提供控制器用于管理接收适配器的配置。                                                    |
 
 <!--TODO: Add a diagram for this-->
 
-## Using the sample source
+## 使用示例源代码
 
-The Knative project provides a sample repository that contains a template for a basic event source controller and a receive adapter.
+Knative项目提供了一个示例存储库，其中包含用于基本事件源控制器和接收适配器的模板。
 
-For more information on using the sample source, see the [documentation](./sample-repo.md).
+有关使用示例源代码的更多信息，请参见[文档](./sample-repo.md).
 
-## Additional resources
+## 额外的资源
 
-* Implement CloudEvent binding interfaces, [cloudevent's go sdk](https://github.com/cloudevents/sdk-go) provides libraries for standard access to configure interfaces as needed.
+* 实现CloudEvent绑定接口，[CloudEvent的go sdk](https://github.com/cloudevents/sdk-go) 提供标准访问库，根据需要配置接口。
 
-* Controller runtime (this is what we share via injection) incorporates protocol specific config into "generic controller" CRD.
+* 控制器运行时(这是我们通过注入共享的)将特定于协议的配置合并到“通用控制器”CRD中。

@@ -1,95 +1,89 @@
-# Create a SinkBinding
+# 创建一个SinkBinding
 
 ![API version v1](https://img.shields.io/badge/API_Version-v1-green?style=flat-square)
 
-This topic describes how to create a SinkBinding object.
-SinkBinding resolves a sink as a URI, sets the URI in the environment
-variable `K_SINK`, and adds the URI to a subject using `K_SINK`.
-If the URI changes, SinkBinding updates the value of `K_SINK`.
+本主题描述如何创建SinkBinding对象。
+SinkBinding将接收器解析为URI，在环境变量`K_SINK`中设置URI，并使用`K_SINK`将URI添加到主题中。
+如果URI发生变化，SinkBinding会更新`K_SINK`的值。
 
-In the following examples, the sink is a Knative Service and the subject is a CronJob.
-If you have an existing subject and sink, you can replace the examples with your
-own values.
+在下面的示例中，接收器是Knative服务，而主题是CronJob。
+如果您有一个现有的主题和接收器，您可以用您自己的值替换示例。
 
-## Before you begin
+## 在开始之前
 
-Before you can create a SinkBinding object:
+在创建SinkBinding对象之前:
 
-- You must have Knative Eventing installed on your cluster.
-- Optional: If you want to use `kn` commands with SinkBinding, install the `kn` CLI.
+- 您必须在集群上安装Knative事件处理。
+- 可选:如果你想在SinkBinding中使用`kn`命令，请安装`kn`命令行。
 
-## Optional: Choose SinkBinding namespace selection behavior
+## 可选:选择SinkBinding命名空间选择行为
 
-The SinkBinding object operates in one of two modes: `exclusion` or `inclusion`.
+SinkBinding对象以两种模式之一操作:`exclusion` or `inclusion`。
 
-The default mode is `exclusion`.
-In exclusion mode, SinkBinding behavior is enabled for the namespace by default.
-To disallow a namespace from being evaluated for mutation you must exclude it
-using the label `bindings.knative.dev/exclude: true`.
+默认模式为`exclusion`。
+在排除模式下，默认情况下为命名空间启用了SinkBinding行为。
+为了禁止一个命名空间被评估为突变，你必须使用`bindings.knative.dev/exclude: true`标签来排除它。
 
-In inclusion mode, SinkBinding behavior is not enabled for the namespace.
-Before a namespace can be evaluated for mutation, you must
-explicitly include it using the label `bindings.knative.dev/include: true`.
+在包含模式中，没有为命名空间启用SinkBinding行为。
+在对命名空间进行变异评估之前，必须使用标签`bindings.knative.dev/include: true`显式包含它。
 
-To set the SinkBinding object to inclusion mode:
+设置SinkBinding对象为包含模式。
 
-1. Change the value of `SINK_BINDING_SELECTION_MODE` from `exclusion` to `inclusion` by running:
+1. 将`SINK_BINDING_SELECTION_MODE`的值从`exclusion`改为`inclusion`，执行以下命令:
 
     ```bash
     kubectl -n knative-eventing set env deployments eventing-webhook --containers="eventing-webhook" SINK_BINDING_SELECTION_MODE=inclusion
     ```
 
-2. To verify that `SINK_BINDING_SELECTION_MODE` is set as desired, run:
+2. 要验证`SINK_BINDING_SELECTION_MODE`按需要设置，执行:
 
     ```bash
     kubectl -n knative-eventing set env deployments eventing-webhook --containers="eventing-webhook" --list | grep SINK_BINDING
     ```
 
-## Create a namespace
+## 创建命名空间
 
-If you do not have an existing namespace, create a namespace for the SinkBinding object:
+如果没有命名空间，请为SinkBinding对象创建一个命名空间:
 
 ```bash
 kubectl create namespace <namespace>
 ```
-Where `<namespace>` is the namespace that you want your SinkBinding to use.
-For example, `sinkbinding-example`.
+
+其中`<namespace>`是您希望SinkBinding使用的名称空间。
+例如, `sinkbinding-example`.
 
 !!! note
-    If you have selected inclusion mode, you must add the
-    `bindings.knative.dev/include: true` label to the namespace to enable
-    SinkBinding behavior.
+    如果选择了包含模式，则必须将`bindings.knative.dev/include: true`标签添加到命名空间，以启用SinkBinding行为。
 
-## Create a sink
+## 创建一个接收器
 
-The sink can be any addressable Kubernetes object that can receive events.
+接收器可以是任何可以接收事件的可寻址Kubernetes对象。
 
-If you do not have an existing sink that you want to connect to the SinkBinding object,
-create a Knative service.
+如果没有想要连接到SinkBinding对象的现有接收器，请创建Knative服务。
 
 !!! note
-    To create a Knative service you must have Knative Serving installed on your cluster.
+    要创建Knative服务，必须在集群上安装Knative服务。
 
 === "kn"
 
-    Create a Knative service by running:
+    通过运行以下命令创建Knative服务:
 
     ```bash
     kn service create <app-name> --image <image-url>
     ```
     Where:
 
-    - `<app-name>` is the name of the application.
-    - `<image-url>` is the URL of the image container.
+    - `<app-name>` 它是应用程序的名称。
+    - `<image-url>` 它是图像容器的URL。
 
-    For example:
+    例如:
 
     ```bash
     $ kn service create event-display --image gcr.io/knative-releases/knative.dev/eventing/cmd/event_display
     ```
 
 === "YAML"
-    1. Create a YAML file for the Knative service using the following template:
+    1. 使用以下模板为Knative服务创建一个YAML文件:
 
         ```yaml
         apiVersion: serving.knative.dev/v1
@@ -104,21 +98,20 @@ create a Knative service.
         ```
         Where:
 
-        - `<app-name>` is the name of the application. For example, `event-display`.
-        - `<image-url>` is the URL of the image container.
-        For example, `gcr.io/knative-releases/knative.dev/eventing/cmd/event_display`.
+        - `<app-name>` 它是应用程序的名称。例如, `event-display`.
+        - `<image-url>` 是图像容器的URL。例如, `gcr.io/knative-releases/knative.dev/eventing/cmd/event_display`.
 
-    1. Apply the YAML file by running the command:
+    1. 运行以下命令应用YAML文件:
 
         ```bash
         kubectl apply -f <filename>.yaml
         ```
-        Where `<filename>` is the name of the file you created in the previous step.
+        其中 `<filename>` 是您在上一步中创建的文件的名称。
 
-## Create a subject
+## 创建一个主题
 
-The subject must be a PodSpecable resource.
-You can use any PodSpecable resource in your cluster, for example:
+主题必须是PodSpecable资源。
+你可以在你的集群中使用任何PodSpecable资源，例如:
 
 - `Deployment`
 - `Job`
@@ -126,12 +119,10 @@ You can use any PodSpecable resource in your cluster, for example:
 - `StatefulSet`
 - `Service.serving.knative.dev`
 
-If you do not have an existing PodSpecable subject that you want to use, you can
-use the following sample to create a CronJob object as the subject.
-The following CronJob makes a single cloud event that targets `K_SINK` and adds
-any extra overrides given by `CE_OVERRIDES`.
+如果没有想要使用的现有PodSpecable主题，可以使用以下示例创建CronJob对象作为主题。
+下面的CronJob创建了一个针对`K_SINK`的云事件，并添加了`CE_OVERRIDES`给出的任何额外覆盖。
 
-1. Create a YAML file for the CronJob using the following example:
+1. 为CronJob创建一个YAML文件，示例如下:
 
     ```yaml
     apiVersion: batch/v1
@@ -167,20 +158,20 @@ any extra overrides given by `CE_OVERRIDES`.
                           fieldPath: metadata.namespace
     ```
 
-1. Apply the YAML file by running the command:
+1. 运行以下命令应用YAML文件:
 
     ```bash
     kubectl apply -f <filename>.yaml
     ```
-    Where `<filename>` is the name of the file you created in the previous step.
+    其中' <filename> '是您在上一步中创建的文件的名称。
 
-## Create a SinkBinding object
+## 创建一个SinkBinding对象
 
-Create a `SinkBinding` object that directs events from your subject to the sink.
+创建一个`SinkBinding`对象，将事件从主题引导到接收器。
 
 === "kn"
 
-    Create a `SinkBinding` object by running:
+    通过运行以下命令创建一个`SinkBinding`对象:
 
     ```bash
     kn source binding create <name> \
@@ -191,21 +182,21 @@ Create a `SinkBinding` object that directs events from your subject to the sink.
     ```
     Where:
 
-    - `<name>` is the name of the SinkBinding object you want to create.
-    - `<namespace>` is the namespace you created for your SinkBinding to use.
-    - `<subject>` is the subject to connect. Examples:
-        - `Job:batch/v1:app=heartbeat-cron` matches all jobs in namespace with label `app=heartbeat-cron`.
-        - `Deployment:apps/v1:myapp` matches a deployment called `myapp` in the namespace.
-        - `Service:serving.knative.dev/v1:hello` matches the service called `hello`.
-    - `<sink>` is the sink to connect. For example `http://event-display.svc.cluster.local`.
-    - Optional: `<cloudevent-overrides>` in the form `key=value`.
-    Cloud Event overrides control the output format and modifications of the event
-    sent to the sink and are applied before sending the event.
-    You can provide this flag multiple times.
+    - `<name>` 它是您想要创建的SinkBinding对象的名称。
+    - `<namespace>` 它是您为要使用的SinkBinding创建的名称空间。
+    - `<subject>` 它是连接的主体。例子:
+        - `Job:batch/v1:app=heartbeat-cron` 它匹配命名空间中所有标签为`app=heartbeat-cron`的作业。
+        - `Deployment:apps/v1:myapp` 它匹配命名空间中名为`myapp`的部署。
+        - `Service:serving.knative.dev/v1:hello` 它匹配名为`hello`的服务。
+    - `<sink>` 它是连接的接收器。例如 `http://event-display.svc.cluster.local`.
+    - Optional: `<cloudevent-overrides>` 形式是 `key=value`.
+      Cloud Event覆盖控制发送到接收器的事件的输出格式和修改，并在发送事件之前应用。
+      您可以多次提供此标志。
+    
 
-    For a list of available options, see the [Knative client documentation](https://github.com/knative/client/blob/main/docs/cmd/kn_source_binding_create.md#kn-source-binding-create).
+    有关可用选项的列表，请参阅[Knative客户端文档](https://github.com/knative/client/blob/main/docs/cmd/kn_source_binding_create.md#kn-source-binding-create).
 
-    For example:
+    例如:
     ```bash
     $ kn source binding create bind-heartbeat \
       --namespace sinkbinding-example \
@@ -215,7 +206,7 @@ Create a `SinkBinding` object that directs events from your subject to the sink.
     ```
 
 === "YAML"
-    1. Create a YAML file for the `SinkBinding` object using the following template:
+    1. 使用以下模板为`SinkBinding`对象创建一个YAML文件:
 
         ```yaml
         apiVersion: sources.knative.dev/v1
@@ -237,28 +228,24 @@ Create a `SinkBinding` object that directs events from your subject to the sink.
         ```
         Where:
 
-        - `<name>` is the name of the SinkBinding object you want to create. For example, `bind-heartbeat`.
-        - `<api-version>` is the API version of the subject. For example `batch/v1`.
-        - `<kind>` is the Kind of your subject. For example `Job`.
-        - `<label-key>: <label-value>` is a map of key-value pairs to select subjects
-        that have a matching label. For example, `app: heartbeat-cron` selects any subject
-        with the label `app=heartbeat-cron`.
-        - `<sink>` is the sink to connect. For example `event-display`.
+        - `<name>` 它是您想要创建的SinkBinding对象的名称。例如, `bind-heartbeat`.
+        - `<api-version>` 它是该主题的API版本。例如 `batch/v1`.
+        - `<kind>` 这是你的主题。例如 `Job`.
+        - `<label-key>: <label-value>` 它是键值对的映射，用于选择具有匹配标签的主题。例如, `app: heartbeat-cron` 它会选择任何带有`app: heartbeat-cron`标签的主题.
+        - `<sink>` 它是连接的水槽。例如 `event-display`.
 
-        For more information about the fields you can configure for the SinkBinding
-        object, see [Sink Binding Reference](reference.md).
+        有关可以为SinkBinding对象配置的字段的更多信息，请参见[Sink Binding Reference](reference.md).。
 
-    1. Apply the YAML file by running the command:
+    2. 运行以下命令应用YAML文件:
 
         ```bash
         kubectl apply -f <filename>.yaml
         ```
-        Where `<filename>` is the name of the file you created in the previous step.
+        其中`<filename>`是您在上一步中创建的文件的名称。
 
-## Verify the SinkBinding object
+## 验证SinkBinding对象
 
-1. Verify that a message was sent to the Knative eventing system by looking at the
-service logs for your sink:
+1. 通过查看您的接收器的服务日志，验证消息被发送到Knative事件系统:
 
     ```bash
     kubectl logs -l <sink> -c <container> --since=10m
@@ -273,8 +260,7 @@ service logs for your sink:
     $ kubectl logs -l serving.knative.dev/service=event-display -c user-container --since=10m
     ```
 
-2. From the output, observe the lines showing the request headers and body of the event message,
-sent by the source to the display function. For example:
+2. 从输出中，观察显示由源发送到显示函数的事件消息的请求头和消息体的行。例如:
 
     ```{ .bash .no-copy }
       ☁️  cloudevents.Event
@@ -297,12 +283,12 @@ sent by the source to the display function. For example:
         }
     ```
 
-## Delete a SinkBinding
+## 删除一个SinkBinding
 
-To delete the SinkBinding object and all of the related resources in the namespace,
-delete the namespace by running:
+要删除命名空间中的SinkBinding对象和所有相关资源，执行以下命令删除命名空间:
 
 ```bash
 kubectl delete namespace <namespace>
 ```
-Where `<namespace>` is the name of the namespace that contains the SinkBinding object.
+
+其中 `<namespace>` 是包含SinkBinding对象的名称空间的名称。

@@ -1,30 +1,25 @@
-# Sequence terminal
+# 序列终端
 
-We are going to create the following logical configuration. We create a
-PingSource, feeding events to a [`Sequence`](../README.md).
-Sequence can then do either external work, or out of band create additional
-events.
+我们将创建以下逻辑配置。
+我们创建一个PingSource，向[`Sequence`](../README.md)提供事件。
+序列可以进行外部工作，或者在带外创建额外的事件。
 
-![Logical Configuration](sequence-terminal.png)
+![合理的配置](sequence-terminal.png)
 
-The functions used in these examples live in
-[https://github.com/knative/eventing/blob/main/cmd/appender/main.go](https://github.com/knative/eventing/blob/main/cmd/appender/main.go).
+这些示例中使用的函数都位于: [https://github.com/knative/eventing/blob/main/cmd/appender/main.go](https://github.com/knative/eventing/blob/main/cmd/appender/main.go).
 
-## Prerequisites
+## 先决条件
 
-For this example, we'll assume you have set up an `InMemoryChannel` as well as
-Knative Serving (for our functions). The examples use `default` namespace,
-again, if you want to deploy to another Namespace, you will need to modify the
-examples to reflect this.
+在这个例子中，我们假设你已经设置了一个`InMemoryChannel`和Knative服务(用于我们的函数)。
+示例使用`default`名称空间，同样，如果您希望部署到另一个名称空间，您将需要修改示例以反映这一点。
 
-If you want to use different type of `Channel`, you will have to modify the
-`Sequence.Spec.ChannelTemplate` to create the appropriate Channel resources.
+如果你想使用不同类型的`Channel`，你必须修改`Sequence.Spec.ChannelTemplate`来创建适当的通道资源。
 
-## Setup
+## 设置
 
-### Create the Knative Services
+### 创建Knative服务
 
-First create the 3 steps that will be referenced in the Steps.
+首先创建将在步骤中引用的3个步骤。
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -74,11 +69,10 @@ spec:
 kubectl -n default create -f ./steps.yaml
 ```
 
-### Create the Sequence
+### 创建序列
 
-The `sequence.yaml` file contains the specifications for creating the Sequence.
-If you are using a different type of Channel, you need to change the
-spec.channelTemplate to point to your desired Channel.
+`sequence.yaml`文件包含了创建序列的规范。
+如果使用不同类型的通道，则需要更改`spec.channelTemplate`以指向所需的通道。
 
 ```yaml
 apiVersion: flows.knative.dev/v1
@@ -104,17 +98,15 @@ spec:
         name: third
 ```
 
-Change `default` in the following command to create the `Sequence` in the namespace where you want
-the resources to be created:
+在下面的命令中修改`default`，在你想要创建资源的命名空间中创建`Sequence`:
 
 ```bash
 kubectl -n default create -f ./sequence.yaml
 ```
 
-### Create the PingSource targeting the Sequence
+### 创建针对序列的PingSource
 
-This will create a PingSource which will send a CloudEvent with
-`{"message": "Hello world!"}` as the data payload every 2 minutes.
+这将创建一个PingSource，它将每2分钟发送一个带有`{"message": "Hello world!"}`作为数据负载的CloudEvent。
 
 ```yaml
 apiVersion: sources.knative.dev/v1
@@ -136,17 +128,16 @@ spec:
 kubectl -n default create -f ./ping-source.yaml
 ```
 
-### Inspecting the results
+### 检查结果
 
-You can now see the final output by inspecting the logs of the event-display
-pods. Note that since we set the `PingSource` to emit every 2 minutes, it might
-take some time for the events to show up in the logs.
+现在可以通过检查事件显示Pods的日志看到最终的输出。
+注意，由于我们将`PingSource`设置为每2分钟发出一次，所以事件在日志中显示可能需要一些时间。
 
 ```bash
 kubectl -n default get pods
 ```
 
-Let's look at the logs for the first `Step` in the `Sequence`:
+让我们看看 `Sequence` 中第一步的日志:
 
 ```bash
 kubectl -n default logs -l serving.knative.dev/service=first -c user-container --tail=-1
@@ -157,11 +148,9 @@ kubectl -n default logs -l serving.knative.dev/service=first -c user-container -
 2020/03/02 21:28:01 Transform the event to:
 2020/03/02 21:28:01 [2020-03-02T21:28:00.0010247Z] /apis/v1/namespaces/default/pingsources/ping-source dev.knative.sources.ping: &{Sequence:0 Message:Hello world! - Handled by 0}
 ```
-And you can see that the initial PingSource message `("Hello World!")` has now
-been modified by the first step in the Sequence to include " - Handled by 0".
-Exciting :)
+您可以看到，初始的PingSource消息`("Hello World!")`现在已经被序列中的第一步修改为包含" - Handled by 0"。激动人心的:)
 
-Then we can look at the output of the second Step in the `Sequence`:
+然后我们可以看看 `Sequence` 中第二步的输出:
 
 ```bash
 kubectl -n default logs -l serving.knative.dev/service=second -c user-container --tail=-1
@@ -172,10 +161,9 @@ kubectl -n default logs -l serving.knative.dev/service=second -c user-container 
 2020/03/02 21:28:02 Transform the event to:
 2020/03/02 21:28:02 [2020-03-02T21:28:00.0010247Z] /apis/v1/namespaces/default/pingsources/ping-source dev.knative.sources.ping: &{Sequence:0 Message:Hello world! - Handled by 0 - Handled by 1}
 ```
-And as expected it's now been handled by both the first and second Step as
-reflected by the Message being now: "Hello world! - Handled by 0 - Handled by 1"
+正如预期的那样，它现在由第一步和第二步处理，反映在现在的消息中:"Hello world! - Handled by 0 - Handled by 1"
 
-Then we can look at the output of the last Step in the `Sequence`:
+然后我们可以看看 `Sequence` 中最后一步的输出:
 
 ```bash
 kubectl -n default logs -l serving.knative.dev/service=third -c user-container --tail=-1

@@ -14,35 +14,30 @@ PingSource是一种事件源，它在指定的[cron](https://en.wikipedia.org/wi
 
 创建PingSource:
 
-- You must install [Knative Eventing](../../../install/yaml-install/eventing/install-eventing-with-yaml.md).
-The PingSource event source type is enabled by default when you install Knative Eventing.
-- You can use either `kubectl` or [`kn`](../../../client/install-kn.md) commands
-to create components such as a sink and PingSource.
-- You can use either `kubectl` or [`kail`](https://github.com/boz/kail) for logging
-during the verification step in this procedure.
+- 你必须安装[Knative事件](../../../install/yaml-install/eventing/install-eventing-with-yaml.md)。
+  在安装Knative事件时，默认启用PingSource事件源类型。
+- 您可以使用`kubectl`或[`kn`](../../../client/install-kn.md)命令来创建接收器和PingSource等组件。
+- 在此过程的验证步骤中，您可以使用`kubectl` 或[`kail`](https://github.com/boz/kail)进行日志记录。
 
 ## 创建PingSource对象
 
-1. 可选:为你的PingSource创建一个命名空间。
+1. 可选: 为你的PingSource创建一个命名空间。
 
     ```bash
     kubectl create namespace <namespace>
     ```
 
-    Where `<namespace>` is the namespace that you want your PingSource to use.
-    For example, `pingsource-example`.
+    其中`<namespace>`是您希望PingSource使用的名称空间。
+    例如, `pingsource-example`.
 
     !!! note
-        Creating a namespace for your PingSource and related components allows
-        you to view changes and events for this workflow more easily, because
-        these are isolated from the other components that might exist in your
-        `default` namespace.<br><br>
-        It also makes removing the source easier, because you can delete the
-        namespace to remove all of the resources.
+        为PingSource和相关组件创建名称空间可以让您更容易地查看此工作流的更改和事件，因为这些与“默认”名称空间中可能存在的其他组件隔离开来。
 
-1. 创建一个水槽。如果您没有自己的接收器，您可以使用以下示例服务将传入的消息转储到日志中:
+        它还使删除源变得更容易，因为您可以删除名称空间来删除所有资源。
 
-    1. Copy the YAML below into a file:
+2. 创建一个接收器。如果您没有自己的接收器，您可以使用以下示例服务将传入的消息转储到日志中:
+
+    1. 将下面的YAML复制到一个文件中:
 
         ```yaml
         apiVersion: apps/v1
@@ -79,29 +74,28 @@ during the verification step in this procedure.
             targetPort: 8080
         ```
 
-        Where `<namespace>` is the name of the namespace that you created in step 1 above.
+        其中`<namespace>`是您在上面第1步中创建的命名空间的名称。
 
-    1. Apply the YAML file by running the command:
+    2. 运行以下命令应用YAML文件:
 
         ```bash
         kubectl apply -f <filename>.yaml
         ```
-        Where `<filename>` is the name of the file you created in the previous step.
 
-1. 创建PingSource对象。
+        其中`<filename>`是您在上一步中创建的文件的名称。
+
+3. 创建PingSource对象。
 
     !!! note
-        The data you want to send must be represented as text in the PingSource YAML file.
-        Events that send binary data cannot be directly serialized in YAML.
-        However, you can send binary data that is base64 encoded by using
-        `dataBase64` in place of `data` in the PingSource spec.
+        您想要发送的数据必须在PingSource YAML文件中表示为文本。
+        发送二进制数据的事件不能在YAML中直接序列化。
+        然而，你可以发送base64编码的二进制数据，在PingSource规范中使用 `dataBase64` 来代替 `data`。
 
-    Use one of the following options:
+    使用以下选项之一:
 
     === "kn"
 
-        - To create a PingSource that sends data that can be represented as
-        plain text, such as text, JSON, or XML, run the command:
+        - 创建一个PingSource，发送可以表示为纯文本的数据，如文本、JSON或XML，运行命令:
 
             ```bash
             kn source ping create <pingsource-name> \
@@ -112,17 +106,17 @@ during the verification step in this procedure.
             ```
             Where:
 
-            - `<pingsource-name>` is the name of the PingSource that you want to create, for example, `test-ping-source`.
-            - `<namespace>` is the name of the namespace that you created in step 1 above.
-            - `<cron-schedule>` is a cron expression for the schedule for the PingSource to send events, for example, `*/1 * * * *` sends an event every minute.
-            - `<data>` is the data you want to send. This data must be represented as text, not binary. For example, a JSON object such as `{"message": "Hello world!"}`.
-            - `<sink-name>` is the name of your sink, for example, `http://event-display.pingsource-example.svc.cluster.local`.
+            - `<pingsource-name>` 它是您想要创建的PingSource的名称，例如，`test-ping-source`。
+            - `<namespace>` 它是您在上面的第1步中创建的命名空间的名称。
+            - `<cron-schedule>` 它是PingSource发送事件的时间表的cron表达式，例如，`*/1 * * * *`每分钟发送一个事件。
+            - `<data>` 它是您想要发送的数据。此数据必须表示为文本，而不是二进制。例如，一个JSON对象，如`{"message": "Hello world!"}`。
+            - `<sink-name>` 它是你的接收器的名字，例如，`http://event-display.pingsource-example.svc.cluster.local`。
 
-            For a list of available options, see the [Knative client documentation](https://github.com/knative/client/blob/main/docs/cmd/kn_source_ping_create.md).
+            有关可用选项的列表，请参阅[Knative客户端文档](https://github.com/knative/client/blob/main/docs/cmd/kn_source_ping_create.md).
 
     === "kn: binary data"
 
-        - To create a PingSource that sends binary data, run the command:
+        - 创建一个发送二进制数据的PingSource，使用命令:
 
             ```bash
             kn source ping create <pingsource-name> \
@@ -134,20 +128,19 @@ during the verification step in this procedure.
             ```
             Where:
 
-            - `<pingsource-name>` is the name of the PingSource that you want to create, for example, `test-ping-source`.
-            - `<namespace>` is the name of the namespace that you created in step 1 above.
-            - `<cron-schedule>` is a cron expression for the schedule for the PingSource to send events, for example, `*/1 * * * *` sends an event every minute.
-            -  `<base64-data>` is the base64 encoded binary data that you want to send, for example, `ZGF0YQ==`.
-            - `<sink-name>` is the name of your sink, for example, `http://event-display.pingsource-example.svc.cluster.local`.
+            - `<pingsource-name>` 它是您想要创建的PingSource的名称，例如，`test-ping-source`。
+            - `<namespace>` 它是您在上面的第1步中创建的命名空间的名称。
+            - `<cron-schedule>` 它是PingSource发送事件的时间表的cron表达式，例如，`*/1 * * * *`每分钟发送一个事件。
+            -  `<base64-data>` 它是您想要发送的base64编码二进制数据，例如，`ZGF0YQ==`。
+            - `<sink-name>` 它是你的接收器的名字，例如，`http://event-display.pingsource-example.svc.cluster.local`。
 
-            For a list of available options, see the [Knative client documentation](https://github.com/knative/client/blob/main/docs/cmd/kn_source_ping_create.md).
+            有关可用选项的列表，请参阅[Knative客户端文档](https://github.com/knative/client/blob/main/docs/cmd/kn_source_ping_create.md).
 
     === "YAML"
 
-        - To create a PingSource that sends data that can be represented as plain text,
-        such as text, JSON, or XML:
+        - 创建一个PingSource，发送可以表示为纯文本的数据，如文本、JSON或XML:
 
-            1. Create a YAML file using the template below:
+            1. 使用下面的模板创建一个YAML文件:
 
                 ```yaml
                 apiVersion: sources.knative.dev/v1
@@ -167,28 +160,28 @@ during the verification step in this procedure.
                 ```
                 Where:
 
-                - `<pingsource-name>` is the name of the PingSource that you want to create, for example, `test-ping-source`.
-                - `<namespace>` is the name of the namespace that you created in step 1 above.
-                - `<cron-schedule>` is a cron expression for the schedule for the PingSource to send events, for example, `*/1 * * * *` sends an event every minute.
-                - `<content-type>` is the media type of the data you want to send, for example, `application/json`.
-                - `<data>` is the data you want to send. This data must be represented as text, not binary. For example, a JSON object such as `{"message": "Hello world!"}`.
-                - `<sink-kind>` is any supported Addressable object that you want to use as a sink, for example, a `Service` or `Deployment`.
-                - `<sink-name>` is the name of your sink, for example, `event-display`.
+                - `<pingsource-name>` 它是您想要创建的PingSource的名称，例如，`test-ping-source`。
+                - `<namespace>` 它是您在上面的第1步中创建的命名空间的名称。
+                - `<cron-schedule>` 它是PingSource发送事件的时间表的cron表达式，例如，`*/1 * * * *`每分钟发送一个事件。
+                - `<content-type>` 它是你想要发送的数据的媒体类型，例如，`application/json`。
+                - `<data>` 它是您想要发送的数据。此数据必须表示为文本，而不是二进制。例如，一个JSON对象，如`{"message": "Hello world!"}`。
+                - `<sink-kind>` 它是你想用作接收器的任何受支持的可寻址对象，例如`服务`或`部署`。
+                - `<sink-name>` 它是你的接收器的名称，例如，`event-display`。
 
-                For more information about the fields you can configure for the PingSource object, see [PingSource reference](reference.md).
+                有关可以为PingSource对象配置的字段的更多信息，请参见[PingSource reference](reference.md)。
 
-            1. Apply the YAML file by running the command:
+            2. 运行以下命令应用YAML文件:
 
                 ```bash
                 kubectl apply -f <filename>.yaml
                 ```
-                Where `<filename>` is the name of the file you created in the previous step.
+                其中`<filename>`是您在上一步中创建的文件的名称。
 
     === "YAML: binary data"
 
-        - To create a PingSource that sends binary data:
+        - 创建一个发送二进制数据的PingSource:
 
-            1. Create a YAML file using the template below:
+            3. 使用下面的模板创建一个YAML文件:
 
                 ```yaml
                 apiVersion: sources.knative.dev/v1
@@ -208,22 +201,22 @@ during the verification step in this procedure.
                 ```
                 Where:
 
-                - `<pingsource-name>` is the name of the PingSource that you want to create, for example, `test-ping-source-binary`.
-                - `<namespace>` is the name of the namespace that you created in step 1 above.
-                - `<cron-schedule>` is a cron expression for the schedule for the PingSource to send events, for example, `*/1 * * * *` sends an event every minute.
-                - `<content-type>` is the media type of the data you want to send, for example, `application/json`.
-                - `<base64-data>` is the base64 encoded binary data that you want to send, for example, `ZGF0YQ==`.
-                - `<sink-kind>` is any supported Addressable object that you want to use as a sink, for example, a Kubernetes Service.
-                - `<sink-name>` is the name of your sink, for example, `event-display`.
+                - `<pingsource-name>` 它是您想要创建的PingSource的名称，例如，`test-ping-source-binary`。
+                - `<namespace>` 它是您在上面的第1步中创建的命名空间的名称。
+                - `<cron-schedule>` 它是PingSource发送事件的时间表的cron表达式，例如，`*/1 * * * *`每分钟发送一个事件。
+                - `<content-type>` 它是你想要发送的数据的媒体类型，例如，`application/json`。
+                - `<base64-data>` 它是您想要发送的base64编码二进制数据，例如，`ZGF0YQ==`。
+                - `<sink-kind>` 它是您希望用作接收器的任何受支持的可寻址对象，例如，Kubernetes服务。
+                - `<sink-name>` 它是你的接收器的名称，例如，`event-display`。
 
-                For more information about the fields you can configure for the PingSource object, see [PingSource reference](reference.md).
+                有关可以为PingSource对象配置的字段的更多信息，请参见[PingSource reference](reference.md)。
 
-            1. Apply the YAML file by running the command:
+            4. 运行以下命令应用YAML文件:
 
                 ```bash
                 kubectl apply -f <filename>.yaml
                 ```
-                Where `<filename>` is the name of the file you created in the previous step.
+                其中`<filename>`是您在上一步中创建的文件的名称。
 
 
 ## 验证PingSource对象
@@ -244,8 +237,8 @@ during the verification step in this procedure.
         ```
 
 1. 验证输出是否返回PingSource发送到接收器的事件的属性。
-In the example below, the command has returned the `Attributes` and `Data` properties
-of the events that the PingSource sent to the `event-display` Service:
+   在下例中，该命令返回PingSource发送给event-display服务的事件的“Attributes”和“Data”属性:
+
 
     ```{ .bash .no-copy }
     ☁️  cloudevents.Event
@@ -268,42 +261,42 @@ of the events that the PingSource sent to the `event-display` Service:
 
 您可以删除PingSource和所有相关资源，也可以单独删除资源:
 
-- To remove the PingSource object and all of the related resources, delete the namespace by running the command:
+- 要删除PingSource对象和所有相关资源，可以通过以下命令删除命名空间:
 
     ```bash
     kubectl delete namespace <namespace>
     ```
-    Where `<namespace>` is the namespace that contains the PingSource object.
+    其中`<namespace>`是包含PingSource对象的名称空间。
 
 
-- To delete the PingSource instance only, run the command:
+- 只删除PingSource实例，使用命令:
 
     === "kn"
 
         ```bash
         kn source ping delete <pingsource-name>
         ```
-        Where `<pingsource-name>` is the name of the PingSource you want to delete, for example, `test-ping-source`.
+        其中`<pingsource-name>`是要删除的PingSource的名称，例如`test-ping-source`。
 
     === "kubectl"
 
         ```bash
         kubectl delete pingsources.sources.knative.dev <pingsource-name>
         ```
-        Where `<pingsource-name>` is the name of the PingSource you want to delete, for example, `test-ping-source`.
+        其中`<pingsource-name>`是要删除的PingSource的名称，例如`test-ping-source`。
 
-- To delete the sink only, run the command:
+- 只删除sink，使用命令:
 
     === "kn"
 
         ```bash
         kn service delete <sink-name>
         ```
-        Where `<sink-name>` is the name of your sink, for example, `event-display`.
+        其中`<sink-name>`是你的接收器的名称，例如`event-display`。
 
     === "kubectl"
 
         ```bash
         kubectl delete service.serving.knative.dev <sink-name>
         ```
-        Where `<sink-name>` is the name of your sink, for example, `event-display`.
+        其中`<sink-name>`是你的接收器的名称，例如`event-display`。

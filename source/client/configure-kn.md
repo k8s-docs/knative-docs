@@ -31,7 +31,7 @@ eventing:
   如前所述，默认路径取决于操作系统。
   这可以是用户可见的任何目录(默认:`$base_dir/plugins`，其中`$base_dir`是存储配置文件的目录)。
 - `sink-mappings`定义了Kubernetes可寻址资源，当您在`kn` CLI命令中使用`--sink`标志时使用该资源。
-    - `prefix`: 你想用来描述你的水槽的前缀。Service、`svc`, `channel`, 和 `broker`是`kn`中的预定义前缀。
+    - `prefix`: 你想用来描述你的接收器的前缀。Service、`svc`, `channel`, 和 `broker`是`kn`中的预定义前缀。
     <!--can be a prefix be anything? Otherwise let's provide a full list of what's allowed, limitations, etc.-->
     - `group`: Kubernetes资源的API组。
     - `version`: Kubernetes资源的版本。

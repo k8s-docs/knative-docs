@@ -1,32 +1,28 @@
-# Using Sequence with Broker and Trigger
+# 使用带有代理和触发器的序列
 
-We are going to create the following logical configuration. We create a
-PingSource, feeding events into the Broker, then we create a `Filter` that wires
-those events into a [`Sequence`](../README.md) consisting of 3
-steps. Then we take the end of the Sequence and feed newly minted events back
-into the Broker and create another Trigger which will then display those events.
+我们将创建以下逻辑配置。
+我们创建一个PingSource，向代理提供事件，然后创建一个“过滤器”，将这些事件连接到一个由3个步骤组成的[序列](../README.md)中。
+然后取序列的末尾，将新生成的事件反馈给代理，并创建另一个触发器，该触发器将显示这些事件。
 
-## Prerequisites
+## 先决条件
 
-- Knative Serving
+- Knative 服务
 - `InMemoryChannel`
 
 !!! note
-    The examples use the `default` namespace.
+    这些示例使用`default`名称空间。
 
-If you want to use different type of `Channel`, you will have to modify the
-`Sequence.Spec.ChannelTemplate` to create the appropriate Channel resources.
+如果你想使用不同类型的“通道”，你必须修改`Sequence.Spec.ChannelTemplate`来创建适当的通道资源。
 
 ![Logical Configuration](sequence-with-broker-trigger.png)
 
-The functions used in these examples live in
-[https://github.com/knative/eventing/blob/main/cmd/appender/main.go](https://github.com/knative/eventing/blob/main/cmd/appender/main.go).
+这些示例中使用的函数位于[https://github.com/knative/eventing/blob/main/cmd/appender/main.go](https://github.com/knative/eventing/blob/main/cmd/appender/main.go).
 
-## Setup
+## 设置
 
-### Creating the Broker
+### 创建代理
 
-1. To create the cluster default Broker type, copy the following YAML into a file:
+1. 要创建集群默认的Broker类型，请将以下YAML复制到一个文件中:
 
     ```yaml
     apiVersion: eventing.knative.dev/v1
@@ -35,14 +31,14 @@ The functions used in these examples live in
      name: default
     ```
 
-1. Apply the YAML file by running the command:
+1. 运行以下命令应用YAML文件:
 
     ```bash
     kubectl apply -f <filename>.yaml
     ```
-    Where `<filename>` is the name of the file you created in the previous step.
+    其中 `<filename>` 是您在上一步中创建的文件的名称。
 
-### Create the Knative Services
+### 创建服务
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -90,20 +86,18 @@ spec:
 
 ```
 
-Change `default` in the following command to create the services in the namespace where you have
-configured your broker:
+在以下命令中更改 `default`，在您配置代理的命名空间中创建服务:
 
 ```bash
 kubectl -n default create -f ./steps.yaml
 ```
 
-### Create the Sequence
+### 创建序列
 
-The `sequence.yaml` file contains the specifications for creating the Sequence.
-If you are using a different type of Channel, you need to change the
-spec.channelTemplate to point to your desired Channel.
+`sequence.yaml`文件包含了创建序列的规范。
+如果使用不同类型的通道，则需要更改`spec.channelTemplate`以指向所需的通道。
 
-Also, change the spec.reply.name to point to your `Broker`
+另外，将`spec.reply.name`更改为指向您的代理
 
 ```yaml
 apiVersion: flows.knative.dev/v1
@@ -134,17 +128,15 @@ spec:
       name: default
 ```
 
-Change `default` in the following command to create the sequence in the namespace where you have
-configured your broker:
+在以下命令中更改 `default`，以在您配置代理的名称空间中创建序列:
 
 ```bash
 kubectl -n default create -f ./sequence.yaml
 ```
 
-### Create the PingSource targeting the Broker
+### 创建针对代理的PingSource
 
-This will create a PingSource which will send a CloudEvent with {"message":
-"Hello world!"} as the data payload every 2 minutes.
+这将创建一个PingSource，它将每隔2分钟发送一个CloudEvent，并将`{"message":"Hello world!"}`作为数据有效负载。
 
 ```yaml
 apiVersion: sources.knative.dev/v1
@@ -162,14 +154,13 @@ spec:
       name: default
 ```
 
-Change `default` in the following command to create the PingSource in the namespace where you have
-configured your broker and sequence:
+在以下命令中更改 `default`，在您配置代理和序列的命名空间中创建PingSource:
 
 ```bash
 kubectl -n default create -f ./ping-source.yaml
 ```
 
-### Create the Trigger targeting the Sequence
+### 创建针对序列的触发器
 
 ```yaml
 apiVersion: eventing.knative.dev/v1
@@ -188,15 +179,14 @@ spec:
       name: sequence
 ```
 
-Change `default` in the following command to create the trigger in the namespace where you have
-configured your broker and sequence:
+在以下命令中更改 `default`，在您配置代理和序列的命名空间中创建触发器:
 
 ```bash
 kubectl -n default create -f ./trigger.yaml
 
 ```
 
-### Create the Service and Trigger displaying the events created by Sequence
+### 创建服务和触发器，显示按顺序创建的事件
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -227,23 +217,21 @@ spec:
 
 ```
 
-Change `default` in the following command to create the service and trigger in the namespace
-where you have configured your broker:
+在以下命令中更改 `default`，以在您配置代理的名称空间中创建服务并触发:
 
 ```bash
 kubectl -n default create -f ./display-trigger.yaml
 ```
 
-### Inspecting the results
+### 检查结果
 
-You can now see the final output by inspecting the logs of the sequence-display
-pods.
+您现在可以通过检查序列显示Pods的日志看到最终的输出。
 
 ```bash
 kubectl -n default get pods
 ```
 
-View the logs for the `sequence-display` pod:
+查看`sequence-display` Pod的日志:
 
 ```bash
 kubectl -n default logs -l serving.knative.dev/service=sequence-display -c user-container --tail=-1
@@ -267,5 +255,4 @@ Data,
   }
 ```
 
-And you can see that the initial PingSource message `{"Hello World!"}` has been
-appended to it by each of the steps in the Sequence.
+你可以看到初始的PingSource消息`{"Hello World!"}`被序列中的每个步骤附加到它后面。

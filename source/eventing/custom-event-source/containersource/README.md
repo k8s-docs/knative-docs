@@ -1,26 +1,23 @@
-# Create a ContainerSource
+# 创建ContainerSource
 
 ![API version v1](https://img.shields.io/badge/API_Version-v1-green?style=flat-square)
 
-The ContainerSource object starts a container image that generates events and
-sends messages to a sink URI. You can also use ContainerSource to support your
-own event sources in Knative.
+ContainerSource对象启动一个容器映像，该映像生成事件并将消息发送到接收器URI。您还可以使用ContainerSource在Knative中支持您自己的事件源。
 
-To create a custom event source using ContainerSource, you must create a
-container image, and a ContainerSource that uses your image URI.
+要使用ContainerSource创建自定义事件源，必须创建容器映像和使用映像URI的ContainerSource。
 
-## Before you begin
+## 在开始之前
 
 Before you can create a ContainerSource object, you must have [Knative Eventing](../../../install/yaml-install/eventing/install-eventing-with-yaml.md) installed on your cluster.
 
-## Develop, build and publish a container image
+## 开发、构建和发布容器映像
 
 You can develop a container image by using any language, and can build and publish your image by using any tools you like. The following are some basic guidelines:
 
 - Two environments variables are injected by the ContainerSource controller; `K_SINK` and `K_CE_OVERRIDES`, resolved from `spec.sink` and `spec.ceOverrides` respectively.
 - The event messages are sent to the sink URI specified in `K_SINK`. The message must be sent as a POST in [CloudEvents HTTP format](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md).
 
-## Create a ContainerSource object
+## 创建一个ContainerSource对象
 
 1. Build an image of your event source and publish it to your image repository. Your image must read the environment variable `K_SINK` and post messages to the URL specified in `K_SINK`.
 
@@ -178,7 +175,7 @@ You can develop a container image by using any language, and can build and publi
     !!! note
         Arguments and environment variables are set and are passed to the container.
 
-## Verify the ContainerSource object
+## 验证ContainerSource对象
 
 1. View the logs for your event consumer by running the command:
 
@@ -222,7 +219,7 @@ of the events that the ContainerSource sent to the `event-display` Service:
       }
     ```
 
-## Delete the ContainerSource object
+## 删除ContainerSource对象
 
 To delete the ContainerSource object and all of the related resources in the
 namespace:
@@ -235,6 +232,6 @@ namespace:
 
     Where `<namespace>` is the namespace that contains the ContainerSource object.
 
-## Reference Documentation
+## 参考文档
 
-See the [ContainerSource reference](reference.md).
+参见[ContainerSource参考](reference.md).

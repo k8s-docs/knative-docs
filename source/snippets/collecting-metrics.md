@@ -1,21 +1,23 @@
 # 在Knative中收集度量
 
-Knative supports different popular tools for collecting metrics:
+Knative支持收集指标的不同流行工具:
 
 - [Prometheus](https://prometheus.io/)
 - [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/)
 
-[Grafana](https://grafana.com/oss/) dashboards are available for metrics collected directly with Prometheus.
+[Grafana](https://grafana.com/oss/) 仪表板可用于直接从Prometheus收集的指标。
 
-You can also set up the OpenTelemetry Collector to receive metrics from Knative components and distribute them to other metrics providers that support OpenTelemetry.
+您还可以设置OpenTelemetry Collector，以便从Knative组件接收度量，并将它们分发给支持OpenTelemetry的其他度量提供程序。
 
 !!! warning
-    You can't use OpenTelemetry Collector and Prometheus at the same time. The default metrics backend is Prometheus. You will need to remove `metrics.backend-destination` and `metrics.request-metrics-backend-destination` keys from the config-observability Configmap to enable Prometheus metrics.
+    您不能同时使用OpenTelemetry Collector和Prometheus。
+    默认的度量后端是Prometheus。
+    你需要从`config-observability` Configmap中删除`metrics.backend-destination` 和 `metrics.request-metrics-backend-destination`键来启用Prometheus度量。
 
 ## 关于 Prometheus
 
-[Prometheus](https://prometheus.io/) is an open-source tool for collecting,
-aggregating timeseries metrics and alerting. It can also be used to scrape the OpenTelemetry Collector that is demonstrated below when Prometheus is used.
+[Prometheus](https://prometheus.io/)是一个用于收集、聚合时间序列度量和警报的开源工具。
+它还可以用于刮除OpenTelemetry Collector，下面将在使用Prometheus时演示这一点。
 
 ## 配置 Prometheus
 
@@ -69,25 +71,26 @@ To access the console in your web browser:
 
 1. Access the console in your browser via `http://localhost:9090`.
 
-## 痊愈 OpenTelemetry
+## 关于 OpenTelemetry
 
-OpenTelemetry is a CNCF observability framework for cloud-native software, which provides a collection of tools, APIs, and SDKs.
+OpenTelemetry是一个针对云原生软件的CNCF可观察性框架，它提供了一组工具、api和sdk。
 
-You can use OpenTelemetry to instrument, generate, collect, and export telemetry data. This data includes metrics, logs, and traces, that you can analyze to understand the performance and behavior of Knative components.
+您可以使用OpenTelemetry来测量、生成、收集和导出遥测数据。
+这些数据包括度量、日志和跟踪，您可以通过分析这些数据来了解Knative组件的性能和行为。
 
-OpenTelemetry allows you to easily export metrics to multiple monitoring services without needing to rebuild or reconfigure the Knative binaries.
+OpenTelemetry允许您轻松地将指标导出到多个监视服务，而不需要重新构建或重新配置Knative二进制文件。
 
 ## 理解收集器
 
-The collector provides a location where various Knative components can push metrics to be retained and collected by a monitoring service.
+收集器提供了一个位置，各种Knative组件可以在其中推送由监视服务保留和收集的指标。
 
-In the following example, you can configure a single collector instance using a ConfigMap and a Deployment.
+在下面的示例中，您可以使用ConfigMap和Deployment配置单个收集器实例。
 
 !!! tip
-    For more complex deployments, you can automate some of these steps by using the [OpenTelemetry Operator](https://github.com/open-telemetry/opentelemetry-operator).
+    对于更复杂的部署，您可以通过使用[OpenTelemetry Operator](https://github.com/open-telemetry/opentelemetry-operator)自动化这些步骤中的一些。
 
 !!! caution
-    The Grafana dashboards at https://github.com/knative-sandbox/monitoring/tree/main/grafana don't work with metrics scraped from OpenTelemetry Collector.
+    https://github.com/knative-sandbox/monitoring/tree/main/grafana上的Grafana仪表板不能使用从OpenTelemetry Collector中提取的指标。
 
 ![Diagram of components reporting to collector, which is scraped by Prometheus](system-diagram.svg)
 

@@ -1,25 +1,25 @@
-# Publish an event source to your cluster
+# 将事件源发布到集群
 
-1. Start a minikube cluster:
+1. 启动一个minikube集群:
 
     ```sh
     minikube start
     ```
 
-1. Setup `ko` to use the minikube docker instance and local registry:
+1. 设置 `ko` 来使用minikube docker实例和本地注册表:
 
     ```sh
     eval $(minikube docker-env)
     export KO_DOCKER_REPO=ko.local
     ```
 
-1. Apply the CRD and configuration YAML:
+1. 应用CRD并配置YAML:
 
     ```sh
     ko apply -f config
     ```
 
-1. Once the `sample-source-controller-manager` is running in the `knative-samples` namespace, you can apply the `example.yaml` to connect our `sample-source` every `10s` directly to a `ksvc`.
+1. 一旦`sample-source-controller-manager` 在`knative-samples`命名空间中运行，您可以应用`example.yaml`每隔`10s`将我们的`sample-source`直接连接到`ksvc`。
 
     ```yaml
     apiVersion: serving.knative.dev/v1
@@ -51,7 +51,7 @@
     ko apply -f example.yaml
     ```
 
-1. Once reconciled, you can confirm the `ksvc` is outputting valid cloudevents every `10s` to align with our specified interval.
+1. 协调之后，您可以确认`ksvc`每`10s`输出一次有效的云事件，以与我们指定的间隔保持一致。
 
     ```sh
     % kubectl -n knative-samples logs -l serving.knative.dev/service=event-display -c user-container -f

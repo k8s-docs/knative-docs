@@ -1,21 +1,18 @@
-# Accessing CloudEvent traces
+# 访问CloudEvent跟踪
 
-Depending on the request tracing tool that you have installed on your Knative
-Eventing cluster, see the corresponding section for details about how to
-visualize and trace your requests.
+根据您在Knative事件集群上安装的请求跟踪工具，有关如何可视化和跟踪请求的详细信息，请参阅相应的部分。
 
-## Before you begin
+## 在开始之前
 
-You must have a Knative cluster running with the Eventing component installed. [Learn more](../install/README.md).
+您必须有一个安装了事件处理组件并运行的Knative集群。[了解更多](../install/README.md).
 
-## Configuring tracing
+## 配置跟踪
 
-With the exception of importers, the Knative Eventing tracing is configured through the
-`config-tracing` ConfigMap in the `knative-eventing` namespace.
+除了导入器之外，Knative事件跟踪是通过`knative-eventing`命名空间中的`config-tracing` ConfigMap配置的。
 
-Most importers do _not_ use the ConfigMap and instead, use a static 1% sampling rate.
+大多数导入器 _不_ 使用ConfigMap，而是使用静态的1%抽样率。
 
-You can use the `config-tracing` ConfigMap to configure the following Eventing components:
+您可以使用`config-tracing` ConfigMap配置以下事件组件:
 
  - Brokers
  - Triggers
@@ -26,9 +23,9 @@ You can use the `config-tracing` ConfigMap to configure the following Eventing c
  - KafkaSource
  - PrometheusSource
 
-**Example:**
+**举例:**
 
-The following example `config-tracing` ConfigMap samples 10% of all CloudEvents:
+下面的示例`config-tracing` ConfigMap对所有CloudEvents的10%进行采样:
 
 ```yaml
 apiVersion: v1
@@ -42,9 +39,9 @@ data:
   sample-rate: "0.1"
 ```
 
-### Configuration options
+### 配置选项
 
-You can configure your `config-tracing` with following options:
+你可以用以下选项配置你的`config-tracing`:
 
  * `backend`: Valid values are `zipkin`, `stackdriver`, or `none`. The default is `none`.
 
@@ -63,7 +60,7 @@ You can configure your `config-tracing` with following options:
    Set to `true` to enable debug mode, which forces the `sample-rate` to `1.0` and sends all spans to
    the server.
 
-### Viewing your `config-tracing` ConfigMap
+### 查看你的 `config-tracing` ConfigMap
 
 To view your current configuration:
 
@@ -71,7 +68,7 @@ To view your current configuration:
 kubectl -n knative-eventing get configmap config-tracing -oyaml
 ```
 
-### Editing and deploying your `config-tracing` ConfigMap
+### 编辑和部署 `config-tracing` ConfigMap
 
 To edit and then immediately deploy changes to your ConfigMap, run the following command:
 
@@ -79,14 +76,14 @@ To edit and then immediately deploy changes to your ConfigMap, run the following
 kubectl -n knative-eventing edit configmap config-tracing
 ```
 
-## Accessing traces in Eventing
+## 在事件处理中访问跟踪
 
 To access the traces, you use either the Zipkin or Jaeger tool. Details about using these tools to access traces are provided in the Knative Serving observability section:
 
  - [Zipkin](../serving/accessing-traces.md#zipkin)
  - [Jaeger](../serving/accessing-traces.md#jaeger)
 
-### Example
+### 举例
 
 The following demonstrates how to trace requests in Knative Eventing with Zipkin, using the [`TestBrokerTracing`](https://github.com/knative/eventing/blob/main/test/conformance/broker_tracing_test.go) End-to-End test.
 

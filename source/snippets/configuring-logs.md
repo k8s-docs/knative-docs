@@ -1,25 +1,26 @@
 # 配置日志设置
 
-Log configuration for all Knative components is managed through the `config-logging` ConfigMap in the corresponding namespace. For example, Serving components are configured through `config-logging` in the `knative-serving` namespace and Eventing components are configured through `config-logging` in the `knative-eventing` namespace, etc.
+所有Knative组件的日志配置都通过对应命名空间中的`config-logging` ConfigMap进行管理。
+例如，服务组件通过`knative-serving`命名空间中的`config-logging`配置，事件组件通过`knative-eventing` 命名空间中的`config-logging`配置，等等。
 
-Knative components use the [zap](https://github.com/uber-go/zap) logging library; options are [documented in more detail in that project](https://github.com/uber-go/zap/blob/master/config.go#L58).
+Knative组件使用[zap](https://github.com/uber-go/zap)日志库;选项[在该项目中有更详细的文档](https://github.com/uber-go/zap/blob/master/config.go#L58)。
 
-In addition to `zap-logger-config`, which is a general key that applies to all components in that namespace, the `config-logging` ConfigMap supports overriding the log level for individual components.
+除了`zap-logger-config`，这是一个通用键，适用于该命名空间中的所有组件，`config-logging` ConfigMap支持覆盖单个组件的日志级别。
 
-| ConfigMap key                     | Description                                                                                                                                                      |
-| :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `zap-logger-config`               | A JSON object container for a zap logger configuration. Key fields are highlighted below.                                                                        |
-| `zap-logger-config.level`         | The default logging level for components. Messages at or above this severity level will be logged.                                                               |
-| `zap-logger-config.encoding`      | The log encoding format for component logs (defaults to JSON).                                                                                                   |
-| `zap-logger-config.encoderConfig` | A `zap` [EncoderConfig](https://github.com/uber-go/zap/blob/10d89a76cc8b9787e408aee8882e40a8bd29c585/zapcore/encoder.go#L312) used to customize record contents. |
-| `loglevel.<component>`            | Overrides logging level for the given component only. Messages at or above this severity level will be logged.                                                   |
+| ConfigMap key                     | Description                                                                                                                                        |
+| :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `zap-logger-config`               | 用于zap记录器配置的JSON对象容器。关键字段在下面突出显示。                                                                                          |
+| `zap-logger-config.level`         | 组件的默认日志记录级别。在此级别或以上的消息将被记录。                                                                                             |
+| `zap-logger-config.encoding`      | 组件日志的日志编码格式(默认为JSON)。                                                                                                               |
+| `zap-logger-config.encoderConfig` | 用于自定义记录内容的 `zap` [EncoderConfig](https://github.com/uber-go/zap/blob/10d89a76cc8b9787e408aee8882e40a8bd29c585/zapcore/encoder.go#L312)。 |
+| `loglevel.<component>`            | 仅覆盖给定组件的日志记录级别。在此级别或以上的消息将被记录。                                                                                       |
 
-Log levels supported by Zap are:
+Zap支持的日志级别有:
 
-- `debug` - fine-grained debugging
-- `info` - normal logging
-- `warn` - unexpected but non-critical errors
-- `error` - critical errors; unexpected during normal operation
-- `dpanic` - in debug mode, trigger a panic (crash)
-- `panic` - trigger a panic (crash)
-- `fatal` - immediately exit with exit status 1 (failure)
+- `debug` - 细粒度的调试
+- `info` - 正常的日志
+- `warn` - 意外但非关键的错误
+- `error` - 关键的错误;正常操作时出现意外
+- `dpanic` - 在调试模式下，触发恐慌(崩溃)
+- `panic` - 引发恐慌(崩溃)
+- `fatal` - 立即退出，退出状态为1(失败)

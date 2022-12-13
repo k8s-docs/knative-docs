@@ -1,92 +1,75 @@
-# Sequence
+# 序列
 
-Sequence CRD provides a way to define an in-order list of functions that will be
-invoked. Each step can modify, filter or create a new kind of an event. Sequence
-creates `Channel`s and `Subscription`s under the hood.
+序列CRD提供了一种方法来定义将被调用的函数的按顺序列表。
+每个步骤都可以修改、筛选或创建一种新的事件类型。
+序列在底层创建“频道”和“订阅”。
 
 !!! info
-    Sequence needs "hairpin" traffic. Please verify that your pod can reach itself via the service IP.
-    If the "hairpin" traffic is not available, you can reach out to your cluster administrator since its a cluster level (typically CNI) setting.
+    序列需要"hairpin"流量。
+    请验证您的 Pod 可以通过服务IP到达自己。
+    如果"hairpin"流量不可用，您可以联系您的集群管理员，因为这是一个集群级别(通常是CNI)设置。
 
 
-## Usage
+## 使用
 
-### Sequence Spec
+### 序列规范
 
-Sequence has three parts for the Spec:
+序列有三个部分的规范:
 
-1. `Steps` which defines the in-order list of `Subscriber`s, aka, which
-   functions are executed in the listed order. These are specified using the
-   `messaging.v1.SubscriberSpec` just like you would when creating
-   `Subscription`. Each step should be `Addressable`.
-1. `ChannelTemplate` defines the Template which will be used to create
-   `Channel`s between the steps.
-1. `Reply` (Optional) Reference to where the results of the final step in the
-   sequence are sent to.
+1. `Steps`，它定义了`Subscriber`的按顺序列表，也就是按列出的顺序执行的函数。
+   这些是使用`messaging.v1.SubscriberSpec`指定的，就像创建`Subscription`时一样。
+   每个步骤都应该是`Addressable`。
+2. `ChannelTemplate`定义了用于在步骤之间创建`Channel`的模板。
+3. `Reply`(可选)引用序列中最后一步的结果被发送到的位置。
 
-### Sequence Status
+### 序列状态
 
-Sequence has four parts for the Status:
+序列有四个部分的状态:
 
-1. Conditions which detail the overall Status of the Sequence object
-1. ChannelStatuses which convey the Status of underlying `Channel` resources
-   that are created as part of this Sequence. It is an array and each Status
-   corresponds to the Step number, so the first entry in the array is the Status
-   of the `Channel` before the first Step.
-1. SubscriptionStatuses which convey the Status of underlying `Subscription`
-   resources that are created as part of this Sequence. It is an array and each
-   Status corresponds to the Step number, so the first entry in the array is the
-   `Subscription` which is created to wire the first channel to the first step
-   in the `Steps` array.
-1. AddressStatus which is exposed so that Sequence can be used where Addressable
-   can be used. Sending to this address will target the `Channel` which is
-   fronting the first Step in the Sequence.
+1. 详细描述序列对象的整体状态的条件
+2. `ChannelStatuses`，它传递作为该序列一部分创建的底层“通道”资源的状态
+   它是一个数组，每个Status对应于Step号，
+   因此数组中的第一个条目是第一个Step之前的 `Channel` 的Status。
+3. `SubscriptionStatuses`，它传递作为该序列的一部分创建的底层“订阅”资源的状态。
+   它是一个数组，每个Status对应于Step号，因此数组中的第一个条目是“Subscription”，
+   创建它是为了将第一个通道连接到“Steps”数组中的第一个步骤。
+4. `AddressStatus` 是公开的，以便Sequence可以在可以使用Addressable的地方使用。
+   发送到此地址将针对序列中第一步前面的`Channel`。
 
-## Examples
+## 例子
 
-For each of the following examples, you use a [`PingSource`](../../../eventing/sources/ping-source/README.md) as the source of events.
+对于下面的每个示例，都使用[`PingSource`](../../../eventing/sources/ping-source/README.md)作为事件源。
 
-We also use a very simple [transformer](https://github.com/knative/eventing/blob/main/cmd/appender/main.go) which performs very trivial transformation of the incoming events to demonstrate they have passed through each stage.
+我们还使用一个非常简单的[转换器](https://github.com/knative/eventing/blob/main/cmd/appender/main.go)，它对传入的事件执行非常简单的转换，以演示它们已经通过了每个阶段。
 
-### Sequence with no reply
+### 无应答序列
 
-For the first example, we'll use a 3 Step `Sequence` that is wired directly into
-the `PingSource`. Each of the steps simply tacks on "- Handled by
-<STEP NUMBER>", for example the first Step in the `Sequence` will take the
-incoming message and append "- Handled by 0" to the incoming message.
+对于第一个例子，我们将使用直接连接到`PingSource`的3步`Sequence`。
+每个步骤都简单地附加在`- Handled by <STEP NUMBER>`上，例如`Sequence`中的第一个步骤将接受传入消息并将"- Handled by 0"附加到传入消息。
 
-See [Sequence with no reply (terminal last Step)](../sequence/sequence-terminal/README.md).
+参见[无应答的序列(终端最后一步)](../sequence/sequence-terminal/README.md).
 
-### Sequence with reply
+### 有应答序列
 
-For the next example, we'll use the same 3 Step `Sequence` that is wired
-directly into the `PingSource`. Each of the steps simply tacks on "- Handled
-by <STEP NUMBER>", for example the first Step in the `Sequence` will take the
-incoming message and append "- Handled by 0" to the incoming message.
+对于下一个例子，我们将使用直接连接到`PingSource`的相同的3步`Sequence`。
+每个步骤都简单地附加在`- Handled by <STEP NUMBER>`上，例如`Sequence`中的第一个步骤将接受传入消息并将"- Handled by 0"附加到传入消息。
 
-The only difference is that we'll use the `Subscriber.Spec.Reply` field to wire
-the output of the last Step to an event display pod.
+唯一的区别是我们将使用`Subscriber.Spec.Reply`字段将最后一步的输出连接到事件显示Pod。
 
-See [Sequence with reply (last Step produces output)](../sequence/sequence-reply-to-event-display/README.md).
+参见[有应答序列(最后一步产生输出)](../sequence/sequence-reply-to-event-display/README.md).
 
-### Chaining Sequences together
+### 将序列链接在一起
 
-For the next example, we'll use the same 3 Step `Sequence` that is wired
-directly into the `PingSource`. Each of the steps simply tacks on "- Handled
-by <STEP NUMBER>", for example the first Step in the `Sequence` will take the
-incoming message and append "- Handled by 0" to the incoming message.
+对于下一个例子，我们将使用直接连接到`PingSource`的相同的3步`Sequence` 。
+每个步骤都简单地附加在`- Handled by <STEP NUMBER>`上，例如`Sequence`中的第一个步骤将接受传入消息并将"- Handled by 0"附加到传入消息。
 
-The only difference is that we'll use the `Subscriber.Spec.Reply` field to wire
-the output of the last Step to another `Sequence` that does the same message
-modifications as the first pipeline (with different steps however).
+唯一的区别是，我们将使用`Subscriber.Spec.Reply`字段将最后一步的输出连接到另一个`Sequence`，该`Sequence`执行与第一个管道相同的消息修改(只是步骤不同)。
 
-See [Chaining Sequences together](../sequence/sequence-reply-to-sequence/README.md).
+参见[将序列连接在一起](../sequence/sequence-reply-to-sequence/README.md).
 
-### Using Sequence with Broker/Trigger model
+### 使用带有代理/触发器模型的序列
 
-You can also create a Trigger which targets `Sequence`. This time we'll wire
-`PingSource` to send events to a `Broker` and then we'll have the `Sequence`
-emit the resulting Events back into the Broker so that the results of the
-`Sequence` can be observed by other Triggers.
+你也可以创建一个目标为`Sequence`的触发器。
+这次我们将连接`PingSource`将事件发送到`Broker`，然后我们将让`Sequence`将产生的事件发送回Broker，以便`Sequence`的结果可以被其他触发器观察到。
 
-See [Using Sequence with Broker/Trigger model](../sequence/sequence-with-broker-trigger/README.md).
+参见[使用带有代理/触发器模型的序列](../sequence/sequence-with-broker-trigger/README.md).

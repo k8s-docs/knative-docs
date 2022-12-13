@@ -2,7 +2,7 @@
 - /docs/serving/README.md
 - /docs/concepts/README.md
 -->
-Knative Serving将一组对象定义为Kubernetes自定义资源定义(crd)。
+Knative Serving将一组对象定义为Kubernetes自定义资源定义(CRDs)。
 这些资源用于定义和控制无服务器工作负载在集群上的行为。
 
 ![显示服务资源如何相互协调的关系图。](https://github.com/knative/serving/raw/main/docs/spec/images/object_model.png)

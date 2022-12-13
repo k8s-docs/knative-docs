@@ -26,10 +26,19 @@ spec:
 
 Where
 
-- The `deadLetterSink` spec contains configuration settings to enable using a dead letter sink. This tells the Subscription what happens to events that cannot be delivered to the subscriber. When this is configured, events that fail to be delivered are sent to the dead letter sink destination. The destination can be a Knative Service or a URI. In the example, the destination is a `Service` object, or Knative Service, named `example-sink`.
-- The `backoffDelay` delivery parameter specifies the time delay before an event delivery retry is attempted after a failure. The duration of the `backoffDelay` parameter is specified using the ISO 8601 format. For example, `PT1S` specifies a 1 second delay.
-- The `backoffPolicy` delivery parameter can be used to specify the retry back off policy. The policy can be specified as either `linear` or `exponential`. When using the `linear` back off policy, the back off delay is the time interval specified between retries. When using the `exponential` back off policy, the back off delay is equal to `backoffDelay*2^<numberOfRetries>`.
-- `retry` specifies the number of times that event delivery is retried before the event is sent to the dead letter sink.
+- `deadLetterSink`规范包含启用使用死信接收的配置设置。
+  这将告诉订阅无法传递给订阅服务器的事件发生了什么。
+  配置此参数后，发送失败的事件将被发送到死信接收目的地。
+  目的地可以是Knative Service或URI。
+  在本例中，目的地是一个名为`example-sink`的`Service` 对象或Knative Service。
+- `backoffPolicy`传递参数指定失败后重试尝试事件传递之前的时间延迟。
+  `backoffDelay`参数的持续时间使用ISO 8601格式指定。
+  例如，`PT1S` 指定1秒延迟。
+- `backoffPolicy`传递参数可用于指定重试回退策略。
+  该策略可以指定为“线性”或“指数”。
+  当使用“线性”后退策略时，后退延迟是重试之间指定的时间间隔。
+  当使用'指数'回退策略时，回退延迟等于`backoffDelay*2^<numberOfRetries>`。
+- `retry`指定在事件被发送到死信接收之前重试事件传递的次数。
 
 ## 配置代理事件传递
 
@@ -54,25 +63,36 @@ spec:
 
 Where
 
-- The `deadLetterSink` spec contains configuration settings to enable using a dead letter sink. This tells the Subscription what happens to events that cannot be delivered to the subscriber. When this is configured, events that fail to be delivered are sent to the dead letter sink destination. The destination can be any Addressable object that conforms to the Knative Eventing sink contract, such as a Knative Service, a Kubernetes Service, or a URI. In the example, the destination is a `Service` object, or Knative Service, named `example-sink`.
-- The `backoffDelay` delivery parameter specifies the time delay before an event delivery retry is attempted after a failure. The duration of the `backoffDelay` parameter is specified using the ISO 8601 format. For example, `PT1S` specifies a 1 second delay.
-- The `backoffPolicy` delivery parameter can be used to specify the retry back off policy. The policy can be specified as either `linear` or `exponential`. When using the `linear` back off policy, the back off delay is the time interval specified between retries. This is a linearly increasing delay, which means that the back off delay increases by the given interval for each retry. When using the `exponential` back off policy, the back off delay increases by a multiplier of the given interval for each retry.
-- `retry` specifies the number of times that event delivery is retried before the event is sent to the dead letter sink. The initial delivery attempt is not included in the retry count, so the total number of delivery attempts is equal to the `retry` value +1.
+- `deadLetterSink`规范包含启用使用死信接收的配置设置。
+  这将告诉订阅无法传递给订阅服务器的事件发生了什么。
+  配置此参数后，发送失败的事件将被发送到死信接收目的地。
+  目的地可以是符合Knative事件接收器契约的任何可寻址对象，例如Knative服务、Kubernetes服务或URI。
+  在本例中，目的地是一个名为`example-sink`的`Service`对象或Knative Service。
+- `backoffDelay`传递参数指定失败后重试尝试事件传递之前的时间延迟。
+  `backoffDelay`参数的持续时间使用ISO 8601格式指定。
+  例如，`PT1S`指定1秒延迟。
+- `backoffPolicy`传递参数可用于指定重试回退策略。
+  该策略可以指定为“线性”或“指数”。
+  当使用“线性”后退策略时，后退延迟是重试之间指定的时间间隔。
+  这是一个线性增加的延迟，这意味着后退延迟按每次重试的给定间隔增加。
+  当使用“指数”后退策略时，后退延迟为每次重试增加给定间隔的乘数。
+- `retry`指定在事件被发送到死信接收之前重试事件传递的次数。
+  初始的交付尝试不包括在重试计数中，因此交付尝试的总数等于“重试”值+1。
 
 ### 代理支持
 
 下表总结了每种代理实现类型支持的交付参数:
 
-| Broker Class         | Supported Delivery Parameters                              |
+| 代理类               | 支持的交付参数                                             |
 | -------------------- | ---------------------------------------------------------- |
 | googlecloud          | `deadLetterSink`, `retry`, `backoffPolicy`, `backoffDelay` |
 | Kafka                | `deadLetterSink`, `retry`, `backoffPolicy`, `backoffDelay` |
-| MTChannelBasedBroker | depends on the underlying Channel                          |
+| MTChannelBasedBroker | 取决于底层的通道                                           |
 | RabbitMQBroker       | `deadLetterSink`, `retry`, `backoffPolicy`, `backoffDelay` |
 
 !!! note
-    `deadLetterSink` must be a GCP Pub/Sub topic URI.
-    `googlecloud` Broker only supports the `exponential` back off policy.
+    `deadLetterSink` 必须是一个GCP Pub/Sub主题URI。
+    `googlecloud` 代理只支持“指数”回退策略。
 
 ## 配置通道事件传递
 
@@ -81,31 +101,25 @@ Where
 
 - **knativeerrordest**
     - **Type:** String
-    - **Description:** The original destination URL to which the failed event
-      was sent.  This could be either a `delivery` or `reply` URL based on
-      which operation encountered the failed event.
-    - **Constraints:** Always present because every HTTP Request has a
-      destination URL.
+    - **Description:** 将失败事件发送到的原始目标URL。
+        根据遇到失败事件的操作，这可以是一个“交付”或“回复”URL。
+    - **Constraints:** 总是存在，因为每个HTTP请求都有一个目标URL。
     - **Examples:**
         - "http://myservice.mynamespace.svc.cluster.local:3000/mypath"
         - ...any `deadLetterSink` URL...
 
 - **knativeerrorcode**
     - **Type:** Int
-    - **Description:** The HTTP Response **StatusCode** from the final event
-      dispatch attempt.
-    - **Constraints:** Always present because every HTTP Response contains
-      a **StatusCode**.
+    - **Description:** 来自最后事件分派尝试的HTTP响应**StatusCode**。
+    - **Constraints:** 总是存在，因为每个HTTP响应都包含一个**StatusCode**。
     - **Examples:**
         - "500"
         - ...any HTTP StatusCode...
 
 - **knativeerrordata**
     - **Type:** String
-    - **Description:** The HTTP Response **Body** from the final event dispatch
-      attempt.
-    - **Constraints:** Empty if the HTTP Response **Body** is empty,
-      and may be truncated if the length is excessive.
+    - **Description:** 来自最后事件分派尝试的HTTP响应**Body**。
+    - **Constraints:** 如果HTTP Response **Body**为空，则为空;如果长度过大，则可能被截断。
     - **Examples:**
         - 'Internal Server Error: Failed to process event.'
         - '{"key": "value"}'

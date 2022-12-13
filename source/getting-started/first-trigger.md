@@ -1,11 +1,11 @@
 # 使用触发器和接收器
 
 在上一个主题中，我们使用 CloudEvents Player 作为事件源向代理发送事件。
-现在我们希望事件从 Broker 转移到事件接收器。
+现在我们希望事件从代理器转到接收器。
 
 在本主题中，我们将使用 CloudEvents Player 作为接收器和源。
 这意味着我们将使用 CloudEvents Player 来发送和接收事件。
-我们将使用 Trigger 来监听 Broker 中要发送到接收器的事件。
+我们将使用触发器来监听代理器中要发送到接收器的事件。
 
 ## 创建第一个触发器
 
@@ -53,7 +53,7 @@
             trigger.eventing.knative.dev/cloudevents-trigger created
             ```
 
-??? question "我的触发器在听什么 CloudEvents ?"
+??? question "我的触发器在监听什么 CloudEvents ?"
 
     因为我们没有在`kn`命令中指定`--filter`，所以触发器正在监听进入代理的任何CloudEvents。
 

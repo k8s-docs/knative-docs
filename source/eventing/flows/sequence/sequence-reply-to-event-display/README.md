@@ -1,30 +1,24 @@
-# Sequence wired to event-display
+# 有应答序列 序列连接到事件显示
 
-We are going to create the following logical configuration. We create a
-PingSource, feeding events to a [`Sequence`](../README.md), then
-taking the output of that `Sequence` and displaying the resulting output.
+我们将创建以下逻辑配置。
+我们创建一个PingSource，向[`Sequence`](../README.md)提供事件，然后获取该`Sequence`的输出并显示结果输出。
 
-![Logical Configuration](sequence-reply-to-event-display.png)
+![合理的配置](sequence-reply-to-event-display.png)
 
-The functions used in these examples live in
-[https://github.com/knative/eventing/blob/main/cmd/appender/main.go](https://github.com/knative/eventing/blob/main/cmd/appender/main.go).
+这些示例中使用的函数位于[https://github.com/knative/eventing/blob/main/cmd/appender/main.go](https://github.com/knative/eventing/blob/main/cmd/appender/main.go).
 
-## Prerequisites
+## 先决条件
 
-For this example, we'll assume you have set up an `InMemoryChannel` as well as
-Knative Serving (for our functions). The examples use `default` namespace,
-again, if you want to deploy to another Namespace, you will need to modify the
-examples to reflect this.
+对于本例，我们假设您已经设置了一个`InMemoryChannel` 以及Knative服务(用于我们的函数)。
+示例使用`default`名称空间，同样，如果您希望部署到另一个名称空间，您将需要修改示例以反映这一点。
 
-If you want to use different type of `Channel`, you will have to modify the
-`Sequence.Spec.ChannelTemplate` to create the appropriate Channel resources.
+如果你想使用不同类型的`Channel`，你必须修改`Sequence.Spec.ChannelTemplate`来创建适当的通道资源。
 
-## Setup
+## 设置
 
-### Create the Knative Services
+### 创建Knative服务
 
-Change `default` in the following command to create the steps in the namespace where you want
-resources created:
+在下面的命令中修改`default`，在你想要创建资源的命名空间中创建步骤:
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -74,11 +68,10 @@ spec:
 kubectl -n default create -f ./steps.yaml
 ```
 
-### Create the Sequence
+### 创建序列
 
-The `sequence.yaml` file contains the specifications for creating the Sequence.
-If you are using a different type of Channel, you need to change the
-spec.channelTemplate to point to your desired Channel.
+`sequence.yaml`文件包含了创建序列的规范。
+如果使用不同类型的通道，则需要更改`spec.channelTemplate`以指向所需的通道。
 
 ```yaml
 apiVersion: flows.knative.dev/v1
@@ -109,14 +102,13 @@ spec:
       name: event-display
 ```
 
-Change `default` in the following command to create the `Sequence` in the namespace where you want
-the resources to be created:
+在下面的命令中修改`default`，在你想要创建资源的命名空间中创建`Sequence`:
 
 ```bash
 kubectl -n default create -f ./sequence.yaml
 ```
 
-### Create the Service displaying the events created by Sequence
+### 创建按顺序显示事件的服务
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -130,17 +122,15 @@ spec:
         - image: gcr.io/knative-releases/knative.dev/eventing/cmd/event_display
 ```
 
-Change `default` in the following command to create the `Sequence` in the namespace where you want
-your resources to be created:
+在下面的命令中修改 `default` ，在你想要创建资源的命名空间中创建 `Sequence`:
 
 ```bash
 kubectl -n default create -f ./event-display.yaml
 ```
 
-### Create the PingSource targeting the Sequence
+### 创建以序列为目标的PingSource
 
-This will create a PingSource which will send a CloudEvent with {"message":
-"Hello world!"} as the data payload every 2 minutes.
+这将创建一个PingSource，它将每2分钟发送一个带有`{“message":"Hello world!"}`作为数据负载的CloudEvent。
 
 ```yaml
 apiVersion: sources.knative.dev/v1
@@ -162,16 +152,15 @@ spec:
 kubectl -n default create -f ./ping-source.yaml
 ```
 
-### Inspecting the results
+### 检查结果
 
-You can now see the final output by inspecting the logs of the event-display
-pods.
+现在可以通过检查事件显示Pod的日志看到最终的输出。
 
 ```bash
 kubectl -n default get pods
 ```
 
-Wait a bit and then look at the logs for the event-display pod:
+稍等片刻，然后查看事件显示Pod的日志:
 
 ```bash
 kubectl -n default logs -l serving.knative.dev/service=event-display -c user-container --tail=-1
@@ -194,5 +183,4 @@ Data,
   }
 ```
 
-And you can see that the initial PingSource message `("Hello World!")` has been
-appended to it by each of the steps in the Sequence.
+你可以看到初始的PingSource消息`("Hello World!")` 已经被序列中的每一个步骤附加到它上面。

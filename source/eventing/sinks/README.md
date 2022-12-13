@@ -1,10 +1,10 @@
-# 关于sinks
+# 关于接收器
 
-在创建事件源时，可以指定一个 _sink_，将事件从源发送到该 _sink_。
-接收器是一个 _Addressable_ 或 _Callable_ 资源，可以从其他资源接收传入的事件。
+在创建事件源时，可以指定一个 _接收器_，将事件从源发送到该 _接收器_。
+接收器是一个 _可寻址_ 或 _可调用的_ 资源，可以从其他资源接收传入的事件。
 Knative服务、通道和代理都是接收器的例子。
 
-可寻址对象接收并确认通过HTTP传递到其`statusaddressurl`字段中定义的地址的事件。
+可寻址对象接收并确认通过HTTP传递到`status.address.url`字段中定义的地址的事件。
 作为一个特例，核心[Kubernetes服务对象](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#service-v1-core)也实现了可寻址接口。
 
 可调用对象能够接收通过HTTP传递的事件并转换该事件，在HTTP响应中返回0或1个新事件。
@@ -14,26 +14,24 @@ Knative服务、通道和代理都是接收器的例子。
 
 Sink用作对解析为用作接收器的URI的对象的引用。
 
-`sink`定义支持以下字段:
+`接收器`定义支持以下字段:
 
-| Field                                    | Description                                                                                                                                                                           | Required or optional          |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| `ref`                                    | This points to an Addressable.                                                                                                                                                        | Required if _not_ using `uri` |
-| `ref.apiVersion`                         | API version of the referent.                                                                                                                                                          | Required if using `ref`       |
-| [`ref.kind`][kubernetes-kinds]           | Kind of the referent.                                                                                                                                                                 | Required if using `ref`       |
-| [`ref.namespace`][kubernetes-namespaces] | Namespace of the referent. If omitted this defaults to the object holding it.                                                                                                         | Optional                      |
-| [`ref.name`][kubernetes-names]           | Name of the referent.                                                                                                                                                                 | Required if using `ref`       |
-| `uri`                                    | This can be an absolute URL with a non-empty scheme and non-empty host that points to the target or a relative URI. Relative URIs are resolved using the base URI retrieved from Ref. | Required if _not_ using `ref` |
+| 字段                                     | 描述                                                                                              | 必选 or 可选              |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------- |
+| `ref`                                    | 这指向一个可寻址的。                                                                              | 必选 如果 _不_ 使用 `uri` |
+| `ref.apiVersion`                         | 引用的API版本。                                                                                   | 必选 如果使用`ref`        |
+| [`ref.kind`][kubernetes-kinds]           | 引用对象Kind.                                                                                     | 必选 如果使用`ref`        |
+| [`ref.namespace`][kubernetes-namespaces] | 引用对象的命名空间。如果省略该参数，默认为保存它的对象。                                          | 可选                      |
+| [`ref.name`][kubernetes-names]           | 引用对象名字                                                                                      | 必选 如果使用`ref`        |
+| `uri`                                    | 这可以是一个带有非空方案和指向目标或相对URI的非空主机的绝对URL。使用从Ref检索的基URI解析相对URI。 | 必选 如果 _不_ 使用 `ref` |
 
 !!! note
-    At least one of `ref` or `uri` is required. If both are specified, `uri` is
-    resolved into the URL from the Addressable `ref` result.
+    至少需要`ref` or `uri`中的一个。
+    如果两者都指定了，`uri`将从可寻址`ref`结果解析为URL。
 
-### Sink参数示例
+### 参数示例
 
-Given the following YAML, if `ref` resolves into
-`"http://mysink.default.svc.cluster.local"`, then `uri` is added to this
-resulting in `"http://mysink.default.svc.cluster.local/extra/path"`.
+给定下面的YAML，如果`ref`解析为`"http://mysink.default.svc.cluster.local"`，则`uri`被添加到其中，结果为`"http://mysink.default.svc.cluster.local/extra/path"`。
 
 <!-- TODO we should have a page to point to describing the ref+uri destinations and the rules we use to resolve those and reuse the page. -->
 
@@ -54,18 +52,19 @@ spec:
 ```
 
 !!! contract
-    This results in the `K_SINK` environment variable being set on the `subject`
-    as `"http://mysink.default.svc.cluster.local/extra/path"`.
+    这将导致在`subject`上将`K_SINK`环境变量设置为`"http://mysink.default.svc.cluster.local/extra/path"`。
 
 ## 使用自定义资源作为接收器
 
-To use a Kubernetes custom resource (CR) as a sink for events, you must:
+要使用Kubernetes自定义资源(CR)作为事件接收器，您必须:
 
-1. Make the CR Addressable. You must ensure that the CR contains a `status.address.url`. For more information, see the spec for [Addressable resources](https://github.com/knative/specs/blob/main/specs/eventing/overview.md#addressable).
+1. 使CR可寻址。
+   您必须确保CR包含`status.address.url`。
+   有关更多信息，请参见[可寻址资源](https://github.com/knative/specs/blob/main/specs/eventing/overview.md#addressable)规范。
 
-1. Create an Addressable-resolver ClusterRole to obtain the necessary RBAC rules for the sink to receive events.
+1. 创建一个可寻址解析器ClusterRole，以获取接收事件所需的RBAC规则。
 
-    For example, you can create a `kafkasinks-addressable-resolver` ClusterRole to allow `get`, `list`, and `watch` access to KafkaSink objects and statuses:
+    例如，你可以创建一个`kafkasinks-addressable-resolver` ClusterRole来允许`get`, `list`, and `watch`访问KafkaSink对象和状态:
 
     ```yaml
     kind: ClusterRole
@@ -90,9 +89,10 @@ To use a Kubernetes custom resource (CR) as a sink for events, you must:
 
 ## 通过使用触发器过滤发送到接收器的事件
 
-You can connect a Trigger to a sink, so that events are filtered before they are sent to the sink. A sink that is connected to a Trigger is configured as a `subscriber` in the Trigger resource spec.
+您可以将触发器连接到接收器，以便在将事件发送到接收器之前对其进行过滤。
+连接到触发器的接收器在触发器资源规范中被配置为`subscriber`。
 
-For example:
+例如:
 
 ```yaml
 apiVersion: eventing.knative.dev/v1
@@ -110,14 +110,14 @@ spec:
 
 Where;
 
-- `<trigger-name>` is the name of the Trigger being connected to the sink.
-- `<kafka-sink-name>` is the name of a KafkaSink object.
+- `<trigger-name>` 它是连接到接收器的触发器的名称。
+- `<kafka-sink-name>` 它是一个KafkaSink对象的名称。
 
-## 使用kn CLI --sink 标志指定接收器
+## 使用 kn CLI --sink 标志指定接收器
 
-When you create an event-producing CR by using the Knative (`kn`) CLI, you can specify a sink where events are sent to from that resource, by using the `--sink` flag.
+当您使用Knative (`kn`) CLI创建一个事件生成CR时，您可以使用`--sink`标志指定一个从该资源发送事件的接收器。
 
-The following example creates a SinkBinding that uses a Service, `http://event-display.svc.cluster.local`, as the sink:
+下面的例子创建了一个使用服务`http://event-display.svc.cluster.local`作为接收器的SinkBinding:
 
 ```bash
 kn source binding create bind-heartbeat \
@@ -127,17 +127,18 @@ kn source binding create bind-heartbeat \
   --ce-override "sink=bound"
 ```
 
-The `svc` in `http://event-display.svc.cluster.local` determines that the sink is a Knative Service. Other default sink prefixes include Channel and Broker.
+`http://event-display.svc.cluster.local`中的`svc`决定接收器是Knative服务。
+其他默认接收器前缀包括通道和代理。
 
 !!! tip
-    You can configure which resources can be used with the `--sink` flag for `kn` CLI commands by [customizing `kn`](../../client/configure-kn.md#example-configuration-file).
+    你可以通过[自定义 `kn`](../../client/configure-kn.md#example-configuration-file)为`kn` CLI命令使用`--sink`标志来配置哪些资源可以被使用.
 
 ## 支持的第三方接收器类型
 
-| Name                                                                          | Maintainer | Description                   |
-| ----------------------------------------------------------------------------- | ---------- | ----------------------------- |
-| [KafkaSink](kafka-sink.md)                                                    | Knative    | Send events to a Kafka topic  |
-| [RedisSink](https://github.com/knative-sandbox/eventing-redis/tree/main/sink) | Knative    | Send events to a Redis Stream |
+| Name                                                                                       | Maintainer | Description         |
+| ------------------------------------------------------------------------------------------ | ---------- | ------------------- |
+| [KafkaSink](kafka-sink.md)                                                                 | Knative    | 发送事件到Kafka主题 |
+| [RedisStreamSink](https://github.com/knative-sandbox/eventing-redis/tree/main/config/sink) | Knative    | 发送事件到Redis流   |
 
 
 [kubernetes-kinds]:

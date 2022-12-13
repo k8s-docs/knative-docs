@@ -1,16 +1,17 @@
-# Configure Kafka Channels
+# 配置Kafka通道
 
 !!! note
-    This guide assumes Knative Eventing is installed in the `knative-eventing` namespace. If you have installed Knative Eventing in a different namespace, replace `knative-eventing` with the name of that namespace.
+    本指南假设Knative事件处理安装在`knative-eventing`名称空间中。
+    如果您在不同的名称空间中安装了Knative事件，请用该名称空间的名称替换`knative-eventing`。
 
-To use Kafka Channels, you must:
+要使用Kafka通道，你必须:
 
-1. Install the KafkaChannel custom resource definition (CRD).
-1. Create a ConfigMap that specifies default configurations for how KafkaChannel instances are created.
+1. 安装KafkaChannel定制资源定义(CRD)。
+1. 创建一个ConfigMap，指定如何创建KafkaChannel实例的默认配置。
 
-## Create a `kafka-channel` ConfigMap
+## 创建一个`kafka-channel`ConfigMap
 
-1. Create a YAML file for the `kafka-channel` ConfigMap using the following template:
+1. 使用以下模板为`kafka-channel` ConfigMap创建一个YAML文件:
 
     ```yaml
     apiVersion: v1
@@ -28,17 +29,17 @@ To use Kafka Channels, you must:
     ```
 
     !!! note
-        This example specifies two extra parameters that are specific to Kafka Channels; `numPartitions` and `replicationFactor`.
+        这个例子指定了两个额外的特定于Kafka通道的参数;`numPartitions` and `replicationFactor`。
 
-1. Apply the YAML file by running the command:
+1. 运行以下命令应用YAML文件:
 
     ```bash
     kubectl apply -f <filename>.yaml
     ```
-    Where `<filename>` is the name of the file you created in the previous step.
+    其中 `<filename>` 是您在上一步中创建的文件的名称。
 
 
-1. Optional. To create a Broker that uses Kafka Channels, specify the `kafka-channel` ConfigMap in the Broker spec. You can do this by creating a YAML file using the following template:
+1. 可选的。要创建使用Kafka通道的代理，请在代理规范中指定`kafka-channel` ConfigMap。你可以用下面的模板创建一个YAML文件:
 
     ```yaml
     apiVersion: eventing.knative.dev/v1
@@ -56,9 +57,9 @@ To use Kafka Channels, you must:
         namespace: knative-eventing
     ```
 
-1. Apply the YAML file by running the command:
+1. 运行以下命令应用YAML文件:
 
     ```bash
     kubectl apply -f <filename>.yaml
     ```
-    Where `<filename>` is the name of the file you created in the previous step.
+    其中 `<filename>` 是您在上一步中创建的文件的名称。

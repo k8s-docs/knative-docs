@@ -70,7 +70,7 @@
 **您可以使用 CloudEvents Player 来发送和接收 CloudEvents。**
 如果在浏览器中打开服务 URL，则会出现**Create Event**表单。
 
-如果在浏览器中打开服务 URL，则会出现**Create Event**表单。 `http://cloudevents-player.default.${LOADBALANCER_IP}.sslip.io`,
+服务URL为 `http://cloudevents-player.default.${LOADBALANCER_IP}.sslip.io`,
 例如, [http://cloudevents-player.default.127.0.0.1.sslip.io](http://cloudevents-player.default.127.0.0.1.sslip.io) `那种`.
 
 ![CloudEvents Player的用户界面](images/event_form.png)

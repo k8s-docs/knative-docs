@@ -1,47 +1,45 @@
-# SinkBinding reference
+# SinkBinding 参考
 
 ![API version v1](https://img.shields.io/badge/API_Version-v1-green?style=flat-square)
 
-This topic provides reference information about the configurable parameters for SinkBinding objects.
+本主题提供关于SinkBinding对象可配置参数的参考信息。
 
-## Supported parameters
+## 支持参数
 
-A `SinkBinding` resource supports the following parameters:
+`SinkBinding`资源支持以下参数:
 
-| Field | Description | Required or optional |
-|-------|-------------|----------------------|
-| [`apiVersion`][kubernetes-overview] | Specifies the API version, for example `sources.knative.dev/v1`. | Required |
-| [`kind`][kubernetes-overview] | Identifies this resource object as a `SinkBinding` object. | Required |
-| [`metadata`][kubernetes-overview] | Specifies metadata that uniquely identifies the `SinkBinding` object. For example, a `name`. | Required |
-| [`spec`][kubernetes-overview] | Specifies the configuration information for this `SinkBinding` object. | Required |
-| [`spec.sink`](../../sinks/README.md#sink-as-a-parameter) | A reference to an object that resolves to a URI to use as the sink. | Required |
-| [`spec.subject`](#subject-parameter) | A reference to the resources for which the "runtime contract" is augmented by Binding implementations. | Required |
-| [`spec.ceOverrides`](#cloudevent-overrides) | Defines overrides to control the output format and modifications to the event sent to the sink. | Optional |
+| 字段                                                     | 描述                                                      | 必须 或 可选 |
+| -------------------------------------------------------- | --------------------------------------------------------- | ------------ |
+| [`apiVersion`][kubernetes-overview]                      | 指定API版本，例如 `sources.knative.dev/v1`.               | 必须         |
+| [`kind`][kubernetes-overview]                            | 将该资源对象标识为`SinkBinding` 对象。                    | 必须         |
+| [`metadata`][kubernetes-overview]                        | 指定唯一标识`SinkBinding`对象的元数据。例如，一个`name`。 | 必须         |
+| [`spec`][kubernetes-overview]                            | 指定此`SinkBinding`对象的配置信息。                       | 必须         |
+| [`spec.sink`](../../sinks/README.md#sink-as-a-parameter) | 对解析为用作接收器的URI的对象的引用。                     | 必须         |
+| [`spec.subject`](#subject-parameter)                     | 对“运行时契约”通过绑定实现增强的资源的引用。              | 必须         |
+| [`spec.ceOverrides`](#cloudevent-overrides)              | 定义覆盖以控制发送到接收器的事件的输出格式和修改。        | 可选         |
 
-### Subject parameter
+### 主题参数
 
-The Subject parameter references the resources for which the "runtime contract"
-is augmented by Binding implementations.
+Subject参数引用“运行时契约”通过绑定实现增强的资源。
 
-A `subject` definition supports the following fields:
+`subject`定义支持以下字段:
 
-| Field | Description | Required or optional |
-|-------|-------------|----------------------|
-| `apiVersion` | API version of the referent. | Required |
-| [`kind`][kubernetes-kinds] | Kind of the referent. | Required |
-| [`namespace`][kubernetes-namespaces] | Namespace of the referent. If omitted, this defaults to the object holding it. | Optional |
-| [`name`][kubernetes-names] | Name of the referent. | Do not use if you configure `selector`. |
-| `selector` | Selector of the referents. | Do not use if you configure `name`. |
-| `selector.matchExpressions` | A list of label selector requirements. The requirements are ANDed. | Use one of `matchExpressions` or `matchLabels` |
-| `selector.matchExpressions.key` | The label key that the selector applies to. | Required if using `matchExpressions` |
-| `selector.matchExpressions.operator` | Represents a key's relationship to a set of values. Valid operators are `In`, `NotIn`, `Exists` and `DoesNotExist`. | Required if using `matchExpressions` |
-| `selector.matchExpressions.values` | An array of string values. If `operator` is `In` or `NotIn`, the values array must be non-empty. If `operator` is `Exists` or `DoesNotExist`, the values array must be empty. This array is replaced during a strategic merge patch. | Required if using `matchExpressions` |
-| `selector.matchLabels` | A map of key-value pairs. Each key-value pair in the `matchLabels` map is equivalent to an element of `matchExpressions`, where the key field is `matchLabels.<key>`, the `operator` is `In`, and the `values` array contains only "matchLabels.<value>". The requirements are ANDed. | Use one of `matchExpressions` or `matchLabels` |
+| 字段                                 | 描述                                                                                                                                                                                            | 必须 or 可选                                    |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `apiVersion`                         | 引用的API版本。                                                                                                                                                                                 | 必须                                            |
+| [`kind`][kubernetes-kinds]           | Kind of the referent.                                                                                                                                                                           | 必须                                            |
+| [`namespace`][kubernetes-namespaces] | 引用对象的命名空间。如果省略，默认为保存它的对象。                                                                                                                                              | 可选                                            |
+| [`name`][kubernetes-names]           | 推荐人的名字。                                                                                                                                                                                  | 如果你配置了`selector`，请不要使用。            |
+| `selector`                           | 引用对象的选择器。                                                                                                                                                                              | 如果配置了`name`，请不要使用。                  |
+| `selector.matchExpressions`          | 标签选择器要求的列表。要求是 ANDed。                                                                                                                                                            | 使用`matchExpressions` or `matchLabels`中的一个 |
+| `selector.matchExpressions.key`      | 选择器应用的标签键。                                                                                                                                                                            | 如果使用 `matchExpressions` 必须                |
+| `selector.matchExpressions.operator` | 表示键与一组值的关系。有效的操作符是`In`, `NotIn`, `Exists` and `DoesNotExist`。                                                                                                                | 如果使用 `matchExpressions` 必须                |
+| `selector.matchExpressions.values`   | 字符串值的数组。如果`operator` 为`In` or `NotIn`，值数组必须非空。如果`operator` 是`Exists` or `DoesNotExist`，值数组必须为空。在策略合并补丁期间替换此数组。                                   | 如果使用 `matchExpressions`     必须            |
+| `selector.matchLabels`               | 键值对的映射。`matchLabels`映射中的每个键-值对相当于`matchExpressions`的一个元素，其中键字段是`matchLabels.<key>`， `operator`是`In`， `values` 数组只包含"matchLabels.<value>"。要求是 ANDed。 | 使用`matchExpressions` or `matchLabels`中的一个 |
 
-#### Subject parameter examples
+#### 主题参数示例
 
-Given the following YAML, the `Deployment` named `mysubject` in the `default`
-namespace is selected:
+给定下面的YAML，在`default`命名空间中命名为`mysubject`的`Deployment`被选中:
 
 ```yaml
 apiVersion: sources.knative.dev/v1
@@ -57,8 +55,7 @@ spec:
   ...
 ```
 
-Given the following YAML, any `Job` with the label `working=example` in the
-`default` namespace is selected:
+给定下面的YAML，在`default`命名空间中选择任何带有`working=example`标签的`Job`:
 
 ```yaml
 apiVersion: sources.knative.dev/v1
@@ -76,8 +73,7 @@ spec:
   ...
 ```
 
-Given the following YAML, any `Pod` with the label `working=example` OR
-`working=sample` in the ` default` namespace is selected:
+给定以下YAML，在`default`命名空间中选择任何带有`working=example` or `working=sample`标签的`Pod`:
 
 ```yaml
 apiVersion: sources.knative.dev/v1
@@ -99,16 +95,15 @@ spec:
   ...
 ```
 
-### CloudEvent Overrides
+### CloudEvent Overrides (覆盖)
 
-CloudEvent Overrides defines overrides to control the output format and
-modifications of the event sent to the sink.
+CloudEvent Overrides定义了覆盖来控制发送到接收器的事件的输出格式和修改。
 
-A `ceOverrides` definition supports the following fields:
+`ceOverrides`定义支持以下字段:
 
-| Field | Description | Required or optional |
-|-------|-------------|----------------------|
-| `extensions` | Specifies which attributes are added or overridden on the outbound event. Each `extensions` key-value pair is set independently on the event as an attribute extension. | Optional  |
+| Field        | Description                                                                                                                                                             | 必须 or 可选 |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| `extensions` | Specifies which attributes are added or overridden on the outbound event. Each `extensions` key-value pair is set independently on the event as an attribute extension. | 可选         |
 
 !!! note
     Only valid [CloudEvent attribute names][cloudevents-attribute-naming] are
@@ -116,7 +111,7 @@ A `ceOverrides` definition supports the following fields:
     the extensions override configuration. For example, you can not modify the
     `type` attribute.
 
-#### CloudEvent Overrides example
+#### CloudEvent Overrides 举例
 
 ```yaml
 apiVersion: sources.knative.dev/v1

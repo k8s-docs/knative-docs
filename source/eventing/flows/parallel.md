@@ -11,29 +11,21 @@
 
 并行有三个部分的规格:
 
-1. `branches` defines the list of `filter` and `subscriber` pairs, one per branch,
-   and optionally a `reply` object. For each branch:
-   1. (optional) the `filter` is evaluated and when it returns an event the `subscriber` is
-      executed. Both `filter` and `subscriber` must be `Addressable`.
-   1. the event returned by the `subscriber` is sent to the branch `reply`
-      object. When the `reply` is empty, the event is sent to the `spec.reply`
-      object.
-1. (optional) `channelTemplate` defines the Template which will be used to
-   create `Channel`s.
-1. (optional) `reply` defines where the result of each branch is sent to when
-   the branch does not have its own `reply` object.
+1. `branches`定义了`filter`和`subscriber`对的列表，每个分支一个，还有一个可选的`reply`对象。对于每个分支:
+   1. (可选)`filter`被求值，当它返回一个事件时`subscriber`被执行。`filter` and `subscriber`都必须是`可寻址`。
+   1. `subscriber`返回的事件被发送到分支`reply`对象。
+      当`reply`为空时，事件被发送到`spec.reply`对象。
+2. (可选)`channelTemplate`定义了用于创建`Channel`s的模板。
+3. (可选)`reply`定义了当分支没有自己的`reply`对象时，每个分支的结果被发送到哪里。
 
 ### 并行状态
 
-Parallel has three parts for the Status:
+并行状态分为三个部分:
 
-1. `conditions` which details the overall status of the Parallel object
-1. `ingressChannelStatus` and `branchesStatuses` which convey the status of
-   underlying `Channel` and `Subscription` resource that are created as part of
-   this Parallel.
-1. `address` which is exposed so that Parallel can be used where Addressable can
-   be used. Sending to this address will target the `Channel` which is fronting
-   this Parallel (same as `ingressChannelStatus`).
+1. `conditions`，详细描述并行对象的整体状态
+1. `ingressChannelStatus` and `branchesStatuses`传递作为并行的一部分创建的底层`Channel` and `Subscription`资源的状态。
+1. `address`被公开，以便parallel可以在可寻址的地方使用。
+   发送到此地址将针对这个并行的前面的“通道”(与`ingressChannelStatus`相同)。
 
 ## 例子
 

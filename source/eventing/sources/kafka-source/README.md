@@ -1,12 +1,14 @@
-# Apache Kafka Source
+# Apache Kafka 源
 
 ![stage](https://img.shields.io/badge/Stage-stable-green?style=flat-square)
 ![version](https://img.shields.io/badge/API_Version-v1beta1-yellow?style=flat-square)
 
 
-The `KafkaSource` reads messages stored in existing [Apache Kafka](https://kafka.apache.org) topics, and sends those messages as CloudEvents through HTTP to its configured `sink`. The `KafkaSource` preserves the order of the messages
-stored in the topic partitions. It does this by waiting for a successful response from the `sink` before it delivers the next message in the same partition.
-## Install the KafkaSource controller
+`KafkaSource`读取存储在现有[Apache Kafka](https://kafka.apache.org)主题中的消息，并将这些消息作为CloudEvents通过HTTP发送到其配置的`接收器`。
+`KafkaSource`保留了存储在主题分区中的消息的顺序。
+它通过等待来自`接收器`的成功响应，然后在同一分区中传递下一个消息来实现这一点。
+
+## 安装KafkaSource控制器
 
 1. Install the `KafkaSource` controller by entering the following command:
 
@@ -34,7 +36,7 @@ stored in the topic partitions. It does this by waiting for a successful respons
     kafka-source-dispatcher        1/1     1            1           4s
     ```
 
-## Optional: Create a Kafka topic
+## 可选:创建Kafka主题
 
 !!! note
     The create a Kafka topic section assumes you're using Strimzi to operate Apache Kafka, however equivalent operations can be replicated using the Apache Kafka CLI or any other tool.
@@ -83,7 +85,7 @@ If you are using Strimzi:
     knative-demo-topic   my-cluster   3            1
     ```
 
-## Create a Service
+## 创建服务
 
 1. Create the `event-display` Service as a YAML file:
 
@@ -126,7 +128,7 @@ If you are using Strimzi:
     event-display-00001-deployment-5d5df6c7-gv2j4   2/2       Running   0          72s
     ```
 
-### Kafka event source
+### 卡夫卡事件源
 
 1. Modify `source/event-source.yaml` accordingly with bootstrap servers, topics, and so on:
 
@@ -171,7 +173,7 @@ If you are using Strimzi:
     kafka-source   ["knative-demo-topic"]   ["my-cluster-kafka-bootstrap.kafka:9092"]   True             26h
     ```
 
-### Verify
+### 验证
 
 1. Produce a message (`{"msg": "This is a test!"}`) to the Apache Kafka topic as in the following example:
 
@@ -208,7 +210,7 @@ If you are using Strimzi:
         }
     ```
 
-## Optional: Specify the key deserializer
+## 可选:指定键反序列化器
 
 When `KafkaSource` receives a message from Kafka, it dumps the key in the Event extension called
 `Key` and dumps Kafka message headers in the extensions starting with `kafkaheader`.
@@ -243,7 +245,7 @@ sink:
     name: event-display
 ```
 
-## Optional: Specify the initial offset
+## 可选:指定初始偏移量
 
 By default the `KafkaSource` starts consuming from the latest offset in each partition. If you want
 to consume from the earliest offset, set the initialOffset field to `earliest`, for example:
@@ -272,12 +274,12 @@ sink:
     validation error. This field is honored only if there are no committed offsets for that
     consumer group.
 
-## Connecting to a TLS-enabled Kafka Broker
+## 连接到一个支持tls的Kafka代理
 
-The KafkaSource supports TLS and SASL authentication methods. To enable TLS authentication, you must have the following files:
+KafkaSource支持TLS和SASL认证方式。启用TLS认证需要以下文件:
 
-* CA Certificate
-* Client Certificate and Key
+* 证书
+* 客户端证书和密钥
 
 KafkaSource expects these files to be in PEM format. If they are in another format, such as JKS, convert them to PEM.
 
@@ -326,7 +328,7 @@ KafkaSource expects these files to be in PEM format. If they are in another form
          name: event-display
     ```
 
-## Enabling SASL for KafkaSources
+## 启用 SASL for KafkaSources
 
 Simple Authentication and Security Layer (SASL) is used by Apache Kafka for authentication. If you use SASL authentication on your cluster, users must provide credentials to Knative for communicating with the Kafka cluster, otherwise events cannot be produced or consumed.
 
@@ -389,7 +391,7 @@ Simple Authentication and Security Layer (SASL) is used by Apache Kafka for auth
 
     Where `<secret_name>` is the name of the secret generated in the previous step.
 
-## Clean up steps
+## 清理步骤
 
 1. Delete the Kafka event source:
 

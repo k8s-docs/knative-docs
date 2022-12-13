@@ -194,8 +194,8 @@ nav:
                     #  - Administrator configuration options: eventing/triggers/trigger-admin-config-options.md
                     #  - Developer configuration options: eventing/triggers/trigger-developer-config-options.md
                   # Eventing - developer docs
-                  - 开发主题:
-                            - 事件资源:
+                  - 开发者主题:
+                            - 事件源:
                                       - 关于事件源: eventing/sources/README.md
                                       - ApiServerSource:
                                                 - 关于源: eventing/sources/apiserversource/README.md
@@ -211,46 +211,47 @@ nav:
                                                 - 创建对象: eventing/sources/redis/getting-started.md
                             # BYO event source
                             - 自定义事件源:
-                                      - 自定义事件源概述: eventing/custom-event-source/README.md
+                                      - 自定义概述: eventing/custom-event-source/README.md
                                       - 创建事件源:
                                                 - 创建事件源概述: eventing/custom-event-source/custom-event-source/README.md
-                                                - 使用Knative示例存储库:
+                                                - 使用示例存储库:
                                                           - 配置示例: eventing/custom-event-source/custom-event-source/sample-repo.md
-                                                          - 创建一个控制器: eventing/custom-event-source/custom-event-source/controller.md
+                                                          - 创建控制器: eventing/custom-event-source/custom-event-source/controller.md
                                                           - 创建接收适配器: eventing/custom-event-source/custom-event-source/receive-adapter.md
                                                 - 将事件源发布到集群: eventing/custom-event-source/custom-event-source/publish-event-source.md
                                       - SinkBinding:
-                                                - 关于 SinkBinding: eventing/custom-event-source/sinkbinding/README.md
-                                                - 创建 SinkBinding: eventing/custom-event-source/sinkbinding/create-a-sinkbinding.md
-                                                - SinkBinding 参考: eventing/custom-event-source/sinkbinding/reference.md
+                                                - 关于对象: eventing/custom-event-source/sinkbinding/README.md
+                                                - 创建对象: eventing/custom-event-source/sinkbinding/create-a-sinkbinding.md
+                                                - 对象参考: eventing/custom-event-source/sinkbinding/reference.md
                                       - ContainerSource:
-                                                - 创建 ContainerSource: eventing/custom-event-source/containersource/README.md
-                                                - ContainerSource 参考: eventing/custom-event-source/containersource/reference.md
-                            - 事件 sinks:
-                                      - 关于 sinks: eventing/sinks/README.md
+                                                - 创建对象: eventing/custom-event-source/containersource/README.md
+                                                - 对象参考: eventing/custom-event-source/containersource/reference.md
+                            - 事件接收器:
+                                      - 关于接收器: eventing/sinks/README.md
                                       - KafkaSink: eventing/sinks/kafka-sink.md
+                                      - RedisStreamSink: eventing/sinks/redis-sink.md
                             - 投递失败处理: eventing/event-delivery.md
                             - 流:
                                       - 关于流: eventing/flows/README.md
                                       - 并行: eventing/flows/parallel.md
                                       - 序列:
                                                 - 关于序列: eventing/flows/sequence/README.md
-                                                - 显示顺序输出: eventing/flows/sequence/sequence-reply-to-event-display/README.md
-                                                - 使用序列: eventing/flows/sequence/sequence-reply-to-sequence/README.md
-                                                - 创建额外的事件: eventing/flows/sequence/sequence-terminal/README.md
-                                                - 与代理和触发器一起使用: eventing/flows/sequence/sequence-with-broker-trigger/README.md
+                                                - 有应答序列: eventing/flows/sequence/sequence-reply-to-event-display/README.md
+                                                - 序列到序列: eventing/flows/sequence/sequence-reply-to-sequence/README.md
+                                                - 序列终端: eventing/flows/sequence/sequence-terminal/README.md
+                                                - 代理和触发器: eventing/flows/sequence/sequence-with-broker-trigger/README.md
                             - 通道:
                                       - 关于通道: eventing/channels/README.md
-                                      - 通道类型和默认值: eventing/channels/channel-types-defaults.md
-                                      - 使用集群或命名空间默认值创建通道: eventing/channels/create-default-channel.md
+                                      - 通道类型: eventing/channels/channel-types-defaults.md
+                                      - 创建默认通道: eventing/channels/create-default-channel.md
                                       - 可用通道: eventing/channels/channels-crds.md
                                       - 订阅: eventing/channels/subscriptions.md
                             - 事件注册表: eventing/event-registry.md
                             - 糖控制器: eventing/sugar/README.md
-                  - 管理员的话题:
+                  - 管理员主题:
                             # Eventing config
                             - 事件配置:
-                                      - 配置通道违约: eventing/configuration/channel-configuration.md
+                                      - 配置通道默认值: eventing/configuration/channel-configuration.md
                                       - 配置Kafka通道默认值: eventing/configuration/kafka-channel-configuration.md
                                       - 配置事件源默认值: eventing/configuration/sources-configuration.md
                                       - 配置糖控制器: eventing/configuration/sugar-configuration.md
@@ -260,12 +261,12 @@ nav:
                             - 收集日志: eventing/observability/logging/collecting-logs.md
                             - 配置日志记录: eventing/observability/logging/config-logging.md
                             - 收集度量标准: eventing/observability/metrics/collecting-metrics.md
-                            - Knative事件指标: eventing/observability/metrics/eventing-metrics.md
+                            - 事件指标: eventing/observability/metrics/eventing-metrics.md
                   # Eventing - troubleshooting
                   - 故障排除:
                             - 调试: eventing/troubleshooting/README.md
                   - 实验特性:
-                            - 关于event实验功能: eventing/experimental-features/README.md
+                            - 关于事件实验功能: eventing/experimental-features/README.md
                             - DeliverySpec.Timeout field: eventing/experimental-features/delivery-timeout.md
                             - DeliverySpec.RetryAfterMax field: eventing/experimental-features/delivery-retryafter.md
                             - 新触发过滤器: eventing/experimental-features/new-trigger-filters.md

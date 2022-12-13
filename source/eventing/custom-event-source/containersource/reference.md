@@ -1,34 +1,32 @@
-# ContainerSource reference
+# ContainerSource 参考
 
 ![API version v1](https://img.shields.io/badge/API_Version-v1-green?style=flat-square)
 
-This topic provides reference information about the configurable fields for the
-ContainerSource object.
-
+本主题提供有关ContainerSource对象的可配置字段的参考信息。
 
 ## ContainerSource
 
-A ContainerSource definition supports the following fields:
+ContainerSource定义支持以下字段:
 
-| Field | Description | Required or optional |
-|-------|-------------|----------------------|
-| [`apiVersion`][kubernetes-overview] | Specifies the API version, for example `sources.knative.dev/v1`. | Required |
-| [`kind`][kubernetes-overview] | Identifies this resource object as a ContainerSource object. | Required |
-| [`metadata`][kubernetes-overview] | Specifies metadata that uniquely identifies the ContainerSource object. For example, a `name`. | Required |
-| [`spec`][kubernetes-overview] | Specifies the configuration information for this ContainerSource object. | Required |
-| [`spec.sink`](../../sinks/README.md#sink-as-a-parameter) | A reference to an object that resolves to a URI to use as the sink. | Required |
-| [`spec.template`](#template-parameter) | A `template` in the shape of `Deployment.spec.template` to be used for this ContainerSource. | Required |
-| [`spec.ceOverrides`](#cloudevent-overrides) | Defines overrides to control the output format and modifications to the event sent to the sink. | Optional |
+| Field                                                    | Description                                                               | 必须 or 可选 |
+| -------------------------------------------------------- | ------------------------------------------------------------------------- | ------------ |
+| [`apiVersion`][kubernetes-overview]                      | 指定API版本，例如 `sources.knative.dev/v1`.                               | 必须         |
+| [`kind`][kubernetes-overview]                            | 将此资源对象标识为ContainerSource对象。                                   | 必须         |
+| [`metadata`][kubernetes-overview]                        | 指定唯一标识ContainerSource对象的元数据。例如, a `name`.                  | 必须         |
+| [`spec`][kubernetes-overview]                            | 指定此ContainerSource对象的配置信息。                                     | 必须         |
+| [`spec.sink`](../../sinks/README.md#sink-as-a-parameter) | 对解析为用作接收器的URI的对象的引用。                                     | 必须         |
+| [`spec.template`](#template-parameter)                   | 一个形状为`Deployment.spec.template`的`template`，用于此ContainerSource。 | 必须         |
+| [`spec.ceOverrides`](#cloudevent-overrides)              | 定义覆盖以控制发送到接收器的事件的输出格式和修改。                        | 可选         |
 
 
-### Template parameter
+### 模板参数
 
 This is a `template` in the shape of `Deployment.spec.template` to use for the ContainerSource.
 For more information, see the [Kubernetes Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).
 
-<!-- not sure what the required and optional fields are for this. -->
+<!-- not sure what the required and 可选 fields are for this. -->
 
-#### Example: template parameter
+#### 示例:模板参数
 
 ```yaml
 apiVersion: sources.knative.dev/v1
@@ -54,14 +52,13 @@ spec:
 
 ### CloudEvent Overrides
 
-CloudEvent Overrides defines overrides to control the output format and
-modifications of the event sent to the sink.
+CloudEvent Overrides定义了覆盖来控制发送到接收器的事件的输出格式和修改。
 
 A `ceOverrides` definition supports the following fields:
 
-| Field | Description | Required or optional |
-|-------|-------------|----------------------|
-| `extensions` | Specifies which attributes are added or overridden on the outbound event. Each `extensions` key-value pair is set independently on the event as an attribute extension. | Optional  |
+| Field        | Description                                                                                                                                                             | 必须 or 可选 |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| `extensions` | Specifies which attributes are added or overridden on the outbound event. Each `extensions` key-value pair is set independently on the event as an attribute extension. | 可选         |
 
 !!! note
     Only valid [CloudEvent attribute names][cloudevents-attribute-naming]
@@ -69,7 +66,7 @@ A `ceOverrides` definition supports the following fields:
     the extensions override configuration. For example, you can not modify the
     `type` attribute.
 
-#### Example: CloudEvent Overrides
+#### 举例: CloudEvent Overrides
 
 ```yaml
 apiVersion: sources.knative.dev/v1

@@ -1,8 +1,8 @@
-# Create a controller
+# 创建一个控制器
 
-You can use the sample repository [`update-codegen.sh`](https://github.com/knative-sandbox/sample-source/blob/main/hack/update-codegen.sh) script to generate and inject the required components (the `clientset`, `cache`, `informers`, and `listers`) into your custom controller.
+您可以使用示例存储库[`update-codegen.sh`](https://github.com/knative-sandbox/sample-source/blob/main/hack/update-codegen.sh)脚本来生成所需的组件(`clientset`, `cache`, `informers`, 和 `listers`) 并将其注入到自定义控制器中。
 
-**Example controller:**
+**控制器例子:**
 
 ```go
 import (
@@ -21,9 +21,9 @@ func NewController(ctx context.Context, cmw configmap.Watcher) *controller.Impl 
 }
 ```
 
-## Procedure
+## 过程
 
-1. Generate the components by running the command:
+1. 运行命令生成组件:
 
     ```bash
     ${CODEGEN_PKG}/generate-groups.sh "deepcopy,client,informer,lister" \
@@ -32,7 +32,7 @@ func NewController(ctx context.Context, cmw configmap.Watcher) *controller.Impl 
       --go-header-file ${REPO_ROOT}/hack/boilerplate/boilerplate.go.txt
     ```
 
-1. Inject the components by running the command:
+1. 注入组件的命令如下:
 
     ```bash
     # Injection
@@ -42,7 +42,7 @@ func NewController(ctx context.Context, cmw configmap.Watcher) *controller.Impl 
       --go-header-file ${REPO_ROOT}/hack/boilerplate/boilerplate.go.txt
     ```
 
-1. Pass the new controller implementation to the `sharedmain` method:
+1. 将新的控制器实现传递给`sharedmain`方法:
 
     ```go
     import (
@@ -58,7 +58,7 @@ func NewController(ctx context.Context, cmw configmap.Watcher) *controller.Impl 
     }
     ```
 
-1. Define the `NewController` implementation:
+1. 定义 `NewController` 实现:
 
     ```go
     func NewController(
@@ -78,9 +78,9 @@ func NewController(ctx context.Context, cmw configmap.Watcher) *controller.Impl 
     }
     ```
 
-    A `configmap.Watcher` and a context, which the injected listers use for the reconciler struct arguments, are passed to this implementation.
+    一个`configmap.Watcher`和一个上下文(注入的列表用于协调器结构参数)被传递给这个实现。
 
-1. Import the base reconciler from the `knative.dev/pkg` dependency:
+1. 从`knative.dev/pkg`依赖项导入基本协调器:
 
     ```go
     import (
@@ -90,13 +90,13 @@ func NewController(ctx context.Context, cmw configmap.Watcher) *controller.Impl 
     )
     ```
 
-1. Ensure that the event handlers are being filtered to the correct informers:
+1. 确保事件处理程序被过滤到正确的信息提供者:
 
     ```go
         sampleSourceInformer.Informer().AddEventHandler(controller.HandleAll(impl.Enqueue))
     ```
 
-1. Ensure that informers are configured correctly for the secondary resources used by the sample source to deploy and bind the event source and the receive adapter:
+1. 确保为示例源使用的辅助资源正确配置了通知器，以部署和绑定事件源和接收适配器:
 
     ```go
         deploymentInformer.Informer().AddEventHandler(cache.FilteringResourceEventHandler{

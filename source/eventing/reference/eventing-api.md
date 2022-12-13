@@ -1,1 +1,1 @@
-This file is updated to the correct version from the eventing repo (docs/eventing-api.md) during the build.
+在构建过程中，该文件从[事件repo](docs/eventing-api.md)中更新到正确的版本。

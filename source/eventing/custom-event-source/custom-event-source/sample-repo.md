@@ -1,56 +1,56 @@
-# Using the Knative sample repository
+# 使用Knative示例存储库
 
-The Knative project provides a [sample repository](https://github.com/knative-sandbox/sample-source) that contains a template for a basic event source controller and a receive adapter.
+Knative项目提供了一个[示例存储库](https://github.com/knative-sandbox/sample-source)，其中包含一个用于基本事件源控制器和接收适配器的模板。
 
-## Prerequisites
+## 先决条件
 
-- You are familiar with Kubernetes and Go development.
-- You have installed Git.
-- You have installed Go.
-- You have cloned the [`sample-source` repository](https://github.com/knative-sandbox/sample-source).
+- 您熟悉Kubernetes和Go开发。
+- 已安装Git。
+- 已经安装了Go。
+- 您已经克隆了[`sample-source`存储库](https://github.com/knative-sandbox/sample-source).
 
-Optional:
+可选:
 
-- Install the [`ko`](https://github.com/google/ko/) CLI tool.
-- Install the [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/) CLI tool.
-- Set up [minikube](https://github.com/kubernetes/minikube) or [kind](https://kind.sigs.k8s.io/).
+- 安装 [`ko`](https://github.com/google/ko/) CLI 工具.
+- 安装 [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/) CLI 工具.
+- 配置 [minikube](https://github.com/kubernetes/minikube) 或 [kind](https://kind.sigs.k8s.io/).
 
-## Sample files overview
+## 示例文件概述
 
-### Receiver adapter files
+### 接收器适配器文件
 
 - `cmd/receive_adapter/main.go` - Translates resource variables to the underlying adapter structure, so that they can be passed into the Knative system.
 
 - `pkg/adapter/adapter.go` - The functions that support receiver adapter translation of events to CloudEvents.
 
-### Controller files
+### 控制器文件
 
 - `cmd/controller/main.go` - Passes the event source's `NewController` implementation to the shared `main` method.
 
 - `pkg/reconciler/sample/controller.go` - The `NewController` implementation that is passed to the shared `main` method.
 
-### CRD files
+### CRD 文件
 
 - `pkg/apis/samples/VERSION/samplesource_types.go` - The schema for the underlying API types, which provide the variables to be defined in the resource YAML file.
 
-### Reconciler files
+### 调解人的文件
 
-- `pkg/reconciler/sample/samplesource.go` - The reconciliation functions for the receive adapter.
+- `pkg/reconciler/sample/samplesource.go` - 接收适配器的调节函数。
 
-- `pkg/apis/samples/VERSION/samplesource_lifecycle.go` - Contains status information for the event source’s reconciliation details:
-    - Source ready
-    - Sink provided
-    - Deployed
-    - EventType provided
-    - Kubernetes resources correct
+- `pkg/apis/samples/VERSION/samplesource_lifecycle.go` - 包含事件源的协调细节的状态信息:
+    - 源准备好了
+    - 接收器提供
+    - 部署
+    - EventType提供
+    - Kubernetes资源正确
 
 <!-- TODO: Add definitions / explanations for these statuses-->
 
-## Procedure
+## 过程
 
-1. Define the types required in the resource’s schema in `pkg/apis/samples/v1alpha1/samplesource_types.go`.
+1. 在其中定义资源模式中所需的类型 `pkg/apis/samples/v1alpha1/samplesource_types.go`.
 
-    This includes the fields that are required in the resource YAML, as well as those referenced in the controller using the source’s clientset and API:
+    这包括资源YAML中所需的字段，以及使用源的客户端集和API在控制器中引用的字段:
 
     ```go
     // +genclient
@@ -106,7 +106,7 @@ Optional:
     }
     ```
 
-1. Define the lifecycle to be reflected in the `status` and `SinkURI` fields:
+1. 定义在 `status` 和 `SinkURI` 字段中反映的生命周期:
 
     ```go
     const (
@@ -116,7 +116,7 @@ Optional:
     )
     ```
 
-1. Set the lifecycle conditions by defining the functions to be called from the reconciler functions. This is typically done in `pkg/apis/samples/VERSION/samplesource_lifecycle.go`:
+1. 通过定义要从协调器函数调用的函数来设置生命周期条件。这通常是在里面完成的 `pkg/apis/samples/VERSION/samplesource_lifecycle.go`:
 
     ```go
     // InitializeConditions sets relevant unset conditions to Unknown state.

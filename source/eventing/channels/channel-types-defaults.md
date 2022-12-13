@@ -1,38 +1,32 @@
 # 通道类型和默认值
 
-Knative uses two types of Channels:
+Knative使用两种类型的通道:
 
-* A generic Channel object.
-* Channel implementations that each have their own custom resource definitions (CRDs), such as
-InMemoryChannel and KafkaChannel. The KafkaChannel supports an ordered consumer delivery guarantee, which is a per-partition blocking consumer that waits for a successful response from the CloudEvent subscriber before it delivers the next message of the partition.
+* 一个通用Channel对象。
+* 每个通道实现都有自己的自定义资源定义(CRDs)，例如InMemoryChannel和KafkaChannel。
+  KafkaChannel支持有序的消费者传递保证，这是一个每个分区的阻塞消费者，它等待来自CloudEvent订阅者的成功响应，然后再传递该分区的下一个消息。
 
-Custom Channel implementations each have their own event delivery mechanisms, such as in-memory
-or Broker-based. Examples of Brokers include KafkaBroker and the GCP Pub/Sub Broker.
+每个自定义通道实现都有自己的事件传递机制，比如基于内存或基于代理的机制。
+代理的例子包括KafkaBroker和GCP Pub/Sub Broker。
 
-Knative provides the InMemoryChannel Channel implementation by default.
-This default implementation is useful for developers who do not want to configure a specific
-implementation type, such as Apache Kafka or NATSS Channels.
+Knative默认提供InMemoryChannel通道实现。
+这个默认实现对于不希望配置特定实现类型(如Apache Kafka或NATSS Channels)的开发人员非常有用。
 
-You can use the generic Channel object if you want to create a Channel without specifying which
-Channel implementation CRD is used.
-This is useful if you do not care about the properties a particular Channel implementation provides,
-such as ordering and persistence, and you want to use the implementation selected by the cluster
-administrator.
+如果希望创建通道而不指定使用哪个通道实现CRD，则可以使用通用通道对象。
+如果您不关心特定通道实现提供的属性(比如排序和持久性)，并且希望使用集群管理员选择的实现，那么这将非常有用。
 
 
-Cluster administrators can modify the default Channel implementation settings by editing the `default-ch-webhook` ConfigMap in the `knative-eventing` namespace.
+集群管理员可以通过编辑`knative-eventing`命名空间中的`default-ch-webhook` ConfigMap来修改默认通道实现设置。
 
 
-For more information about modifying ConfigMaps, see
-[Configuring the Eventing Operator custom resource](../../install/operator/configuring-eventing-cr.md#setting-a-default-channel).
+有关修改ConfigMaps的更多信息，请参见[配置事件操作符自定义资源](../../install/operator/configuring-eventing-cr.md#setting-a-default-channel).
 
-Default Channels can be configured for the cluster, a namespace on the cluster, or both.
+可以为集群、集群上的命名空间或两者配置默认通道。
 
 !!! note
-    If a default Channel implementation is configured for a namespace, this will overwrite the configuration for the cluster.
+    如果为名称空间配置了默认通道实现，则这将覆盖集群的配置。
 
-In the following example, the cluster default Channel implementation is InMemoryChannel, while the
-namespace default Channel implementation for the `example-namespace` is KafkaChannel.
+在下面的例子中，集群默认通道实现是InMemoryChannel，而 `example-namespace` 的命名空间默认通道实现是KafkaChannel。
 
 ```yaml
 apiVersion: v1
@@ -56,10 +50,10 @@ data:
 
 
 !!! note
-    InMemoryChannel Channels must not be used in production environments.
+    InMemoryChannel在生产环境中不能使用通道。
 
 
-## Next steps
+## 下一个步骤
 
 
-- Create an [InMemoryChannel](create-default-channel.md)
+- 创建[InMemoryChannel](create-default-channel.md)

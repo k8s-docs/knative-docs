@@ -1,8 +1,8 @@
-# Configure Channel defaults
+# 配置通道默认值
 
-Knative Eventing provides a `default-ch-webhook` ConfigMap that contains the configuration settings that govern default Channel creation.
+Knative事件提供了一个`default-ch-webhook `ConfigMap，其中包含管理默认通道创建的配置设置。
 
-The default `default-ch-webhook` ConfigMap is as follows:
+默认的`default-ch-webhook `ConfigMap如下:
 
 ```yaml
 apiVersion: v1
@@ -25,9 +25,10 @@ data:
         kind: InMemoryChannel
 ```
 
-By changing the `data.default-ch-config` property we can define the clusterDefaults and per Namespace defaults.
+通过更改`data.default-ch-config`属性，我们可以定义clusterDefaults和每个命名空间的默认值。
 
-This configuration is used by the Channel custom resource definition (CRD) to create platform specific implementations.
+通道自定义资源定义(CRD)使用此配置创建特定于平台的实现。
 
 !!! note
-    The `clusterDefault` setting determines the global, cluster-wide default Channel type. You can configure Channel defaults for individual namespaces by using the `namespaceDefaults` setting.
+    `clusterDefault`设置决定全局的、集群范围的默认Channel类型。
+    您可以使用`namespaceDefaults`设置为各个名称空间配置通道默认值。

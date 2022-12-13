@@ -1,8 +1,8 @@
-# Create a receive adapter
+# 创建接收适配器
 
-As part of the source reconciliation process, you must create and deploy the underlying receive adapter.
+作为源协调过程的一部分，您必须创建和部署底层接收适配器。
 
-The receive adapter requires an injection-based `main` method that is located in `cmd/receiver_adapter/main.go`:
+接收适配器需要一个基于注入的`main`方法，它位于`cmd/receiver_adapter/main.go`中:
 
 ```go
 // This Adapter generates events at a regular interval.
@@ -18,12 +18,14 @@ func main() {
 }
 ```
 
-The receive adapter's `pkg` implementation consists of two main functions:
+接收适配器的`pkg`实现包含两个主要函数:
 
-1. A `NewAdapter(ctx context.Context, aEnv adapter.EnvConfigAccessor, ceClient cloudevents.Client) adapter.Adapter {}` call, which creates the
-new adapter with passed variables via the `EnvConfigAccessor`. The created adapter is passed the CloudEvents client (which is where the events are forwarded to). This is sometimes referred to as a sink, or `ceClient` in the Knative ecosystem.  The return value is a reference to the adapter as defined by the adapter's local struct.
+1. 一个`NewAdapter(ctx context.Context, aEnv adapter.EnvConfigAccessor, ceClient cloudevents.Client) adapter.Adapter {}`调用，它通过`EnvConfigAccessor`创建带有传递变量的新适配器。
+   创建的适配器被传递给CloudEvents客户端(事件被转发到该客户端)。
+   这在Knative生态系统中有时被称为sink或`ceClient`。
+   返回值是由适配器的本地结构定义的对适配器的引用。
 
-    In the case of the sample source:
+    在示例源的情况下:
 
     ```go
     // Adapter generates events at a regular interval.
@@ -35,15 +37,15 @@ new adapter with passed variables via the `EnvConfigAccessor`. The created adapt
     }
     ```
 
-1. A `Start` function, implemented as an interface to the adapter `struct`:
+1. 一个`Start`函数，作为适配器`struct`的接口实现:
 
     ```go
     func (a *Adapter) Start(stopCh <-chan struct{}) error {
     ```
 
-    `stopCh` is the signal to stop the adapter. Otherwise, the role of the function is to process the next event.
+    `stopCh`是停止适配器的信号。否则，函数的作用是处理下一个事件。
 
-    In the case of the `sample-source`, this function creates a CloudEvent to forward to the specified sink every X interval, as specified by the `EnvConfigAccessor` parameter, which is loaded by the resource YAML:
+    在`sample-source`的情况下，该函数创建一个CloudEvent，每隔X时间转发到指定的接收器，由`EnvConfigAccessor`参数指定，该参数由资源YAML加载:
 
     ```go
     func (a *Adapter) Start(stopCh <-chan struct{}) error {
@@ -66,20 +68,20 @@ new adapter with passed variables via the `EnvConfigAccessor`. The created adapt
     }
     ```
 
-## Managing the Receive Adapter in the Controller
+## 管理控制器中的接收适配器
 
-1. Update the `ObservedGeneration` and initialize the `Status` conditions, as defined in the `samplesource_lifecycle.go` and `samplesource_types.go` files:
+1. 更新`ObservedGeneration`并初始化`Status`条件，如在`samplesource_lifecycle.go`和`samplesource_types.go`文件中定义的:
 
     ```go
     src.Status.InitializeConditions()
     src.Status.ObservedGeneration = src.Generation
     ```
 
-1. Create a receive adapter.
+2. 创建一个接收适配器。
 
-    1. Verify that the specified Kubernetes resources are valid, and update the `Status` accordingly.
+    1. 验证指定的Kubernetes资源是否有效，并相应地更新`Status`。
 
-    1. Assemble the `ReceiveAdapterArgs`:
+    2. 集合 `ReceiveAdapterArgs`:
 
         ```go
         raArgs := resources.ReceiveAdapterArgs{
@@ -92,22 +94,24 @@ new adapter with passed variables via the `EnvConfigAccessor`. The created adapt
         ```
 
         !!! note
-            The exact arguments may change based on functional requirements. Create the underlying deployment from the arguments provided, matching pod templates, labels, owner references, etc as needed to fill out the deployment. Example: [pkg/reconciler/sample/resources/receive_adapter.go](https://github.com/knative-sandbox/sample-source/blob/main/pkg/reconciler/sample/resources/receive_adapter.go)
+            确切的参数可能会根据功能需求而改变。
+            根据提供的参数创建底层部署，根据需要匹配pod模板、标签、所有者引用等来填写部署。
+            例子:[pkg/reconciler/sample/resources/receive_adapter.go](https://github.com/knative-sandbox/sample-source/blob/main/pkg/reconciler/sample/resources/receive_adapter.go)
 
-    1. Fetch the existing receive adapter deployment:
+    1. 获取现有的接收适配器部署:
 
         ```go
         namespace := owner.GetObjectMeta().GetNamespace()
         ra, err := r.KubeClientSet.AppsV1().Deployments(namespace).Get(expected.Name, metav1.GetOptions{})
         ```
 
-    1. If there is no existing receive adapter deployment, create one:
+    1. 如果没有现有的接收适配器部署，创建一个:
 
         ```go
         ra, err = r.KubeClientSet.AppsV1().Deployments(namespace).Create(expected)
         ```
 
-    1. Check if the expected spec is different from the existing spec, and update the deployment if required:
+    1. 检查预期的规范是否与现有的规范不同，并在需要时更新部署:
 
         ```go
         } else if r.podSpecImageSync(expected.Spec.Template.Spec, ra.Spec.Template.Spec) {
@@ -117,21 +121,21 @@ new adapter with passed variables via the `EnvConfigAccessor`. The created adapt
             }
         ```
 
-    1. If updated, record the event:
+    1. 如果有更新，请记录事件:
 
         ```go
         return pkgreconciler.NewEvent(corev1.EventTypeNormal, "DeploymentUpdated", "updated deployment: \"%s/%s\"", namespace, name)
         ```
 
-    1. If successful, update the `Status` and `MarkDeployed`:
+    1. 如果成功，更新`Status` 和 `MarkDeployed`:
 
         ```go
         src.Status.PropagateDeploymentAvailability(ra)
         ```
 
-1. Create a SinkBinding to bind the receive adapter with the sink.
+1. 创建一个SinkBinding将接收适配器与接收器绑定。
 
-    1. Create a `Reference` for the receive adapter deployment. This deployment is the SinkBinding's source:
+    1. 为接收适配器部署创建一个`Reference`。这个部署是SinkBinding的源代码:
 
         ```go
         tracker.Reference{
@@ -142,20 +146,20 @@ new adapter with passed variables via the `EnvConfigAccessor`. The created adapt
         }
         ```
 
-    1. Fetch the existing SinkBinding:
+    1. 获取现有的SinkBinding:
 
         ```go
         namespace := owner.GetObjectMeta().GetNamespace()
         sb, err := r.EventingClientSet.SourcesV1alpha2().SinkBindings(namespace).Get(expected.Name, metav1.GetOptions{})
         ```
 
-    1. If there is no existing SinkBinding, create one:
+    1. 如果不存在SinkBinding，创建一个:
 
         ```go
         sb, err = r.EventingClientSet.SourcesV1alpha2().SinkBindings(namespace).Create(expected)
         ```
 
-    1. Check if the expected spec is different to the existing spec, and update the SinkBinding if required:
+    1. 检查预期的规范是否与现有的规范不同，如果需要的话更新SinkBinding:
 
         ```go
         else if r.specChanged(sb.Spec, expected.Spec) {
@@ -165,19 +169,19 @@ new adapter with passed variables via the `EnvConfigAccessor`. The created adapt
             }
         ```
 
-    1. If updated, record the event:
+    1. 如果有更新，请记录事件:
 
         ```go
         return pkgreconciler.NewEvent(corev1.EventTypeNormal, "SinkBindingUpdated", "updated SinkBinding: \"%s/%s\"", namespace, name)
         ```
 
-    1. `MarkSink` with the result:
+    2. `MarkSink` 结果::
 
         ```go
         src.Status.MarkSink(sb.Status.SinkURI)
         ```
 
-1. Return a new reconciler event stating that the process is done:
+2. 返回一个新的协调器事件，声明流程已经完成:
 
     ```go
     return pkgreconciler.NewEvent(corev1.EventTypeNormal, "SampleSourceReconciled", "SampleSource reconciled: \"%s/%s\"", namespace, name)
