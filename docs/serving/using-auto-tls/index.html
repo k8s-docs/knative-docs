@@ -44,16 +44,6 @@
     <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-
-  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-YRMNFYE32R"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-YRMNFYE32R",{page_path:e.pathname})})})</script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YRMNFYE32R"></script>
-
 
     
     
@@ -77,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enabling-auto-tls-certs" class="md-skip">
+        <a href="#tls" class="md-skip">
           Skip to content
         </a>
       
@@ -630,7 +620,7 @@
   
     <li class="md-nav__item">
       <a href="../../concepts/duck-typing/" class="md-nav__link">
-        Duck types
+        鸭子类型
       </a>
     </li>
   
@@ -910,7 +900,7 @@
   
     <li class="md-nav__item">
       <a href="../../getting-started/first-broker/" class="md-nav__link">
-        来源代理触发器
+        第一个代理
       </a>
     </li>
   
@@ -924,7 +914,7 @@
   
     <li class="md-nav__item">
       <a href="../../getting-started/first-source/" class="md-nav__link">
-        使用服务作为源
+        第一个源
       </a>
     </li>
   
@@ -938,7 +928,7 @@
   
     <li class="md-nav__item">
       <a href="../../getting-started/first-trigger/" class="md-nav__link">
-        使用触发器和接收器
+        第一个触发器
       </a>
     </li>
   
@@ -1049,7 +1039,7 @@
   
     <li class="md-nav__item">
       <a href="../../install/quickstart-install/" class="md-nav__link">
-        快速启动安装
+        quickstart安装
       </a>
     </li>
   
@@ -1089,7 +1079,7 @@
   
     <li class="md-nav__item">
       <a href="../../install/yaml-install/" class="md-nav__link">
-        关于YAML-based安装
+        基于YAML安装
       </a>
     </li>
   
@@ -1396,7 +1386,7 @@
   
     <li class="md-nav__item">
       <a href="../../install/knative-offerings/" class="md-nav__link">
-        使用基于Knative-based产品
+        基于Knative产品
       </a>
     </li>
   
@@ -2500,72 +2490,72 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    Before you begin
+  <a href="#_1" class="md-nav__link">
+    在开始之前
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#automatic-tls-provision-mode" class="md-nav__link">
-    Automatic TLS provision mode
+  <a href="#tls_1" class="md-nav__link">
+    TLS自动发放模式
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#enabling-auto-tls" class="md-nav__link">
-    Enabling Auto TLS
+  <a href="#tls_2" class="md-nav__link">
+    启用自动TLS
   </a>
   
-    <nav class="md-nav" aria-label="Enabling Auto TLS">
+    <nav class="md-nav" aria-label="启用自动TLS">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dns-01-challenge-only-configure-your-dns-provider" class="md-nav__link">
-    DNS-01 challenge only: Configure your DNS provider
+  <a href="#dns-01-challenge-only-dns" class="md-nav__link">
+    DNS-01 challenge only: 配置DNS提供程序
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-net-certmanager-controller-deployment" class="md-nav__link">
-    Install net-certmanager-controller deployment
+  <a href="#net-certmanager-controller" class="md-nav__link">
+    安装net-certmanager-controller部署
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#provisioning-certificates-per-namespace-wildcard-certificates" class="md-nav__link">
-    Provisioning certificates per namespace (wildcard certificates)
+  <a href="#_2" class="md-nav__link">
+    为每个名称空间提供证书(通配符证书)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#configure-config-certmanager-configmap" class="md-nav__link">
-    Configure config-certmanager ConfigMap
+  <a href="#config-certmanager-configmap" class="md-nav__link">
+    配置config-certmanager ConfigMap
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#turn-on-auto-tls" class="md-nav__link">
-    Turn on Auto TLS
+  <a href="#tls_3" class="md-nav__link">
+    开启自动TLS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-auto-tls" class="md-nav__link">
-    Verify Auto TLS
+  <a href="#tls_4" class="md-nav__link">
+    自动TLS验证
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#disable-auto-tls-per-service-or-route" class="md-nav__link">
-    Disable Auto TLS per service or route
+  <a href="#tls_5" class="md-nav__link">
+    禁用每个服务或路由的自动TLS
   </a>
   
 </li>
@@ -3315,14 +3305,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3">
-          开发主题
+          开发者主题
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="开发主题" data-md-level="2">
+      <nav class="md-nav" aria-label="开发者主题" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_3">
           <span class="md-nav__icon md-icon"></span>
-          开发主题
+          开发者主题
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3341,14 +3331,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_1">
-          事件资源
+          事件源
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="事件资源" data-md-level="3">
+      <nav class="md-nav" aria-label="事件源" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_1">
           <span class="md-nav__icon md-icon"></span>
-          事件资源
+          事件源
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3631,7 +3621,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/" class="md-nav__link">
-        自定义事件源概述
+        自定义概述
       </a>
     </li>
   
@@ -3693,14 +3683,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_2_2_2">
-          使用Knative示例存储库
+          使用示例存储库
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="使用Knative示例存储库" data-md-level="5">
+      <nav class="md-nav" aria-label="使用示例存储库" data-md-level="5">
         <label class="md-nav__title" for="__nav_7_3_2_2_2">
           <span class="md-nav__icon md-icon"></span>
-          使用Knative示例存储库
+          使用示例存储库
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3725,7 +3715,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/custom-event-source/controller/" class="md-nav__link">
-        创建一个控制器
+        创建控制器
       </a>
     </li>
   
@@ -3807,7 +3797,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/sinkbinding/" class="md-nav__link">
-        关于 SinkBinding
+        关于对象
       </a>
     </li>
   
@@ -3821,7 +3811,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/sinkbinding/create-a-sinkbinding/" class="md-nav__link">
-        创建 SinkBinding
+        创建对象
       </a>
     </li>
   
@@ -3835,7 +3825,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/sinkbinding/reference/" class="md-nav__link">
-        SinkBinding 参考
+        对象参考
       </a>
     </li>
   
@@ -3882,7 +3872,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/containersource/" class="md-nav__link">
-        创建 ContainerSource
+        创建对象
       </a>
     </li>
   
@@ -3896,7 +3886,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/containersource/reference/" class="md-nav__link">
-        ContainerSource 参考
+        对象参考
       </a>
     </li>
   
@@ -3932,14 +3922,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_3">
-          事件 sinks
+          事件接收器
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="事件 sinks" data-md-level="3">
+      <nav class="md-nav" aria-label="事件接收器" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_3">
           <span class="md-nav__icon md-icon"></span>
-          事件 sinks
+          事件接收器
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3950,7 +3940,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/sinks/" class="md-nav__link">
-        关于 sinks
+        关于接收器
       </a>
     </li>
   
@@ -3971,6 +3961,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eventing/sinks/redis-sink/" class="md-nav__link">
+        RedisStreamSink
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -3985,7 +3989,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/event-delivery/" class="md-nav__link">
-        处理交货失败
+        投递失败处理
       </a>
     </li>
   
@@ -4039,7 +4043,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/parallel/" class="md-nav__link">
-        平行
+        并行
       </a>
     </li>
   
@@ -4093,7 +4097,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-reply-to-event-display/" class="md-nav__link">
-        显示顺序输出
+        有应答序列
       </a>
     </li>
   
@@ -4107,7 +4111,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-reply-to-sequence/" class="md-nav__link">
-        使用序列
+        序列到序列
       </a>
     </li>
   
@@ -4121,7 +4125,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-terminal/" class="md-nav__link">
-        创建额外的事件
+        序列终端
       </a>
     </li>
   
@@ -4135,7 +4139,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-with-broker-trigger/" class="md-nav__link">
-        与代理和触发器一起使用
+        代理和触发器
       </a>
     </li>
   
@@ -4171,14 +4175,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_6">
-          渠道
+          通道
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="渠道" data-md-level="3">
+      <nav class="md-nav" aria-label="通道" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_6">
           <span class="md-nav__icon md-icon"></span>
-          渠道
+          通道
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -4189,7 +4193,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/" class="md-nav__link">
-        关于渠道
+        关于通道
       </a>
     </li>
   
@@ -4203,7 +4207,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/channel-types-defaults/" class="md-nav__link">
-        通道类型和默认值
+        通道类型
       </a>
     </li>
   
@@ -4217,7 +4221,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/create-default-channel/" class="md-nav__link">
-        使用集群或命名空间默认值创建通道
+        创建默认通道
       </a>
     </li>
   
@@ -4231,7 +4235,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/channels-crds/" class="md-nav__link">
-        可用的频道
+        可用通道
       </a>
     </li>
   
@@ -4309,14 +4313,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_4">
-          管理员的话题
+          管理员主题
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="管理员的话题" data-md-level="2">
+      <nav class="md-nav" aria-label="管理员主题" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_4">
           <span class="md-nav__icon md-icon"></span>
-          管理员的话题
+          管理员主题
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -4353,7 +4357,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/configuration/channel-configuration/" class="md-nav__link">
-        配置通道违约
+        配置通道默认值
       </a>
     </li>
   
@@ -4505,7 +4509,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/observability/metrics/eventing-metrics/" class="md-nav__link">
-        Knative事件指标
+        事件指标
       </a>
     </li>
   
@@ -4599,7 +4603,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/experimental-features/" class="md-nav__link">
-        关于event实验功能
+        关于事件实验功能
       </a>
     </li>
   
@@ -5219,72 +5223,72 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    Before you begin
+  <a href="#_1" class="md-nav__link">
+    在开始之前
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#automatic-tls-provision-mode" class="md-nav__link">
-    Automatic TLS provision mode
+  <a href="#tls_1" class="md-nav__link">
+    TLS自动发放模式
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#enabling-auto-tls" class="md-nav__link">
-    Enabling Auto TLS
+  <a href="#tls_2" class="md-nav__link">
+    启用自动TLS
   </a>
   
-    <nav class="md-nav" aria-label="Enabling Auto TLS">
+    <nav class="md-nav" aria-label="启用自动TLS">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dns-01-challenge-only-configure-your-dns-provider" class="md-nav__link">
-    DNS-01 challenge only: Configure your DNS provider
+  <a href="#dns-01-challenge-only-dns" class="md-nav__link">
+    DNS-01 challenge only: 配置DNS提供程序
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-net-certmanager-controller-deployment" class="md-nav__link">
-    Install net-certmanager-controller deployment
+  <a href="#net-certmanager-controller" class="md-nav__link">
+    安装net-certmanager-controller部署
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#provisioning-certificates-per-namespace-wildcard-certificates" class="md-nav__link">
-    Provisioning certificates per namespace (wildcard certificates)
+  <a href="#_2" class="md-nav__link">
+    为每个名称空间提供证书(通配符证书)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#configure-config-certmanager-configmap" class="md-nav__link">
-    Configure config-certmanager ConfigMap
+  <a href="#config-certmanager-configmap" class="md-nav__link">
+    配置config-certmanager ConfigMap
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#turn-on-auto-tls" class="md-nav__link">
-    Turn on Auto TLS
+  <a href="#tls_3" class="md-nav__link">
+    开启自动TLS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-auto-tls" class="md-nav__link">
-    Verify Auto TLS
+  <a href="#tls_4" class="md-nav__link">
+    自动TLS验证
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#disable-auto-tls-per-service-or-route" class="md-nav__link">
-    Disable Auto TLS per service or route
+  <a href="#tls_5" class="md-nav__link">
+    禁用每个服务或路由的自动TLS
   </a>
   
 </li>
@@ -5312,50 +5316,49 @@
 
 
 
-<h1 id="enabling-auto-tls-certs">Enabling auto-TLS certs<a class="headerlink" href="#enabling-auto-tls-certs" title="Permanent link">&para;</a></h1>
-<p>If you install and configure cert-manager, you can configure Knative to
-automatically obtain new TLS certificates and renew existing ones for Knative
-Services. To learn more about using secure connections in Knative, see
-<a href="../using-a-tls-cert/">Configuring HTTPS with TLS certificates</a>.</p>
-<h2 id="before-you-begin">Before you begin<a class="headerlink" href="#before-you-begin" title="Permanent link">&para;</a></h2>
-<p>The following must be installed on your Knative cluster:</p>
+<h1 id="tls">启用自动tls证书<a class="headerlink" href="#tls" title="Permanent link">&para;</a></h1>
+<p>如果安装并配置了证书管理器，则可以配置Knative自动获取新的TLS证书，并为Knative Services更新现有的TLS证书。
+要了解有关在Knative中使用安全连接的详细信息，请参见<a href="../using-a-tls-cert/">配置带TLS证书的HTTPS</a>.</p>
+<h2 id="_1">在开始之前<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>必须在您的Knative集群上安装以下组件:</p>
 <ul>
 <li>
 <p><a href="../../install/yaml-install/serving/install-serving-with-yaml/">Knative Serving</a>.</p>
 </li>
 <li>
-<p>A Networking layer such as Kourier, Istio with SDS v1.3 or higher, or Contour v1.1 or higher. See <a href="../../install/yaml-install/serving/install-serving-with-yaml/#install-a-networking-layer">Install a networking layer</a> or <a href="../../install/installing-istio/#installing-istio-with-SDS-to-secure-the-ingress-gateway">Istio with SDS, version 1.3 or higher</a>.</p>
+<p>一个网络层，如Kourier, Istio具有SDS v1.3或更高版本，或Contour v1.1或更高版本。
+  参见<a href="../../install/yaml-install/serving/install-serving-with-yaml/#install-a-networking-layer">安装网络层</a>或<a href="../../install/installing-istio/#installing-istio-with-SDS-to-secure-the-ingress-gateway">带有SDS的Istio，版本1.3或更高</a>。</p>
 </li>
 <li>
-<p><a href="../../install/installing-cert-manager/"><code>cert-manager</code> version <code>1.0.0</code> or higher</a>.</p>
+<p><a href="../../install/installing-cert-manager/"><code>cert-manager</code> 版本 <code>1.0.0</code> 或更高</a>.</p>
 </li>
 <li>
-<p>Your Knative cluster must be configured to use a <a href="../using-a-custom-domain/">custom domain</a>.</p>
+<p>您的Knative集群必须配置为使用<a href="../using-a-custom-domain/">自定义域</a>.</p>
 </li>
 <li>
-<p>Your DNS provider must be setup and configured to your domain.</p>
+<p>您的DNS提供程序必须设置并配置到您的域。</p>
 </li>
 <li>
-<p>If you want to use HTTP-01 challenge, you need to configure your custom
-domain to map to the IP of ingress. You can achieve this by adding a DNS A record to map the domain to the IP according to the instructions of your DNS provider.</p>
+<p>如果您想使用HTTP-01 challenge，您需要配置您的自定义域以映射到入接口的IP。
+  您可以通过添加一个DNS a记录来根据您的DNS提供者的说明将域映射到IP来实现这一点。</p>
 </li>
 </ul>
-<h2 id="automatic-tls-provision-mode">Automatic TLS provision mode<a class="headerlink" href="#automatic-tls-provision-mode" title="Permanent link">&para;</a></h2>
-<p>Knative supports the following Auto TLS modes:</p>
+<h2 id="tls_1">TLS自动发放模式<a class="headerlink" href="#tls_1" title="Permanent link">&para;</a></h2>
+<p>Knative支持以下自动TLS模式:</p>
 <ol>
 <li>
-<p>Using DNS-01 challenge</p>
-<p>In this mode, your cluster needs to be able to talk to your DNS server to verify the ownership of your domain.</p>
+<p>使用 DNS-01 challenge</p>
+<p>在这种模式下，您的集群需要能够与您的DNS服务器通信，以验证您的域的所有权。</p>
 <ul>
 <li>
-<p><strong>Provision Certificate per namespace is supported when using DNS-01 challenge mode.</strong></p>
+<p><strong>使用DNS-01挑战模式时，支持每个命名空间颁发证书。</strong></p>
 <ul>
 <li>This is the recommended mode for faster certificate provision.</li>
 <li>In this mode, a single Certificate will be provisioned per namespace and is reused across the Knative Services within the same namespace.</li>
 </ul>
 </li>
 <li>
-<p><strong>Provision Certificate per Knative Service is supported when using DNS-01 challenge mode.</strong></p>
+<p><strong>使用DNS-01挑战模式时，支持根据Knative服务提供证书。</strong></p>
 <ul>
 <li>This is the recommended mode for better certificate isolation between Knative Services.</li>
 <li>In this mode, a Certificate will be provisioned for each Knative Service.</li>
@@ -5373,7 +5376,7 @@ domain to map to the IP of ingress. You can achieve this by adding a DNS A recor
 </ul>
 </li>
 </ol>
-<h2 id="enabling-auto-tls">Enabling Auto TLS<a class="headerlink" href="#enabling-auto-tls" title="Permanent link">&para;</a></h2>
+<h2 id="tls_2">启用自动TLS<a class="headerlink" href="#tls_2" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Create and add the <code>ClusterIssuer</code> configuration file to your Knative cluster
@@ -5454,7 +5457,7 @@ Where <code>&lt;filename&gt;</code> is the name of the file you created in the p
 <p>Result: The <code>Status.Conditions</code> should include <code>Ready=True</code>.</p>
 </li>
 </ol>
-<h3 id="dns-01-challenge-only-configure-your-dns-provider">DNS-01 challenge only: Configure your DNS provider<a class="headerlink" href="#dns-01-challenge-only-configure-your-dns-provider" title="Permanent link">&para;</a></h3>
+<h3 id="dns-01-challenge-only-dns">DNS-01 challenge only: 配置DNS提供程序<a class="headerlink" href="#dns-01-challenge-only-dns" title="Permanent link">&para;</a></h3>
 <p>If you choose to use DNS-01 challenge, configure which DNS provider is used to
 validate the DNS-01 challenge requests.</p>
 <p>Instructions about configuring cert-manager, for all the supported DNS
@@ -5463,7 +5466,7 @@ providers, are provided in
 <p>Note that DNS-01 challenges can be used to either validate an
 individual domain name or to validate an entire namespace using a
 wildcard certificate like <code>*.my-ns.example.com</code>.</p>
-<h3 id="install-net-certmanager-controller-deployment">Install net-certmanager-controller deployment<a class="headerlink" href="#install-net-certmanager-controller-deployment" title="Permanent link">&para;</a></h3>
+<h3 id="net-certmanager-controller">安装net-certmanager-controller部署<a class="headerlink" href="#net-certmanager-controller" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>Determine if <code>net-certmanager-controller</code> is already installed by running the
@@ -5477,7 +5480,7 @@ wildcard certificate like <code>*.my-ns.example.com</code>.</p>
 </code></pre></div>
 </li>
 </ol>
-<h3 id="provisioning-certificates-per-namespace-wildcard-certificates">Provisioning certificates per namespace (wildcard certificates)<a class="headerlink" href="#provisioning-certificates-per-namespace-wildcard-certificates" title="Permanent link">&para;</a></h3>
+<h3 id="_2">为每个名称空间提供证书(通配符证书)<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Provisioning a certificate per namespace only works with DNS-01
@@ -5497,7 +5500,7 @@ command:</p>
 <div class="highlight"><pre><span></span><code>kubectl patch --namespace knative-serving configmap config-network -p <span class="s1">&#39;{&quot;data&quot;: {&quot;namespace-wildcard-cert-selector&quot;: &quot;{\&quot;matchExpressions\&quot;: [{\&quot;key\&quot;:\&quot;networking.knative.dev/disableWildcardCert\&quot;, \&quot;operator\&quot;: \&quot;NotIn\&quot;, \&quot;values\&quot;:[\&quot;true\&quot;]}]}&quot;}}&#39;</span>
 </code></pre></div>
 <p>This selects all namespaces where the label value is not in the set <code>"true"</code>.</p>
-<h3 id="configure-config-certmanager-configmap">Configure config-certmanager ConfigMap<a class="headerlink" href="#configure-config-certmanager-configmap" title="Permanent link">&para;</a></h3>
+<h3 id="config-certmanager-configmap">配置config-certmanager ConfigMap<a class="headerlink" href="#config-certmanager-configmap" title="Permanent link">&para;</a></h3>
 <p>Update your <a href="https://github.com/knative-sandbox/net-certmanager/blob/main/config/config.yaml"><code>config-certmanager</code> ConfigMap</a>
 in the <code>knative-serving</code> namespace to reference your new <code>ClusterIssuer</code>.</p>
 <ol>
@@ -5529,7 +5532,7 @@ certificates.</p>
 </code></pre></div>
 </li>
 </ol>
-<h3 id="turn-on-auto-tls">Turn on Auto TLS<a class="headerlink" href="#turn-on-auto-tls" title="Permanent link">&para;</a></h3>
+<h3 id="tls_3">开启自动TLS<a class="headerlink" href="#tls_3" title="Permanent link">&para;</a></h3>
 <p>Update the <a href="https://github.com/knative/serving/blob/main/config/core/configmaps/network.yaml"><code>config-network</code> ConfigMap</a> in the <code>knative-serving</code> namespace to enable <code>auto-tls</code> and specify how HTTP requests are handled:</p>
 <ol>
 <li>
@@ -5587,7 +5590,7 @@ HTTP traffic is allowed.</p>
 <p>Congratulations! Knative is now configured to obtain and renew TLS certificates.
 When your TLS certificate is active on your cluster, your Knative services will
 be able to handle HTTPS traffic.</p>
-<h3 id="verify-auto-tls">Verify Auto TLS<a class="headerlink" href="#verify-auto-tls" title="Permanent link">&para;</a></h3>
+<h3 id="tls_4">自动TLS验证<a class="headerlink" href="#tls_4" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>Run the following command to create a Knative Service:</p>
@@ -5602,7 +5605,7 @@ autoscale-go       https://autoscale-go.default.<span class="o">{</span>custom-d
 <p>Note that the URL will be <strong>https</strong> in this case.</p>
 </li>
 </ol>
-<h3 id="disable-auto-tls-per-service-or-route">Disable Auto TLS per service or route<a class="headerlink" href="#disable-auto-tls-per-service-or-route" title="Permanent link">&para;</a></h3>
+<h3 id="tls_5">禁用每个服务或路由的自动TLS<a class="headerlink" href="#tls_5" title="Permanent link">&para;</a></h3>
 <p>If you have Auto TLS enabled in your cluster, you can choose to disable Auto TLS for individual services or routes by adding the annotation <code>networking.knative.dev/disable-auto-tls: true</code>.</p>
 <p>Using the previous <code>autoscale-go</code> example:</p>
 <ol>

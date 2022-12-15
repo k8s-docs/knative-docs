@@ -44,16 +44,6 @@
     <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-
-  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-YRMNFYE32R"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-YRMNFYE32R",{page_path:e.pathname})})})</script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YRMNFYE32R"></script>
-
 
     
     
@@ -77,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuring-the-ingress-gateway" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -630,7 +620,7 @@
   
     <li class="md-nav__item">
       <a href="../../concepts/duck-typing/" class="md-nav__link">
-        Duck types
+        鸭子类型
       </a>
     </li>
   
@@ -910,7 +900,7 @@
   
     <li class="md-nav__item">
       <a href="../../getting-started/first-broker/" class="md-nav__link">
-        来源代理触发器
+        第一个代理
       </a>
     </li>
   
@@ -924,7 +914,7 @@
   
     <li class="md-nav__item">
       <a href="../../getting-started/first-source/" class="md-nav__link">
-        使用服务作为源
+        第一个源
       </a>
     </li>
   
@@ -938,7 +928,7 @@
   
     <li class="md-nav__item">
       <a href="../../getting-started/first-trigger/" class="md-nav__link">
-        使用触发器和接收器
+        第一个触发器
       </a>
     </li>
   
@@ -1049,7 +1039,7 @@
   
     <li class="md-nav__item">
       <a href="../../install/quickstart-install/" class="md-nav__link">
-        快速启动安装
+        quickstart安装
       </a>
     </li>
   
@@ -1089,7 +1079,7 @@
   
     <li class="md-nav__item">
       <a href="../../install/yaml-install/" class="md-nav__link">
-        关于YAML-based安装
+        基于YAML安装
       </a>
     </li>
   
@@ -1396,7 +1386,7 @@
   
     <li class="md-nav__item">
       <a href="../../install/knative-offerings/" class="md-nav__link">
-        使用基于Knative-based产品
+        基于Knative产品
       </a>
     </li>
   
@@ -2514,30 +2504,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#replace-the-default-istio-ingressgateway-service" class="md-nav__link">
-    Replace the default istio-ingressgateway service
+  <a href="#istio-ingressgateway" class="md-nav__link">
+    更换默认的istio-ingressgateway服务
   </a>
   
-    <nav class="md-nav" aria-label="Replace the default istio-ingressgateway service">
+    <nav class="md-nav" aria-label="更换默认的istio-ingressgateway服务">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-create-the-gateway-service-and-deployment-instance" class="md-nav__link">
-    Step 1: Create the gateway service and deployment instance
+  <a href="#1" class="md-nav__link">
+    步骤1: 创建网关服务和部署实例
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-update-the-knative-gateway" class="md-nav__link">
-    Step 2: Update the Knative gateway
+  <a href="#2-knative" class="md-nav__link">
+    步骤2: 更新Knative网关
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-update-the-gateway-configmap" class="md-nav__link">
-    Step 3: Update the gateway ConfigMap
+  <a href="#3-configmap" class="md-nav__link">
+    步骤3: 更新网关ConfigMap
   </a>
   
 </li>
@@ -2548,23 +2538,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#replace-the-knative-ingress-gateway-gateway" class="md-nav__link">
-    Replace the knative-ingress-gateway gateway
+  <a href="#knative-ingress-gateway" class="md-nav__link">
+    替换knative-ingress-gateway网关
   </a>
   
-    <nav class="md-nav" aria-label="Replace the knative-ingress-gateway gateway">
+    <nav class="md-nav" aria-label="替换knative-ingress-gateway网关">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-create-the-gateway" class="md-nav__link">
-    Step 1: Create the gateway
+  <a href="#1_1" class="md-nav__link">
+    步骤1:创建网关
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-update-the-gateway-configmap" class="md-nav__link">
-    Step 2: Update the gateway ConfigMap
+  <a href="#2configmap" class="md-nav__link">
+    步骤2:更新网关ConfigMap
   </a>
   
 </li>
@@ -3300,14 +3290,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3">
-          开发主题
+          开发者主题
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="开发主题" data-md-level="2">
+      <nav class="md-nav" aria-label="开发者主题" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_3">
           <span class="md-nav__icon md-icon"></span>
-          开发主题
+          开发者主题
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3326,14 +3316,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_1">
-          事件资源
+          事件源
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="事件资源" data-md-level="3">
+      <nav class="md-nav" aria-label="事件源" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_1">
           <span class="md-nav__icon md-icon"></span>
-          事件资源
+          事件源
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3616,7 +3606,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/" class="md-nav__link">
-        自定义事件源概述
+        自定义概述
       </a>
     </li>
   
@@ -3678,14 +3668,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_2_2_2">
-          使用Knative示例存储库
+          使用示例存储库
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="使用Knative示例存储库" data-md-level="5">
+      <nav class="md-nav" aria-label="使用示例存储库" data-md-level="5">
         <label class="md-nav__title" for="__nav_7_3_2_2_2">
           <span class="md-nav__icon md-icon"></span>
-          使用Knative示例存储库
+          使用示例存储库
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3710,7 +3700,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/custom-event-source/controller/" class="md-nav__link">
-        创建一个控制器
+        创建控制器
       </a>
     </li>
   
@@ -3792,7 +3782,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/sinkbinding/" class="md-nav__link">
-        关于 SinkBinding
+        关于对象
       </a>
     </li>
   
@@ -3806,7 +3796,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/sinkbinding/create-a-sinkbinding/" class="md-nav__link">
-        创建 SinkBinding
+        创建对象
       </a>
     </li>
   
@@ -3820,7 +3810,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/sinkbinding/reference/" class="md-nav__link">
-        SinkBinding 参考
+        对象参考
       </a>
     </li>
   
@@ -3867,7 +3857,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/containersource/" class="md-nav__link">
-        创建 ContainerSource
+        创建对象
       </a>
     </li>
   
@@ -3881,7 +3871,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/containersource/reference/" class="md-nav__link">
-        ContainerSource 参考
+        对象参考
       </a>
     </li>
   
@@ -3917,14 +3907,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_3">
-          事件 sinks
+          事件接收器
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="事件 sinks" data-md-level="3">
+      <nav class="md-nav" aria-label="事件接收器" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_3">
           <span class="md-nav__icon md-icon"></span>
-          事件 sinks
+          事件接收器
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3935,7 +3925,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/sinks/" class="md-nav__link">
-        关于 sinks
+        关于接收器
       </a>
     </li>
   
@@ -3956,6 +3946,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eventing/sinks/redis-sink/" class="md-nav__link">
+        RedisStreamSink
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -3970,7 +3974,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/event-delivery/" class="md-nav__link">
-        处理交货失败
+        投递失败处理
       </a>
     </li>
   
@@ -4024,7 +4028,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/parallel/" class="md-nav__link">
-        平行
+        并行
       </a>
     </li>
   
@@ -4078,7 +4082,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-reply-to-event-display/" class="md-nav__link">
-        显示顺序输出
+        有应答序列
       </a>
     </li>
   
@@ -4092,7 +4096,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-reply-to-sequence/" class="md-nav__link">
-        使用序列
+        序列到序列
       </a>
     </li>
   
@@ -4106,7 +4110,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-terminal/" class="md-nav__link">
-        创建额外的事件
+        序列终端
       </a>
     </li>
   
@@ -4120,7 +4124,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-with-broker-trigger/" class="md-nav__link">
-        与代理和触发器一起使用
+        代理和触发器
       </a>
     </li>
   
@@ -4156,14 +4160,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_6">
-          渠道
+          通道
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="渠道" data-md-level="3">
+      <nav class="md-nav" aria-label="通道" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_6">
           <span class="md-nav__icon md-icon"></span>
-          渠道
+          通道
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -4174,7 +4178,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/" class="md-nav__link">
-        关于渠道
+        关于通道
       </a>
     </li>
   
@@ -4188,7 +4192,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/channel-types-defaults/" class="md-nav__link">
-        通道类型和默认值
+        通道类型
       </a>
     </li>
   
@@ -4202,7 +4206,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/create-default-channel/" class="md-nav__link">
-        使用集群或命名空间默认值创建通道
+        创建默认通道
       </a>
     </li>
   
@@ -4216,7 +4220,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/channels-crds/" class="md-nav__link">
-        可用的频道
+        可用通道
       </a>
     </li>
   
@@ -4294,14 +4298,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_4">
-          管理员的话题
+          管理员主题
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="管理员的话题" data-md-level="2">
+      <nav class="md-nav" aria-label="管理员主题" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_4">
           <span class="md-nav__icon md-icon"></span>
-          管理员的话题
+          管理员主题
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -4338,7 +4342,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/configuration/channel-configuration/" class="md-nav__link">
-        配置通道违约
+        配置通道默认值
       </a>
     </li>
   
@@ -4490,7 +4494,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/observability/metrics/eventing-metrics/" class="md-nav__link">
-        Knative事件指标
+        事件指标
       </a>
     </li>
   
@@ -4584,7 +4588,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/experimental-features/" class="md-nav__link">
-        关于event实验功能
+        关于事件实验功能
       </a>
     </li>
   
@@ -5204,30 +5208,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#replace-the-default-istio-ingressgateway-service" class="md-nav__link">
-    Replace the default istio-ingressgateway service
+  <a href="#istio-ingressgateway" class="md-nav__link">
+    更换默认的istio-ingressgateway服务
   </a>
   
-    <nav class="md-nav" aria-label="Replace the default istio-ingressgateway service">
+    <nav class="md-nav" aria-label="更换默认的istio-ingressgateway服务">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-create-the-gateway-service-and-deployment-instance" class="md-nav__link">
-    Step 1: Create the gateway service and deployment instance
+  <a href="#1" class="md-nav__link">
+    步骤1: 创建网关服务和部署实例
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-update-the-knative-gateway" class="md-nav__link">
-    Step 2: Update the Knative gateway
+  <a href="#2-knative" class="md-nav__link">
+    步骤2: 更新Knative网关
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-update-the-gateway-configmap" class="md-nav__link">
-    Step 3: Update the gateway ConfigMap
+  <a href="#3-configmap" class="md-nav__link">
+    步骤3: 更新网关ConfigMap
   </a>
   
 </li>
@@ -5238,23 +5242,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#replace-the-knative-ingress-gateway-gateway" class="md-nav__link">
-    Replace the knative-ingress-gateway gateway
+  <a href="#knative-ingress-gateway" class="md-nav__link">
+    替换knative-ingress-gateway网关
   </a>
   
-    <nav class="md-nav" aria-label="Replace the knative-ingress-gateway gateway">
+    <nav class="md-nav" aria-label="替换knative-ingress-gateway网关">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-create-the-gateway" class="md-nav__link">
-    Step 1: Create the gateway
+  <a href="#1_1" class="md-nav__link">
+    步骤1:创建网关
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-update-the-gateway-configmap" class="md-nav__link">
-    Step 2: Update the gateway ConfigMap
+  <a href="#2configmap" class="md-nav__link">
+    步骤2:更新网关ConfigMap
   </a>
   
 </li>
@@ -5282,14 +5286,14 @@
 
 
 
-<h1 id="configuring-the-ingress-gateway">Configuring the ingress gateway<a class="headerlink" href="#configuring-the-ingress-gateway" title="Permanent link">&para;</a></h1>
+<h1 id="_1">配置入口网关<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>Knative uses a shared ingress Gateway to serve all incoming traffic within
 Knative service mesh, which is the <code>knative-ingress-gateway</code> Gateway under
 the <code>knative-serving</code> namespace. By default, we use Istio gateway service
 <code>istio-ingressgateway</code> under <code>istio-system</code> namespace as its underlying service.
 You can replace the service and the gateway with that of your own as follows.</p>
-<h2 id="replace-the-default-istio-ingressgateway-service">Replace the default <code>istio-ingressgateway</code> service<a class="headerlink" href="#replace-the-default-istio-ingressgateway-service" title="Permanent link">&para;</a></h2>
-<h3 id="step-1-create-the-gateway-service-and-deployment-instance">Step 1: Create the gateway service and deployment instance<a class="headerlink" href="#step-1-create-the-gateway-service-and-deployment-instance" title="Permanent link">&para;</a></h3>
+<h2 id="istio-ingressgateway">更换默认的<code>istio-ingressgateway</code>服务<a class="headerlink" href="#istio-ingressgateway" title="Permanent link">&para;</a></h2>
+<h3 id="1">步骤1: 创建网关服务和部署实例<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <p>You'll need to create the gateway service and deployment instance to handle
 traffic first. Let's say you customized the default <code>istio-ingressgateway</code> to
 <code>custom-ingressgateway</code> as follows.</p>
@@ -5304,7 +5308,7 @@ traffic first. Let's say you customized the default <code>istio-ingressgateway</
 <span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="nt">istio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom-gateway</span><span class="w"></span>
 </code></pre></div>
-<h3 id="step-2-update-the-knative-gateway">Step 2: Update the Knative gateway<a class="headerlink" href="#step-2-update-the-knative-gateway" title="Permanent link">&para;</a></h3>
+<h3 id="2-knative">步骤2: 更新Knative网关<a class="headerlink" href="#2-knative" title="Permanent link">&para;</a></h3>
 <p>Update gateway instance <code>knative-ingress-gateway</code> under <code>knative-serving</code>
 namespace:</p>
 <div class="highlight"><pre><span></span><code>kubectl edit gateway knative-ingress-gateway -n knative-serving
@@ -5317,11 +5321,10 @@ namespace:</p>
 </code></pre></div>
 <p>If there is a change in service ports (compared with that of
 <code>istio-ingressgateway</code>), update the port info in the gateway accordingly.</p>
-<h3 id="step-3-update-the-gateway-configmap">Step 3: Update the gateway ConfigMap<a class="headerlink" href="#step-3-update-the-gateway-configmap" title="Permanent link">&para;</a></h3>
+<h3 id="3-configmap">步骤3: 更新网关ConfigMap<a class="headerlink" href="#3-configmap" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>Update gateway configmap <code>config-istio</code> under <code>knative-serving</code>
-namespace:</p>
+<p>Update gateway configmap <code>config-istio</code> under <code>knative-serving</code> namespace:</p>
 <div class="highlight"><pre><span></span><code>kubectl edit configmap config-istio -n knative-serving
 </code></pre></div>
 <p>This command opens your default text editor and allows you to edit the config-istio ConfigMap.</p>
@@ -5349,10 +5352,10 @@ For the example <code>custom-ingressgateway</code> service mentioned earlier, it
 </code></pre></div>
 </li>
 </ol>
-<h2 id="replace-the-knative-ingress-gateway-gateway">Replace the <code>knative-ingress-gateway</code> gateway<a class="headerlink" href="#replace-the-knative-ingress-gateway-gateway" title="Permanent link">&para;</a></h2>
+<h2 id="knative-ingress-gateway">替换<code>knative-ingress-gateway</code>网关<a class="headerlink" href="#knative-ingress-gateway" title="Permanent link">&para;</a></h2>
 <p>We customized the gateway service so far, but we may also want to use our own gateway.
 We can replace the default gateway with our own gateway with following steps.</p>
-<h3 id="step-1-create-the-gateway">Step 1: Create the gateway<a class="headerlink" href="#step-1-create-the-gateway" title="Permanent link">&para;</a></h3>
+<h3 id="1_1">步骤1:创建网关<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
 <p>Let's say you replace the default <code>knative-ingress-gateway</code> gateway with
 <code>knative-custom-gateway</code> in <code>custom-ns</code>.
 First, create the <code>knative-custom-gateway</code> gateway:</p>
@@ -5384,7 +5387,7 @@ Where <code>&lt;service-label&gt;</code> is a label to select your service, for 
 Where <code>&lt;filename&gt;</code> is the name of the file you created in the previous step.</p>
 </li>
 </ol>
-<h3 id="step-2-update-the-gateway-configmap">Step 2: Update the gateway ConfigMap<a class="headerlink" href="#step-2-update-the-gateway-configmap" title="Permanent link">&para;</a></h3>
+<h3 id="2configmap">步骤2:更新网关ConfigMap<a class="headerlink" href="#2configmap" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>Update gateway configmap <code>config-istio</code> under <code>knative-serving</code>

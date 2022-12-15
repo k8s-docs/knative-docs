@@ -44,16 +44,6 @@
     <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-
-  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-YRMNFYE32R"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-YRMNFYE32R",{page_path:e.pathname})})})</script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YRMNFYE32R"></script>
-
 
     
     
@@ -77,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installing-istio-for-knative" class="md-skip">
+        <a href="#knativeistio" class="md-skip">
           Skip to content
         </a>
       
@@ -630,7 +620,7 @@
   
     <li class="md-nav__item">
       <a href="../../concepts/duck-typing/" class="md-nav__link">
-        Duck types
+        鸭子类型
       </a>
     </li>
   
@@ -910,7 +900,7 @@
   
     <li class="md-nav__item">
       <a href="../../getting-started/first-broker/" class="md-nav__link">
-        来源代理触发器
+        第一个代理
       </a>
     </li>
   
@@ -924,7 +914,7 @@
   
     <li class="md-nav__item">
       <a href="../../getting-started/first-source/" class="md-nav__link">
-        使用服务作为源
+        第一个源
       </a>
     </li>
   
@@ -938,7 +928,7 @@
   
     <li class="md-nav__item">
       <a href="../../getting-started/first-trigger/" class="md-nav__link">
-        使用触发器和接收器
+        第一个触发器
       </a>
     </li>
   
@@ -1051,7 +1041,7 @@
   
     <li class="md-nav__item">
       <a href="../quickstart-install/" class="md-nav__link">
-        快速启动安装
+        quickstart安装
       </a>
     </li>
   
@@ -1091,7 +1081,7 @@
   
     <li class="md-nav__item">
       <a href="../yaml-install/" class="md-nav__link">
-        关于YAML-based安装
+        基于YAML安装
       </a>
     </li>
   
@@ -1398,52 +1388,52 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    Before you begin
+  <a href="#_1" class="md-nav__link">
+    在开始之前
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported-istio-versions" class="md-nav__link">
-    Supported Istio versions
+  <a href="#istio" class="md-nav__link">
+    支持的Istio版本
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-istio" class="md-nav__link">
-    Installing Istio
+  <a href="#istio_1" class="md-nav__link">
+    安装Istio
   </a>
   
-    <nav class="md-nav" aria-label="Installing Istio">
+    <nav class="md-nav" aria-label="安装Istio">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#choosing-an-istio-installation" class="md-nav__link">
-    Choosing an Istio installation
+  <a href="#istio_2" class="md-nav__link">
+    选择Istio安装
   </a>
   
-    <nav class="md-nav" aria-label="Choosing an Istio installation">
+    <nav class="md-nav" aria-label="选择Istio安装">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#installing-istio-without-sidecar-injection" class="md-nav__link">
-    Installing Istio without sidecar injection
+  <a href="#istiosidecar" class="md-nav__link">
+    安装Istio不需要sidecar注入
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installing-istio-with-sidecar-injection" class="md-nav__link">
-    Installing Istio with sidecar injection
+  <a href="#istiosidecar_1" class="md-nav__link">
+    安装Istio需要sidecar注入
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-istio-mtls-feature" class="md-nav__link">
-    Using Istio mTLS feature
+  <a href="#istio-mtls" class="md-nav__link">
+    使用Istio mTLS特性
   </a>
   
 </li>
@@ -1454,22 +1444,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#updating-the-config-istio-configmap-to-use-a-non-default-local-gateway" class="md-nav__link">
-    Updating the config-istio configmap to use a non-default local gateway
+  <a href="#config-istio-configmap" class="md-nav__link">
+    更新 config-istio  configmap以使用非默认本地网关
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verifying-your-istio-install" class="md-nav__link">
-    Verifying your Istio install
+  <a href="#istio_3" class="md-nav__link">
+    验证您的Istio安装
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuring-dns" class="md-nav__link">
-    Configuring DNS
+  <a href="#dns" class="md-nav__link">
+    配置DNS
   </a>
   
 </li>
@@ -1480,22 +1470,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#istio-resources" class="md-nav__link">
-    Istio resources
+  <a href="#istio_4" class="md-nav__link">
+    Istio 资源
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#clean-up-istio" class="md-nav__link">
-    Clean up Istio
+  <a href="#istio_5" class="md-nav__link">
+    清理Istio
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#whats-next" class="md-nav__link">
-    What's next
+  <a href="#_2" class="md-nav__link">
+    接下来是什么
   </a>
   
 </li>
@@ -1537,7 +1527,7 @@
   
     <li class="md-nav__item">
       <a href="../knative-offerings/" class="md-nav__link">
-        使用基于Knative-based产品
+        基于Knative产品
       </a>
     </li>
   
@@ -3342,14 +3332,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3">
-          开发主题
+          开发者主题
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="开发主题" data-md-level="2">
+      <nav class="md-nav" aria-label="开发者主题" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_3">
           <span class="md-nav__icon md-icon"></span>
-          开发主题
+          开发者主题
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3368,14 +3358,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_1">
-          事件资源
+          事件源
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="事件资源" data-md-level="3">
+      <nav class="md-nav" aria-label="事件源" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_1">
           <span class="md-nav__icon md-icon"></span>
-          事件资源
+          事件源
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3658,7 +3648,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/" class="md-nav__link">
-        自定义事件源概述
+        自定义概述
       </a>
     </li>
   
@@ -3720,14 +3710,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_2_2_2">
-          使用Knative示例存储库
+          使用示例存储库
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="使用Knative示例存储库" data-md-level="5">
+      <nav class="md-nav" aria-label="使用示例存储库" data-md-level="5">
         <label class="md-nav__title" for="__nav_7_3_2_2_2">
           <span class="md-nav__icon md-icon"></span>
-          使用Knative示例存储库
+          使用示例存储库
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3752,7 +3742,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/custom-event-source/controller/" class="md-nav__link">
-        创建一个控制器
+        创建控制器
       </a>
     </li>
   
@@ -3834,7 +3824,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/sinkbinding/" class="md-nav__link">
-        关于 SinkBinding
+        关于对象
       </a>
     </li>
   
@@ -3848,7 +3838,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/sinkbinding/create-a-sinkbinding/" class="md-nav__link">
-        创建 SinkBinding
+        创建对象
       </a>
     </li>
   
@@ -3862,7 +3852,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/sinkbinding/reference/" class="md-nav__link">
-        SinkBinding 参考
+        对象参考
       </a>
     </li>
   
@@ -3909,7 +3899,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/containersource/" class="md-nav__link">
-        创建 ContainerSource
+        创建对象
       </a>
     </li>
   
@@ -3923,7 +3913,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/custom-event-source/containersource/reference/" class="md-nav__link">
-        ContainerSource 参考
+        对象参考
       </a>
     </li>
   
@@ -3959,14 +3949,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_3">
-          事件 sinks
+          事件接收器
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="事件 sinks" data-md-level="3">
+      <nav class="md-nav" aria-label="事件接收器" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_3">
           <span class="md-nav__icon md-icon"></span>
-          事件 sinks
+          事件接收器
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3977,7 +3967,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/sinks/" class="md-nav__link">
-        关于 sinks
+        关于接收器
       </a>
     </li>
   
@@ -3998,6 +3988,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eventing/sinks/redis-sink/" class="md-nav__link">
+        RedisStreamSink
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -4012,7 +4016,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/event-delivery/" class="md-nav__link">
-        处理交货失败
+        投递失败处理
       </a>
     </li>
   
@@ -4066,7 +4070,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/parallel/" class="md-nav__link">
-        平行
+        并行
       </a>
     </li>
   
@@ -4120,7 +4124,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-reply-to-event-display/" class="md-nav__link">
-        显示顺序输出
+        有应答序列
       </a>
     </li>
   
@@ -4134,7 +4138,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-reply-to-sequence/" class="md-nav__link">
-        使用序列
+        序列到序列
       </a>
     </li>
   
@@ -4148,7 +4152,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-terminal/" class="md-nav__link">
-        创建额外的事件
+        序列终端
       </a>
     </li>
   
@@ -4162,7 +4166,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/flows/sequence/sequence-with-broker-trigger/" class="md-nav__link">
-        与代理和触发器一起使用
+        代理和触发器
       </a>
     </li>
   
@@ -4198,14 +4202,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_6">
-          渠道
+          通道
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="渠道" data-md-level="3">
+      <nav class="md-nav" aria-label="通道" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_6">
           <span class="md-nav__icon md-icon"></span>
-          渠道
+          通道
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -4216,7 +4220,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/" class="md-nav__link">
-        关于渠道
+        关于通道
       </a>
     </li>
   
@@ -4230,7 +4234,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/channel-types-defaults/" class="md-nav__link">
-        通道类型和默认值
+        通道类型
       </a>
     </li>
   
@@ -4244,7 +4248,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/create-default-channel/" class="md-nav__link">
-        使用集群或命名空间默认值创建通道
+        创建默认通道
       </a>
     </li>
   
@@ -4258,7 +4262,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/channels/channels-crds/" class="md-nav__link">
-        可用的频道
+        可用通道
       </a>
     </li>
   
@@ -4336,14 +4340,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_4">
-          管理员的话题
+          管理员主题
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="管理员的话题" data-md-level="2">
+      <nav class="md-nav" aria-label="管理员主题" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_4">
           <span class="md-nav__icon md-icon"></span>
-          管理员的话题
+          管理员主题
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -4380,7 +4384,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/configuration/channel-configuration/" class="md-nav__link">
-        配置通道违约
+        配置通道默认值
       </a>
     </li>
   
@@ -4532,7 +4536,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/observability/metrics/eventing-metrics/" class="md-nav__link">
-        Knative事件指标
+        事件指标
       </a>
     </li>
   
@@ -4626,7 +4630,7 @@
   
     <li class="md-nav__item">
       <a href="../../eventing/experimental-features/" class="md-nav__link">
-        关于event实验功能
+        关于事件实验功能
       </a>
     </li>
   
@@ -5246,52 +5250,52 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    Before you begin
+  <a href="#_1" class="md-nav__link">
+    在开始之前
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported-istio-versions" class="md-nav__link">
-    Supported Istio versions
+  <a href="#istio" class="md-nav__link">
+    支持的Istio版本
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-istio" class="md-nav__link">
-    Installing Istio
+  <a href="#istio_1" class="md-nav__link">
+    安装Istio
   </a>
   
-    <nav class="md-nav" aria-label="Installing Istio">
+    <nav class="md-nav" aria-label="安装Istio">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#choosing-an-istio-installation" class="md-nav__link">
-    Choosing an Istio installation
+  <a href="#istio_2" class="md-nav__link">
+    选择Istio安装
   </a>
   
-    <nav class="md-nav" aria-label="Choosing an Istio installation">
+    <nav class="md-nav" aria-label="选择Istio安装">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#installing-istio-without-sidecar-injection" class="md-nav__link">
-    Installing Istio without sidecar injection
+  <a href="#istiosidecar" class="md-nav__link">
+    安装Istio不需要sidecar注入
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installing-istio-with-sidecar-injection" class="md-nav__link">
-    Installing Istio with sidecar injection
+  <a href="#istiosidecar_1" class="md-nav__link">
+    安装Istio需要sidecar注入
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-istio-mtls-feature" class="md-nav__link">
-    Using Istio mTLS feature
+  <a href="#istio-mtls" class="md-nav__link">
+    使用Istio mTLS特性
   </a>
   
 </li>
@@ -5302,22 +5306,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#updating-the-config-istio-configmap-to-use-a-non-default-local-gateway" class="md-nav__link">
-    Updating the config-istio configmap to use a non-default local gateway
+  <a href="#config-istio-configmap" class="md-nav__link">
+    更新 config-istio  configmap以使用非默认本地网关
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verifying-your-istio-install" class="md-nav__link">
-    Verifying your Istio install
+  <a href="#istio_3" class="md-nav__link">
+    验证您的Istio安装
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuring-dns" class="md-nav__link">
-    Configuring DNS
+  <a href="#dns" class="md-nav__link">
+    配置DNS
   </a>
   
 </li>
@@ -5328,22 +5332,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#istio-resources" class="md-nav__link">
-    Istio resources
+  <a href="#istio_4" class="md-nav__link">
+    Istio 资源
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#clean-up-istio" class="md-nav__link">
-    Clean up Istio
+  <a href="#istio_5" class="md-nav__link">
+    清理Istio
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#whats-next" class="md-nav__link">
-    What's next
+  <a href="#_2" class="md-nav__link">
+    接下来是什么
   </a>
   
 </li>
@@ -5366,21 +5370,18 @@
 
 
 
-<h1 id="installing-istio-for-knative">Installing Istio for Knative<a class="headerlink" href="#installing-istio-for-knative" title="Permanent link">&para;</a></h1>
-<p>This guide walks you through manually installing and customizing Istio for use
-with Knative.</p>
-<p>If your cloud platform offers a managed Istio installation, we recommend
-installing Istio that way, unless you need to customize your
-installation.</p>
-<h2 id="before-you-begin">Before you begin<a class="headerlink" href="#before-you-begin" title="Permanent link">&para;</a></h2>
-<p>You need:</p>
+<h1 id="knativeistio">为Knative安装Istio<a class="headerlink" href="#knativeistio" title="Permanent link">&para;</a></h1>
+<p>本指南将指导您手动安装和自定义与Knative一起使用的Istio。</p>
+<p>如果您的云平台提供托管的Istio安装，我们建议以这种方式安装Istio，除非您需要自定义您的安装。</p>
+<h2 id="_1">在开始之前<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>你需要:</p>
 <ul>
-<li>A Kubernetes cluster created.</li>
-<li><a href="https://istio.io/docs/setup/install/istioctl/"><code>istioctl</code></a> installed.</li>
+<li>完成Kubernetes集群的创建。</li>
+<li><a href="https://istio.io/docs/setup/install/istioctl/"><code>istioctl</code></a> 安装.</li>
 </ul>
-<h2 id="supported-istio-versions">Supported Istio versions<a class="headerlink" href="#supported-istio-versions" title="Permanent link">&para;</a></h2>
-<p>You can view the latest tested Istio version on the <a href="https://github.com/knative-sandbox/net-istio/releases">Knative Net Istio releases page</a>.</p>
-<h2 id="installing-istio">Installing Istio<a class="headerlink" href="#installing-istio" title="Permanent link">&para;</a></h2>
+<h2 id="istio">支持的Istio版本<a class="headerlink" href="#istio" title="Permanent link">&para;</a></h2>
+<p>您可以在<a href="https://github.com/knative-sandbox/net-istio/releases">Knative Net Istio发布页面</a>上查看最新测试的Istio版本.</p>
+<h2 id="istio_1">安装Istio<a class="headerlink" href="#istio_1" title="Permanent link">&para;</a></h2>
 <p>When you install Istio, there are a few options depending on your goals. For a
 basic Istio installation suitable for most Knative use cases, follow the
 <a href="#installing-istio-without-sidecar-injection">Installing Istio without sidecar injection</a>
@@ -5389,8 +5390,8 @@ you want, read through the options and choose the installation that suits your
 needs.</p>
 <p>You can easily customize your Istio installation with <code>istioctl</code>. The following sections
 cover a few useful Istio configurations and their benefits.</p>
-<h3 id="choosing-an-istio-installation">Choosing an Istio installation<a class="headerlink" href="#choosing-an-istio-installation" title="Permanent link">&para;</a></h3>
-<p>You can install Istio with or without a service mesh:</p>
+<h3 id="istio_2">选择Istio安装<a class="headerlink" href="#istio_2" title="Permanent link">&para;</a></h3>
+<p>你可以安装带有或不带有服务网格的Istio:</p>
 <ul>
 <li>
 <p><a href="#installing-istio-without-sidecar-injection">Installing Istio without sidecar injection</a> (Recommended
@@ -5404,12 +5405,12 @@ cover a few useful Istio configurations and their benefits.</p>
 Istio without automatic sidecar injection. This install is also recommended for
 users who don't need the Istio service mesh, or who want to enable the service
 mesh by <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/#manual-sidecar-injection">manually injecting the Istio sidecars</a>.</p>
-<h4 id="installing-istio-without-sidecar-injection">Installing Istio without sidecar injection<a class="headerlink" href="#installing-istio-without-sidecar-injection" title="Permanent link">&para;</a></h4>
-<p>Enter the following command to install Istio:</p>
-<p>To install Istio without sidecar injection:</p>
+<h4 id="istiosidecar">安装Istio不需要sidecar注入<a class="headerlink" href="#istiosidecar" title="Permanent link">&para;</a></h4>
+<p>输入以下命令安装Istio:</p>
+<p>安装Istio时不需要sidecar注入:</p>
 <div class="highlight"><pre><span></span><code>istioctl install -y
 </code></pre></div>
-<h4 id="installing-istio-with-sidecar-injection">Installing Istio with sidecar injection<a class="headerlink" href="#installing-istio-with-sidecar-injection" title="Permanent link">&para;</a></h4>
+<h4 id="istiosidecar_1">安装Istio需要sidecar注入<a class="headerlink" href="#istiosidecar_1" title="Permanent link">&para;</a></h4>
 <p>If you want to enable the Istio service mesh, you must enable <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/#automatic-sidecar-injection">automatic sidecar
 injection</a>. The Istio service mesh provides a few benefits:</p>
 <ul>
@@ -5428,7 +5429,7 @@ operator configuration.</p>
       proxy:
         autoInject: enabled
 </code></pre></div>
-<h4 id="using-istio-mtls-feature">Using Istio mTLS feature<a class="headerlink" href="#using-istio-mtls-feature" title="Permanent link">&para;</a></h4>
+<h4 id="istio-mtls">使用Istio mTLS特性<a class="headerlink" href="#istio-mtls" title="Permanent link">&para;</a></h4>
 <p>Since there are some networking communications between knative-serving namespace
 and the namespace where your services running on, you need additional
 preparations for mTLS enabled environment.</p>
@@ -5439,8 +5440,7 @@ preparations for mTLS enabled environment.</p>
 </code></pre></div>
 </li>
 <li>
-<p>Set <code>PeerAuthentication</code> to <code>PERMISSIVE</code> on knative-serving system namespace
-by creating a YAML file using the following template:</p>
+<p>Set <code>PeerAuthentication</code> to <code>PERMISSIVE</code> on knative-serving system namespace by creating a YAML file using the following template:</p>
 <div class="highlight"><pre><span></span><code>apiVersion: <span class="s2">&quot;security.istio.io/v1beta1&quot;</span>
 kind: <span class="s2">&quot;PeerAuthentication&quot;</span>
 metadata:
@@ -5459,7 +5459,7 @@ Where <code>&lt;filename&gt;</code> is the name of the file you created in the p
 </li>
 </ol>
 <p>After you install the cluster local gateway, your service and deployment for the local gateway is named <code>knative-local-gateway</code>.</p>
-<h3 id="updating-the-config-istio-configmap-to-use-a-non-default-local-gateway">Updating the <code>config-istio</code> configmap to use a non-default local gateway<a class="headerlink" href="#updating-the-config-istio-configmap-to-use-a-non-default-local-gateway" title="Permanent link">&para;</a></h3>
+<h3 id="config-istio-configmap">更新 <code>config-istio</code>  configmap以使用非默认本地网关<a class="headerlink" href="#config-istio-configmap" title="Permanent link">&para;</a></h3>
 <p>If you create a custom service and deployment for local gateway with a name other than <code>knative-local-gateway</code>, you
 need to update gateway configmap <code>config-istio</code> under the <code>knative-serving</code> namespace.</p>
 <ol>
@@ -5487,7 +5487,7 @@ the service and deployment <code>custom-local-gateway</code> under the namespace
 </code></pre></div>
 <p>If there is a change in service ports (compared to that of
 <code>knative-local-gateway</code>), update the port info in the gateway accordingly.</p>
-<h3 id="verifying-your-istio-install">Verifying your Istio install<a class="headerlink" href="#verifying-your-istio-install" title="Permanent link">&para;</a></h3>
+<h3 id="istio_3">验证您的Istio安装<a class="headerlink" href="#istio_3" title="Permanent link">&para;</a></h3>
 <p>View the status of your Istio installation to make sure the install was
 successful. It might take a few seconds, so rerun the following command until
 all of the pods show a <code>STATUS</code> of <code>Running</code> or <code>Completed</code>:</p>
@@ -5498,7 +5498,7 @@ all of the pods show a <code>STATUS</code> of <code>Running</code> or <code>Comp
 <p>You can append the <code>--watch</code> flag to the <code>kubectl get</code> commands to view
 the pod status in realtime. You use <code>CTRL + C</code> to exit watch mode.</p>
 </div>
-<h3 id="configuring-dns">Configuring DNS<a class="headerlink" href="#configuring-dns" title="Permanent link">&para;</a></h3>
+<h3 id="dns">配置DNS<a class="headerlink" href="#dns" title="Permanent link">&para;</a></h3>
 <p>Knative dispatches to different services based on their hostname, so it is recommended to have DNS properly configured.</p>
 <p>To do this, begin by looking up the external IP address that Istio received:</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get svc -nistio-system
@@ -5522,7 +5522,7 @@ data:
   # *.{ip}.sslip.io to {ip}.
   34.83.80.117.sslip.io: &quot;&quot;
 </code></pre></div>
-<h2 id="istio-resources">Istio resources<a class="headerlink" href="#istio-resources" title="Permanent link">&para;</a></h2>
+<h2 id="istio_4">Istio 资源<a class="headerlink" href="#istio_4" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>For the official Istio installation guide, see the
@@ -5534,9 +5534,9 @@ data:
   <a href="https://istio.io/docs/setup/install/istioctl/">Istio Installation Options reference</a>.</p>
 </li>
 </ul>
-<h2 id="clean-up-istio">Clean up Istio<a class="headerlink" href="#clean-up-istio" title="Permanent link">&para;</a></h2>
+<h2 id="istio_5">清理Istio<a class="headerlink" href="#istio_5" title="Permanent link">&para;</a></h2>
 <p>See the <a href="https://istio.io/docs/setup/install/istioctl/#uninstall-istio">Uninstall Istio</a>.</p>
-<h2 id="whats-next">What's next<a class="headerlink" href="#whats-next" title="Permanent link">&para;</a></h2>
+<h2 id="_2">接下来是什么<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>View the <a href="../../serving/">Knative Serving documentation</a>.</li>
 <li>Try some Knative Serving <a href="../../samples/">code samples</a>.</li>

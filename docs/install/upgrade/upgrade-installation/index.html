@@ -44,16 +44,6 @@
     <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-
-  <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-YRMNFYE32R"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&gtag("event","search",{search_term:this.value})}),"undefined"!=typeof location$&&location$.subscribe(function(e){gtag("config","G-YRMNFYE32R",{page_path:e.pathname})})})</script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YRMNFYE32R"></script>
-
 
     
     
@@ -77,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#upgrading-with-kubectl" class="md-skip">
+        <a href="#kubectl" class="md-skip">
           Skip to content
         </a>
       
@@ -630,7 +620,7 @@
   
     <li class="md-nav__item">
       <a href="../../../concepts/duck-typing/" class="md-nav__link">
-        Duck types
+        鸭子类型
       </a>
     </li>
   
@@ -910,7 +900,7 @@
   
     <li class="md-nav__item">
       <a href="../../../getting-started/first-broker/" class="md-nav__link">
-        来源代理触发器
+        第一个代理
       </a>
     </li>
   
@@ -924,7 +914,7 @@
   
     <li class="md-nav__item">
       <a href="../../../getting-started/first-source/" class="md-nav__link">
-        使用服务作为源
+        第一个源
       </a>
     </li>
   
@@ -938,7 +928,7 @@
   
     <li class="md-nav__item">
       <a href="../../../getting-started/first-trigger/" class="md-nav__link">
-        使用触发器和接收器
+        第一个触发器
       </a>
     </li>
   
@@ -1051,7 +1041,7 @@
   
     <li class="md-nav__item">
       <a href="../../quickstart-install/" class="md-nav__link">
-        快速启动安装
+        quickstart安装
       </a>
     </li>
   
@@ -1091,7 +1081,7 @@
   
     <li class="md-nav__item">
       <a href="../../yaml-install/" class="md-nav__link">
-        关于YAML-based安装
+        基于YAML安装
       </a>
     </li>
   
@@ -1398,7 +1388,7 @@
   
     <li class="md-nav__item">
       <a href="../../knative-offerings/" class="md-nav__link">
-        使用基于Knative-based产品
+        基于Knative产品
       </a>
     </li>
   
@@ -1501,44 +1491,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    Before you begin
+  <a href="#_1" class="md-nav__link">
+    在开始之前
   </a>
   
-    <nav class="md-nav" aria-label="Before you begin">
+    <nav class="md-nav" aria-label="在开始之前">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#identify-breaking-changes" class="md-nav__link">
-    Identify breaking changes
+  <a href="#_2" class="md-nav__link">
+    识别破坏性更改
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#view-current-pod-status" class="md-nav__link">
-    View current pod status
+  <a href="#pod" class="md-nav__link">
+    查看当前Pod状态
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#upgrade-plugins" class="md-nav__link">
-    Upgrade plugins
+  <a href="#_3" class="md-nav__link">
+    升级插件
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-pre-install-tools-before-upgrade" class="md-nav__link">
-    Run pre-install tools before upgrade
+  <a href="#_4" class="md-nav__link">
+    升级前运行预安装工具
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#upgrade-existing-resources-to-the-latest-stored-version" class="md-nav__link">
-    Upgrade existing resources to the latest stored version
+  <a href="#_5" class="md-nav__link">
+    将现有资源升级到最新的存储版本
   </a>
   
 </li>
@@ -1549,16 +1539,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#performing-the-upgrade" class="md-nav__link">
-    Performing the upgrade
+  <a href="#_6" class="md-nav__link">
+    执行升级
   </a>
   
-    <nav class="md-nav" aria-label="Performing the upgrade">
+    <nav class="md-nav" aria-label="执行升级">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#run-post-install-tools-after-the-upgrade" class="md-nav__link">
-    Run post-install tools after the upgrade
+  <a href="#_7" class="md-nav__link">
+    升级完成后运行安装后工具
   </a>
   
 </li>
@@ -1569,8 +1559,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#verifying-the-upgrade" class="md-nav__link">
-    Verifying the upgrade
+  <a href="#_8" class="md-nav__link">
+    升级后验证
   </a>
   
 </li>
@@ -3314,14 +3304,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3">
-          开发主题
+          开发者主题
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="开发主题" data-md-level="2">
+      <nav class="md-nav" aria-label="开发者主题" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_3">
           <span class="md-nav__icon md-icon"></span>
-          开发主题
+          开发者主题
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3340,14 +3330,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_1">
-          事件资源
+          事件源
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="事件资源" data-md-level="3">
+      <nav class="md-nav" aria-label="事件源" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_1">
           <span class="md-nav__icon md-icon"></span>
-          事件资源
+          事件源
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3630,7 +3620,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/custom-event-source/" class="md-nav__link">
-        自定义事件源概述
+        自定义概述
       </a>
     </li>
   
@@ -3692,14 +3682,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_2_2_2">
-          使用Knative示例存储库
+          使用示例存储库
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="使用Knative示例存储库" data-md-level="5">
+      <nav class="md-nav" aria-label="使用示例存储库" data-md-level="5">
         <label class="md-nav__title" for="__nav_7_3_2_2_2">
           <span class="md-nav__icon md-icon"></span>
-          使用Knative示例存储库
+          使用示例存储库
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3724,7 +3714,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/custom-event-source/custom-event-source/controller/" class="md-nav__link">
-        创建一个控制器
+        创建控制器
       </a>
     </li>
   
@@ -3806,7 +3796,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/custom-event-source/sinkbinding/" class="md-nav__link">
-        关于 SinkBinding
+        关于对象
       </a>
     </li>
   
@@ -3820,7 +3810,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/custom-event-source/sinkbinding/create-a-sinkbinding/" class="md-nav__link">
-        创建 SinkBinding
+        创建对象
       </a>
     </li>
   
@@ -3834,7 +3824,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/custom-event-source/sinkbinding/reference/" class="md-nav__link">
-        SinkBinding 参考
+        对象参考
       </a>
     </li>
   
@@ -3881,7 +3871,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/custom-event-source/containersource/" class="md-nav__link">
-        创建 ContainerSource
+        创建对象
       </a>
     </li>
   
@@ -3895,7 +3885,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/custom-event-source/containersource/reference/" class="md-nav__link">
-        ContainerSource 参考
+        对象参考
       </a>
     </li>
   
@@ -3931,14 +3921,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_3">
-          事件 sinks
+          事件接收器
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="事件 sinks" data-md-level="3">
+      <nav class="md-nav" aria-label="事件接收器" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_3">
           <span class="md-nav__icon md-icon"></span>
-          事件 sinks
+          事件接收器
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -3949,7 +3939,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/sinks/" class="md-nav__link">
-        关于 sinks
+        关于接收器
       </a>
     </li>
   
@@ -3970,6 +3960,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../eventing/sinks/redis-sink/" class="md-nav__link">
+        RedisStreamSink
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -3984,7 +3988,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/event-delivery/" class="md-nav__link">
-        处理交货失败
+        投递失败处理
       </a>
     </li>
   
@@ -4038,7 +4042,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/flows/parallel/" class="md-nav__link">
-        平行
+        并行
       </a>
     </li>
   
@@ -4092,7 +4096,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/flows/sequence/sequence-reply-to-event-display/" class="md-nav__link">
-        显示顺序输出
+        有应答序列
       </a>
     </li>
   
@@ -4106,7 +4110,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/flows/sequence/sequence-reply-to-sequence/" class="md-nav__link">
-        使用序列
+        序列到序列
       </a>
     </li>
   
@@ -4120,7 +4124,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/flows/sequence/sequence-terminal/" class="md-nav__link">
-        创建额外的事件
+        序列终端
       </a>
     </li>
   
@@ -4134,7 +4138,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/flows/sequence/sequence-with-broker-trigger/" class="md-nav__link">
-        与代理和触发器一起使用
+        代理和触发器
       </a>
     </li>
   
@@ -4170,14 +4174,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3_6">
-          渠道
+          通道
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="渠道" data-md-level="3">
+      <nav class="md-nav" aria-label="通道" data-md-level="3">
         <label class="md-nav__title" for="__nav_7_3_6">
           <span class="md-nav__icon md-icon"></span>
-          渠道
+          通道
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -4188,7 +4192,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/channels/" class="md-nav__link">
-        关于渠道
+        关于通道
       </a>
     </li>
   
@@ -4202,7 +4206,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/channels/channel-types-defaults/" class="md-nav__link">
-        通道类型和默认值
+        通道类型
       </a>
     </li>
   
@@ -4216,7 +4220,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/channels/create-default-channel/" class="md-nav__link">
-        使用集群或命名空间默认值创建通道
+        创建默认通道
       </a>
     </li>
   
@@ -4230,7 +4234,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/channels/channels-crds/" class="md-nav__link">
-        可用的频道
+        可用通道
       </a>
     </li>
   
@@ -4308,14 +4312,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_4">
-          管理员的话题
+          管理员主题
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="管理员的话题" data-md-level="2">
+      <nav class="md-nav" aria-label="管理员主题" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_4">
           <span class="md-nav__icon md-icon"></span>
-          管理员的话题
+          管理员主题
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -4352,7 +4356,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/configuration/channel-configuration/" class="md-nav__link">
-        配置通道违约
+        配置通道默认值
       </a>
     </li>
   
@@ -4504,7 +4508,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/observability/metrics/eventing-metrics/" class="md-nav__link">
-        Knative事件指标
+        事件指标
       </a>
     </li>
   
@@ -4598,7 +4602,7 @@
   
     <li class="md-nav__item">
       <a href="../../../eventing/experimental-features/" class="md-nav__link">
-        关于event实验功能
+        关于事件实验功能
       </a>
     </li>
   
@@ -5218,44 +5222,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-you-begin" class="md-nav__link">
-    Before you begin
+  <a href="#_1" class="md-nav__link">
+    在开始之前
   </a>
   
-    <nav class="md-nav" aria-label="Before you begin">
+    <nav class="md-nav" aria-label="在开始之前">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#identify-breaking-changes" class="md-nav__link">
-    Identify breaking changes
+  <a href="#_2" class="md-nav__link">
+    识别破坏性更改
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#view-current-pod-status" class="md-nav__link">
-    View current pod status
+  <a href="#pod" class="md-nav__link">
+    查看当前Pod状态
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#upgrade-plugins" class="md-nav__link">
-    Upgrade plugins
+  <a href="#_3" class="md-nav__link">
+    升级插件
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-pre-install-tools-before-upgrade" class="md-nav__link">
-    Run pre-install tools before upgrade
+  <a href="#_4" class="md-nav__link">
+    升级前运行预安装工具
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#upgrade-existing-resources-to-the-latest-stored-version" class="md-nav__link">
-    Upgrade existing resources to the latest stored version
+  <a href="#_5" class="md-nav__link">
+    将现有资源升级到最新的存储版本
   </a>
   
 </li>
@@ -5266,16 +5270,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#performing-the-upgrade" class="md-nav__link">
-    Performing the upgrade
+  <a href="#_6" class="md-nav__link">
+    执行升级
   </a>
   
-    <nav class="md-nav" aria-label="Performing the upgrade">
+    <nav class="md-nav" aria-label="执行升级">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#run-post-install-tools-after-the-upgrade" class="md-nav__link">
-    Run post-install tools after the upgrade
+  <a href="#_7" class="md-nav__link">
+    升级完成后运行安装后工具
   </a>
   
 </li>
@@ -5286,8 +5290,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#verifying-the-upgrade" class="md-nav__link">
-    Verifying the upgrade
+  <a href="#_8" class="md-nav__link">
+    升级后验证
   </a>
   
 </li>
@@ -5310,64 +5314,57 @@
 
 
 
-<h1 id="upgrading-with-kubectl">Upgrading with kubectl<a class="headerlink" href="#upgrading-with-kubectl" title="Permanent link">&para;</a></h1>
-<p>If you installed Knative using YAML, you can use the <code>kubectl apply</code> command in
-this topic to upgrade your Knative components and plugins.
-If you installed using the Operator, see <a href="../upgrade-installation-with-operator/">Upgrading using the Knative Operator</a>.</p>
-<h2 id="before-you-begin">Before you begin<a class="headerlink" href="#before-you-begin" title="Permanent link">&para;</a></h2>
-<p>Before upgrading, there are a few steps you must take to ensure a successful
-upgrade process.</p>
-<h3 id="identify-breaking-changes">Identify breaking changes<a class="headerlink" href="#identify-breaking-changes" title="Permanent link">&para;</a></h3>
-<p>You should be aware of any breaking changes between your current and desired
-versions of Knative. Breaking changes between Knative versions are documented in
-the Knative release notes. Before upgrading, review the release notes for the
-target version to learn about any changes you might need to make to your Knative
-applications:</p>
+<h1 id="kubectl">使用kubectl升级<a class="headerlink" href="#kubectl" title="Permanent link">&para;</a></h1>
+<p>如果使用YAML安装Knative，则可以在本主题中使用<code>kubectl apply</code>命令升级Knative组件和插件。
+如果使用Operator安装，请参见<a href="../upgrade-installation-with-operator/">使用Knative Operator升级</a>.</p>
+<h2 id="_1">在开始之前<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在升级之前，必须采取一些步骤以确保升级过程成功。</p>
+<h3 id="_2">识别破坏性更改<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>您应该注意Knative当前版本和期望版本之间的任何破坏性更改。
+Knative版本之间的突破性更改记录在Knative发布说明中。
+在升级之前，请查看目标版本的发布说明，了解您可能需要对Knative应用程序进行的任何更改:</p>
 <ul>
 <li><a href="https://github.com/knative/serving/releases">Serving</a></li>
 <li><a href="https://github.com/knative/eventing/releases">Eventing</a></li>
 </ul>
-<p>Release notes are published with each version on the "Releases" page of their
-respective repositories in GitHub.</p>
-<h3 id="view-current-pod-status">View current pod status<a class="headerlink" href="#view-current-pod-status" title="Permanent link">&para;</a></h3>
-<p>Before upgrading, view the status of the pods for the namespaces you plan on
-upgrading. This allows you to compare the before and after state of your
-namespace. For example, if you are upgrading Knative Serving and Eventing, enter the following commands to see the current state of
-each namespace:</p>
+<p>每个版本的发布说明都发布在GitHub中各自存储库的"Releases"页面上。</p>
+<h3 id="pod">查看当前Pod状态<a class="headerlink" href="#pod" title="Permanent link">&para;</a></h3>
+<p>在升级之前，查看您计划升级的名称空间的 <code>pods</code> 的状态。
+这允许您比较名称空间的前后状态。
+例如，如果您正在升级Knative服务和事件，输入以下命令查看每个名称空间的当前状态:</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -n knative-serving
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>kubectl get pods -n knative-eventing
 </code></pre></div>
-<h3 id="upgrade-plugins">Upgrade plugins<a class="headerlink" href="#upgrade-plugins" title="Permanent link">&para;</a></h3>
-<p>If you have a plugin installed, make sure to upgrade it at the same time as
-you upgrade your Knative components.</p>
-<h3 id="run-pre-install-tools-before-upgrade">Run pre-install tools before upgrade<a class="headerlink" href="#run-pre-install-tools-before-upgrade" title="Permanent link">&para;</a></h3>
-<p>For some upgrades, there are steps that must be completed before the actual
-upgrade. These steps, where applicable, are identified in the release notes.</p>
-<h3 id="upgrade-existing-resources-to-the-latest-stored-version">Upgrade existing resources to the latest stored version<a class="headerlink" href="#upgrade-existing-resources-to-the-latest-stored-version" title="Permanent link">&para;</a></h3>
-<p>Knative custom resources are stored within Kubernetes at a particular version.
-As we introduce newer and remove older supported versions, you must migrate the resources to the designated stored version. This ensures removing older versions
-will succeed when upgrading.</p>
-<p>For the various subprojects there is a K8s job to help operators perform this migration. The release notes for each release will state explicitly whether a migration is required.</p>
-<h2 id="performing-the-upgrade">Performing the upgrade<a class="headerlink" href="#performing-the-upgrade" title="Permanent link">&para;</a></h2>
-<p>To upgrade, apply the YAML files for the subsequent minor versions of all your installed Knative components and features, remembering to only upgrade by one minor version at a time.</p>
-<p>Before upgrading, <a href="../check-install-version/">check your Knative version</a>.</p>
-<p>For a cluster running version 1.1 of the Knative Serving and Knative Eventing components, the following command upgrades the installation to version 1.2:</p>
+<h3 id="_3">升级插件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>如果您安装了一个插件，请确保在升级Knative组件的同时升级它。</p>
+<h3 id="_4">升级前运行预安装工具<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>对于某些升级，在实际升级之前必须完成一些步骤。
+这些步骤(如果适用的话)在发布说明中进行了标识。</p>
+<h3 id="_5">将现有资源升级到最新的存储版本<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>Knative自定义资源存储在Kubernetes的特定版本中。
+当我们引入较新的支持版本并删除较旧的支持版本时，您必须将资源迁移到指定的存储版本。
+这确保了在升级时删除旧版本会成功。</p>
+<p>对于各种子项目，有一个K8s工作来帮助操作人员执行这种迁移。
+每个版本的版本说明将明确说明是否需要迁移。</p>
+<h2 id="_6">执行升级<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>要升级，请为所有已安装Knative组件和特性的后续小版本应用YAML文件，记住每次只升级一个小版本。</p>
+<p>升级前，<a href="../check-install-version/">检查您的Knative版本</a>.</p>
+<p>对于运行Knative Serving和Knative event组件1.1版本的集群，以下命令将安装升级到1.2版本:</p>
 <div class="highlight"><pre><span></span><code>kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.2.0/serving-core.yaml <span class="se">\</span>
 -f https://github.com/knative/eventing/releases/download/knative-v1.2.0/eventing.yaml <span class="se">\</span>
 </code></pre></div>
-<h3 id="run-post-install-tools-after-the-upgrade">Run post-install tools after the upgrade<a class="headerlink" href="#run-post-install-tools-after-the-upgrade" title="Permanent link">&para;</a></h3>
-<p>In some upgrades there are some steps that must happen after the actual
-upgrade, and these are identified in the release notes.</p>
-<h2 id="verifying-the-upgrade">Verifying the upgrade<a class="headerlink" href="#verifying-the-upgrade" title="Permanent link">&para;</a></h2>
-<p>To confirm that your components and plugins have successfully upgraded, view the status of their pods in the relevant namespaces.
-All pods will restart during the upgrade and their age will reset.
-If you upgraded Knative Serving and Eventing, enter the following commands to get information about the pods for each namespace:</p>
+<h3 id="_7">升级完成后运行安装后工具<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>在某些升级中，有些步骤必须在实际升级之后进行，这些步骤在发布说明中进行了标识。</p>
+<h2 id="_8">升级后验证<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>要确认组件和插件已经成功升级，请在相关名称空间中查看它们的 <code>pods</code> 的状态。
+所有的<code>Pod</code>将在升级过程中重新启动，它们的年龄将重置。
+如果升级了Knative服务和事件，请输入以下命令来获取关于每个名称空间的<code>Pod</code>的信息:</p>
 <div class="highlight"><pre><span></span><code>kubectl get pods -n knative-serving
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>kubectl get pods -n knative-eventing
 </code></pre></div>
-<p>These commands return something similar to:</p>
+<p>这些命令返回类似于:</p>
 <div class="highlight"><pre><span></span><code>NAME                                READY   STATUS        RESTARTS   AGE
 activator-79f674fb7b-dgvss          <span class="m">2</span>/2     Running       <span class="m">0</span>          43s
 autoscaler-96dc49858-b24bm          <span class="m">2</span>/2     Running       <span class="m">1</span>          43s
@@ -5383,9 +5380,9 @@ imc-controller-6bcf5957b5-6ccp2        <span class="m">1</span>/1     Running   
 imc-dispatcher-f59b7c57-q9xcl          <span class="m">1</span>/1     Running   <span class="m">0</span>          80s
 sources-controller-8596684d7b-jxkmd    <span class="m">1</span>/1     Running   <span class="m">0</span>          83s
 </code></pre></div>
-<p>If the age of all your pods has been reset and all pods are up and running, the upgrade was completed successfully.
-You might notice a status of <code>Terminating</code> for the old pods as they are cleaned up.</p>
-<p>If necessary, repeat the upgrade process until you reach your desired minor version number.</p>
+<p>如果所有<code>Pod</code>的年龄都已重置，并且所有<code>Pod</code>都已启动并运行，则升级已成功完成。
+你可能会注意到旧<code>Pod</code>被清理时的<code>Terminating</code>状态。</p>
+<p>如果需要，重复升级过程，直到达到所需的次要版本号。</p>
 
               
             </article>

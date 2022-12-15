@@ -10,14 +10,14 @@
       
       
       
-        <link rel="canonical" href="https://knative.dev/docs/eventing/configuration/channel-configuration/">
+        <link rel="canonical" href="https://knative.dev/docs/eventing/sinks/redis-sink/">
       
       <link rel="icon" href="../../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.7">
     
     
       
-        <title>配置通道默认值 - Knative</title>
+        <title>RedisStreamSink - Knative</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#redis-stream-sink" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              配置通道默认值
+              RedisStreamSink
             
           </span>
         </div>
@@ -3182,12 +3182,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" type="checkbox" id="__nav_7_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" type="checkbox" id="__nav_7_3" checked>
       
       
       
@@ -3799,12 +3801,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3_3" type="checkbox" id="__nav_7_3_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3_3" type="checkbox" id="__nav_7_3_3" checked>
       
       
       
@@ -3827,7 +3831,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sinks/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         关于接收器
       </a>
     </li>
@@ -3841,7 +3845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sinks/kafka-sink/" class="md-nav__link">
+      <a href="../kafka-sink/" class="md-nav__link">
         KafkaSink
       </a>
     </li>
@@ -3853,11 +3857,133 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../sinks/redis-sink/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          RedisStreamSink
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         RedisStreamSink
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    开始
+  </a>
+  
+    <nav class="md-nav" aria-label="开始">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    安装
+  </a>
+  
+    <nav class="md-nav" aria-label="安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    先决条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redisstreamsink" class="md-nav__link">
+    创建RedisStreamSink接收器定义及其所有组件:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    参考
+  </a>
+  
+    <nav class="md-nav" aria-label="参考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    先决条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    源字段
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    调试技巧
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    配置选项
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4190,14 +4316,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4" type="checkbox" id="__nav_7_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4" type="checkbox" id="__nav_7_4" >
       
       
       
@@ -4218,14 +4342,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4_1" type="checkbox" id="__nav_7_4_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4_1" type="checkbox" id="__nav_7_4_1" >
       
       
       
@@ -4246,21 +4368,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../configuration/channel-configuration/" class="md-nav__link">
         配置通道默认值
       </a>
-      
     </li>
   
 
@@ -4272,7 +4384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kafka-channel-configuration/" class="md-nav__link">
+      <a href="../../configuration/kafka-channel-configuration/" class="md-nav__link">
         配置Kafka通道默认值
       </a>
     </li>
@@ -4286,7 +4398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sources-configuration/" class="md-nav__link">
+      <a href="../../configuration/sources-configuration/" class="md-nav__link">
         配置事件源默认值
       </a>
     </li>
@@ -4300,7 +4412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sugar-configuration/" class="md-nav__link">
+      <a href="../../configuration/sugar-configuration/" class="md-nav__link">
         配置糖控制器
       </a>
     </li>
@@ -5118,6 +5230,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    开始
+  </a>
+  
+    <nav class="md-nav" aria-label="开始">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    安装
+  </a>
+  
+    <nav class="md-nav" aria-label="安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    先决条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redisstreamsink" class="md-nav__link">
+    创建RedisStreamSink接收器定义及其所有组件:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    参考
+  </a>
+  
+    <nav class="md-nav" aria-label="参考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    先决条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    源字段
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    调试技巧
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    配置选项
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -5128,41 +5336,154 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/knative/docs/edit/main/docs/eventing/configuration/channel-configuration.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/knative/docs/edit/main/docs/eventing/sinks/redis-sink.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
 
-<h1 id="_1">配置通道默认值<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>Knative事件提供了一个<code>default-ch-webhook</code>ConfigMap，其中包含管理默认通道创建的配置设置。</p>
-<p>默认的<code>default-ch-webhook</code>ConfigMap如下:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span><span class="w"></span>
-<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default-ch-webhook</span><span class="w"></span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">knative-eventing</span><span class="w"></span>
-<span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">eventing.knative.dev/release</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devel</span><span class="w"></span>
-<span class="w">    </span><span class="nt">app.kubernetes.io/version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devel</span><span class="w"></span>
-<span class="w">    </span><span class="nt">app.kubernetes.io/part-of</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">knative-eventing</span><span class="w"></span>
-<span class="nt">data</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">default-ch-config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">    </span><span class="no">clusterDefault:</span><span class="w"></span>
-<span class="w">      </span><span class="no">apiVersion: messaging.knative.dev/v1</span><span class="w"></span>
-<span class="w">      </span><span class="no">kind: InMemoryChannel</span><span class="w"></span>
-<span class="w">    </span><span class="no">namespaceDefaults:</span><span class="w"></span>
-<span class="w">      </span><span class="no">some-namespace:</span><span class="w"></span>
-<span class="w">        </span><span class="no">apiVersion: messaging.knative.dev/v1</span><span class="w"></span>
-<span class="w">        </span><span class="no">kind: InMemoryChannel</span><span class="w"></span>
+<h1 id="redis-stream-sink">Redis Stream Sink<a class="headerlink" href="#redis-stream-sink" title="Permanent link">&para;</a></h1>
+<p>Knative的Redis流事件接收器接收CloudEvents并将它们添加到Redis实例的指定<a href="./300-redisstreamsink.yaml"><code>stream</code></a>。</p>
+<p>Redis流接收器可以与本地版本的Redis数据库实例或基于云的实例一起工作，其<a href="./300-redisstreamsink.yaml"><code>address</code></a>将在接收器规范中指定。
+此外，指定的<a href="./300-redisstreamsink.yaml"><code>stream</code></a>名称将由接收方创建，如果它们不存在的话。</p>
+<h2 id="_1">开始<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">安装<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h4 id="_3">先决条件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Knative服务安装说明在<a href="https://knative.dev/docs/install/any-kubernetes-cluster/#installing-the-serving-component">这里</a> </p>
+</li>
+<li>
+<p>如果您使用的是本地Redis实例，则可以跳过此步骤。
+  如果您正在使用Redis的云实例(例如，IBM cloud上的Redis DB)，则需要在安装事件接收器之前配置TLS证书。</p>
+<p>编辑<a href="./tls-secret.yaml"><code>tls-secret</code></a> Secret将您的Redis云实例中的TLS证书添加到<code>TLS_CERT</code>数据密钥:</p>
+<div class="highlight"><pre><span></span><code>vi config/sink/tls-secret.yaml
 </code></pre></div>
-<p>通过更改<code>data.default-ch-config</code>属性，我们可以定义clusterDefaults和每个命名空间的默认值。</p>
-<p>通道自定义资源定义(CRD)使用此配置创建特定于平台的实现。</p>
+<p>将您的证书添加到文件中，并保存该文件。将在下一步应用。</p>
+</li>
+</ul>
+<h4 id="redisstreamsink">创建<code>RedisStreamSink</code>接收器定义及其所有组件:<a class="headerlink" href="#redisstreamsink" title="Permanent link">&para;</a></h4>
+<p>应用 <a href="."><code>config/sink</code></a></p>
+<div class="highlight"><pre><span></span><code>ko apply -f config/sink
+</code></pre></div>
+<h3 id="_4">例子<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>在本例中，您创建了一个Redis流事件接收器，它将接收CloudEvent事件，然后将这些项目添加到<code>mystream</code>流中。</p>
+<ol>
+<li>
+<p>通过该命令安装本地Redis。使用实例:</p>
+<div class="highlight"><pre><span></span><code>kubectl apply -f samples/redis
+</code></pre></div>
+</li>
+<li>
+<p>为这个示例接收器创建一个名称空间:</p>
+<div class="highlight"><pre><span></span><code>kubectl create ns redex
+</code></pre></div>
+</li>
+<li>
+<p>通过运行这个命令安装一个Redis流接收示例:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code>clusterDefault</code>设置决定全局的、集群范围的默认Channel类型。
-您可以使用<code>namespaceDefaults</code>设置为各个名称空间配置通道默认值。</p>
+<p>除了配置您的TLS证书，如果您正在使用Redis DB的云实例，您将需要在<a href="../../samples/sink/redisstreamsink.yaml"><code>redisstreamsink</code></a> 接收器 yaml中设置适当的地址。
+下面是一个连接字符串的例子:</p>
 </div>
+<div class="highlight"><pre><span></span><code>address: &quot;rediss://$USERNAME:$PASSWORD@7f41ece8-ccb3-43df-b35b-7716e27b222e.b2b5a92ee2df47d58bad0fa448c15585.databases.appdomain.cloud:32086&quot;
+</code></pre></div>
+<p>然后，应用 <a href="../../samples/sink"><code>samples/sink</code></a> 创建一个Redis流接收器资源</p>
+<div class="highlight"><pre><span></span><code>kubectl apply -n redex -f samples/sink
+</code></pre></div>
+</li>
+<li>
+<p>验证Redis流接收器是否准备就绪:</p>
+<div class="highlight"><pre><span></span><code>kubectl get -n redex redisstreamsink.sinks.knative.dev mystream
+NAME       URL                                                     AGE   READY   REASON
+mystream   http://redistreamsinkmystream.redex.svc.cluster.local   35s   True
+</code></pre></div>
+</li>
+<li>
+<p>向接收器发送一个事件:</p>
+<div class="highlight"><pre><span></span><code>curl <span class="k">$(</span>kubectl get ksvc redistreamsinkmystream -ojsonpath<span class="o">=</span><span class="s1">&#39;{.status.url}&#39;</span> -n redex<span class="k">)</span> <span class="se">\</span>
+-H <span class="s2">&quot;ce-specversion: 1.0&quot;</span> <span class="se">\</span>
+-H <span class="s2">&quot;ce-type: dev.knative.sources.redisstream&quot;</span> <span class="se">\</span>
+-H <span class="s2">&quot;ce-source: cli&quot;</span> <span class="se">\</span>
+-H <span class="s2">&quot;ce-id: 1&quot;</span> <span class="se">\</span>
+-H <span class="s2">&quot;datacontenttype: application/json&quot;</span> <span class="se">\</span>
+-d <span class="s1">&#39;[&quot;fruit&quot;, &quot;orange&quot;]&#39;</span>
+</code></pre></div>
+</li>
+<li>
+<p>检查redis中是否添加了新消息:</p>
+<div class="highlight"><pre><span></span><code>kubectl <span class="nb">exec</span> -n redis svc/redis redis-cli xinfo stream mystream
+...
+last-entry
+<span class="m">1598652372717</span>-0
+fruit
+orange
+</code></pre></div>
+</li>
+<li>
+<p>要进行清理，请删除Redis流接收器示例和redex命名空间:</p>
+<div class="highlight"><pre><span></span><code>kubectl delete -f samples/sink -n redex
+kubectl delete ns redex
+</code></pre></div>
+</li>
+</ol>
+<h2 id="_5">参考<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">先决条件<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Redis安装。部署本地Redis的说明在上面。</p>
+</li>
+<li>
+<p>了解<a href="https://redis.io/topics/streams-intro">Redis流的基础知识</a>, 以及一些<a href="https://redis.io/commands#stream">特定于流的命令</a> </p>
+</li>
+</ul>
+<h3 id="_7">源字段<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><code>RedisStreamSink</code> 资源是Kubernetes对象。
+除了标准的Kubernetes <code>apiVersion</code>， <code>kind</code>和<code>metadata</code>，它们还有以下的<code>spec</code>字段:</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>address</code></td>
+<td>Redis TCP地址</td>
+</tr>
+<tr>
+<td><code>stream</code></td>
+<td>Redis流的名称</td>
+</tr>
+</tbody>
+</table>
+<p>一旦在集群中创建了对象，接收器将通过对象上的<code>status</code>字段提供关于就绪或错误的输出信息。</p>
+<h3 id="_8">调试技巧<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>你可以检查Redis流接收器资源的<code>status.condition</code>值来诊断任何问题，通过运行以下命令:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>kubectl get redisstreamsinks -n redex
+kubectl describe redisstreamsinks mystream -n redex
+</code></pre></div>
+<ul>
+<li>您还可以阅读日志以检查接收器部署的问题:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>kubectl get pods -n redex
+kubectl logs {podname} -n redex
+</code></pre></div>
+<ul>
+<li>您还可以阅读日志以检查接收器控制器的部署问题:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>kubectl logs redis-controller-manager-0  -n knative-sinks
+</code></pre></div>
+<ul>
+<li>KO安装问题?</li>
+</ul>
+<p>参考: https://github.com/google/ko/issues/106</p>
+<p>尝试重新安装KO和设置 <code>export GOROOT=$(go env GOROOT)</code></p>
+<h3 id="_9">配置选项<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><a href="./config-observability.yaml"><code>config-observability</code></a> 和 <a href="./config-logging.yaml"><code>config-logging</code></a> configmap 可用于管理日志记录和度量配置。</p>
 
               
             </article>
@@ -5185,12 +5506,12 @@
   <nav class="md-footer__inner md-grid" aria-label="Footer">
     <!-- Link to previous page -->
     
-    <a href="../../sugar/" class="md-footer__link md-footer__link--prev" rel="prev">
+    <a href="../kafka-sink/" class="md-footer__link md-footer__link--prev" rel="prev">
       <div class="md-footer__button md-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg></div>
       <div class="md-footer__title">
         <div class="md-ellipsis">
           <span class="md-footer__direction"> Previous </span>
-          糖控制器
+          KafkaSink
         </div>
       </div>
     </a>
@@ -5198,11 +5519,11 @@
 
     <!-- Link to next page -->
     
-    <a href="../kafka-channel-configuration/" class="md-footer__link md-footer__link--next" rel="next">
+    <a href="../../event-delivery/" class="md-footer__link md-footer__link--next" rel="next">
       <div class="md-footer__title">
         <div class="md-ellipsis">
           <span class="md-footer__direction"> Next </span>
-          配置Kafka通道默认值
+          投递失败处理
         </div>
       </div>
       <div class="md-footer__button md-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg></div>
