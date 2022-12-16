@@ -1,18 +1,25 @@
-# About Knative Services
+# 关于Knative服务
 
-Knative Services are used to deploy an application. To create an application using Knative, you must create a YAML file that defines a Service. This YAML file specifies metadata about the application, points to the hosted image of the app, and allows the Service to be configured.
+Knative服务用于部署应用程序。
+要使用Knative创建应用程序，必须创建一个定义服务的YAML文件。
+这个YAML文件指定关于应用程序的元数据，指向应用程序的托管映像，并允许配置服务。
 
-Each Service is defined by a Route and a Configuration that have the same name as the service. The Configuration and Route are created by the service controller, and derive their configuration from the configuration of the Service.
+每个服务都由一个路由和一个与服务同名的配置定义。
+配置和路由由服务控制器创建，并从服务的配置派生出它们的配置。
 
-Each time the configuration is updated, a new Revision is created. Revisions are immutable snapshots of a particular configuration, and use underlying Kubernetes resources to scale the number of pods based on traffic.
+每次更新配置时，都会创建一个新的修订。
+修订是特定配置的不可变快照，并使用底层Kubernetes资源来根据流量扩展pods数量。
 
-## Modifying Knative services
+## 修改Knative服务
 
-Any changes to specifications, metadata labels, or metadata annotations for a Service must be copied to the Route and Configuration owned by that Service. The `serving.knative.dev/service` label on the Route and Configuration must also be set to the name of the Service. Any additional labels or annotations on the Route and Configuration not specified earlier must be removed.
+对服务的规范、元数据标签或元数据注释的任何更改都必须复制到该服务拥有的路由和配置中。
+路由和配置上的`serving.knative.dev/service`标签也必须设置为服务的名称。
+必须删除路由和配置上未指定的任何附加标签或注释。
 
-The Service updates its `status` fields based on the corresponding `status` value for the owned Route and Configuration.
-The Service must include conditions of `RoutesReady` and `ConfigurationsReady` in addition to the generic `Ready` condition. Other conditions can also be present.
+服务根据所属路由和配置的相应`status`值更新其`status`字段。
+除了通用的`Ready`条件外，服务还必须包括`RoutesReady` 和 `ConfigurationsReady`条件。
+其他情况也可能出现。
 
-## Additional resources
+## 额外的资源
 
-* For more information about the Knative Service object, see the [Resource Types](https://github.com/knative/specs/blob/main/specs/serving/overview.md) documentation.
+* 有关Knative服务对象的更多信息，请参阅[资源类型](https://github.com/knative/specs/blob/main/specs/serving/overview.md)文档。

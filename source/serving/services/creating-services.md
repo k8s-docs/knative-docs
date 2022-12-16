@@ -1,21 +1,22 @@
-# Creating a Service
+# 创建服务
 
-You can create a Knative service by applying a YAML file or using the `kn service create` CLI command.
+您可以通过应用YAML文件或使用 `kn service create` CLI命令来创建Knative服务。
 
-## Prerequisites
+## 先决条件
 
-To create a Knative service, you will need:
+要创建Knative服务，您需要:
 
-* A Kubernetes cluster with Knative Serving installed. For more information, see [Installing Knative Serving](../../install/yaml-install/serving/install-serving-with-yaml.md).
-* Optional: To use the `kn service create` command, you must [install the `kn` CLI](../../client/configure-kn.md).
+* 安装了Knative服务的Kubernetes集群。有关更多信息，请参见[安装Knative服务](../../install/yaml-install/serving/install-serving-with-yaml.md).
+* 可选:要使用`kn service create`命令，必须[安装 `kn` CLI](../../client/configure-kn.md).
 
-## Procedure
+## 过程
 
 !!! tip
 
-    The following commands create a `helloworld-go` sample service. You can modify these commands, including the container image URL, to deploy your own application as a Knative service.
+    下面的命令创建一个`helloworld-go`示例服务。
+    您可以修改这些命令，包括容器映像URL，以将您自己的应用程序部署为Knative服务。
 
-Create a sample service:
+创建一个示例服务:
 
 === "Apply YAML"
 
@@ -50,8 +51,8 @@ Create a sample service:
     kn service create helloworld-go --image gcr.io/knative-samples/helloworld-go
     ```
 
-After the service has been created, Knative performs the following tasks:
+创建服务后，Knative执行以下任务:
 
-* Creates a new immutable revision for this version of the app.
-* Performs network programming to create a route, ingress, service, and load balancer for your app.
-* Automatically scales your pods up and down based on traffic, including to zero active pods.
+* 为这个版本的应用程序创建一个新的不可变修订。
+* 执行网络编程，为应用程序创建路由、入口、服务和负载均衡器。
+* 根据流量自动缩放您的`pods`，包括零活动`pods`。

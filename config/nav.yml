@@ -118,7 +118,7 @@ nav:
                                       - 关于服务: serving/services/README.md
                                       - 创建服务: serving/services/creating-services.md
                                       - 服务指标: serving/services/service-metrics.md
-                                      - 配置私人服务: serving/services/private-services.md
+                                      - 配置私有服务: serving/services/private-services.md
                                       - 配置导入类: serving/services/ingress-class.md
                                       - 配置证书类: serving/services/certificate-class.md
                                       - 配置自定义的域: serving/services/custom-domains.md

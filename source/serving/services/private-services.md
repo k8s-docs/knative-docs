@@ -1,52 +1,47 @@
-# Configuring private Services
+# 配置私有服务
 
-By default, Services deployed through Knative are published to an external IP
-address, making them public Services on a public IP address and with a public URL.
+默认情况下，通过Knative部署的服务被发布到一个外部IP地址，使它们成为公共IP地址和公共URL上的公共服务。
 
-Knative provides two ways to enable private services which are only available
-inside the cluster:
+Knative提供了两种方法来启用仅在集群内部可用的私有服务:
 
-1. To make all Knative Services private, change the default domain to
-   `svc.cluster.local` by [editing the `config-domain` ConfigMap](https://github.com/knative/serving/blob/main/config/core/configmaps/domain.yaml). This changes all Services deployed through Knative to only be published to the cluster.
-1. To make an individual Service private, the Service or Route can be
-   labelled with `networking.knative.dev/visibility=cluster-local` so that it is not published to the external gateway.
+1. 要使所有Knative服务私有，请将默认域更改为`svc.cluster.local`[编辑`config-domain` ConfigMap](https://github.com/knative/serving/blob/main/config/core/configmaps/domain.yaml). 
+   这将更改通过Knative部署的所有服务，只将其发布到集群。
+2. 要使单个服务私有，服务或路由可以标记为`networking.knative.dev/visibility=cluster-local`，这样它就不会被发布到外部网关。
 
-## Using the cluster-local label
+## 使用 cluster-local 标签
 
-To configure a Knative Service so that it is only available on the cluster-local network, and not on the public internet, you can apply the
-`networking.knative.dev/visibility=cluster-local` label to a Knative Service, a route or a Kubernetes Service object.
+要配置一个Knative服务，使其只在集群-本地网络上可用，而不是在公共互联网上可用，您可以将`networking.knative.dev/visibility=cluster-local`标签应用到Knative服务、路由或Kubernetes服务对象上。
 
-- To label a Knative Service:
+- 标记本地服务:
 
     ```bash
     kubectl label kservice ${KSVC_NAME} networking.knative.dev/visibility=cluster-local
     ```
 
-    By labeling the Kubernetes Service you can restrict visibility in a more
-    fine-grained way. See [Traffic management](../traffic-management.md) for information about tagged routes.
+    通过标记Kubernetes服务，您可以以更细粒度的方式限制可见性。
+    有关标记路由的信息，请参见[流量管理](../traffic-management.md)。
 
-- To label a Route when the Route is used directly without a Knative Service:
+- 当路由直接被使用而没有本地服务时，要标记一个路由:
 
     ```bash
     kubectl label route ${ROUTE_NAME} networking.knative.dev/visibility=cluster-local
     ```
 
-- To label a Kubernetes Service:
+- 标记Kubernetes服务:
 
     ```bash
     kubectl label service ${SERVICE_NAME} networking.knative.dev/visibility=cluster-local
     ```
 
-### Example
+### 示例
 
-You can deploy the [Hello World sample](https://github.com/knative/docs/tree/main/code-samples/serving/hello-world/helloworld-go) and then convert it to be an cluster-local Service by labelling the Service:
+您可以部署[Hello World示例](https://github.com/knative/docs/tree/main/code-samples/serving/hello-world/helloworld-go)，然后通过标记该服务将其转换为集群本地服务:
 
 ```bash
 kubectl label kservice helloworld-go networking.knative.dev/visibility=cluster-local
 ```
 
-You can then verify that the change has been made by verifying the URL for the
-`helloworld-go` Service:
+然后，您可以通过验证 `helloworld-go` 服务的URL来验证更改已经完成:
 
 ```bash
 kubectl get kservice helloworld-go
@@ -55,5 +50,4 @@ NAME            URL                                              LATESTCREATED  
 helloworld-go   http://helloworld-go.default.svc.cluster.local   helloworld-go-2bz5l   helloworld-go-2bz5l   True
 ```
 
-The Service returns the a URL with the `svc.cluster.local` domain, indicating
-the Service is only available in the cluster-local network.
+该服务返回带有`svc.cluster.local`域的URL，表示该服务仅在集群-本地网络中可用。
