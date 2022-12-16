@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configure-resource-requests-and-limits" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -2092,7 +2092,7 @@
   
     <li class="md-nav__item">
       <a href="../private-services/" class="md-nav__link">
-        配置私人服务
+        配置私有服务
       </a>
     </li>
   
@@ -2209,8 +2209,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
-    Additional resources
+  <a href="#_2" class="md-nav__link">
+    额外的资源
   </a>
   
 </li>
@@ -5156,8 +5156,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
-    Additional resources
+  <a href="#_2" class="md-nav__link">
+    额外的资源
   </a>
   
 </li>
@@ -5180,9 +5180,9 @@
 
 
 
-<h1 id="configure-resource-requests-and-limits">Configure resource requests and limits<a class="headerlink" href="#configure-resource-requests-and-limits" title="Permanent link">&para;</a></h1>
-<p>You can configure resource limits and requests, specifically for CPU and memory, for individual Knative services.</p>
-<p>The following example shows how you can set the <code>requests</code> and <code>limits</code> fields for a service:</p>
+<h1 id="_1">配置资源请求和限制<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>您可以为各个Knative服务配置资源限制和请求，特别是CPU和内存。</p>
+<p>下面的例子展示了如何为一个服务设置<code>requests</code> 和 <code>limits</code>字段:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">serving.knative.dev/v1</span><span class="w"></span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span><span class="w"></span>
 <span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
@@ -5195,14 +5195,14 @@
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker.io/user/example-app</span><span class="w"></span>
 <span class="w">          </span><span class="nt">resources</span><span class="p">:</span><span class="w"></span>
 <span class="w">            </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100m</span><span class="w"></span>
-<span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">640M</span><span class="w"></span>
+<span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">250m</span><span class="w"></span>
+<span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512Mi</span><span class="w"></span>
 <span class="w">            </span><span class="nt">limits</span><span class="p">:</span><span class="w"></span>
 <span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
 </code></pre></div>
-<h2 id="additional-resources">Additional resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<h2 id="_2">额外的资源<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
-<li>For more information requests and limits for Kubernetes resources, see <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Managing Resources for Containers</a>.</li>
+<li>有关Kubernetes资源的请求和限制的更多信息，请参见<a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">管理容器资源</a>.</li>
 </ul>
 
               

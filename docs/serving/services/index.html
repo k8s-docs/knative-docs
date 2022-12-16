@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#about-knative-services" class="md-skip">
+        <a href="#knative" class="md-skip">
           Skip to content
         </a>
       
@@ -2083,15 +2083,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#modifying-knative-services" class="md-nav__link">
-    Modifying Knative services
+  <a href="#knative_1" class="md-nav__link">
+    修改Knative服务
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
-    Additional resources
+  <a href="#_1" class="md-nav__link">
+    额外的资源
   </a>
   
 </li>
@@ -2140,7 +2140,7 @@
   
     <li class="md-nav__item">
       <a href="private-services/" class="md-nav__link">
-        配置私人服务
+        配置私有服务
       </a>
     </li>
   
@@ -5163,15 +5163,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#modifying-knative-services" class="md-nav__link">
-    Modifying Knative services
+  <a href="#knative_1" class="md-nav__link">
+    修改Knative服务
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
-    Additional resources
+  <a href="#_1" class="md-nav__link">
+    额外的资源
   </a>
   
 </li>
@@ -5194,17 +5194,24 @@
 
 
 
-<h1 id="about-knative-services">About Knative Services<a class="headerlink" href="#about-knative-services" title="Permanent link">&para;</a></h1>
-<p>Knative Services are used to deploy an application. To create an application using Knative, you must create a YAML file that defines a Service. This YAML file specifies metadata about the application, points to the hosted image of the app, and allows the Service to be configured.</p>
-<p>Each Service is defined by a Route and a Configuration that have the same name as the service. The Configuration and Route are created by the service controller, and derive their configuration from the configuration of the Service.</p>
-<p>Each time the configuration is updated, a new Revision is created. Revisions are immutable snapshots of a particular configuration, and use underlying Kubernetes resources to scale the number of pods based on traffic.</p>
-<h2 id="modifying-knative-services">Modifying Knative services<a class="headerlink" href="#modifying-knative-services" title="Permanent link">&para;</a></h2>
-<p>Any changes to specifications, metadata labels, or metadata annotations for a Service must be copied to the Route and Configuration owned by that Service. The <code>serving.knative.dev/service</code> label on the Route and Configuration must also be set to the name of the Service. Any additional labels or annotations on the Route and Configuration not specified earlier must be removed.</p>
-<p>The Service updates its <code>status</code> fields based on the corresponding <code>status</code> value for the owned Route and Configuration.
-The Service must include conditions of <code>RoutesReady</code> and <code>ConfigurationsReady</code> in addition to the generic <code>Ready</code> condition. Other conditions can also be present.</p>
-<h2 id="additional-resources">Additional resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<h1 id="knative">关于Knative服务<a class="headerlink" href="#knative" title="Permanent link">&para;</a></h1>
+<p>Knative服务用于部署应用程序。
+要使用Knative创建应用程序，必须创建一个定义服务的YAML文件。
+这个YAML文件指定关于应用程序的元数据，指向应用程序的托管映像，并允许配置服务。</p>
+<p>每个服务都由一个路由和一个与服务同名的配置定义。
+配置和路由由服务控制器创建，并从服务的配置派生出它们的配置。</p>
+<p>每次更新配置时，都会创建一个新的修订。
+修订是特定配置的不可变快照，并使用底层Kubernetes资源来根据流量扩展pods数量。</p>
+<h2 id="knative_1">修改Knative服务<a class="headerlink" href="#knative_1" title="Permanent link">&para;</a></h2>
+<p>对服务的规范、元数据标签或元数据注释的任何更改都必须复制到该服务拥有的路由和配置中。
+路由和配置上的<code>serving.knative.dev/service</code>标签也必须设置为服务的名称。
+必须删除路由和配置上未指定的任何附加标签或注释。</p>
+<p>服务根据所属路由和配置的相应<code>status</code>值更新其<code>status</code>字段。
+除了通用的<code>Ready</code>条件外，服务还必须包括<code>RoutesReady</code> 和 <code>ConfigurationsReady</code>条件。
+其他情况也可能出现。</p>
+<h2 id="_1">额外的资源<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li>For more information about the Knative Service object, see the <a href="https://github.com/knative/specs/blob/main/specs/serving/overview.md">Resource Types</a> documentation.</li>
+<li>有关Knative服务对象的更多信息，请参阅<a href="https://github.com/knative/specs/blob/main/specs/serving/overview.md">资源类型</a>文档。</li>
 </ul>
 
               
