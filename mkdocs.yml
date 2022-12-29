@@ -15,6 +15,7 @@ theme:
   name: material
   logo: images/logo/rgb/knative-logo-rgb.png
   favicon: images/favicon.ico
+  language: zh
   custom_dir: overrides
   features:
     - navigation.tabs
